@@ -10,6 +10,7 @@
 \usepackage{adjustbox} % Scaling
 \usepackage{tabularx}
 \usepackage{multirow}
+\graphicspath{ {figures/} }
 
 \usepackage{caption}  % fine control over caption appearance
 \captionsetup{labelfont=bf,singlelinecheck=false,labelsep=space,skip=2pt}
@@ -33,7 +34,7 @@
   \rightskip\leftskip
   \parfillskip \z@skip}
 \makeatother
-\title{\includegraphics[width=0.2\textwidth]{UUlogo.png} 
+\title{\includegraphics[width=0.2\textwidth]{figures/UUlogo.png} 
 \vspace{0.5cm}
 \hrule
 \vspace{0.5cm}
@@ -74,7 +75,7 @@ To treat the observed poor standard of empirical SE, some researchers have calle
 \begin{figure}[h]
     \centering
     \caption{The ECSER pipeline. Reproduced from \textcite{Dellanna2022}. Steps with a dashed border are optional. The $\leftrightarrow$ arrows indicate feedback loops between phases}
-    \includegraphics[width=0.8\linewidth]{ECSER.png}
+    \includegraphics[width=0.8\linewidth]{figures/ECSER.png}
     \label{fig:ECSER}
 \end{figure}
 
@@ -146,7 +147,7 @@ The list of keywords was based on previous research (\cite{zhang2024,hou2024}) a
 
 The keyword search resulted in 129 potentially relevant papers. After manually removing false positives, mostly caused by the authors comparing their non-LLM model to previous LLM models, the total number of identified LLM4SE papers was 116, representing 21.97\% of total SE papers. 
 
-To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (table \ref{table:criteria}). While only classification papers were included in the final mapping study, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each application type (figure TODO). After applying all inclusion and exclusion criteria, a final list of 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria.
+To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (table \ref{table:criteria}). While only classification papers were included in the final mapping study, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each application type (figure \ref{fig:LLMTypes}). After applying all inclusion and exclusion criteria, 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria.
 
 \begin{table}[H]
     \raggedright
@@ -180,6 +181,12 @@ To narrow down the list from all LLM-related papers to those pertaining to SE cl
     
     \label{table:criteria}
 \end{table}
+
+\begin{figure}
+	\caption{Distribution of LLM applications in collected studies.}
+	\includegraphics[width=0.6\linewidth]{figures/LLMTypes.png}
+	\label{fig:LLMTypes}
+\end{figure}
 
 The information that was extracted from the papers was (BE EXACT) be determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and metrics and other information relevant to LLMs, like prompting technique and measures of fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). 
 
@@ -303,5 +310,22 @@ Lastly, the model temperature, which regulates the randomness of the model, can 
 
 \newpage
 \printbibliography[heading=bibintoc]
+
+\begin{appendices}
+\section{Additional Mapping Study Results}
+For brevity, sources were excluded for some figures and are included here for further reference. 
+\begin{table}[ht]
+	\caption{Classification of LLM application types.}
+	\begin{tabularx}{\textwidth}{|l|c|X|}
+	    \hline
+	    \textbf{Category} & \textbf{Number of studies} & \textbf{References} \\ \hline
+		Generation & 58 & [To be filled] \\ \hline
+		Classification & 15 & [To be filled] \\ \hline
+		Recommendation & 6 & [To be filled] \\ \hline
+		Generation \& Classification & 3 & [To be filled] \\ \hline
+		Classification \& Recommendation & 1 & [To be filled] \\ \hline
+	\end{tabularx}
+\end{table}
+\end{appendices}
 
 \end{document}
