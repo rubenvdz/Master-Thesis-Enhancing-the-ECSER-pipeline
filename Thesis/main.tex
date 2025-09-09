@@ -147,7 +147,7 @@ The list of keywords was based on previous research (\cite{zhang2024,hou2024}) a
 
 The keyword search resulted in 129 potentially relevant papers. After manually removing false positives, mostly caused by the authors comparing their non-LLM model to previous LLM models, the total number of identified LLM4SE papers was 116, representing 21.97\% of total SE papers. 
 
-To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (table \ref{table:criteria}). These criteria were designed to exclude any paper not relevant for answering the research question, such as meta studies and those not related to classification. After the manual search, 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria. 
+To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (table \ref{table:criteria}). These criteria were designed to exclude any paper not relevant for answering the research question, such as meta studies and those not related to classification. During the manual search, 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria. 
 
 \begin{table}[H]
     \raggedright
@@ -182,17 +182,25 @@ To narrow down the list from all LLM-related papers to those pertaining to SE cl
     \label{table:criteria}
 \end{table}
 
-While only classification papers were included in the final analysis, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each type (figure \ref{fig:LLMTypes}). As can be seen, LLMs are most often used for generation, with 73.5\% of papers using them in this way, including some that use generation alongside classification. However, classification represents the second largest application of LLMs, with 22.9\% in total. 
+While only classification papers were included in the final analysis, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each type (figure \ref{fig:LLMTypes}). As can be seen, LLMs are most often used for generation, with 73.5\% of papers using them in this way, including some that use generation alongside classification. However, classification represents the second largest application of LLMs, with 22.9\% in total. Appendix \ref{appendix:ref} contains references for figure \ref{fig:LLMTypes} and other pie charts contained in this thesis.
 
 \begin{figure}[h]
-	\caption{Distribution of LLM applications in collected studies.}
+	\caption{Distribution of LLM application types in collected studies.}
 	\includegraphics[width=0.5\linewidth]{figures/LLMTypes.png}
 	\label{fig:LLMTypes}
 \end{figure}
 
 
 \textbf{Information Extraction}\\
-The information that was extracted from the papers was (BE EXACT) be determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and metrics and other information relevant to LLMs, like prompting technique and measures of fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). 
+After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were analysed and recorded. In particular, we recorded whether or not the following evaluation metrics were reported: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, ROC plot, Calibration, Fairness} and \textit{Robustness}.
+Further, we looked at several factors related to the reproducibility and generalization of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
+
+Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether multiple prompts were compared and whether the temperatures of the models were reported.
+
+The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and other information relevant to LLMs, like prompting technique and measures of fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). \\
+
+
+
 
 \emphasize{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}\\
 RQ2 takes the role of treatment design; how can we solve potential problems that are identified by RQ1? The purpose of RQ2 is to design an artifact that is easy to use and comprehensive. To answer the question, we will enhance the existing ECSER pipeline \cite{Dellanna2022} to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). Table \ref{table:additions} includes a preliminary summary of the additions that will be made to the ECSER pipeline, with the primary supporting references for the additions in brackets. The list of additions is subject to change based on the findings from RQ1 and further literature review. It is also possible that the best course of action will be to add more steps to the ECSER pipeline, as opposed to expanding existing ones, particularly for reporting the calibration, fairness and robustness or for prompt engineering.
@@ -213,6 +221,7 @@ RQ2 takes the role of treatment design; how can we solve potential problems that
                                                                    & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
                                                                    & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
                                                                    & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
+    S8. Analyse overfitting and degradation						   & Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
     \end{tabularx}
     
     \label{table:additions}
@@ -316,7 +325,7 @@ Lastly, the model temperature, which regulates the randomness of the model, can 
 \printbibliography[heading=bibintoc]
 
 \begin{appendices}
-\section{Supplemental Mapping Study References}
+\section{Supplemental Mapping Study References} \label{appendix:ref}
 For brevity, sources were excluded for some figures and are included here for further reference. 
 \begin{table}[ht]
 	\caption{Classification of LLM application types.}
