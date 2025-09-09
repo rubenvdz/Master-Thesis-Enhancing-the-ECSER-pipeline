@@ -147,7 +147,7 @@ The list of keywords was based on previous research (\cite{zhang2024,hou2024}) a
 
 The keyword search resulted in 129 potentially relevant papers. After manually removing false positives, mostly caused by the authors comparing their non-LLM model to previous LLM models, the total number of identified LLM4SE papers was 116, representing 21.97\% of total SE papers. 
 
-To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (table \ref{table:criteria}). While only classification papers were included in the final mapping study, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each application type (figure \ref{fig:LLMTypes}). After applying all inclusion and exclusion criteria, 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria.
+To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (table \ref{table:criteria}). These criteria were designed to exclude any paper not relevant for answering the research question, such as meta studies and those not related to classification. After the manual search, 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria. 
 
 \begin{table}[H]
     \raggedright
@@ -182,12 +182,16 @@ To narrow down the list from all LLM-related papers to those pertaining to SE cl
     \label{table:criteria}
 \end{table}
 
-\begin{figure}
+While only classification papers were included in the final analysis, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each type (figure \ref{fig:LLMTypes}). As can be seen, LLMs are most often used for generation, with 73.5\% of papers using them in this way, including some that use generation alongside classification. However, classification represents the second largest application of LLMs, with 22.9\% in total. 
+
+\begin{figure}[h]
 	\caption{Distribution of LLM applications in collected studies.}
-	\includegraphics[width=0.6\linewidth]{figures/LLMTypes.png}
+	\includegraphics[width=0.5\linewidth]{figures/LLMTypes.png}
 	\label{fig:LLMTypes}
 \end{figure}
 
+
+\textbf{Information Extraction}\\
 The information that was extracted from the papers was (BE EXACT) be determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and metrics and other information relevant to LLMs, like prompting technique and measures of fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). 
 
 \emphasize{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}\\
@@ -312,18 +316,19 @@ Lastly, the model temperature, which regulates the randomness of the model, can 
 \printbibliography[heading=bibintoc]
 
 \begin{appendices}
-\section{Additional Mapping Study Results}
+\section{Supplemental Mapping Study References}
 For brevity, sources were excluded for some figures and are included here for further reference. 
 \begin{table}[ht]
 	\caption{Classification of LLM application types.}
 	\begin{tabularx}{\textwidth}{|l|c|X|}
 	    \hline
 	    \textbf{Category} & \textbf{Number of studies} & \textbf{References} \\ \hline
-		Generation & 58 & [To be filled] \\ \hline
-		Classification & 15 & [To be filled] \\ \hline
-		Recommendation & 6 & [To be filled] \\ \hline
-		Generation \& Classification & 3 & [To be filled] \\ \hline
-		Classification \& Recommendation & 1 & [To be filled] \\ \hline
+		Generation & 58 & \cite{10.1145/3597503.3639150,10.1145/3597503.3649399,10.1145/3597503.3608132,10.1145/3597503.3623326,10.1145/3597503.3623298,10.1145/3597503.3623306,10.1145/3597503.3623316,10.1145/3597503.3608134,10.1145/3597503.3608137,10.1145/3597503.3623343,10.1145/3597503.3639085,10.1145/3597503.3639120,10.1145/3597503.3639133,10.1145/3597503.3639138,10.1145/3597503.3639219,10.1145/3597503.3639226,10.1145/3597503.3639184,10.1145/3597503.3639081,10.1145/3597503.3639157,10.1145/3597503.3639180,10.1145/3597503.3639121,10.1145/3597503.3639118,10.1145/3597503.3639210,10.1145/3597503.3639116,10.1145/3597503.3639223,10.1145/3597503.3639155,10.1145/3597503.3639183,10.1145/3597503.3639135,10.1145/3663529.3663829,10.1145/3663529.3663836,10.1145/3663529.3663839,10.1145/3663529.3663841,10.1145/3663529.3663842,10.1145/3663529.3663846,10.1145/3663529.3663855,10.1145/3663529.3663861,10.1145/3663529.3663801,10.1145/3663529.3663868,10.1145/3663529.3663869,10.1145/3663529.3663873,10.1145/3663529.3664463,10329992,10378848,10433002,10485640,10507163,10482873,10521881,10584357,10606356,10609742,10634302,10636040,10664637,10538301,10707668,10713474,10734067} \\ \hline
+		Classification & 15 & \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10.1145/3597503.3639126,10.1145/3597503.3639217,10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3663529.3663785,10.1145/3663529.3663794,10323231,10402095,10586831,10648982,10659742,10746847} \\ \hline
+		Recommendation & 6 & \cite{10.1145/3597503.3623342,10.1145/3597503.3639188,10.1145/3597503.3639187,10.1145/3663529.3663826,10.1145/3663529.3663803,10697930} \\ \hline
+		Generation \& Classification & 3 & 
+		\cite{10.1145/3597503.3639216,10599336,10704582} \\ \hline
+		Classification \& Recommendation & 1 & \cite{10.1145/3597503.3623322} \\ \hline
 	\end{tabularx}
 \end{table}
 \end{appendices}
