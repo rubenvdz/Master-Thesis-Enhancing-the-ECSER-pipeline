@@ -120,7 +120,7 @@ The remainder of this thesis is structured as follows. In Section \ref{Backgroun
 \end{itemize}
 Another less common approach is automatic prompt engineering, where instructions are automatically generated and selected \cite{zhou2023ape}.
 
-\section{Research Approach} \label{Research approach}
+\section{Research Approach} \label{Research approach} 
 
 % Research questions
 The usage of LLMs in SE research has increased massively over the past few years, but the research of how to best conduct studies and report results in this field remains very limited. In order to approach the problem of LLM4SE reporting standards and design meaningful guidelines, we follow \citeauthor{Wieringa2014}'s design cycle of \textit{problem investigation}, \textit{treatment design} and \textit{treatment validation} \cite{Wieringa2014}. This leads us to the following research questions:
@@ -321,14 +321,37 @@ Another consideration is how well the LLM outputs adhere to the format specified
 
 Lastly, the model temperature, which regulates the randomness of the model, can also affect its performance. \textcite{peeperkorn2024} looked at the effect of model temperature on the level of creativity of the outputs and found that LLMs generate slightly more novel outputs with higher temperature, but the temperature was also correlated with incoherence. No relationship was found between temperature and cohesion or typicality. Model temperature might also affect a model's susceptibility to security attacks: \textcite{Yu2024} found that some LLMs became more susceptible to jailbreaking attacks as temperature increased, whereas others had decreased susceptibility to jailbreaking with increased temperature, possibly due to the fact that the former models had a lower susceptibility at 0 temperature and the latter models had a higher susceptibility at 0 temperature.
 
-\newpage
+\section{RQ1: What is the current state of reporting in LLM4SE classification research?}
+In this section, we discuss the results obtained from the mapping study of LLM4SE classification papers released in 2024 and provide an answer to RQ1. During the search process described in section \ref{Research approach}, 18 papers were identified as relevant for answering the research question. Firstly, we will look at the distribution of the included papers. All three venues included in the search strategy are represented in the final selection, with eight ICSE papers, eight TSE papers and two FSE papers (figure \ref{fig:Venues}). 
+	
+Some of the data extraction was dependent on whether or not the papers used a prompt-based approach to LLM classification or another approach such as fine-tuning. Figure \ref{fig:Prompts} shows that 44.4\% or 8 papers used a prompt-based approach, while  55.6\% or 10 papers used a different approach.
+
+\begin{figure}[h]
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\caption{Distribution of venues in mapping study.}
+		\includegraphics[width=1\textwidth]{figures/Venues.png}
+		\label{fig:Venues}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+		\caption{Distribution of papers that use prompts for classification.}
+		\includegraphics[width=1\textwidth]{figures/Prompts.png}
+		\label{fig:Prompts}
+	\end{minipage}
+	\hfill
+\end{figure}
+
+\newpage 
 \printbibliography[heading=bibintoc]
 
+\newpage
 \begin{appendices}
-\section{Supplemental Mapping Study References} \label{appendix:ref}
-For brevity, sources were excluded for some figures and are included here for further reference. 
+\section{Supplemental Mapping Study Results} \label{appendix:ref}
+For brevity, sources were excluded for some figures and are included here for further reference.\\
+Table \ref{refs:application_types} shows the distribution of the application types of LLMs of 83 total papers (see figure \ref{fig:LLMTypes}).
 \begin{table}[ht]
-	\caption{Classification of LLM application types.}
+	\caption{Distribution of LLM application types.}
 	\begin{tabularx}{\textwidth}{|l|c|X|}
 	    \hline
 	    \textbf{Category} & \textbf{Number of studies} & \textbf{References} \\ \hline
@@ -338,8 +361,36 @@ For brevity, sources were excluded for some figures and are included here for fu
 		Generation \& Classification & 3 & 
 		\cite{10.1145/3597503.3639216,10599336,10704582} \\ \hline
 		Classification \& Recommendation & 1 & \cite{10.1145/3597503.3623322} \\ \hline
-	\end{tabularx}
+	\end{tabularx} \label{refs:application_types}
 \end{table}
+
+
+The following tables apply to the 18 papers included in the mapping study. Table \ref{refs:venues} shows the number of studies belonging to each venue. Table \ref{refs:prompts} shows the number of papers using prompts for classification.
+See also figure \ref{fig:Venues} and \ref{fig:Prompts}.
+\begin{table}[ht]
+	\caption{Distribution of venues.}
+	\begin{tabularx}{\textwidth}{|l|c|X|}
+		\hline
+		\textbf{Venue} & \textbf{Number of studies} & \textbf{References} \\ \hline
+		TSE & 8 & \cite{10323231,10402095,10586831,10648982,10659742,10746847,10599336,10704582} \\ \hline
+		FSE & 2 & \cite{10.1145/3663529.3663785,10.1145/3663529.3663794} \\ \hline
+		ICSE & 8 & \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10.1145/3597503.3639217,10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3597503.3639216,10.1145/3597503.3623322} \\ \hline
+	\end{tabularx}
+	\label{refs:venues}
+\end{table}
+
+\begin{table}[ht]
+	\caption{Distribution of prompt usage.}
+	\begin{tabularx}{\textwidth}{|l|c|X|}
+		\hline
+		\textbf{Prompt-based} & \textbf{Number of studies} & \textbf{References} \\ \hline
+		No & 10 & \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10.1145/3597503.3639217,10.1145/3597503.3639202,10323231,10402095,10586831,10.1145/3597503.3639216,10704582,10.1145/3597503.3623322} \\ \hline
+		Yes & 8 & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3663529.3663785,10.1145/3663529.3663794,10648982,10659742,10746847,10599336} \\ \hline
+	\end{tabularx}
+	\label{refs:prompts}
+\end{table}
+
+
 \end{appendices}
 
 \end{document}
