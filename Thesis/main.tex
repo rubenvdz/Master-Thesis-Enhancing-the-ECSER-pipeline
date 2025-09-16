@@ -10,6 +10,7 @@
 \usepackage{adjustbox} % Scaling
 \usepackage{tabularx}
 \usepackage{multirow}
+\usepackage{hhline}
 \graphicspath{ {figures/} }
 
 \usepackage{caption}  % fine control over caption appearance
@@ -335,12 +336,72 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 	\end{minipage}
 	\hfill
 	\begin{minipage}{0.45\textwidth}
-		\caption{Distribution of papers that use prompts for classification.}
+		\caption{Distribution of prompt usage in mapping study.}
 		\includegraphics[width=1\textwidth]{figures/Prompts.png}
 		\label{fig:Prompts}
 	\end{minipage}
 	\hfill
 \end{figure}
+
+\begin{table}[H]
+	\caption{Summary of mapping study results.}
+	\begin{tabularx}{\textwidth}{|X|c|}
+		\hline
+		\textbf{Category} & \textbf{Total} \\
+		\hline
+		Total mapping study papers & 18 \\
+		\hline
+		\textbf{Evaluation metrics} & \\
+		\hspace{3mm} Precision & 17 (94.4\%)  \\
+		\hspace{3mm} Recall & 17 (94.4\%) \\
+		\hspace{3mm} Accuracy & 11 (61.1\%) \\
+		\hspace{3mm} F-Score & 17 (94.4\%)\\
+		\hspace{3mm} AUC & 3 (16.7\%) \\
+		\hspace{3mm} ROC plots & 0 (0.0\%) \\
+		\hspace{3mm} MCC & 0 (0.0\%) \\
+		Calibration & 0 (0.0\%) \\
+		Fairness &  0 (0.0\%) \\
+		\textbf{Robustness} &  \\
+		\hspace{3mm} Data distribution \& Adversarial Attacks & 1 (5.5\%)  \\
+		\hspace{3mm} Noisy data & 1 (5.5\%) \\
+		\textbf{Metrics justification} &\\
+		\hspace{3mm} No & 9 (50.0\%) \\
+		\hspace{3mm} Implicit & 0 (0.0\%) \\
+		\hspace{3mm} Previous work & 5 (27.8\%) \\
+		\hspace{3mm} Yes & 4 (22.2\%) \\
+		Confusion matrix & 4 (22.2\%) \\
+		Evaluation over multiple data sets & 5 (27.8\%) \\
+		\textbf{Type of baseline} &\\
+		\hspace{3mm} None & 2 (11.1\%) \\
+		\hspace{3mm} Own & 3 (16.7\%) \\
+		\hspace{3mm} External & 4 (22.2\%)\\
+		\hspace{3mm} External and Own & 9 (50.0\%) \\
+		Analysis of statistical significance & 5 (27.8\%) \\
+		\textbf{Statistical significance justification}&\\
+		\hspace{3mm} No & 4 (80.0\%)  \\
+		\hspace{3mm} Implicit & 0 (0.0\%) \\
+		\hspace{3mm} Previous work & 1 (20.0\%) \\
+		\hspace{3mm} Yes & 0 (0.0\%)  \\
+		\hline
+	\end{tabularx}
+	\label{table:mapping_results}
+\end{table}
+
+\begin{table}[H]
+	\caption{Summary of prompt usage results.}
+	\begin{tabularx}{\textwidth}{|X|c|}
+		\hline
+		\textbf{Category} & \textbf{Total} \\
+		\hline
+		Total prompt-based classification papers & 8 \\
+		\hline
+		\textbf{Prompt Approach} & \\
+		\hspace{3mm}  TEST&  \\
+		\hspace{3mm}  TEST& \\
+		\hline
+	\end{tabularx}
+	\label{table:prompt_results}
+\end{table}
 
 \newpage 
 \printbibliography[heading=bibintoc]
@@ -388,6 +449,50 @@ See also figure \ref{fig:Venues} and \ref{fig:Prompts}.
 		Yes & 8 & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3663529.3663785,10.1145/3663529.3663794,10648982,10659742,10746847,10599336} \\ \hline
 	\end{tabularx}
 	\label{refs:prompts}
+\end{table}
+
+\begin{table}[ht]
+	\caption{Summary of mapping study results.}
+	\begin{tabularx}{\textwidth}{|l|c|X|}
+		\hline
+		\textbf{Category} & \textbf{Total} & \textbf{References} \\
+		\hline
+		Total mapping study papers & 18 & \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10.1145/3597503.3639217,10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3663529.3663785,10.1145/3663529.3663794,10323231,10402095,10586831,10648982,10659742,10746847,10.1145/3597503.3639216,10599336,10704582,10.1145/3597503.3623322}\\
+		\hline
+		\textbf{Evaluation metrics} & & \\
+		\hspace{3mm} Precision & 17 (94.4\%) & \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10.1145/3597503.3639217,10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3663529.3663785,10.1145/3663529.3663794,10323231,10402095,10586831,10648982,10746847,10.1145/3597503.3639216,10599336,10704582,10.1145/3597503.3623322}  \\
+		\hspace{3mm} Recall & 17 (94.4\%) & \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10.1145/3597503.3639217,10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3663529.3663785,10.1145/3663529.3663794,10323231,10402095,10586831,10648982,10746847,10.1145/3597503.3639216,10599336,10704582,10.1145/3597503.3623322}\\
+		\hspace{3mm} Accuracy & 11 (61.1\%) & \cite{10.1145/3597503.3623304,10.1145/3597503.3639217,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3663529.3663794,10323231,10402095,10586831,10659742,10746847,10599336}\\
+		\hspace{3mm} F-Score & 17 (94.4\%) &  \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10.1145/3597503.3639217,10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3663529.3663785,10323231,10402095,10586831,10648982,10659742,10746847,10.1145/3597503.3639216,10599336,10704582,10.1145/3597503.3623322}\\
+		\hspace{3mm} AUC & 3 (16.7\%) & \cite{10.1145/3597503.3639202,10402095,10659742}\\
+		\hspace{3mm} ROC plots & 0 (0.0\%) & \\
+		\hspace{3mm} MCC & 0 (0.0\%) & \\
+		Calibration & 0 (0.0\%) &  \\
+		Fairness &  0 (0.0\%) &  \\
+		\textbf{Robustness} &  & \\
+		\hspace{3mm} Data distribution \& Adversarial Attacks & 1 (5.5\%) & \cite{10586831} \\
+		\hspace{3mm} Noisy data & 1 (5.5\%) & \cite{10.1145/3597503.3639217} \\
+		\textbf{Metrics justification} & & \\
+		\hspace{3mm} No & 9 (50.0\%) & \cite{10.1145/3597503.3639217,10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3597503.3639202,10.1145/3663529.3663785,10.1145/3663529.3663794,10323231,10586831,10599336}\\
+		\hspace{3mm} Implicit & 0 (0.0\%) &  \\
+		\hspace{3mm} Previous work & 5 (27.8\%) & \cite{10402095,10659742,10746847,10.1145/3597503.3639216,10.1145/3597503.3623322}\\
+		\hspace{3mm} Yes & 4 (22.2\%) & \cite{10.1145/3597503.3623345,10.1145/3597503.3623304,10648982,10704582} \\
+		Confusion matrix & 4 (22.2\%) & \cite{10.1145/3597503.3639117,10.1145/3663529.3663794,10648982,10659742}\\
+		Evaluation over multiple data sets & 5 (27.8\%) & \cite{10.1145/3597503.3639117,10402095,10648982,10.1145/3597503.3639216,10.1145/3597503.3623322}\\
+		\textbf{Type of baseline} &&\\
+		\hspace{3mm} None & 2 (11.1\%) & \cite{10.1145/3597503.3639117,10.1145/3663529.3663794} \\
+		\hspace{3mm} Own & 3 (16.7\%) & \cite{10.1145/3597503.3639194,10.1145/3663529.3663785,10704582} \\
+		\hspace{3mm} External & 4 (22.2\%) & \cite{10.1145/3597503.3623304,10402095,10599336,10.1145/3597503.3623322}  \\
+		\hspace{3mm} External and Own & 9 (50.0\%) & \cite{10.1145/3597503.3623345,10.1145/3597503.3639217,10.1145/3597503.3639202,10323231,10586831,10648982,10659742,10746847,10.1145/3597503.3639216}\\
+		Analysis of statistical significance & 5 (27.8\%) & \cite{10.1145/3597503.3623345,10648982,10659742,10746847,10704582}\\
+		\textbf{Statistical significance justification}&& \\
+		\hspace{3mm} No & 4 (80.0\%) & \cite{10648982,10659742,10746847,10704582} \\
+		\hspace{3mm} Implicit & 0 (0.0\%) &  \\
+		\hspace{3mm} Previous work & 1 (20.0\%) & \cite{10.1145/3597503.3623345}\\
+		\hspace{3mm} Yes & 0 (0.0\%) &   \\
+		\hline
+	\end{tabularx}
+	\label{refs:mapping_metrics}
 \end{table}
 
 
