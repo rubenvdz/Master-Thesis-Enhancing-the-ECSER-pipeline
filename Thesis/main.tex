@@ -345,7 +345,7 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 
 \begin{table}[H]
 	\caption{Summary of mapping study results.}
-	\begin{tabularx}{\textwidth}{|X|c|}
+	\begin{tabularx}{0.6\textwidth}{|X|c|}
 		\hline
 		\textbf{Category} & \textbf{Total} \\
 		\hline
@@ -388,16 +388,34 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 \end{table}
 
 \begin{table}[H]
-	\caption{Summary of prompt usage results.}
-	\begin{tabularx}{\textwidth}{|X|c|}
+	\caption{Summary of prompt reporting results in the mapping study.}
+	\begin{tabularx}{0.6\textwidth}{|X|c|}
 		\hline
 		\textbf{Category} & \textbf{Total} \\
 		\hline
 		Total prompt-based classification papers & 8 \\
 		\hline
-		\textbf{Prompt Approach} & \\
-		\hspace{3mm}  TEST&  \\
-		\hspace{3mm}  TEST& \\
+		\textbf{Prompt approach} & \\
+		\hspace{3mm} Chain-of-verification & 1 (12.5\%)  \\
+		\hspace{3mm} Few-shot & 2 (25.0\%)  \\
+		\hspace{3mm} Mimic-in-the-background & 1 (12.5\%) \\
+		\hspace{3mm} Not reported & 1 (12.5\%) \\
+		\hspace{3mm} Zero-shot & 3 (37.5\%)  \\
+		\textbf{Prompt pattern} &\\
+		\hspace{3mm} Not reported & 2 (25.0\%)\\
+		\hspace{3mm} Own & 6 (75.0\%) \\
+		\textbf{Prompt approach justification} &\\
+		\hspace{3mm} No & 5 (62.5\%)  \\
+		\hspace{3mm} Yes & 3 (37.5\%)  \\
+		\textbf{Prompt design justification} & \\
+		\hspace{3mm} No & 4 (50.0\%)  \\
+		\hspace{3mm} Previous Work & 1 (12.5\%) \\
+		\hspace{3mm} Yes & 3 (37.5\%)  \\
+		\textbf{Evaluation over multiple prompts} &\\
+		\hspace{3mm} No & 8 (100.0\%) \\
+		\textbf{Temperature} & \\
+		\hspace{3mm} No & 7 (87.5\%) \\
+		\hspace{3mm} Yes & 1 (12.5\%) \\
 		\hline
 	\end{tabularx}
 	\label{table:prompt_results}
@@ -412,7 +430,7 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 For brevity, sources were excluded for some figures and are included here for further reference.\\
 Table \ref{refs:application_types} shows the distribution of the application types of LLMs of 83 total papers (see figure \ref{fig:LLMTypes}).
 \begin{table}[ht]
-	\caption{Distribution of LLM application types.}
+	\caption{References for the distribution of LLM application types.}
 	\begin{tabularx}{\textwidth}{|l|c|X|}
 	    \hline
 	    \textbf{Category} & \textbf{Number of studies} & \textbf{References} \\ \hline
@@ -429,7 +447,7 @@ Table \ref{refs:application_types} shows the distribution of the application typ
 The following tables apply to the 18 papers included in the mapping study. Table \ref{refs:venues} shows the number of studies belonging to each venue. Table \ref{refs:prompts} shows the number of papers using prompts for classification.
 See also figure \ref{fig:Venues} and \ref{fig:Prompts}.
 \begin{table}[ht]
-	\caption{Distribution of venues.}
+	\caption{References for distribution of venue in the mapping study.}
 	\begin{tabularx}{\textwidth}{|l|c|X|}
 		\hline
 		\textbf{Venue} & \textbf{Number of studies} & \textbf{References} \\ \hline
@@ -441,7 +459,7 @@ See also figure \ref{fig:Venues} and \ref{fig:Prompts}.
 \end{table}
 
 \begin{table}[ht]
-	\caption{Distribution of prompt usage.}
+	\caption{References for the distribution of prompt usage in the mapping study.}
 	\begin{tabularx}{\textwidth}{|l|c|X|}
 		\hline
 		\textbf{Prompt-based} & \textbf{Number of studies} & \textbf{References} \\ \hline
@@ -452,7 +470,7 @@ See also figure \ref{fig:Venues} and \ref{fig:Prompts}.
 \end{table}
 
 \begin{table}[ht]
-	\caption{Summary of mapping study results.}
+	\caption{References for the mapping study results.}
 	\begin{tabularx}{\textwidth}{|l|c|X|}
 		\hline
 		\textbf{Category} & \textbf{Total} & \textbf{References} \\
@@ -495,6 +513,41 @@ See also figure \ref{fig:Venues} and \ref{fig:Prompts}.
 	\label{refs:mapping_metrics}
 \end{table}
 
+For the main results of the mapping study, table \ref{refs:mapping_metrics} shows the full references. Further, table \ref{refs:prompt_results} shows the references for the papers that use a prompt-based approach to classification. 
+
+\begin{table}[ht]
+	\caption{References for the mapping study prompting results.}
+	\begin{tabularx}{\textwidth}{|l|c|X|}
+		\hline
+		\textbf{Category} & \textbf{Total} & \textbf{References} \\
+		\hline
+		Total prompt-based classification papers & 8 & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3663529.3663785,10.1145/3663529.3663794,10648982,10659742,10746847,10599336} \\
+		\hline
+		\textbf{Prompt approach} && \\
+		\hspace{3mm} Chain-of-verification & 1 (12.5\%) & \cite{10.1145/3597503.3639194} \\
+		\hspace{3mm} Few-shot & 2 (25.0\%) & \cite{10746847,10599336} \\
+		\hspace{3mm} Mimic-in-the-background & 1 (12.5\%) & \cite{10.1145/3597503.3639117} \\
+		\hspace{3mm} Not reported & 1 (12.5\%) & \cite{10.1145/3663529.3663785} \\
+		\hspace{3mm} Zero-shot & 3 (37.5\%) & \cite{10.1145/3663529.3663794,10648982,10659742} \\
+		\textbf{Prompt pattern} && \\
+		\hspace{3mm} Not reported & 2 (25.0\%) & \cite{10.1145/3663529.3663785,10746847} \\
+		\hspace{3mm} Own & 6 (75.0\%) & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3663529.3663794,10648982,10659742,10599336} \\
+		\textbf{Prompt approach justification} && \\
+		\hspace{3mm} No & 5 (62.5\%) & \cite{10.1145/3663529.3663785,10.1145/3663529.3663794,10648982,10659742,10746847} \\
+		\hspace{3mm} Yes & 3 (37.5\%) & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10599336} \\
+		\textbf{Prompt design justification} && \\
+		\hspace{3mm} No & 4 (50.0\%) & \cite{10.1145/3597503.3639194,10.1145/3663529.3663785,10648982,10746847} \\
+		\hspace{3mm} Previous Work & 1 (12.5\%) & \cite{10.1145/3663529.3663794} \\
+		\hspace{3mm} Yes & 3 (37.5\%) & \cite{10.1145/3597503.3639117,10659742,10599336} \\
+		\textbf{Evaluation over multiple prompts} && \\
+		\hspace{3mm} No & 8 (100.0\%) & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3663529.3663785,10.1145/3663529.3663794,10648982,10659742,10746847,10599336} \\
+		\textbf{Temperature} && \\
+		\hspace{3mm} No & 7 (87.5\%) & \cite{10.1145/3597503.3639194,10.1145/3663529.3663785,10.1145/3663529.3663794,10648982,10659742,10746847,10599336} \\
+		\hspace{3mm} Yes & 1 (12.5\%) & \cite{10.1145/3597503.3639117} \\
+		\hline
+	\end{tabularx}
+	\label{refs:prompt_results}
+\end{table}
 
 \end{appendices}
 
