@@ -90,7 +90,7 @@ However, while ECSER is tailored to traditional ML classifiers (such as logistic
 The goal of this thesis is to address the lack of LLM-specific guidelines in the ECSER pipeline, by expanding it to include specific recommendations for conducting LLM classifier research. In doing so, we will make the following contributions:
 \begin{itemize}
     \item We will conduct a mapping study to assess the current state of reporting in LLM4SE classification research.
-    \item We will develop an expanded version of the ECSER pipeline that includes specific recommendations for conducting LLM classifier research, such as prompt engineering and the evaluation of model fairness and robustness.
+    \item We will develop an expanded version of the ECSER pipeline that includes specific recommendations for conducting LLM classifier research, such as prompt engineering and the evaluation of model fa irness and robustness.
     \item We will conduct two replication studies of existing LLM classifier papers using the enhanced pipeline, in order to evaluate the pipeline's usability and comprehensiveness.
 \end{itemize}
 
@@ -193,7 +193,7 @@ While only classification papers were included in the final analysis, all the pa
 
 
 \textbf{Information Extraction}\\
-After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were analysed and recorded. In particular, we recorded whether or not the following evaluation metrics were reported: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, ROC plot, Calibration, Fairness} and \textit{Robustness}.
+After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were analysed and recorded. In particular, we recorded whether or not the following evaluation metrics were reported: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, plot, Calibration, Fairness} and \textit{Robustness}.
 Further, we looked at several factors related to the reproducibility and generalization of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
 
 Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether multiple prompts were compared and whether the temperatures of the models were reported.
@@ -325,7 +325,7 @@ Lastly, the model temperature, which regulates the randomness of the model, can 
 \section{RQ1: What is the current state of reporting in LLM4SE classification research?}
 In this section, we discuss the results obtained from the mapping study of LLM4SE classification papers released in 2024 and provide an answer to RQ1. During the search process described in section \ref{Research approach}, 18 papers were identified as relevant for answering the research question. Firstly, we will look at the distribution of the included papers. All three venues included in the search strategy are represented in the final selection, with eight ICSE papers, eight TSE papers and two FSE papers (figure \ref{fig:Venues}). 
 	
-Some of the data extraction was dependent on whether or not the papers used a prompt-based approach to LLM classification or another approach such as fine-tuning. Figure \ref{fig:Prompts} shows that 44.4\% or 8 papers used a prompt-based approach, while  55.6\% or 10 papers used a different approach.
+Some of the data extraction was dependent on whether or not the papers used a prompt-based approach to LLM classification or another approach such as fine-tuning. Figure \ref{fig:Prompts} shows that 44.4\% or 8 papers used a prompt-based approach, while  55.6\% or 10 papers used a different approach such as fine-tuning.
 
 \begin{figure}[h]
 	\hfill
@@ -343,9 +343,21 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 	\hfill
 \end{figure}
 
+Table \ref{table:mapping_results} shows a summary of the results of the mapping study. Starting with the evaluation metrics that are commonly recommended in the field, of the 18 included papers, 17 reported the precision, recall and F-score of the results, while only 11 papers reported the accuracy and only four papers reported the full confusion matrix. While the precision, recall and F-score are often more informative for the usefulness of a model compared to the accuracy, by not providing the accuracy or the full confusion matrix, relevant information is lost that cannot be obtained from just three metrics, which prevents further comparisons between models that do provide the full matrix. Further, the  Matthews Correlation Coefficient (MCC), which some consider more balanced than the F-score, since it takes the full confusion matrix into account \cite{Chicco2020}, was not reported in any of the papers.
+
+Unfortunately. only three papers reported the area under the curve (AUC) of the receiver operating characteristic (ROC) curve, while none provided a plot of the full ROC curve itself. This is despite the fact that AUC has been theoretically and empirically shown to be a better metric for comparing classification models than the accuracy \cite{huang2005auc,ling2003auc}. Since the AUC is a summary of the ROC curve, the full curve should also be provided for a more detailed view of the discriminatory performance of the model \cite{Nahm2022roc}.
+
+Further, it is recommended to measure the calibration, fairness and robustness when using LLMs. However, none of the papers reported the calibration and fairness, whereas only two papers include an analysis of the robustness. Since none of the included papers involve human participants or sensitive data, the omission of evaluating fairness can be justifiable, although it can still provide insight into the relative performance of a model on different data classes. However, the calibration should generally be analysed to evaluate the reliability of a model, since the calibration evaluates how well the predicted probabilities align with actual probabilities \cite{nixon2019calibration,guo2017calibration}. 
+
+The robustness, which evaluates the performance of a model in the face on challenging inputs, can be observed in several ways, including by making changes in the data distribution, the addition of noise to the data, and adversarial attacks \cite{chang2023}. Only two papers did testing of the robustness of their model in these ways, one of which looked at both altering the data distribution as well as adversarial attacks and the other looked at the effect of noisy data. However, some papers tested something similar to robustness by performing ablation studies, which work by removing parts of the model to see the impact on the performance, which allows one to assess whether the model exhibits graceful degradation \cite{meyes2019ablation}. Ablation studies were not initially included in the mapping study but after seeing their successful implementation were added to the enhanced ECSER pipeline as an optional step.
+
+The presence or omission of evaluation metrics should be justified in some way, as well as the relative importance for answering the research question. For example, including or omitting the accuracy could be motivated by referring to previous work or an explanation as to why it is or isn't important for the given task. Additionally, the precision or recall can be argued to be more important for the given task than the other. However, only nine papers included any justification for their choice of metrics and only four of those provided an explanation for their choice instead of referring to previous research. Referring to previous research is better than no explanation but it runs the risk of bad habits propagating through the field.
+
+Lastly, we looked at other information about the evaluation and comparison of models. Only five papers evaluated their models over multiple data sets, which is crucial for avoiding overfitting. Further, 13 papers compared their results to external baselines (9 of which compared to both external and their own models), though three papers only compared the results to their own baselines and two papers made no comparisons. However, despite almost all papers comparing their results to their own or other research and usually making explicit claims about the superior performance of their models, only five papers did any statistical significance testing on their results, without which statistical claims about relative performance are completely unsubstantiated. Some papers even claimed their results show a \textit{significant} improvement despite not doing or not reporting on the significance testing. It should also be noted that of the five papers that did a statistical analysis of the results, only one justified the statistical test that was chosen by referring to previous research. However, since there are often multiple statistical tests that can be applied with their own positives and negatives, it is better to explicitly justify the choice. It is further important to justify the significance threshold instead of relying on commonly used values, since the consequences of errors depend on the application. For example, the consequences of false positives might be worse in a medical context compared to a software engineering context.
+
 \begin{table}[H]
 	\caption{Summary of mapping study results.}
-	\begin{tabularx}{0.6\textwidth}{|X|c|}
+	\begin{tabularx}{0.7\textwidth}{|X|c|}
 		\hline
 		\textbf{Category} & \textbf{Total} \\
 		\hline
@@ -389,7 +401,7 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 
 \begin{table}[H]
 	\caption{Summary of prompt reporting results in the mapping study.}
-	\begin{tabularx}{0.6\textwidth}{|X|c|}
+	\begin{tabularx}{0.7\textwidth}{|X|c|}
 		\hline
 		\textbf{Category} & \textbf{Total} \\
 		\hline
@@ -427,7 +439,7 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 \newpage
 \begin{appendices}
 \section{Supplemental Mapping Study Results} \label{appendix:ref}
-For brevity, sources were excluded for some figures and are included here for further reference.\\
+For brevity, sources were excluded for some figures and tables and are included here for further reference.\\
 Table \ref{refs:application_types} shows the distribution of the application types of LLMs of 83 total papers (see figure \ref{fig:LLMTypes}).
 \begin{table}[ht]
 	\caption{References for the distribution of LLM application types.}
