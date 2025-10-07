@@ -85,7 +85,6 @@ To treat the observed poor standard of empirical SE, some researchers have calle
 However, while ECSER is tailored to traditional ML classifiers (such as logistic regression, SVMs and decision trees), it includes no specific recommendations for LLM-based classifiers, despite LLMs showing promise for various classification tasks \cite{Guo2024health,fields2024}. Thus, the ECSER pipeline is not sufficient for LLM research, since using LLMs for classification comes with unique considerations that are not present for traditional classifiers. For one, it is common to use pre-trained, generalized LLMs and give task-specific instructions to get the desired classification on the input data. This means that designing these instructions, also called prompts, becomes a crucial part to conducting LLM research \cite{Marvin2024}. There are also unique considerations when it comes to evaluating the fairness and robustness of the results: does the model behave in accordance with human values and are the results resilient to adversarial prompts, such as those containing typos \cite{Woodworth2017,zhu2024}?
 
 
-
 % Contributions that will be made
 The goal of this thesis is to address the lack of LLM-specific guidelines in the ECSER pipeline, by expanding it to include specific recommendations for conducting LLM classifier research. In doing so, we will make the following contributions:
 \begin{itemize}
@@ -93,6 +92,8 @@ The goal of this thesis is to address the lack of LLM-specific guidelines in the
     \item We will develop an expanded version of the ECSER pipeline that includes specific recommendations for conducting LLM classifier research, such as prompt engineering and the evaluation of model fairness and robustness.
     \item We will conduct two replication studies of existing LLM classifier papers using the enhanced pipeline, in order to evaluate the pipeline's usability and comprehensiveness.
 \end{itemize}
+
+Supplemental materials, including all code that was used, the full intermediary and final results and the source for this document can be found at:\\ \url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}.
 
 % Structure of the thesis
 The remainder of this thesis is structured as follows. In Section \ref{Background}, we provide background information about LLMs. Section \ref{Research approach} describes the research approach and research questions. Lastly, Section \ref{Related Work} discusses related work.

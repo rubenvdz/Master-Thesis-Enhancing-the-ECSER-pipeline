@@ -103,7 +103,6 @@ def create_bib(file, data, indices=[]):
     
 def create_pie_plot(x):
     # x: the values and value counts for a df column
-    # title: title of the image
     cmap = plt.colormaps["Pastel1"]
     percent = (100*x)/(x.sum())
     #labels = ['{0}\n{1:1.1f} %'.format(i,j) for i,j in zip(llm_types.index, percent)]
@@ -150,6 +149,13 @@ def create_pie_plot(x):
             )
     plt.show()
     
+def create_bar_plot(x):
+    # x: the values and value counts for a df column
+    fig, ax = plt.subplots(figsize=(6,6))
+    ax.bar(x.index,x.values)
+    if (len(x.index) > 3):
+        plt.setp(ax.get_xticklabels(), fontsize=10, rotation='vertical')
+    
 
 def print_references(df, entries, col, oneline=False):
     """
@@ -189,11 +195,11 @@ indices = LLM_related["Index"]
 create_bib("Output/MappingStudy.bib",entries,indices)
 
 # Create pie chart for LLM Task Type (classification, generation, recommendation or multiple)
-llm_types = df["LLM Task Type"].value_counts()
-create_pie_plot(llm_types)
+llm_types = df["LLM Task Type"].value_counts().rename(index={"Classification & Recommendation":"Class. & Rec.","Generation & Classification":"Class. & Gen."})
+create_bar_plot(llm_types)
 
 # Get references for each LLM Task Type
-#print_references(df, entries, "LLM Task Type")
+print_references(df, entries, "LLM Task Type")
 
 # Get all papers included in the mapping study (after inclusion/exclusion, etc.)
 df_mapping = df[df['Full Access'] == "Y"]
@@ -202,14 +208,15 @@ print_references(df_mapping, entries, 'Full Access')
 
 # Create pie chart for venues for classification papers
 venues = df_mapping["Venue"].value_counts().rename(index={"ICSE '24":"ICSE"," IEEE Transactions on Software Engineering ":"TSE","FSE 2024":"FSE"})
-create_pie_plot(venues)
+create_bar_plot(venues)
+
 # References
 print_references(df_mapping, entries, "Venue")
 
 
 # Crate pie chart for prompt usage 
 prompts = df_mapping["Uses prompts"].value_counts().rename(index={"N":"No","Y":"Yes"})
-create_pie_plot(prompts)
+create_bar_plot(prompts)
 # References
 print_references(df_mapping, entries, "Uses prompts")
 
