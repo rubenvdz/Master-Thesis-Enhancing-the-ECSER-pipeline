@@ -122,94 +122,22 @@ The remainder of this thesis is structured as follows. In Section \ref{Backgroun
 \end{itemize}
 Another less common approach is automatic prompt engineering, where instructions are automatically generated and selected \cite{zhou2023ape}.
 
-\section{Research Approach} \label{Research approach} 
+\section{Research Questions} \label{Research approach} 
 
 % Research questions
 The usage of LLMs in SE research has increased massively over the past few years, but the research of how to best conduct studies and report results in this field remains very limited. In order to approach the problem of LLM4SE reporting standards and design meaningful guidelines, we follow \citeauthor{Wieringa2014}'s design cycle of \textit{problem investigation}, \textit{treatment design} and \textit{treatment validation} \cite{Wieringa2014}. This leads us to the following research questions:
 
 \emphasize{RQ1: What is the current state of reporting in LLM4SE classification research?} \\
 % NOTE: Hou et al. and zhang et al. have very detailed search strategy and inclusion and exclusion criteria 
-The purpose of RQ1 is both descriptive and evaluative: what do researchers report in their studies and does this level of reporting contribute or detract from the accuracy and reproducibility of the results. To answer the question, we conducted a mapping study of SE papers published in 2024 that use LLM classifiers using the guidelines by \citeauthor{kitchenham2011} \cite{kitchenham2011,kitchenham2007} and \textcite{petersen2008map}, consisting of five steps:
-\begin{enumerate}
-	\item Define the research question.
-	\item Conduct a search for primary studies.
-	\item Screen papers based on inclusion/exclusion criteria.
-	\item Classify the papers.
-	\item Extract data. 
-\end{enumerate}
- What follows is a detailed summary of the search strategy (steps 2 and 3) and the information that was obtained from the list of relevant papers (steps 4 and 5). 
-
-\textbf{Search Strategy}\\
-To get a complete image of the state of LLM4SE classifier evaluation, we collected all 528 papers published in 2024 in three of the top SE conferences and journals (Table \ref{table:venues}). These venues were narrowed down from the list of venues included in \cite{hou2024} based on their impact and relevance. Using the full list of 528 papers, an automatic keyword search was conducted on the title and abstract of each paper to identify the papers that were potentially relevant to LLM4SE.
-
-The list of keywords was based on previous research (\cite{zhang2024,hou2024}) and designed with the intent of high recall, since it is easier to remove false positives than to retrieve false negatives. Keyword matching was done on the lowercased versions of the title and abstract and allowed for partial matches (e.g., "llm" matches "LLM", "LLMs", "LLM4SE", etc.). The complete list of keywords is as follows:
-\begin{itemize}
-	\item \textit{llm, large language model, language model, code generation model, plm, pre-trained, pretrained, pre-training, pretraining, chatgpt, gpt, bert, t5, llama, bart.}
-\end{itemize}
-
-The keyword search resulted in 129 potentially relevant papers. After manually removing false positives, mostly caused by the authors comparing their non-LLM model to previous LLM models, the total number of identified LLM4SE papers was 116, representing 21.97\% of total SE papers. 
-
-To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (Table \ref{table:criteria}). These criteria were designed to exclude any paper not relevant for answering the research question, such as meta studies and those not related to classification. During the manual search, 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria. 
-
-\begin{table}[H]
-    \raggedright
-    \caption{Publication venues included in the mapping study.}
-    \begin{tabularx}{\textwidth}{|c|X|} \hline
-        \textbf{Acronym} & \textbf{Venue} \\ \hline
-        ICSE  & International Conference on Software Engineering \\ \hline
-        FSE   & International Conference on the Foundations of Software Engineering \\ \hline
-        TSE   & Transactions on Software Engineering \\ \hline
-    \end{tabularx}
-    \label{table:venues}
-\end{table}
-
-\begin{table}[H]
-    \caption{Inclusion/Exclusion Criteria}
-    \begin{tabularx}{\textwidth}{|X|} \hline
-        \textbf{Inclusion Criteria} \\ \hline
-        The paper uses an LLM.  \\
-        The paper focuses on a downstream application of the LLM. \\
-        The downstream application is a SE classification task. \\
-        The full text of the paper is accessible. \\
-        The paper was published in 2024. \\ \hline
-        \textbf{Exclusion Criteria} \\ \hline
-        The paper focuses on LLM architecture with no downstream application. \\
-        The paper or task is not relevant to SE. \\
-        The full text is inaccessible. \\
-        The paper is a survey or other meta-analysis. \\
-        The paper focuses on research methodology. \\
-        The paper is a reprint or different version of another paper. \\ \hline
-    \end{tabularx}
-    
-    \label{table:criteria}
-\end{table}
-
-While only classification papers were included in the final analysis, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each type (Figure \ref{fig:LLMTypes}). As can be seen, LLMs are most often used for generation, with 73.5\% of papers using them in this way, including some that use generation alongside classification. However, classification represents the second largest application of LLMs, with 22.9\% in total. Appendix \ref{appendix:ref} contains references for Figure \ref{fig:LLMTypes} and other pie charts contained in this thesis.
-
-\begin{figure}[h]
-	\includegraphics[width=0.5\linewidth]{figures/LLMTypes.png}
-	\caption{Distribution of LLM application types in collected studies.}
-	\label{fig:LLMTypes}
-\end{figure}
-
-
-\textbf{Information Extraction}\\
-After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were analysed and recorded. In particular, we recorded whether or not the following evaluation metrics were reported: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, plot, Calibration, Fairness} and \textit{Robustness}.
-Further, we looked at several factors related to the reproducibility and generalization of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
-
-Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether multiple prompts were compared and whether the temperatures of the models were reported.
-
-The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and other information relevant to LLMs, like prompting technique and measures of fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). \\
-
-
+RQ1 follows the step of \textit{problem investigation} and is both descriptive and evaluative: what do researchers report in their studies and does this level of reporting contribute or detract from the accuracy and reproducibility of the results. The aim of this question is to provide insights into the potential shortcomings of existing research, in order to provide a basis for additional guidelines that help researchers avoid these shortcomings. %To answer the question, we conducted a mapping study of SE papers published in 2024 that use LLM classifiers using the guidelines by \citeauthor{kitchenham2011} \cite{kitchenham2011,kitchenham2007} and \textcite{petersen2008map}.
 
 
 \emphasize{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}\\
-RQ2 takes the role of treatment design; how can we solve potential problems that are identified by RQ1? The purpose of RQ2 is to design an artifact that is easy to use and comprehensive. To answer the question, we will enhance the existing ECSER pipeline \cite{Dellanna2022} to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). Table \ref{table:additions} includes a preliminary summary of the additions that will be made to the ECSER pipeline, with the primary supporting references for the additions in brackets. The list of additions is subject to change based on the findings from RQ1 and further literature review. It is also possible that the best course of action will be to add more steps to the ECSER pipeline, as opposed to expanding existing ones, particularly for reporting the calibration, fairness and robustness or for prompt engineering.
+RQ2 follows the step of \textit{treatment design}; how can we solve the potential problems that are identified by RQ1? The purpose of RQ2 is to design an artifact that is easy to use and comprehensive. To answer the question, we enhanced the existing ECSER pipeline \cite{Dellanna2022} to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). Table \ref{table:additions} includes a summary of the additions that were made to the ECSER pipeline, with the primary supporting references for the additions in brackets.
 
 \begin{table}[H]
     \centering
-    \caption{Preliminary summary of additions to the ECSER pipeline}
+    \caption{Summary of changes and additions to the ECSER pipeline}
     \begin{tabularx}{\textwidth}{|p{4cm}|X|}
     \hline
     \textbf{ECSER Step} & \textbf{Additions} \\ \hline
@@ -312,11 +240,86 @@ Lastly, the model temperature, which regulates the randomness of the model, can 
 
 
 \section{RQ1: What is the current state of reporting in LLM4SE classification research?}
-In this section, we first discuss the results obtained from the mapping study of LLM4SE classification papers released in 2024 and subsequently provide an answer to RQ1. 
 \label{RQ1}
 
+In this section, we first discuss the methodology used to conduct a systematic mapping study on the state of reporting of LLM4SE classification research. Subsequently, we discuss the results from the mapping study and draw conclusions from these results.
+
+\textbf{Methodology}\\
+To answer the research question, we conducted a mapping study of SE papers published in 2024 that use LLM classifiers using the guidelines by \citeauthor{kitchenham2011} \cite{kitchenham2011,kitchenham2007} and \textcite{petersen2008map}, consisting of five steps:
+\begin{enumerate}
+	\item Define the research question.
+	\item Conduct a search for primary studies.
+	\item Screen papers based on inclusion/exclusion criteria.
+	\item Classify the papers.
+	\item Extract data. 
+\end{enumerate}
+
+What follows is a detailed summary of the search strategy (steps 2 and 3) and the information that was obtained from the list of relevant papers (steps 4 and 5). 
+
+\textbf{Search Strategy}\\
+To get a complete image of the state of LLM4SE classifier evaluation, we collected all 528 papers published in 2024 in three of the top SE conferences and journals (Table \ref{table:venues}). These venues were narrowed down from the list of venues included in \cite{hou2024} based on their impact and relevance. Using the full list of 528 papers, an automatic keyword search was conducted on the title and abstract of each paper to identify the papers that were potentially relevant to LLM4SE.
+
+The list of keywords was based on previous research (\cite{zhang2024,hou2024}) and designed with the intent of high recall, since it is easier to remove false positives than to retrieve false negatives. Keyword matching was done on the lowercased versions of the title and abstract and allowed for partial matches (e.g., "llm" matches "LLM", "LLMs", "LLM4SE", etc.). The complete list of keywords is as follows:
+\begin{itemize}
+	\item \textit{llm, large language model, language model, code generation model, plm, pre-trained, pretrained, pre-training, pretraining, chatgpt, gpt, bert, t5, llama, bart.}
+\end{itemize}
+
+The keyword search resulted in 129 potentially relevant papers. After manually removing false positives, mostly caused by the authors comparing their non-LLM model to previous LLM models, the total number of identified LLM4SE papers was 116, representing 21.97\% of total SE papers. 
+
+To narrow down the list from all LLM-related papers to those pertaining to SE classification research, the title and abstract of the remaining 116 papers were manually screened for the inclusion and exclusion criteria (Table \ref{table:criteria}). These criteria were designed to exclude any paper not relevant for answering the research question, such as meta studies and those not related to classification. During the manual search, 18 papers were identified that use LLMs for SE classification research and satisfy all other criteria. 
+
+\begin{table}[H]
+	\raggedright
+	\caption{Publication venues included in the mapping study.}
+	\begin{tabularx}{\textwidth}{|c|X|} \hline
+		\textbf{Acronym} & \textbf{Venue} \\ \hline
+		ICSE  & International Conference on Software Engineering \\ \hline
+		FSE   & International Conference on the Foundations of Software Engineering \\ \hline
+		TSE   & Transactions on Software Engineering \\ \hline
+	\end{tabularx}
+	\label{table:venues}
+\end{table}
+
+\begin{table}[H]
+	\caption{Inclusion/Exclusion Criteria}
+	\begin{tabularx}{\textwidth}{|X|} \hline
+		\textbf{Inclusion Criteria} \\ \hline
+		The paper uses an LLM.  \\
+		The paper focuses on a downstream application of the LLM. \\
+		The downstream application is a SE classification task. \\
+		The full text of the paper is accessible. \\
+		The paper was published in 2024. \\ \hline
+		\textbf{Exclusion Criteria} \\ \hline
+		The paper focuses on LLM architecture with no downstream application. \\
+		The paper or task is not relevant to SE. \\
+		The full text is inaccessible. \\
+		The paper is a survey or other meta-analysis. \\
+		The paper focuses on research methodology. \\
+		The paper is a reprint or different version of another paper. \\ \hline
+	\end{tabularx}
+	
+	\label{table:criteria}
+\end{table}
+
+While only classification papers were included in the final analysis, all the papers that applied LLMs to SE tasks (a total of 83 papers) were additionally classified based on the type of LLM application (classification, generation or recommendation) to get a view of the relative academic interest in each type (Figure \ref{fig:LLMTypes}). As can be seen, LLMs are most often used for generation, with 73.5\% of papers using them in this way, including some that use generation alongside classification. However, classification represents the second largest application of LLMs, with 22.9\% in total. Appendix \ref{appendix:ref} contains references for Figure \ref{fig:LLMTypes} and other pie charts contained in this thesis.
+
+\begin{figure}[h]
+	\includegraphics[width=0.5\linewidth]{figures/LLMTypes.png}
+	\caption{Distribution of LLM application types in collected studies.}
+	\label{fig:LLMTypes}
+\end{figure}
+
+
+\textbf{Information Extraction}\\
+After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were analysed and recorded. In particular, we recorded whether or not the following evaluation metrics were reported: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, plot, Calibration, Fairness} and \textit{Robustness}.
+Further, we looked at several factors related to the reproducibility and generalization of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
+
+Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether multiple prompts were compared and whether the temperatures of the models were reported.
+
+The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and other information relevant to LLMs, like prompting technique and measures of fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). \\
+
 \textbf{Results}\\
-During the search process described in section \ref{Research approach}, 18 papers were identified as relevant for answering the research question. Firstly, we will look at the distribution of the included papers. All three venues included in the search strategy are represented in the final selection, with eight ICSE papers, eight TSE papers and two FSE papers (Figure \ref{fig:Venues}). 
+During the search process, 18 papers were identified as relevant for answering the research question. Firstly, we will look at the distribution of the included papers. All three venues included in the search strategy are represented in the final selection, with eight ICSE papers, eight TSE papers and two FSE papers (Figure \ref{fig:Venues}). 
 	
 Some of the data extraction was dependent on whether or not the papers used a prompt-based approach to LLM classification or another approach such as fine-tuning. Figure \ref{fig:Prompts} shows that 44.4\% or 8 papers used a prompt-based approach, while  55.6\% or 10 papers used a different approach such as fine-tuning. Note that additional references for the figures and the subsequent tables are included in Appendix \ref{appendix:ref}.
 
