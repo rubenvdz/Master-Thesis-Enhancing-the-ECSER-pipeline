@@ -86,11 +86,11 @@ However, while ECSER is tailored to traditional ML classifiers (such as logistic
 
 
 % Contributions that will be made
-The goal of this thesis is to address the lack of LLM-specific guidelines in the ECSER pipeline, by expanding it to include specific recommendations for conducting LLM classifier research. In doing so, we will make the following contributions:
+The goal of this thesis is to address the lack of LLM-specific guidelines in the ECSER pipeline, by expanding it to include specific recommendations for conducting LLM classifier research. In doing so, we made the following contributions:
 \begin{itemize}
-    \item We will conduct a mapping study to assess the current state of reporting in LLM4SE classification research.
-    \item We will develop an expanded version of the ECSER pipeline that includes specific recommendations for conducting LLM classifier research, such as prompt engineering and the evaluation of model fairness and robustness.
-    \item We will conduct two replication studies of existing LLM classifier papers using the enhanced pipeline, in order to evaluate the pipeline's usability and comprehensiveness.
+    \item We conducted a mapping study to assess the current state of reporting in LLM4SE classification research.
+    \item We developed an expanded version of the ECSER pipeline that includes specific recommendations for conducting LLM classifier research, such as prompt engineering and the evaluation of model fairness and robustness.
+    \item We conducted two replication studies of existing LLM classifier papers using the enhanced pipeline, in order to evaluate the pipeline's applicability and comprehensiveness.
 \end{itemize}
 
 Supplemental materials, including all code that was used, the full intermediary and final results and the source for this document can be found at:\\ \url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}.
@@ -133,33 +133,36 @@ RQ1 follows the step of \textit{problem investigation} and is both descriptive a
 
 
 \emphasize{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}\\
-RQ2 follows the step of \textit{treatment design}; how can we solve the potential problems that are identified by RQ1? The purpose of RQ2 is to design an artifact that is easy to use and comprehensive. To answer the question, we enhanced the existing ECSER pipeline \cite{Dellanna2022} to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). Table \ref{table:additions} includes a summary of the additions that were made to the ECSER pipeline, with the primary supporting references for the additions in brackets.
+Following the problem investigation of RQ1, RQ2 fulfils the step of \textit{treatment design}. The purpose of RQ2 is to design a tangible artifact that is widely applicable to the field and comprehensive, taking into consideration recommendations from the fields of LLM4SE, ML4SE and Design Science (see Section \ref{Research approach}), with the intent to help researchers prevent common problems identified in RQ1.
+%To answer the question, we enhanced the existing ECSER pipeline \cite{Dellanna2022} to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). 
 
-\begin{table}[H]
-    \centering
-    \caption{Summary of changes and additions to the ECSER pipeline}
-    \begin{tabularx}{\textwidth}{|p{4cm}|X|}
-    \hline
-    \textbf{ECSER Step} & \textbf{Additions} \\ \hline
-    S1. Select an evaluation method and split the data             & Specify desired level of model alignment and safety \cite{guo2023survey} \\ \hline
-    \multirow[c]{3}{=}{S2. Train the model}                        & Define the goal of the prompt \cite{Marvin2024,arvidsson2023} \\ 
-                                                                   & Select prompt engineering approach (zero-shot, few-shot, etc.)  \cite{hou2024,arvidsson2023} \\ 
-                                                                   & Select prompting pattern \cite{white2023,arvidsson2023} \\ \hline
-    \multirow[c]{2}{=}{S3. Hyper-parameters tuning and validation} & Tune LLM model temperature \cite{peeperkorn2024} \\ 
-                                                                   & Compare prompting patterns \cite{ronanki2023} \\ \hline
-    \multirow[c]{4}{=}{S7. Report Metrics}                         & Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
-                                                                   & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
-                                                                   & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
-                                                                   & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
-    S8. Analyse overfitting and degradation						   & Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
-    \end{tabularx}
-    
-    \label{table:additions}
-\end{table}
+%Table \ref{table:additions} includes a summary of the additions that were made to the ECSER pipeline, with the primary supporting references for the additions in brackets.
+%
+%\begin{table}[H]
+%    \centering
+%    \caption{Summary of changes and additions to the ECSER pipeline}
+%    \begin{tabularx}{\textwidth}{|p{4cm}|X|}
+%    \hline
+%    \textbf{ECSER Step} & \textbf{Additions} \\ \hline
+%    S1. Select an evaluation method and split the data             & Specify desired level of model alignment and safety \cite{guo2023survey} \\ \hline
+%    \multirow[c]{3}{=}{S2. Train the model}                        & Define the goal of the prompt \cite{Marvin2024,arvidsson2023} \\ 
+%                                                                   & Select prompt engineering approach (zero-shot, few-shot, etc.)  \cite{hou2024,arvidsson2023} \\ 
+%                                                                   & Select prompting pattern \cite{white2023,arvidsson2023} \\ \hline
+%    \multirow[c]{2}{=}{S3. Hyper-parameters tuning and validation} & Tune LLM model temperature \cite{peeperkorn2024} \\ 
+%                                                                   & Compare prompting patterns \cite{ronanki2023} \\ \hline
+%    \multirow[c]{4}{=}{S7. Report Metrics}                         & Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
+%                                                                   & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
+%                                                                   & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
+%                                                                   & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
+%    S8. Analyse overfitting and degradation						   & Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
+%    \end{tabularx}
+%    
+%    \label{table:additions}
+%\end{table}
 
 
-\emphasize{RQ3: How useful is the proposed pipeline in assisting LLM4SE classification research?}\\
-The purpose of RQ3 is treatment validation: does the designed pipeline in RQ2 achieve its goals of ease of use and comprehensiveness. To answer this question we will conduct two replication studies in different subfields of SE that employ LLM classification using the guidelines by \textcite{carver2010}. The original studies will be chosen based on the following criteria:
+\emphasize{RQ3: How applicable is the proposed pipeline in assisting LLM4SE classification research?}\\
+The purpose of RQ3 is \textit{treatment validation}: does the designed pipeline in RQ2 achieve its goals of applicability and comprehensiveness. To answer this question we will conduct two replication studies in different subfields of SE that employ LLM classification using the guidelines by \textcite{carver2010}. The original studies will be chosen based on the following criteria:
 \begin{enumerate}
     \item The authors provide a ready-to-use replication package.
     \item The study is recent (past five years) and represents current practices in LLM4SE well.
@@ -167,7 +170,7 @@ The purpose of RQ3 is treatment validation: does the designed pipeline in RQ2 ac
     \item The study does not already follow all the proposed guidelines, so that the added benefit of the pipeline can be evaluated.
 \end{enumerate}
 
-By conducting these replication studies, we can evaluate the comprehensiveness of the pipeline and identify potential shortcomings. In order to test the ease of use for the intended users, we aim to ask an SE researcher to use the pipeline or give their expert opinion on it if possible. After the first replication study, the findings from RQ3 will be taken into account to make changes to the guidelines from RQ2 where needed, creating a feedback-loop between RQ2 and RQ3. The second replication will be conducted using the updated pipeline and might inform further changes.
+By conducting these replication studies, we can evaluate the comprehensiveness of the pipeline and identify potential shortcomings. After the first replication study, the findings from RQ3 were taken into account to make changes to the guidelines from RQ2 where needed, creating a feedback-loop between RQ2 and RQ3. The second replication was conducted using the updated pipeline.
 
 \section{Related Work} \label{Related Work}
 The main focus of this thesis is to study the usage and evaluation of LLM Classifiers in Software Engineering, but in doing so we touch on several related research fields, including Empirical Software Engineering, Machine Learning for Software Engineering (ML4SE), Large Language Models for Software Engineering (LLM4SE) and Prompt Engineering. Additionally, each of the three research questions has related work that is relevant to their methodologies. Hence, we have split the related work into several sections based on different areas of study to aid readability. 
