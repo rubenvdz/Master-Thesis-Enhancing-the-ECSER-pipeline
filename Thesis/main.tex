@@ -318,13 +318,9 @@ Further, we looked at several factors related to the reproducibility and general
 
 Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether multiple prompts were compared and whether the temperatures of the models were reported.
 
-The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and other information relevant to LLMs, like prompting technique and measures of fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). \\
+The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and other information relevant to LLMs, like prompting technique and measures of calibration, fairness \& robustness (see section \ref{Prompt Engineering} and \ref{Evaluation of LLM Classifiers}). \\
 
 \textbf{Results}\\
-During the search process, 18 papers were identified as relevant for answering the research question. Firstly, we will look at the distribution of the included papers. All three venues included in the search strategy are represented in the final selection, with eight ICSE papers, eight TSE papers and two FSE papers (Figure \ref{fig:Venues}). 
-	
-Some of the data extraction was dependent on whether or not the papers used a prompt-based approach to LLM classification or another approach such as fine-tuning. Figure \ref{fig:Prompts} shows that 44.4\% or 8 papers used a prompt-based approach, while  55.6\% or 10 papers used a different approach such as fine-tuning. Note that additional references for the figures and the subsequent tables are included in Appendix \ref{appendix:ref}.
-
 \begin{figure}[h]
 	\hfill
 	\begin{minipage}{0.45\textwidth}
@@ -341,6 +337,11 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 	\hfill
 \end{figure}
 
+During the search process, 18 papers were identified as relevant for answering the research question. Each venue included in the search strategy is represented in the final selection, with eight ICSE papers, eight TSE papers and two FSE papers (Figure \ref{fig:Venues}). By including papers from three of the most influential Software Engineering venues, we increase the likelihood that the results are representative of the field. 
+	
+One of the first things we analysed was whether the papers used a prompt-based approach to LLM classification or another approach such as fine-tuning, since additional information about the prompt engineering approach was extracted from the papers where prompts were used. Figure \ref{fig:Prompts} shows that 44.4\% or 8 papers used a prompt-based approach, while 55.6\% or 10 papers used a different approach. Note that additional references for the figures and the subsequent tables are included in Appendix \ref{appendix:ref}.
+
+
 \begin{table}[H]
 	\centering
 	\captionsetup{justification=centering}
@@ -348,7 +349,7 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 	\begin{tabularx}{0.7\textwidth}{|X|c|}
 		\hline
 		\textbf{Category} & \textbf{Total} \\
-		\hline
+		\hlinech
 		Total mapping study papers & 18 \\
 		\hline
 		\textbf{Evaluation metrics} & \\
@@ -387,7 +388,10 @@ Some of the data extraction was dependent on whether or not the papers used a pr
 	\label{table:mapping_results}
 \end{table}
 
-Table \ref{table:mapping_results} shows a summary of the results of the mapping study. Starting with the evaluation metrics that are commonly recommended in the field, of the 18 included papers, 17 reported the precision, recall and F-score of the results, while only 11 papers reported the accuracy and only four papers reported the full confusion matrix. While the precision, recall and F-score are often more informative for the usefulness of a model compared to the accuracy, by not providing the accuracy or the full confusion matrix, relevant information is lost that cannot be obtained from just three metrics, which prevents further comparisons between models that do provide the full matrix. Further, the  Matthews Correlation Coefficient (MCC), which some consider more balanced than the F-score, since it takes the full confusion matrix into account \cite{Chicco2020}, was not reported in any of the papers.
+Table \ref{table:mapping_results} shows a summary of the information that was extracted from each paper and how many papers reported each piece of information. This includes which evaluation metrics were reported; whether the calibration, fairness and robustness of the models were analysed; whether the confusion matrix was reported; the level of justification for the reported metrics; whether the models were evaluated over multiple data sets; the type of baseline used; and whether the statistical significance of the results was reported and justified.
+
+Starting with the evaluation metrics that are commonly used and recommended in the field \cite{Dellanna2022,hou2024}, 17 papers reported the precision, recall and F-score of the results, while only 11 papers reported the accuracy and only four papers reported the full confusion matrix. Further, some authors recommend reporting the Matthews Correlation Coefficient (MCC) and suggest the metric is more balanced than the F-score, since it takes the full confusion matrix into account \cite{Chicco2020}, but it was not reported in any of the papers.
+% REMOVED: While the precision, recall and F-score are often more informative for the usefulness of a model compared to the accuracy, by not providing the accuracy or the full confusion matrix, relevant information is lost that cannot be obtained from just three metrics, which prevents further comparisons between models that do provide the full matrix.
 
 Unfortunately. only three papers reported the area under the curve (AUC) of the receiver operating characteristic (ROC) curve, while none provided a plot of the full ROC curve itself. This is despite the fact that AUC has been theoretically and empirically shown to be a better metric for comparing classification models than the accuracy \cite{huang2005auc,ling2003auc}. Since the AUC is a summary of the ROC curve, the full curve should also be provided for a more detailed view of the discriminatory performance of the model \cite{Nahm2022roc}.
 
