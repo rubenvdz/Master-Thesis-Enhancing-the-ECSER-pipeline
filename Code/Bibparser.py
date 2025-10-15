@@ -172,7 +172,7 @@ def create_bar_plot(x):
         ax.text(
             bar.get_x() + bar.get_width()/2,  
             height,                           
-            f'{int(height)}',                 # label text
+            f'{int(height)}',  # label text
             ha='center', va='bottom', fontsize=11
         )
     

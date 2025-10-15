@@ -133,31 +133,6 @@ RQ1 follows the step of \textit{problem investigation} and is both descriptive a
 
 \emphasize{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}\\
 Following the problem investigation of RQ1, RQ2 fulfils the step of \textit{treatment design}. The purpose of RQ2 is to design a tangible artefact that is comprehensive and widely applicable to the field of LLM4SE, with the intent of helping researchers avoid any problems identified in RQ1. This research question was designed to guide the modification of the existing ECSER pipeline \cite{Dellanna2022}, taking into consideration recommendations from the fields of LLM4SE, ML4SE and Design Science.
-%To answer the question, we enhanced the existing ECSER pipeline \cite{Dellanna2022} to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). 
-
-%Table \ref{table:additions} includes a summary of the additions that were made to the ECSER pipeline, with the primary supporting references for the additions in brackets.
-%
-%\begin{table}[H]
-%    \centering
-%    \caption{Summary of changes and additions to the ECSER pipeline}
-%    \begin{tabularx}{\textwidth}{|p{4cm}|X|}
-%    \hline
-%    \textbf{ECSER Step} & \textbf{Additions} \\ \hline
-%    S1. Select an evaluation method and split the data             & Specify desired level of model alignment and safety \cite{guo2023survey} \\ \hline
-%    \multirow[c]{3}{=}{S2. Train the model}                        & Define the goal of the prompt \cite{Marvin2024,arvidsson2023} \\ 
-%                                                                   & Select prompt engineering approach (zero-shot, few-shot, etc.)  \cite{hou2024,arvidsson2023} \\ 
-%                                                                   & Select prompting pattern \cite{white2023,arvidsson2023} \\ \hline
-%    \multirow[c]{2}{=}{S3. Hyper-parameters tuning and validation} & Tune LLM model temperature \cite{peeperkorn2024} \\ 
-%                                                                   & Compare prompting patterns \cite{ronanki2023} \\ \hline
-%    \multirow[c]{4}{=}{S7. Report Metrics}                         & Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
-%                                                                   & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
-%                                                                   & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
-%                                                                   & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
-%    S8. Analyse overfitting and degradation						   & Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
-%    \end{tabularx}
-%    
-%    \label{table:additions}
-%\end{table}
 
 
 \emphasize{RQ3: How applicable is the proposed pipeline in assisting LLM4SE classification research?}\\
@@ -246,7 +221,7 @@ Lastly, the model temperature, which regulates the randomness of the model, can 
 
 In this section, we first discuss the methodology used to conduct a systematic mapping study on the state of reporting of LLM4SE classification research. Subsequently, we discuss the results from the mapping study and draw conclusions from these results.
 
-\textbf{Research Approach}\\
+\subsection{Research Approach}
 To answer the research question, we conducted a mapping study of SE papers published in 2024 that use LLM classifiers using the guidelines by \citeauthor{kitchenham2011} \cite{kitchenham2011,kitchenham2007} and \textcite{petersen2008map}, consisting of five steps:
 \begin{enumerate}
 	\item Define the research question.
@@ -314,7 +289,6 @@ While only classification papers were included in the final analysis, all the pa
 \end{figure}
 
 
-
 \textbf{Information Extraction}\\
 After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were manually analysed and recorded. The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and recommendations from the field of LLM4SE. For the latter, we recorded which metrics (if any) were reported for each of \textcite{chang2023}'s classification of general metrics: the accuracy, calibration, fairness \& robustness. Since the accuracy was already covered by the ECSER pipeline, this resulted only in the addition of calibration, fairness \& robustness to the final list of extracted information.
 
@@ -324,7 +298,7 @@ Further, we looked at several factors related to the reproducibility and general
 
 Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether the results were evaluated over multiple prompts and whether the temperatures of the models were reported.
 
-\textbf{Results}\\
+\subsection{Mapping Study Results}
 \begin{figure}[h]
 	\hfill
 	\begin{minipage}{0.45\textwidth}
@@ -469,8 +443,43 @@ Naturally, although multiple venues were considered and all papers from 2024 wer
 
 In conclusion, there is a clear need for easy to use and comprehensive guidelines to aid researchers in conducting LLM4SE classification research, especially for statistical significance testing and prompt engineering. We designed the enhanced ECSER pipeline (section \ref{RQ2}) to take into account the mentioned common shortcomings of existing research and provide extra attention to these topics. 
 
-\section{RQ2}
+\section{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}
 \label{RQ2}
+In this section, we first discuss the approach that was used to modify the ECSER pipeline with recommendations tailored to the conducting and reporting of LLM4SE classification research. Subsequently, we present the enhanced ECSER pipeline, which features a step by step guide to the implementation and results reporting of LLM-based classification research. 
+
+\subsection{Research Approach}
+To answer the research question, we enhanced the existing ECSER pipeline to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). 
+
+The ECSER pipeline was chosen as the basis for the development of a new LLM-specific resource, since most ECSER recommendations apply to all classification research, including LLM-based classification \cite{Dellanna2022}. However, using LLMs comes with additional challenges that weren't considered during the development of the original pipeline, such as the use of prompts to guide pre-trained LLMs or the alignment of LLM behaviour with human values. 
+
+To enhance the ECSER pipeline with LLM-specific recommendations, we consulted various existing guidelines and surveys for using and evaluating LLMs, including \textcite{hou2024}'s systematic literature review of LLM4SE, \textcite{chang2023}'s survey on the evaluation of LLMs, \textcite{Marvin2024}'s chapter on prompt engineering and \textcite{baltes2025guidelinesempiricalstudiessoftware}'s guidelines for using LLMs in SE, among many others. These higher level sources lead to more specific sources and recommendations to be included in the pipeline.
+
+%In Table \ref{table:additions}, we list each step in the new ECSER-LLM pipeline along with the additions or changes compared to the original ECSER pipeline and the primary sources that motivated these changes. 
+%
+%\begin{table}[H]
+%    \centering
+%    \caption{Summary of changes and additions to the ECSER pipeline}
+%    \begin{tabularx}{\textwidth}{|p{4cm}|X|}
+%	    \hline
+%	    \textbf{ECSER-LLM Step} & \textbf{Changes compared to ECSER} \\ \hline
+%	    S1. Select an evaluation method and split the data             & Specify desired level of model alignment and safety \cite{guo2023survey} \\ \hline
+%	    \multirow[c]{3}{=}{S2. Train the model & Design prompts}       & Define the goal of the prompt \cite{Marvin2024,arvidsson2023} \\ 
+%	                                                                   & Select prompt engineering approach (zero-shot, few-shot, etc.)  \cite{hou2024,arvidsson2023} \\ 
+%	                                                                   & Select prompting pattern \cite{white2023,arvidsson2023} \\ \hline
+%	    \multirow[c]{2}{=}{S3. Hyper-parameters tuning and validation} & Tune LLM model temperature \cite{peeperkorn2024} \\ 
+%	                                                                   & Compare prompting patterns \cite{ronanki2023} \\ \hline
+%	    \multirow[c]{4}{=}{S7. Report Metrics}                         & Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
+%	                                                                   & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
+%	                                                                   & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
+%	                                                                   & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
+%	    S8. Analyse overfitting and degradation						   & Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
+%	    \end{tabularx}
+%    
+%    \label{table:additions}
+%\end{table}
+
+\subsection{The ECSER-LLM pipeline}
+\label{ECSER-LLM}
 
 \newpage 
 \printbibliography[heading=bibintoc]
