@@ -150,11 +150,31 @@ def create_pie_plot(x):
     plt.show()
     
 def create_bar_plot(x):
+    # Create a bar plot of the number of papers belonging to the categories defined in x.
     # x: the values and value counts for a df column
     fig, ax = plt.subplots(figsize=(6,6))
-    ax.bar(x.index,x.values)
+    ax.set_ylabel('Number of papers')
+
     if (len(x.index) > 3):
+        ax.bar(x.index,x.values,width=0.8)
         plt.setp(ax.get_xticklabels(), fontsize=10, rotation='vertical')
+    elif (len(x.index) == 3): 
+        ax.set_xlim(-0.5,2.5)
+        ax.bar(x.index,x.values,width=0.8)
+    else:
+        # Ensures that bars have the same width and are centered
+        ax.set_xlim(-1,2)
+        ax.bar(x.index,x.values,width=0.8)
+        
+    # Add exact value on top of bar
+    for bar in ax.patches:
+        height = bar.get_height()
+        ax.text(
+            bar.get_x() + bar.get_width()/2,  
+            height,                           
+            f'{int(height)}',                 # label text
+            ha='center', va='bottom', fontsize=11
+        )
     
 
 def print_references(df, entries, col, oneline=False):
@@ -215,7 +235,7 @@ print_references(df_mapping, entries, "Venue")
 
 
 # Crate pie chart for prompt usage 
-prompts = df_mapping["Uses prompts"].value_counts().rename(index={"N":"No","Y":"Yes"})
+prompts = df_mapping["Uses prompts"].value_counts().rename(index={"N":"Does not use prompts","Y":"Uses prompts"})
 create_bar_plot(prompts)
 # References
 print_references(df_mapping, entries, "Uses prompts")
