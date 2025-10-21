@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-\usepackage{times} 
+
 \usepackage{graphicx,float} % Required for inserting images
 %\usepackage{apacite}
 \usepackage{amsmath}
@@ -13,6 +13,9 @@
 \usepackage{hhline}
 \graphicspath{ {figures/} }
 
+% Fonts
+\usepackage{times} 
+
 \usepackage{caption}  % fine control over caption appearance
 \captionsetup{labelfont=bf,singlelinecheck=false,labelsep=space,skip=2pt}
 
@@ -24,6 +27,7 @@
 % Macros
 %\newcommand{\emphasize}[1]{\begin{quote} \textbf{#1} \end{quote}}
 \newcommand{\emphasize}[1]{\textbf{#1}}
+\newcommand{\newecser}{\textit{ECSER-LLM} }
 
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage[toc,page]{appendix}
@@ -448,37 +452,53 @@ In conclusion, there is a clear need for easy to use and comprehensive guideline
 In this section, we first discuss the approach that was used to modify the ECSER pipeline with recommendations tailored to the conducting and reporting of LLM4SE classification research. Subsequently, we present the enhanced ECSER pipeline, which features a step by step guide to the implementation and results reporting of LLM-based classification research. 
 
 \subsection{Research Approach}
-To answer the research question, we enhanced the existing ECSER pipeline to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). 
+To answer the research question, we developed the \newecser pipeline by enhancing the existing ECSER pipeline to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). 
 
-The ECSER pipeline was chosen as the basis for the development of a new LLM-specific resource, since most ECSER recommendations apply to all classification research, including LLM-based classification \cite{Dellanna2022}. However, using LLMs comes with additional challenges that weren't considered during the development of the original pipeline, such as the use of prompts to guide pre-trained LLMs or the alignment of LLM behaviour with human values. 
+The ECSER pipeline was chosen as the basis for the development of a new LLM-specific resource, since most ECSER recommendations apply to all classification research, including LLM-based classification \cite{Dellanna2022}. However, using LLMs comes with additional challenges that weren't considered during the development of the original pipeline, such as the use of prompts to guide pre-trained LLMs or the alignment of LLM behaviour with human values \cite{liu2024}. 
 
-To enhance the ECSER pipeline with LLM-specific recommendations, we consulted various existing guidelines and surveys for using and evaluating LLMs, including \textcite{hou2024}'s systematic literature review of LLM4SE, \textcite{chang2023}'s survey on the evaluation of LLMs, \textcite{Marvin2024}'s chapter on prompt engineering and \textcite{baltes2025guidelinesempiricalstudiessoftware}'s guidelines for using LLMs in SE, among many others. These higher level sources lead to more specific sources and recommendations to be included in the pipeline.
+To enhance the ECSER pipeline with LLM-specific recommendations, we consulted various existing guidelines and surveys for using and evaluating LLMs, including \textcite{hou2024}'s systematic literature review of LLM4SE, \textcite{chang2023}'s survey on the evaluation of LLMs, \textcite{Marvin2024}'s chapter on prompt engineering and \textcite{baltes2025guidelinesempiricalstudiessoftware}'s guidelines for using LLMs in SE, among many others. These higher level sources lead to more specific sources and recommendations that were included in the pipeline.
 
-%In Table \ref{table:additions}, we list each step in the new ECSER-LLM pipeline along with the additions or changes compared to the original ECSER pipeline and the primary sources that motivated these changes. 
-%
-%\begin{table}[H]
-%    \centering
-%    \caption{Summary of changes and additions to the ECSER pipeline}
-%    \begin{tabularx}{\textwidth}{|p{4cm}|X|}
-%	    \hline
-%	    \textbf{ECSER-LLM Step} & \textbf{Changes compared to ECSER} \\ \hline
-%	    S1. Select an evaluation method and split the data             & Specify desired level of model alignment and safety \cite{guo2023survey} \\ \hline
-%	    \multirow[c]{3}{=}{S2. Train the model & Design prompts}       & Define the goal of the prompt \cite{Marvin2024,arvidsson2023} \\ 
-%	                                                                   & Select prompt engineering approach (zero-shot, few-shot, etc.)  \cite{hou2024,arvidsson2023} \\ 
-%	                                                                   & Select prompting pattern \cite{white2023,arvidsson2023} \\ \hline
-%	    \multirow[c]{2}{=}{S3. Hyper-parameters tuning and validation} & Tune LLM model temperature \cite{peeperkorn2024} \\ 
-%	                                                                   & Compare prompting patterns \cite{ronanki2023} \\ \hline
-%	    \multirow[c]{4}{=}{S7. Report Metrics}                         & Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
-%	                                                                   & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
-%	                                                                   & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
-%	                                                                   & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
-%	    S8. Analyse overfitting and degradation						   & Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
-%	    \end{tabularx}
-%    
-%    \label{table:additions}
-%\end{table}
+Additionally, the results of RQ1 were taken into account to ensure that common issues encountered in the mapping study received additional care in the new pipeline, including issues such as the lack of reporting for common evaluation metrics, the lack of significance testing and the lack of consistent reporting for prompt usage and development. The results of RQ1 also lead to the inclusion of ablation studies as an optional part of the pipeline, which were overlooked during the initial literature review but were shown to be useful in assessing the degradation of the models in the papers that used them \cite{meyes2019ablation}.
 
-\subsection{The ECSER-LLM pipeline}
+In Table \ref{table:additions}, we list each step of the original ECSER pipeline along with the new version of the step and the changes that were made in the new \newecser pipeline, along with the primary source(s) that motivated these changes. 
+
+\begin{table}[H]
+	\centering
+	\caption{Summary of changes and additions to the ECSER pipeline}
+	\begin{tabularx}{\textwidth}{|p{3.5cm}|p{4cm}|X|}
+		\hline
+		\textbf{\textit{ECSER} Step} & \textbf{\newecser Step} & \textbf{Changes from \textit{ECSER} to \newecser} \\ \hline
+		
+		S1. Select an evaluation method and split the data
+		& S1. Select an evaluation method and split the data
+		& Specify desired level of model alignment and safety \cite{guo2023survey} \\ \hline
+		
+		\multirow[c]{3}{*}{\parbox{3.5cm}{S2. Train the model}}
+		& \multirow[c]{3}{*}{\parbox{4cm}{S2. Train the model \& Design prompts}}
+		& Define the goal of the prompt \cite{Marvin2024,arvidsson2023} \\ 
+		& & Select prompt engineering approach (zero-shot, few-shot, etc.) \cite{hou2024,arvidsson2023} \\ 
+		& & Select prompting pattern \cite{white2023,arvidsson2023} \\ \hline
+		
+		\multirow[c]{2}{*}{\parbox{3.5cm}{S3. Hyper-parameter tuning and validation}}
+		& \multirow[c]{2}{*}{\parbox{4cm}{S3. Hyper-parameter tuning and validation}}
+		& Tune LLM model temperature \cite{peeperkorn2024} \\ 
+		& & Compare prompting patterns \cite{ronanki2023} \\ \hline
+		
+		\multirow[c]{4}{*}{\parbox{3.5cm}{S7. Report Metrics}}
+		& \multirow[c]{4}{*}{\parbox{4cm}{S7. Report Metrics}}
+		& Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
+		& & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
+		& & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
+		& & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
+		
+		S8. Analyse overfitting and degradation
+		& S8. Analyse overfitting and degradation
+		& Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
+	\end{tabularx}
+	\label{table:additions}
+\end{table}
+
+\subsection{The \newecser pipeline}
 \label{ECSER-LLM}
 
 \newpage 
