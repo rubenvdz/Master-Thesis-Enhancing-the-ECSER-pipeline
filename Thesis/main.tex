@@ -57,7 +57,7 @@
 \begin{center}
 \begin{abstract}
 The various research papers in the field of Software Engineering (SE) that use classification algorithms, LLMs, or other machine learning methods to obtain their results differ in how many and which evaluation metrics are reported, whether or not significance tests are performed, and which steps are taken to aid reproducibility. The ECSER pipeline was designed to mitigate this issue by providing a step-by-step pipeline that researchers can use to report their results when classification algorithms are used, and the pipeline was empirically shown to be effective in replicating the findings of several studies, as well as producing additional findings and occasionally contradicting the findings of the original papers. However, the ECSER pipeline is designed for evaluating simple classifiers and gives no specific recommendations for LLM classifiers, despite LLMs being an increasingly popular choice for classification tasks. 
-The goal of this thesis is to expand the ECSER pipeline for the use of LLMs by adding recommendations from LLM4SE research and related fields. First, an exploratory mapping study will be done of SE studies released in 2024 that use LLM classifiers, summarising which steps are taken and which metrics are (or aren't) reported, in order to get an overview of the current state of LLM4SE research. Subsequently, we design an enhanced version of the ECSER pipeline for the use of LLMs, including recommendations for prompt engineering, evaluating the fairness and robustness of models, and more. Lastly, in order to evaluate the comprehensiveness and ease-of-use of the new pipeline, two replication studies will be conducted using the pipeline to test its ability to strengthen or contradict the findings of the original papers.
+The goal of this thesis is to expand the ECSER pipeline for the use of LLMs by adding recommendations from LLM4SE research and related fields. First, an exploratory mapping study will be done of SE studies released in 2024 that use LLM classifiers, summarising which steps are taken and which metrics are (or aren't) reported, in order to get an overview of the current state of LLM4SE research. Subsequently, we design the \newecser pipeline, an enhanced version of the ECSER pipeline for the use of LLMs, including recommendations for prompt engineering, evaluating the fairness and robustness of models, and more. Lastly, in order to evaluate the comprehensiveness and ease-of-use of the new pipeline, two replication studies were conducted using the pipeline to test its ability to strengthen or contradict the findings of the original papers.
 \end{abstract}
 \vfill 
 \textbf{MSc. Artificial Intelligence}\\
@@ -93,8 +93,8 @@ However, while ECSER is tailored to traditional ML classifiers (such as logistic
 The goal of this thesis is to address the lack of LLM-specific guidelines in the ECSER pipeline, by expanding it to include specific recommendations for conducting LLM classifier research. In doing so, we made the following contributions:
 \begin{itemize}
     \item We conducted a mapping study to assess the current state of reporting in LLM4SE classification research.
-    \item We developed an expanded version of the ECSER pipeline that includes specific recommendations for conducting LLM classifier research, such as prompt engineering and the evaluation of model fairness and robustness.
-    \item We conducted two replication studies of existing LLM classifier papers using the enhanced pipeline, in order to evaluate the pipeline's applicability and comprehensiveness.
+    \item We developed the \newecser pipeline, an expanded version of the ECSER pipeline that includes specific recommendations for conducting LLM classifier research, such as prompt engineering and the evaluation of model fairness and robustness.
+    \item We conducted two replication studies of existing LLM classifier papers using the \newecser pipeline, in order to evaluate the pipeline's applicability and comprehensiveness.
 \end{itemize}
 
 Supplemental materials, including all code that was used, the full intermediary and final results and the source for this document can be found at:\\ \url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}.
@@ -153,7 +153,7 @@ By conducting these replication studies, we can evaluate the comprehensiveness o
 \section{Related Work} \label{Related Work}
 The main focus of this thesis is to study the usage and evaluation of LLM Classifiers in Software Engineering, but in doing so we touch on several related research fields, including Empirical Software Engineering, Machine Learning for Software Engineering (ML4SE), Large Language Models for Software Engineering (LLM4SE) and Prompt Engineering. Additionally, each of the three research questions has related work that is relevant to their methodologies. Hence, we have split the related work into several sections based on different areas of study to aid readability. 
 
-First, we discuss challenges in empirical software engineering which motivated the creation of the ECSER pipeline and further motivate our mapping study of LLM4SE. Second, we discuss the topic of replication in SE, which is relevant to our replication studies and the field of empirical SE. Third, we discuss how Large Language Models have been used in SE, with a focus on classification tasks. Fourth, we discuss related work in Prompt Engineering, as it has become a vital part to using LLMs and will inform our guidelines for prompt engineering in the enhanced ECSER pipeline. Finally, we discuss related work on the evaluation of LLMs and classifiers which will inform our guidelines for the evaluation of LLM Classifiers.
+First, we discuss challenges in empirical software engineering which motivated the creation of the ECSER pipeline and further motivated our mapping study of LLM4SE. Second, we discuss the topic of replication in SE, which is relevant to our replication studies and the field of empirical SE. Third, we discuss how Large Language Models have been used in SE, with a focus on classification tasks. Fourth, we discuss related work in Prompt Engineering, as it has become a vital part to using LLMs and informed our guidelines for prompt engineering in the \newecser pipeline. Finally, we discuss related work on the evaluation of LLMs and classifiers informed our guidelines for the evaluation of LLM Classifiers.
 
 \subsection{Challenges in Empirical Software Engineering}
 % Related work on evaluating "simple" classifiers in SE (Dell'ana 2022, Kitchenham 2004, Kitchenhham 2002, Menzies 2012, Zhang 2002)
@@ -190,7 +190,7 @@ While LLMs are most frequently used to generate text (and code), they have seen 
 Software engineers have also started using LLMs for classification. \textcite{hou2024} conducted a systematic literature review of 395 software engineering studies that use LLMs and found that around 21.61\% involve classification tasks. The most common classification tasks where LLMs have been used include vulnerability detection, requirements classification, bug prediction and review/commit/code classification, with many other classification tasks having been attempted using LLMs. \textcite{zhang2024} conducted a systematic survey of 947 SE studies and summarized 62 unique LLMs of code, including six LLMs specifically fine-tuned for the tasks of code classification, clone detection and defect detection.
 
 % Related work on GUIDELINES
-Recently, \textcite{baltes2025guidelinesempiricalstudiessoftware} presented a list of community-driven guidelines for using and reporting on LLMs, providing eight detailed guidelines. These guidelines include: (1) declaring LLM usage and role; (2) reporting model versions, configurations and fine-tuning; (3) documenting tool architectures; (4) disclosing prompts and interaction logs; (5) using human validation; (6) employing an open LLM as baseline; (7) using suitable baselines, benchmarks and metrics; and (8) openly articulating limitations and mitigations. These guidelines were designed to increase the transparency and reproducibility of LLM research and are actively maintained on \url{https://llm-guidelines.org/}. The guidelines in this thesis serve a similar purpose of helping researchers conduct LLM4SE research; however, their guidelines have a broader focus, since they include all LLM applications, whereas our guidelines are specifically tailored to classification research. Furthermore, unlike their paper, this thesis also includes a mapping study to assess the state of LLM4SE classification reporting and provides a replication study to evaluate the guidelines. Despite the difference in scope, many of their recommendations directly apply to our research and were taken into account for the enhanced ECSER pipeline where relevant.
+Recently, \textcite{baltes2025guidelinesempiricalstudiessoftware} presented a list of community-driven guidelines for using and reporting on LLMs, providing eight detailed guidelines. These guidelines include: (1) declaring LLM usage and role; (2) reporting model versions, configurations and fine-tuning; (3) documenting tool architectures; (4) disclosing prompts and interaction logs; (5) using human validation; (6) employing an open LLM as baseline; (7) using suitable baselines, benchmarks and metrics; and (8) openly articulating limitations and mitigations. These guidelines were designed to increase the transparency and reproducibility of LLM research and are actively maintained on \url{https://llm-guidelines.org/}. The guidelines in this thesis serve a similar purpose of helping researchers conduct LLM4SE research; however, their guidelines have a broader focus, since they include all LLM applications, whereas our guidelines are specifically tailored to classification research. Furthermore, unlike their paper, this thesis also includes a mapping study to assess the state of LLM4SE classification reporting and provides a replication study to evaluate the guidelines. Despite the difference in scope, many of their recommendations directly apply to our research and were taken into account for the \newecser pipeline where relevant.
 
 \subsection{Prompt Engineering} \label{Prompt Engineering}
 % Prompt engineering (Hou 2024, Arvidsson 2023, Ronanki 2023, Ekin 2023, White 2023, Marvin 2024)
@@ -378,7 +378,7 @@ Starting with the evaluation metrics that are recommended by the ECSER pipeline 
 
 Apart from metrics related to the correctness of the classification results, \textcite{chang2023} list three other aspects of LLM evaluation that are frequently used: the calibration, fairness and robustness. The calibration of an LLM refers to how well the predicted probabilities of the model align with actual probabilities \cite{nixon2019calibration,guo2017calibration}, but measures of calibration were not reported in any of the papers. Evaluating the fairness of an LLM is done to ensure the alignment of LLM results with human values and prevent a difference in performance across groups of people \cite{liu2024}, but measures of fairness were also not reported in any of the papers. 
 
-The robustness, which refers to the performance of a model in the face of challenging inputs, can be analysed in several ways, including by making changes in the data distribution, the addition of noise to the data, and adversarial attacks \cite{chang2023}. Only two papers tested the robustness of their models in one or more of these ways; one looked at both altering the data distribution as well as adversarial attacks and the other looked at the effect of noisy data. However, some papers tested something similar to robustness by performing ablation studies, which work by removing parts of the model to see the impact on the performance, which allows one to assess whether the model exhibits graceful degradation \cite{meyes2019ablation}. Ablation studies were not initially included in the mapping study but after seeing their successful implementation were added to the enhanced ECSER pipeline as an optional step.
+The robustness, which refers to the performance of a model in the face of challenging inputs, can be analysed in several ways, including by making changes in the data distribution, the addition of noise to the data, and adversarial attacks \cite{chang2023}. Only two papers tested the robustness of their models in one or more of these ways; one looked at both altering the data distribution as well as adversarial attacks and the other looked at the effect of noisy data. However, some papers tested something similar to robustness by performing ablation studies, which work by removing parts of the model to see the impact on the performance, which allows one to assess whether the model exhibits graceful degradation \cite{meyes2019ablation}. Ablation studies were not initially included in the mapping study but after seeing their successful implementation were added to the \newecser pipeline as an optional step.
 
 %The presence or omission of evaluation metrics should be justified in some way, as well as the relative importance for answering the research question. For example, including or omitting the accuracy could be motivated by referring to previous work or an explanation as to why it is or isn't important for the given task. Additionally, the precision or recall can be argued to be more important for the given task than the other.
 
@@ -445,11 +445,11 @@ For papers that use prompts for LLM classification, there is often little to no 
 
 Naturally, although multiple venues were considered and all papers from 2024 were considered from these venues, these results are still based on a limited set of papers. However, the results align with findings from a large base of previous research \cite{Dellanna2022,hou2024,guo2023survey,kitchenham2002,Menzies2012}, so it is not unexpected to find similar problems here, especially since there are still very few guidelines for conducting LLM research.
 
-In conclusion, there is a clear need for easy to use and comprehensive guidelines to aid researchers in conducting LLM4SE classification research, especially for statistical significance testing and prompt engineering. We designed the enhanced ECSER pipeline (section \ref{RQ2}) to take into account the mentioned common shortcomings of existing research and provide extra attention to these topics. 
+In conclusion, there is a clear need for easy to use and comprehensive guidelines to aid researchers in conducting LLM4SE classification research, especially for statistical significance testing and prompt engineering. We designed the \newecser pipeline (section \ref{RQ2}) to take into account the mentioned common shortcomings of existing research and provide extra attention to these topics. 
 
 \section{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}
 \label{RQ2}
-In this section, we first discuss the approach that was used to modify the ECSER pipeline with recommendations tailored to the conducting and reporting of LLM4SE classification research. Subsequently, we present the enhanced ECSER pipeline, which features a step by step guide to the implementation and results reporting of LLM-based classification research. 
+In this section, we first discuss the approach that was used to modify the ECSER pipeline with recommendations tailored to the conducting and reporting of LLM4SE classification research. Subsequently, we present the \newecser pipeline, which features a step by step guide to the implementation and results reporting of LLM-based classification research. 
 
 \subsection{Research Approach}
 To answer the research question, we developed the \newecser pipeline by enhancing the existing ECSER pipeline to include the use of LLMs, taking into consideration recommendations from the fields of LLM4SE and ML4SE, as well as relevant statistical or methodological research in other fields (see section \ref{Related Work}). 
@@ -460,43 +460,74 @@ To enhance the ECSER pipeline with LLM-specific recommendations, we consulted va
 
 Additionally, the results of RQ1 were taken into account to ensure that common issues encountered in the mapping study received additional care in the new pipeline, including issues such as the lack of reporting for common evaluation metrics, the lack of significance testing and the lack of consistent reporting for prompt usage and development. The results of RQ1 also lead to the inclusion of ablation studies as an optional part of the pipeline, which were overlooked during the initial literature review but were shown to be useful in assessing the degradation of the models in the papers that used them \cite{meyes2019ablation}.
 
-In Table \ref{table:additions}, we list each step of the original ECSER pipeline along with the new version of the step and the changes that were made in the new \newecser pipeline, along with the primary source(s) that motivated these changes. 
+In Table \ref{table:additions}, we list each step of the original ECSER pipeline along with the new version of the step and the major changes that were made in the new \newecser pipeline, along with the primary source(s) that motivated these changes. Minor changes are not included in the table.
 
 \begin{table}[H]
 	\centering
-	\caption{Summary of changes and additions to the ECSER pipeline}
-	\begin{tabularx}{\textwidth}{|p{3.5cm}|p{4cm}|X|}
+	\caption{Summary of changes and additions to the ECSER pipeline.}
+	\begin{tabularx}{\textwidth}{|p{3cm}|p{3.5cm}|X|}
 		\hline
 		\textbf{\textit{ECSER} Step} & \textbf{\newecser Step} & \textbf{Changes from \textit{ECSER} to \newecser} \\ \hline
 		
-		S1. Select an evaluation method and split the data
-		& S1. Select an evaluation method and split the data
-		& Specify desired level of model alignment and safety \cite{guo2023survey} \\ \hline
+		S1. Select an evaluation method and split the data.
+		& S1. Select an evaluation method and split the data.
+		& Add specification of desired level of model alignment and safety \cite{guo2023survey}. \\ \hline
 		
-		\multirow[c]{3}{*}{\parbox{3.5cm}{S2. Train the model}}
-		& \multirow[c]{3}{*}{\parbox{4cm}{S2. Train the model \& Design prompts}}
-		& Define the goal of the prompt \cite{Marvin2024,arvidsson2023} \\ 
-		& & Select prompt engineering approach (zero-shot, few-shot, etc.) \cite{hou2024,arvidsson2023} \\ 
-		& & Select prompting pattern \cite{white2023,arvidsson2023} \\ \hline
+		\multirow[c]{4}{*}{\parbox{3cm}{S2. Train the model.}}
+		& \multirow[c]{4}{*}{\parbox{3.5cm}{S2. Train the model / Design prompts.}}
+		& Split into training and prompt engineering steps based on use case. \\
+		& & Add prompt engineering guidelines \cite{arvidsson2023,Marvin2024}.\\
+		& & Add reporting of LLM configuration and interaction \cite{baltes2025guidelinesempiricalstudiessoftware}. \\ 
+		& & Select temperature ranges and other LLM hyper-parameters \cite{peeperkorn2024,baltes2025guidelinesempiricalstudiessoftware}. \\ \hline
 		
-		\multirow[c]{2}{*}{\parbox{3.5cm}{S3. Hyper-parameter tuning and validation}}
-		& \multirow[c]{2}{*}{\parbox{4cm}{S3. Hyper-parameter tuning and validation}}
-		& Tune LLM model temperature \cite{peeperkorn2024} \\ 
-		& & Compare prompting patterns \cite{ronanki2023} \\ \hline
+		\multirow[c]{3}{*}{\parbox{3cm}{S3. Hyper-parameter tuning \& validation.}}
+		& \multirow[c]{3}{*}{\parbox{3.5cm}{S3. Hyper-parameter tuning \& validation.}}
+		& Tune LLM model temperature \cite{peeperkorn2024}. \\ 
+		& & Compare similar prompts \cite{ronanki2023}. \\ 
+		& & Report prompt revisions and LLM interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware} \\ \hline
 		
-		\multirow[c]{4}{*}{\parbox{3.5cm}{S7. Report Metrics}}
-		& \multirow[c]{4}{*}{\parbox{4cm}{S7. Report Metrics}}
-		& Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
-		& & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
-		& & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
-		& & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
+		S4. Re-train with optimized parameters. 
+		& -
+		& Merged into S3.\\ \hline
 		
-		S8. Analyse overfitting and degradation
-		& S8. Analyse overfitting and degradation
-		& Conduct ablation studies (optional) \cite{meyes2019ablation} \\ \hline
+		S5. Test the models.
+		& S4. Test the models.
+		& - \\ \hline
+		
+		S6. Report confusion matrix.
+		& S5. Report confusion matrix.
+		& - \\ \hline
+		
+		S7. Report Metrics.
+		& S6. Report Metrics.
+		&  Report Matthews Correlation Coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ \hline
+
+		- 
+		& S7. Evaluate calibration, fairness, robustness \& sustainability.
+		& New step that includes guidelines on how to evaluate the calibration, fairness, robustness and sustainability of LLMs  \cite{chang2023,liu2024}. \\ \hline
+		
+		S8. Analyse overfitting and degradation.
+		& S8. Analyse overfitting and degradation.
+		& Conduct ablation studies \cite{meyes2019ablation}. \\ \hline
+		
+		S9. Visualize ROC.
+		& S9. Visualize ROC.
+		& - \\ \hline
+		
+		S10. Apply statistical significance tests.
+		& S10. Apply statistical significance tests.
+		& Justify the significance test and significance threshold \cite{benjamin2018significance,amrhein2017significance}. \\ \hline
 	\end{tabularx}
 	\label{table:additions}
 \end{table}
+
+
+%		\multirow[c]{4}{*}{\parbox{3.5cm}{S7. Report Metrics}}
+%		& \multirow[c]{4}{*}{\parbox{4cm}{S7. Report Metrics}}
+%		& Report Matthews correlation coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ 
+%		& & Report calibration (e.g., expected calibration error \cite{Pakdaman2015}) \\ 
+%		& & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
+%		& & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
 
 \subsection{The \newecser pipeline}
 \label{ECSER-LLM}
