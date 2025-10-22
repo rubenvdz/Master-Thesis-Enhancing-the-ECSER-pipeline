@@ -480,9 +480,10 @@ In Table \ref{table:additions}, we list each step of the original ECSER pipeline
 		& & Add reporting of LLM configuration and interaction \cite{baltes2025guidelinesempiricalstudiessoftware}. \\ 
 		& & Select temperature ranges and other LLM hyper-parameters \cite{peeperkorn2024,baltes2025guidelinesempiricalstudiessoftware}. \\ \hline
 		
-		\multirow[c]{3}{*}{\parbox{3cm}{S3. Hyper-parameter tuning \& validation.}}
-		& \multirow[c]{3}{*}{\parbox{3.5cm}{S3. Hyper-parameter tuning \& validation.}}
-		& Tune LLM model temperature \cite{peeperkorn2024}. \\ 
+		\multirow[c]{4}{*}{\parbox{3cm}{S3. Hyper-parameter tuning \& validation.}}
+		& \multirow[c]{4}{*}{\parbox{3.5cm}{S3. Hyper-parameter tuning / Prompt comparison.}}
+		& Split into hyper-parameter tuning and prompt comparison based on use case. \\
+		& & Tune LLM model temperature \cite{peeperkorn2024}. \\ 
 		& & Compare similar prompts \cite{ronanki2023}. \\ 
 		& & Report prompt revisions and LLM interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware} \\ \hline
 		
@@ -531,6 +532,14 @@ In Table \ref{table:additions}, we list each step of the original ECSER pipeline
 
 \subsection{The \newecser pipeline}
 \label{ECSER-LLM}
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering}
+	\includegraphics[width=1\linewidth]{figures/ECSER-LLM.png}
+	\caption{The \newecser pipeline. Double arrows show possible feedback loops between steps and macro activities.}
+	\label{fig:ECSER-LLM}
+\end{figure}
 
 \newpage 
 \printbibliography[heading=bibintoc]
