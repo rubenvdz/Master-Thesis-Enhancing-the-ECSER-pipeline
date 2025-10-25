@@ -532,12 +532,17 @@ In Table \ref{table:additions}, we list each step of the original ECSER pipeline
 
 \subsection{The \newecser pipeline}
 \label{ECSER-LLM}
+In this section we present the \newecser pipeline, a step-by-step guideline for SE researchers to conduct classification experiments using LLMs and evaluate the results, which serves to provide an answer to the research question. The pipeline encompasses the \textit{treatment validation} step of \textcite{Wieringa2014}'s design cycle, which happens after the \textit{treatment design} step. Steps belonging to the \textit{treatment design}, such as feature engineering and algorithms selection, are out of scope of the pipeline. 
+
+Figure \ref{fig:ECSER-LLM} shows the full pipeline, consisting of 11 steps divided into two macro activities: (1) training, validation and testing and (2) results analysis. The steps are shown consecutively, but it is always possible to return to previous steps. For example, after finding optimal hyper-parameters in S4, one will likely return to S2 to retrain the models with these parameters. Further, there is a possible feedback loop between macro activities, including the \textit{treatment design}. For example, when it is found that the model shows signs of overfitting (S9), one can reconsider the algorithms used (\textit{treatment design}) or increase regularization (S2).
+
+Some steps are marked as optional with a dashed border, since they depend on the \textit{treatment design} or other considerations such as time and space constraints. In particular, when using a pre-trained LLM without fine-tuning, S2 becomes obsolete since no training is performed, and when \textit{not} using prompts to guide LLM outputs, S3 (Design prompts) and S4 (Prompt comparison) become obsolete since they provide guidelines for using prompts. Lastly, S4 is split into two steps: hyper-parameter tuning and prompt comparison. This is done to indicate that these steps can be done in parallel to find the best combination of prompt and hyper-parameters, but since both are marked as optional it is possible to do only one of the steps or neither. 
 
 \begin{figure}[H]
 	\centering
 	\captionsetup{justification=centering}
 	\includegraphics[width=1\linewidth]{figures/ECSER-LLM.png}
-	\caption{The \newecser pipeline. Double arrows show possible feedback loops between steps and macro activities.}
+	\caption{The \newecser pipeline. Dashed borders indicate optional steps. Double arrows show possible feedback loops between macro activities. The steps in S4. can be done in parallel.}
 	\label{fig:ECSER-LLM}
 \end{figure}
 
