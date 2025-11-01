@@ -86,7 +86,7 @@ To treat the observed poor standard of empirical SE, some researchers have calle
 
 
 % What is the ECSER pipeline missing (LLMs) / Problems
-However, while ECSER is tailored to traditional ML classifiers (such as logistic regression, SVMs and decision trees), it includes no specific recommendations for LLM-based classifiers, despite LLMs showing promise for various classification tasks \cite{Guo2024health,fields2024}. Thus, the ECSER pipeline is not sufficient for LLM research, since using LLMs for classification comes with unique considerations that are not present for traditional classifiers. For one, it is common to use pre-trained, generalized LLMs and give task-specific instructions to get the desired classification on the input data. This means that designing these instructions, also called prompts, becomes a crucial part to conducting LLM research \cite{Marvin2024}. There are also unique considerations when it comes to evaluating the fairness and robustness of the results: does the model behave in accordance with human values and are the results resilient to adversarial prompts, such as those containing typos \cite{Woodworth2017,zhu2024}?
+However, while ECSER is tailored to traditional ML classifiers (such as logistic regression, SVMs and decision trees), it includes no specific recommendations for LLM-based classifiers, despite LLMs showing promise for various classification tasks \cite{Guo2024health,fields2024}. Thus, the ECSER pipeline is not sufficient for LLM research, since using LLMs for classification comes with unique considerations that are not present for traditional classifiers. For one, it is common to use pre-trained, generalised LLMs and give task-specific instructions to get the desired classification on the input data. This means that designing these instructions, also called prompts, becomes a crucial part to conducting LLM research \cite{Marvin2024}. There are also unique considerations when it comes to evaluating the fairness and robustness of the results: does the model behave in accordance with human values and are the results resilient to adversarial prompts, such as those containing typos \cite{Woodworth2017,zhu2024}?
 
 
 % Contributions that will be made
@@ -298,7 +298,7 @@ After completing the manual search and obtaining 18 relevant LLM4SE classificati
 
 In total, this resulted in the following list of evaluation metrics: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, Receiver Operation Characteristic (ROC) plot, Calibration, Fairness} and \textit{Robustness}.
 
-Further, we looked at several factors related to the reproducibility and generalization of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
+Further, we looked at several factors related to the reproducibility and generalisation of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
 
 Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether the results were evaluated over multiple prompts and whether the temperatures of the models were reported.
 
@@ -530,7 +530,7 @@ In Table \ref{table:additions}, we list each step of the original ECSER pipeline
 %		& & Report fairness (e.g., equalized odds difference \cite{Woodworth2017}) \\ 
 %		& & Report robustness (e.g., performance drop rate \cite{zhu2024}) \\ \hline
 
-\subsection{The \newecser pipeline}
+\subsection{The \newecser Pipeline}
 \label{ECSER-LLM}
 In this section we present the \newecser pipeline, a step-by-step guideline for SE researchers to conduct classification experiments using LLMs and evaluate the results, which serves to provide an answer to the research question. The pipeline encompasses the \textit{treatment validation} step of \textcite{Wieringa2014}'s design cycle, which happens after the \textit{treatment design} step. Steps belonging to the \textit{treatment design}, such as feature engineering and algorithms selection, are out of scope of the pipeline. 
 
@@ -545,6 +545,22 @@ Some steps are marked as optional with a dashed border, since they depend on the
 	\caption{The \newecser pipeline. Dashed borders indicate optional steps. Double arrows show possible feedback loops between macro activities. The steps in S4. can be done in parallel.}
 	\label{fig:ECSER-LLM}
 \end{figure}
+
+\subsubsection{Training, Validation, Testing}
+\textbf{S1. Select an Evaluation Method and Split the Data.}\\
+In experimental software engineering, the treatment that is designed to answer a research question generally consists of a model that must be trained using a data set, but how well the trained model fits the training data is not a good indicator of the performance of the model on unseen data, since the training data is only a sample of the true data distribution. Therefore, some of the available data must be set aside to test whether the trained model generalises well to data that wasn't encountered in the process of training the model; and in the case of hyper-parameter tuning, some of the data must be used to evaluate the performance of models with different parameters. 
+
+When using a pre-trained LLM with no additional training, it is not needed to set aside data for training, but the data should still be split into validation and test sets. The validation set should be used to select hyper-parameters for the LLM, such as the temperature, and during the development and comparison of prompts \cite{Homiar2025promptdev}. The test set should only be used when the final prompt pattern is developed (along with any other part of the model) to ensure the prompt was not influenced by the test set. 
+
+Several methods exists to partition data into training, validation and test sets. The simplest is the \textit{holdout method}, where the data is split into training, validation and test sets. The training set is used to train the data (S2), the validation set is used for hyper-parameter tuning (S4) and the test set is used for evaluating the model (S5). Generally, at least 50-70\% of the data is used for training and validation, with the rest being used for testing \cite{Bichri2024traintest,xu2018splitting}. The holdout method does have a major issue: since only a portion of the training data is used for validation, the test error rate can be highly variable, leading to unreliable results \cite{kim2009holdout,James2023isl5}. 
+
+A more robust alternative is \textit{resampling}, where models are fitted on multiple samples drawn from the training data. One example is \textit{k-fold cross-validation}, where (EXPLANATION). It is also possible to use projects to partition the data using \textit{p-fold cross-validation}, where (EXPLANATION). Another alternative is \textit{leave-one-out cross validation} (LOOCV), which is a special case of k-fold cross-validation where k=1. It works by (EXPLANATION). 
+
+The best method depends on (FACTORS)
+
+Lastly, it is important to consider whether the data set that is used for testing was also used in the development of the LLM (in case of open source) (EXPAND)
+
+
 
 \newpage 
 \printbibliography[heading=bibintoc]
