@@ -670,7 +670,7 @@ The aim of replication is to verify results, but different types of replication 
   collection = {South American ’24}
 }
 
-@article{Pakdaman2015, title={Obtaining Well Calibrated Probabilities Using Bayesian Binning}, volume={29}, url={https://ojs.aaai.org/index.php/AAAI/article/view/9602}, DOI={10.1609/aaai.v29i1.9602}, abstractNote={ &lt;p&gt; Learning probabilistic predictive models that are well calibrated is critical for many prediction and decision-making tasks in artificial intelligence. In this paper we present a new non-parametric calibration method called Bayesian Binning into Quantiles (BBQ) which addresses key limitations of existing calibration methods. The method post processes the output of a binary classification algorithm; thus, it can be readily combined with many existing classification algorithms. The method is computationally tractable, and empirically accurate, as evidenced by the set of experiments reported here on both real and simulated datasets. &lt;/p&gt; }, number={1}, journal={Proceedings of the AAAI Conference on Artificial Intelligence}, author={Pakdaman Naeini, Mahdi and Cooper, Gregory and Hauskrecht, Milos}, year={2015}, month={Feb.} }
+@article{Pakdaman2015, title={Obtaining Well Calibrated Probabilities Using Bayesian Binning}, volume={29}, url={https://ojs.aaai.org/index.php/AAAI/article/view/9602}, DOI={10.1609/aaai.v29i1.9602}, number={1}, journal={Proceedings of the AAAI Conference on Artificial Intelligence}, author={Pakdaman Naeini, Mahdi and Cooper, Gregory and Hauskrecht, Milos}, year={2015}, month={Feb.} }
 
 
 @InProceedings{Woodworth2017,
@@ -1232,7 +1232,7 @@ DOI = {10.3390/ijgi13110405}
 
 @article{kim2009holdout,
 	title = {Estimating classification error rate: Repeated cross-validation, repeated hold-out and bootstrap},
-	journal = {Computational Statistics & Data Analysis},
+	journal = {Computational Statistics and Data Analysis},
 	volume = {53},
 	number = {11},
 	pages = {3735-3745},
@@ -1242,4 +1242,87 @@ DOI = {10.3390/ijgi13110405}
 	url = {https://www.sciencedirect.com/science/article/pii/S0167947309001601},
 	author = {Ji-Hyun Kim},
 	abstract = {We consider the accuracy estimation of a classifier constructed on a given training sample. The naive resubstitution estimate is known to have a downward bias problem. The traditional approach to tackling this bias problem is cross-validation. The bootstrap is another way to bring down the high variability of cross-validation. But a direct comparison of the two estimators, cross-validation and bootstrap, is not fair because the latter estimator requires much heavier computation. We performed an empirical study to compare the .632+ bootstrap estimator with the repeated 10-fold cross-validation and the repeated one-third holdout estimator. All the estimators were set to require about the same amount of computation. In the simulation study, the repeated 10-fold cross-validation estimator was found to have better performance than the .632+ bootstrap estimator when the classifier is highly adaptive to the training sample. We have also found that the .632+ bootstrap estimator suffers from a bias problem for large samples as well as for small samples.}
+}
+
+@article{Cawley2003,
+	title = {Efficient leave-one-out cross-validation of kernel fisher discriminant classifiers},
+	journal = {Pattern Recognition},
+	volume = {36},
+	number = {11},
+	pages = {2585-2592},
+	year = {2003},
+	issn = {0031-3203},
+	doi = {https://doi.org/10.1016/S0031-3203(03)00136-5},
+	url = {https://www.sciencedirect.com/science/article/pii/S0031320303001365},
+	author = {Gavin C. Cawley and Nicola L.C. Talbot},
+	keywords = {Model selection, Cross-validation, Kernel Fisher discriminant analysis},
+	abstract = {Mika et al. (in: Neural Network for Signal Processing, Vol. IX, IEEE Press, New York, 1999; pp. 41–48) apply the “kernel trick” to obtain a non-linear variant of Fisher's linear discriminant analysis method, demonstrating state-of-the-art performance on a range of benchmark data sets. We show that leave-one-out cross-validation of kernel Fisher discriminant classifiers can be implemented with a computational complexity of only O(ℓ3) operations rather than the O(ℓ4) of a naı̈ve implementation, where ℓ is the number of training patterns. Leave-one-out cross-validation then becomes an attractive means of model selection in large-scale applications of kernel Fisher discriminant analysis, being significantly faster than conventional k-fold cross-validation procedures commonly used.}
+}
+
+@article{Wong2015,
+	title = {Performance evaluation of classification algorithms by k-fold and leave-one-out cross validation},
+	journal = {Pattern Recognition},
+	volume = {48},
+	number = {9},
+	pages = {2839-2846},
+	year = {2015},
+	issn = {0031-3203},
+	doi = {https://doi.org/10.1016/j.patcog.2015.03.009},
+	url = {https://www.sciencedirect.com/science/article/pii/S0031320315000989},
+	author = {Tzu-Tsung Wong},
+	keywords = {Classification, Independence, -Fold cross validation, Leave-one-out cross validation, Sampling distribution},
+	abstract = {Classification is an essential task for predicting the class values of new instances. Both k-fold and leave-one-out cross validation are very popular for evaluating the performance of classification algorithms. Many data mining literatures introduce the operations for these two kinds of cross validation and the statistical methods that can be used to analyze the resulting accuracies of algorithms, while those contents are generally not all consistent. Analysts can therefore be confused in performing a cross validation procedure. In this paper, the independence assumptions in cross validation are introduced, and the circumstances that satisfy the assumptions are also addressed. The independence assumptions are then used to derive the sampling distributions of the point estimators for k-fold and leave-one-out cross validation. The cross validation procedure to have such sampling distributions is discussed to provide new insights in evaluating the performance of classification algorithms.}
+}
+
+@misc{wang2018approximateloocv,
+	title={Approximate Leave-One-Out for Fast Parameter Tuning in High Dimensions}, 
+	author={Shuaiwen Wang and Wenda Zhou and Haihao Lu and Arian Maleki and Vahab Mirrokni},
+	year={2018},
+	eprint={1807.02694},
+	archivePrefix={arXiv},
+	primaryClass={stat.ML},
+	url={https://arxiv.org/abs/1807.02694}, 
+}
+
+@article{Herbold2020,
+	title={On the feasibility of automated prediction of bug and non-bug issues},
+	volume={25},
+	ISSN={1573-7616},
+	url={http://dx.doi.org/10.1007/s10664-020-09885-w},
+	DOI={10.1007/s10664-020-09885-w},
+	number={6},
+	journal={Empirical Software Engineering},
+	publisher={Springer Science and Business Media LLC},
+	author={Herbold, Steffen and Trautsch, Alexander and Trautsch, Fabian},
+	year={2020},
+	month=sep, pages={5333–5369} }
+	
+@INPROCEEDINGS{Dalpiaz2019,
+	author={Dalpiaz, Fabiano and Dell'Anna, Davide and Aydemir, Fatma Basak and Çevikol, Sercan},
+	booktitle={2019 IEEE 27th International Requirements Engineering Conference (RE)}, 
+	title={Requirements Classification with Interpretable Machine Learning and Dependency Parsing}, 
+	year={2019},
+	volume={},
+	number={},
+	pages={142-152},
+	keywords={Training;Measurement;Tagging;Linguistics;Libraries;Machine learning;Tools;requirements engineering;interpretable machine learning;requirements classification;explainable AI},
+	doi={10.1109/RE.2019.00025}}
+	
+
+@manual{scikit-learn-cv2025,
+	title = {Cross‑validation: evaluating estimator performance},
+	author = {scikit‑learn developers},
+	year = {2025},
+	note = {Software documentation},
+	howpublished = {\url{https://scikit-learn.org/stable/modules/cross_validation.html}}
+}
+
+@misc{carlini2021extractingtrainingdatalarge,
+	title={Extracting Training Data from Large Language Models}, 
+	author={Nicholas Carlini and Florian Tramer and Eric Wallace and Matthew Jagielski and Ariel Herbert-Voss and Katherine Lee and Adam Roberts and Tom Brown and Dawn Song and Ulfar Erlingsson and Alina Oprea and Colin Raffel},
+	year={2021},
+	eprint={2012.07805},
+	archivePrefix={arXiv},
+	primaryClass={cs.CR},
+	url={https://arxiv.org/abs/2012.07805}, 
 }
