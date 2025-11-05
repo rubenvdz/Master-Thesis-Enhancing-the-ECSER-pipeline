@@ -585,7 +585,24 @@ Finally, when using a pre-trained LLM, if the researcher uses open source data, 
 \textbf{S2. Train the models.} \\ 
 \infobox{Optional}{This step does not apply when using a pre-trained LLM without fine-tuning or additional training, such as research that only uses prompts to guide the output of the LLM.}
 
-After splitting the data and deciding on the evaluation method, the training set is used to fine-tune the LLM or train a new model on the LLM encodings. 
+After splitting the data and deciding on the evaluation method, the training set is used to fine-tune the LLM or train a classification model on the LLM encodings. Training or fine-tuning a model entails changing the \textit{parameters} of the model to produce outputs that are most similar to the supervised labels in the training data. The training process is usually influenced by \textit{hyper-parameters} that are set before training and don't change during training. For example, when fine-tuning an LLM, the learning rate, batch size and epochs are examples of hyper-parameters that influence the training process, but the weights of the model are the parameters that are actually changed during training. 
+
+Since LLMs are often updated after release, the exact LLM version, configuration and experiment dates should be reported to make it easier for other researchers to replicate findings \cite{baltes2025guidelinesempiricalstudiessoftware}. Additionally, when using fine-tuning, the fine-tuning data and weights should be shared if possible.
+
+\textbf{S3. Design prompts.}\\
+\infobox{Optional}{This step only applies when using prompts to guide LLM outputs, instead of using LLM embeddings with traditional classifiers.}
+
+Prompt engineering is an important part of interacting with LLMs, since the prompt design can have a substantial effect on the performance of the LLM. We split the process of designing a prompt into five steps, similar to \textcite{Marvin2024}.
+
+1. Define the goal of the prompt:
+
+2. Choose the right prompt engineering approach:
+
+3. Choose the right prompt template:
+
+4. Provide context:
+
+5. Test and refine:
 
 
 
