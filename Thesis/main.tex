@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article}
 
 \usepackage{graphicx,float} % Required for inserting images
+\usepackage[skins]{tcolorbox}
 %\usepackage{apacite}
 \usepackage{amsmath}
 \usepackage{caption}
@@ -31,7 +32,7 @@
 
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 \usepackage[toc,page]{appendix}
-\newcommand{\comment}[1]{}
+%\newcommand{\comment}[1]{}
 \makeatletter
 \newcommand*{\centerfloat}{%
   \parindent \z@
@@ -39,6 +40,25 @@
   \rightskip\leftskip
   \parfillskip \z@skip}
 \makeatother
+
+\newcommand{\infobox}[2]{
+	\begin{tcolorbox}[
+		skin=widget,
+		boxrule=1mm,
+		coltitle=black,
+		colframe=gray,
+		colback=lightgray,
+		width=(.9\linewidth),
+		before=\hfill,
+		after=\hfill,
+		before skip=1pt,
+		adjusted title={#1}
+		]
+		#2
+	\end{tcolorbox}
+}
+
+% Start content
 \title{\includegraphics[width=0.2\textwidth]{figures/UUlogo.png} 
 \vspace{0.5cm}
 \hrule
@@ -182,7 +202,7 @@ Given these challenges, guidelines for conducting replications are clearly neede
 % Related work on LLMs in SE in general (Wang 2024, Fan 2023, find more for specific subdomains?)
 A recent development in SE research is the increased relevance and use of LLMs. \textcite{fan2023} looked at all preprints on arXiv categorised under computer science whose title included "LLM", "Large Language Model" or "GPT" and found the number of SE papers that mentioned LLMs grew exponentially from 0 in 2019, 5 in 2020, to 181 in 2023. Naturally, this is only an approximation of the total number of preprints on arXiv that use LLMs, but it undoubtedly signifies a substantial increase. \citeauthor{fan2023} also conducted an extensive survey of how LLMs have been applied to various software development activities (such as code generation and testing) and research domains (such as human-computer interaction and education), but the survey is almost exclusively focused on the generative use of LLMs and does not go into depth on the use of LLMs in classification research. Many other good surveys and analyses of the use of LLMs in Software Engineering have been written, but most of them similarly do not mention any applications to classification tasks and instead exclusively focus on generation \cite{Belzner2024,Zheng2024,Ozkaya2023}.
 
-Surveys have also been written about specific domains of software engineering: \textcite{wang2024} did a comprehensive review of 102 studies that use LLMs for software testing and found that LLMs have commonly been applied to various tasks, including test case generation, test input generation, debugging, program repair and more\comment{REWRITE WITH TABLE OF TASKS}. They also found that while most papers used LLMs to address the entire task, many others combined LLMs with additional techniques to optimize the outputs of the LLM, including mutation testing, differential testing, syntactic checking, program analysis, statistical analysis and other techniques. With these extra techniques, researchers were able to generate more diverse and complex code and overcome some of the limitations of LLMs. 
+Surveys have also been written about specific domains of software engineering: \textcite{wang2024} did a comprehensive review of 102 studies that use LLMs for software testing and found that LLMs have commonly been applied to various tasks, including test case generation, test input generation, debugging, program repair and more. They also found that while most papers used LLMs to address the entire task, many others combined LLMs with additional techniques to optimize the outputs of the LLM, including mutation testing, differential testing, syntactic checking, program analysis, statistical analysis and other techniques. With these extra techniques, researchers were able to generate more diverse and complex code and overcome some of the limitations of LLMs. 
 
 % Related work on LLMs in CLASSIFICATION (Hou 2024, Zhang 2024, Fields 2024)
 While LLMs are most frequently used to generate text (and code), they have seen considerable success in classification tasks. \textcite{Guo2024health} have shown that LLMs can outperform other methods like SVMs for health-related text classification. \textcite{fields2024} present an in-depth survey of text classification using transformers across domains and found that LLMs can perform remarkably well on many (but not all) classification tasks. However, \textcite{Chen2024} compared the performance of various LLMs to traditional ML methods in clinical prediction and found that LLMs could \textit{not} beat traditional methods in this case. \textcite{vajjala2025} also show that there are large performance disparities between languages in classification tasks. Thus, LLMs might not always be a better choice than traditional ML methods, but they certainly show potential. 
@@ -562,7 +582,10 @@ Which of these methods is most appropriate might depend on the available computa
 
 Finally, when using a pre-trained LLM, if the researcher uses open source data, there is a legitimate concern that the validation and testing sets were also used in training the LLM, leading to data leakage. LLMs have been shown to sometimes repeat training data verbatim  \cite{carlini2021extractingtrainingdatalarge}. If possible, this can be avoided by using testing data that was released after the creation of the LLM or proprietary data. 
 
-\textbf{S2. Train the models.}
+\textbf{S2. Train the models.} \\ 
+\infobox{Optional}{This step does not apply when using a pre-trained LLM without fine-tuning or additional training, such as research that only uses prompts to guide the output of the LLM.}
+
+After splitting the data and deciding on the evaluation method, the training set is used to fine-tune the LLM or train a new model on the LLM encodings. 
 
 
 
