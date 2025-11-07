@@ -493,50 +493,55 @@ In Table \ref{table:additions}, we list each step of the original ECSER pipeline
 		& S1. Select an evaluation method and split the data.
 		& Add specification of desired level of model alignment and safety \cite{guo2023survey}. \\ \hline
 		
-		\multirow[c]{4}{*}{\parbox{3cm}{S2. Train the model.}}
-		& \multirow[c]{4}{*}{\parbox{3.5cm}{S2. Train the model / Design prompts.}}
-		& Split into training and prompt engineering steps based on use case. \\
-		& & Add prompt engineering guidelines \cite{arvidsson2023,Marvin2024}.\\
-		& & Add reporting of LLM configuration and interaction \cite{baltes2025guidelinesempiricalstudiessoftware}. \\ 
-		& & Select temperature ranges and other LLM hyper-parameters \cite{peeperkorn2024,baltes2025guidelinesempiricalstudiessoftware}. \\ \hline
+		\multirow[c]{2}{*}{\parbox{3cm}{S2. Train the model.}}
+		& \multirow[c]{2}{*}{\parbox{3.5cm}{S2. Fine-tune the model}} 
+		& Change focus to fine-tuning LLMs. \\ 
+		& & Add reporting of LLM configuration and interaction \cite{baltes2025guidelinesempiricalstudiessoftware}. \\ \hline
 		
-		\multirow[c]{4}{*}{\parbox{3cm}{S3. Hyper-parameter tuning \& validation.}}
-		& \multirow[c]{4}{*}{\parbox{3.5cm}{S3. Hyper-parameter tuning / Prompt comparison.}}
-		& Split into hyper-parameter tuning and prompt comparison based on use case. \\
-		& & Tune LLM model temperature \cite{peeperkorn2024}. \\ 
-		& & Compare similar prompts \cite{ronanki2023}. \\ 
+		\multirow[c]{2}{*}{\parbox{3cm}{-}}
+		& \multirow[c]{2}{*}{\parbox{3.5cm}{S3. Design Prompts.}}
+		& Add prompt engineering guidelines \cite{arvidsson2023,Marvin2024}.\\
+		& & Add reporting of LLM configuration and interaction \cite{baltes2025guidelinesempiricalstudiessoftware}. \\ \hline
+		
+		\multirow[c]{1}{*}{\parbox{3cm}{S3. Hyper-parameter tuning \& validation.}}
+		& \multirow[c]{1}{*}{\parbox{3.5cm}{S4a. Hyper-parameter tuning}}
+		& Tune LLM model temperature and other hyper-parameters \cite{peeperkorn2024, baltes2025guidelinesempiricalstudiessoftware}. \\ \hline
+		
+		\multirow[c]{2}{*}{\parbox{3cm}{-}}
+		& \multirow[c]{2}{*}{\parbox{3.5cm}{S4b. Prompt comparison.}}
+		& Compare similar prompts \cite{ronanki2023}. \\ 
 		& & Report prompt revisions and LLM interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware} \\ \hline
 		
 		S4. Re-train with optimized parameters. 
 		& -
-		& Merged into S3.\\ \hline
+		& Merged into S4a.\\ \hline
 		
 		S5. Test the models.
-		& S4. Test the models.
+		& S5. Test the models.
 		& - \\ \hline
 		
 		S6. Report confusion matrix.
-		& S5. Report confusion matrix.
+		& S6. Report confusion matrix.
 		& - \\ \hline
 		
 		S7. Report Metrics.
-		& S6. Report Metrics.
+		& S7. Report Metrics.
 		&  Report Matthews Correlation Coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ \hline
 
 		- 
-		& S7. Evaluate calibration, fairness, robustness \& sustainability.
+		& S8. Evaluate calibration, fairness, robustness \& sustainability.
 		& New step that includes guidelines on how to evaluate the calibration, fairness, robustness and sustainability of LLMs  \cite{chang2023,liu2024}. \\ \hline
 		
 		S8. Analyse overfitting and degradation.
-		& S8. Analyse overfitting and degradation.
+		& S9. Analyse overfitting and degradation.
 		& Conduct ablation studies \cite{meyes2019ablation}. \\ \hline
 		
 		S9. Visualize ROC.
-		& S9. Visualize ROC.
+		& S10. Visualize ROC.
 		& - \\ \hline
 		
 		S10. Apply statistical significance tests.
-		& S10. Apply statistical significance tests.
+		& S11. Apply statistical significance tests.
 		& Justify the significance test and significance threshold \cite{benjamin2018significance,amrhein2017significance}. \\ \hline
 	\end{tabularx}
 	\label{table:additions}
@@ -556,7 +561,7 @@ In this section we present the \newecser pipeline, a step-by-step guideline for 
 
 Figure \ref{fig:ECSER-LLM} shows the full pipeline, consisting of 11 steps divided into two macro activities: (1) training, validation and testing and (2) results analysis. The steps are shown consecutively, but it is always possible to return to previous steps. For example, after finding optimal hyper-parameters in S4, one will likely return to S2 to retrain the models with these parameters. Further, there is a possible feedback loop between macro activities, including the \textit{treatment design}. For example, when it is found that the model shows signs of overfitting (S9), one can reconsider the algorithms used (\textit{treatment design}) or increase regularization (S2).
 
-Some steps are marked as optional with a dashed border, since they depend on the \textit{treatment design} or other considerations such as time and space constraints. In particular, when using a pre-trained LLM without fine-tuning, S2 becomes obsolete since no training is performed, and when \textit{not} using prompts to guide LLM outputs, S3 (Design prompts) and S4 (Prompt comparison) become obsolete since they provide guidelines for using prompts. Lastly, S4 is split into two steps: hyper-parameter tuning and prompt comparison. This is done to indicate that these steps can be done in parallel to find the best combination of prompt and hyper-parameters, but since both are marked as optional it is possible to do only one of the steps or neither. 
+Some steps are marked as optional with a dashed border, since they depend on the \textit{treatment design} or other considerations such as time and space constraints. In particular, when using a pre-trained LLM without fine-tuning, S2 (Fine-tuning) becomes obsolete since no training is performed, and when \textit{not} using prompts to guide LLM outputs, S3 (Design prompts) and S4b (Prompt comparison) become obsolete since they provide guidelines for using prompts. Lastly, S4 is split into two steps: (a) hyper-parameter tuning and (b) prompt comparison. This is done to indicate that these steps can be done in parallel to find the best combination of prompt and/or hyper-parameters, but since both are marked as optional it is possible to do only one of the steps or neither. 
 
 \begin{figure}[H]
 	\centering
@@ -572,7 +577,7 @@ In experimental software engineering, the treatment that is designed to answer a
 
 When using a pre-trained LLM with no additional training, it is not needed to set aside data for training, but the data should still be split into validation and test sets. The validation set should be used to select hyper-parameters for the LLM, such as the temperature, and during the development and comparison of prompts \cite{Homiar2025promptdev}. The test set should only be used when the final prompt is developed (along with any other part of the model) to ensure the prompt design was not influenced by the test set. 
 
-Several methods exists to partition data into training, validation and test sets. The simplest is the \textit{holdout method}, where the data is split into training, validation and test sets. The training set is used to train the data (S2), the validation set is used for hyper-parameter tuning (S4) and the test set is used for evaluating the model (S5). Generally, at least 50-70\% of the data is used for training and validation, with the rest being used for testing \cite{Bichri2024traintest,xu2018splitting}. The holdout method does have a major issue: since only a portion of the training data is used for validation, the test error rate can be highly variable, leading to unreliable results \cite{kim2009holdout,James2023isl5}. 
+Several methods exists to partition data into training, validation and test sets. The simplest is the \textit{holdout method}, where the data is split into training, validation and test sets. The training set is used for fine-tuning (S2), the validation set is used for prompt development and hyper-parameter tuning (S3 \& S4), and the test set is used for evaluating the model (S5). Generally, at least 50-70\% of the data is used for training and validation, with the rest being used for testing \cite{Bichri2024traintest,xu2018splitting}. The holdout method does have a major issue: since only a portion of the training data is used for validation, the test error rate can be highly variable, leading to unreliable results \cite{kim2009holdout,James2023isl5}. 
 
 A more robust alternative is \textit{resampling}, where models are fitted on multiple samples drawn from the training data. One example is \textit{k-fold cross-validation}, where the training set is split into \textit{k} groups (or folds) of equal size, chosen randomly from the data. The model is trained $k$ times, once for each fold, but each time a different fold is used as the validation set, with the remaining $k-1$ folds being used for training. The result of this process is $k$ estimates of the test error, the average of which can be used for hyper-parameter selection \cite{James2023isl5}. A special case of k-fold cross-validation is \textit{leave-one-out cross-validation} (LOOCV), where $k$ is set to $N$, with $N$ being the number of observations in the training set. This means that the model is trained $N$ times on $N-1$ observations, with a different observation being used as the validation set each time. LOOCV is more computationally expensive than k-fold cross-validation, although efficient algorithms exist for some applications that don't require training the model $N$ times \cite{Cawley2003,wang2018approximateloocv}. In terms of performance, LOOCV has a lower bias than k-fold cross-validation, at the cost of a higher variance \cite{Cawley2003,Wong2015}.
 
@@ -582,12 +587,15 @@ Which of these methods is most appropriate might depend on the available computa
 
 Finally, when using a pre-trained LLM, if the researcher uses open source data, there is a legitimate concern that the validation and testing sets were also used in training the LLM, leading to data leakage. LLMs have been shown to sometimes repeat training data verbatim  \cite{carlini2021extractingtrainingdatalarge}. If possible, this can be avoided by using testing data that was released after the creation of the LLM or proprietary data. 
 
-\textbf{S2. Train the models.} \\ 
+\textbf{S2. Fine-tune models.} \\ 
 \infobox{Optional}{This step does not apply when using a pre-trained LLM without fine-tuning or additional training, such as research that only uses prompts to guide the output of the LLM.}
 
 After splitting the data and deciding on the evaluation method, the training set is used to fine-tune the LLM or train a classification model on the LLM encodings. Training or fine-tuning a model entails changing the \textit{parameters} of the model to produce outputs that are most similar to the supervised labels in the training data. The training process is usually influenced by \textit{hyper-parameters} that are set before training and don't change during training. For example, when fine-tuning an LLM, the learning rate, batch size and epochs are examples of hyper-parameters that influence the training process, but the weights of the model are the parameters that are actually changed during training. 
 
-Since LLMs are often updated after release, the exact LLM version, configuration and experiment dates should be reported to make it easier for other researchers to replicate findings \cite{baltes2025guidelinesempiricalstudiessoftware}. Additionally, when using fine-tuning, the fine-tuning data and weights should be shared if possible.
+Since LLMs are often updated after release, the exact LLM version, configuration and experiment dates should be reported to make it easier for other researchers to replicate findings \cite{baltes2025guidelinesempiricalstudiessoftware}. Additionally, when using fine-tuning, the fine-tuning data and weights should be shared whenever possible.
+
+It should be noted that training a traditional classification model on LLM encodings also falls under the scope of the original ECSER pipeline \cite{Dellanna2022}, which deals exclusively with traditional classification models. However, additional information should still be included about the way the LLM is used, its version, experiment dates and configuration; and the additional evaluation of calibration, fairness, robustness \& sustainability should still be considered when using LLM encodings.
+
 
 \textbf{S3. Design prompts.}\\
 \infobox{Optional}{This step only applies when using prompts to guide LLM outputs, instead of using LLM embeddings with traditional classifiers.}
@@ -598,7 +606,7 @@ Prompt engineering is an important part of interacting with LLMs, since the prom
 
 2. Choose the right prompt engineering approach:
 
-3. Choose the right prompt template:
+3. Write the prompt:
 
 4. Provide context:
 
