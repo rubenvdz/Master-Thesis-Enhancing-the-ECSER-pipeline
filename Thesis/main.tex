@@ -322,7 +322,7 @@ In total, the following list of evaluation metrics or evaluation metric types we
 
 Further, we looked at several factors related to the reproducibility and generalisation of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
 
-Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and prompt pattern were reported and justified, whether the results were evaluated over multiple prompts and whether the temperatures of the models were reported.
+Lastly, for the papers that used a prompt-based approach for classification, we analysed whether the prompt approach and final prompt text were reported and justified, whether the results were evaluated over multiple prompts and whether the temperatures of the models were reported.
 
 \subsection{Mapping Study Results}
 \begin{figure}[h]
@@ -446,11 +446,11 @@ Despite almost all papers comparing their results to their own baselines or othe
 \end{table}
 
 
-Eight of the papers used prompting to obtain results from pre-trained LLMs, which comes with additional considerations and challenges, such as what prompt approach to use (few-shot, zero-shot, etc.) and how to effectively write the text of the prompt. Table \ref{table:prompt_results} shows a summary of the reported prompting information of the papers that use prompts in the mapping study. 
+Eight of the papers used prompting to obtain results from pre-trained LLMs, which comes with additional considerations and challenges, such as what prompt approach to use (few-shot, zero-shot, etc.) and how to effectively write the text of the prompt. Table \ref{table:prompt_results} shows a summary of the reported prompting information of the papers that used prompts in the mapping study. 
 
 Firstly, papers used various prompt design approaches; one used chain-of-verification, two used few-shot, one used a novel approach called mimic-in-the-background, three used zero-shot prompting, and one paper failed to report the prompt approach used or didn't use a systematic approach. However, only three papers provided justification for the chosen prompt approach. 
 
-Secondly, the prompt pattern, which is the actual prompt text used with placeholder values for data insertion, was only reported in six out of eight papers. Further, the authors of the six papers that provided the prompt pattern wrote the prompts themselves without consulting established patterns, which means there is no prior evidence of the efficacy of the prompt patterns. Only four papers provided a justification for how the prompt pattern was designed, one of which referred to previous work.
+Secondly, the final prompt, which refers to the actual prompt text used with possible placeholder values for data insertion, was only reported in six out of eight papers. Further, the authors of the six papers that provided the prompt wrote the prompts themselves without consulting established patterns, which means there is no prior evidence of the efficacy of the prompt pattern. Only four papers provided a justification for how the prompt was designed, one of which referred to previous work.
 
 The performance of LLMs can be heavily impacted by minor changes in the prompt design, which is why \textcite{sclar2024quantifyinglanguagemodelssensitivity} recommend comparing multiple plausible prompts. However, none of the papers evaluated the performance of their models using multiple prompts, which leaves the vulnerability of the models to prompt variability unknown. Lastly, only one paper reported the temperature used for the LLM, despite this parameter having a potential impact on the performance of LLMs \cite{peeperkorn2024}.
 
@@ -461,7 +461,7 @@ Since none of the included papers seemingly involve human participants or sensit
 
 Even when metrics \textit{are} reported, there is often no explanation as to the why the metrics were chosen for the specific tasks. Further, many papers only use one data set and sometimes make no comparisons to external baselines. Further, many papers make unsubstantiated claims about the relative performance of their models without significant statistical backing and when significance testing is performed, little explanation is given to the choice of test and significance threshold. 
 
-For papers that use prompts for LLM classification, there is often little to no explanation for the chosen prompt approach and the design of the prompt pattern. Further, prompt patterns are generally not based on established patterns with empirical backing, but designed without a systematic approach. Lastly, none of the papers evaluated multiple prompts to avoid the potential sensitivity of LLMs to minor changes in wording, and the temperature of LLMs goes largely unreported as well. 
+For papers that use prompts for LLM classification, there is often little to no explanation for the chosen prompt approach and the design of the final prompt. Further, the prompt texts are generally not based on established patterns with empirical backing, but designed without a systematic approach. Lastly, none of the papers evaluated multiple prompts to avoid the potential sensitivity of LLMs to minor changes in wording, and the temperature of LLMs goes largely unreported as well. 
 
 Naturally, although multiple venues were considered and all papers from 2024 were considered from these venues, these results are still based on a limited set of papers. However, the results align with findings from a large base of previous research \cite{Dellanna2022,hou2024,guo2023survey,kitchenham2002,Menzies2012}, so it is not unexpected to find similar problems here, especially since there are still very few guidelines for conducting LLM research.
 
@@ -570,7 +570,7 @@ Some steps are marked as optional with a dashed border, since they depend on the
 \textbf{S1. Select an evaluation method and split the data.}\\
 In experimental software engineering, the treatment that is designed to answer a research question generally consists of a model that must be trained using a data set, but how well the trained model fits the training data is not a good indicator of the performance of the model on unseen data, since the training data is only a sample of the true data distribution. Therefore, some of the available data must be set aside to test whether the trained model generalises well to data that wasn't encountered in the process of training the model; and in the case of hyper-parameter tuning, some of the data must be used to evaluate the performance of models with different parameters. 
 
-When using a pre-trained LLM with no additional training, it is not needed to set aside data for training, but the data should still be split into validation and test sets. The validation set should be used to select hyper-parameters for the LLM, such as the temperature, and during the development and comparison of prompts \cite{Homiar2025promptdev}. The test set should only be used when the final prompt pattern is developed (along with any other part of the model) to ensure the prompt design was not influenced by the test set. 
+When using a pre-trained LLM with no additional training, it is not needed to set aside data for training, but the data should still be split into validation and test sets. The validation set should be used to select hyper-parameters for the LLM, such as the temperature, and during the development and comparison of prompts \cite{Homiar2025promptdev}. The test set should only be used when the final prompt is developed (along with any other part of the model) to ensure the prompt design was not influenced by the test set. 
 
 Several methods exists to partition data into training, validation and test sets. The simplest is the \textit{holdout method}, where the data is split into training, validation and test sets. The training set is used to train the data (S2), the validation set is used for hyper-parameter tuning (S4) and the test set is used for evaluating the model (S5). Generally, at least 50-70\% of the data is used for training and validation, with the rest being used for testing \cite{Bichri2024traintest,xu2018splitting}. The holdout method does have a major issue: since only a portion of the training data is used for validation, the test error rate can be highly variable, leading to unreliable results \cite{kim2009holdout,James2023isl5}. 
 
@@ -714,13 +714,13 @@ For the main results of the mapping study, Table \ref{refs:mapping_metrics} show
 		\hspace{3mm} Mimic-in-the-background & 1 (12.5\%) & \cite{10.1145/3597503.3639117} \\
 		\hspace{3mm} Not reported & 1 (12.5\%) & \cite{10.1145/3663529.3663785} \\
 		\hspace{3mm} Zero-shot & 3 (37.5\%) & \cite{10.1145/3663529.3663794,10648982,10659742} \\
-		\textbf{Prompt pattern} && \\
+		\textbf{Final prompt} && \\
 		\hspace{3mm} Not reported & 2 (25.0\%) & \cite{10.1145/3663529.3663785,10746847} \\
 		\hspace{3mm} Own & 6 (75.0\%) & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10.1145/3663529.3663794,10648982,10659742,10599336} \\
 		\textbf{Prompt approach justification} && \\
 		\hspace{3mm} No & 5 (62.5\%) & \cite{10.1145/3663529.3663785,10.1145/3663529.3663794,10648982,10659742,10746847} \\
 		\hspace{3mm} Yes & 3 (37.5\%) & \cite{10.1145/3597503.3639117,10.1145/3597503.3639194,10599336} \\
-		\textbf{Prompt design justification} && \\
+		\textbf{Final prompt justification} && \\
 		\hspace{3mm} No & 4 (50.0\%) & \cite{10.1145/3597503.3639194,10.1145/3663529.3663785,10648982,10746847} \\
 		\hspace{3mm} Previous Work & 1 (12.5\%) & \cite{10.1145/3663529.3663794} \\
 		\hspace{3mm} Yes & 3 (37.5\%) & \cite{10.1145/3597503.3639117,10659742,10599336} \\
