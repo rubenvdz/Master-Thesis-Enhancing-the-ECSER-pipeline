@@ -314,9 +314,11 @@ While only classification papers were included in the final analysis, all the pa
 
 
 \textbf{Information Extraction}\\
-After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were manually analysed and recorded. The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and recommendations from the field of LLM4SE. For the latter, we recorded which metrics (if any) were reported for each of \textcite{chang2023}'s classification of general metrics: the accuracy, calibration, fairness \& robustness. Since the accuracy was already covered by the ECSER pipeline, this resulted only in the addition of calibration, fairness \& robustness to the final list of extracted information.
+After completing the manual search and obtaining 18 relevant LLM4SE classification papers, the evaluation and reporting practices of each paper were manually analysed and recorded. The information that was extracted from the papers was determined based on what is recommended to be included by the ECSER pipeline \cite{Dellanna2022}, metrics that are recommended by other authors (such as the Matthews correlation coefficient \cite{Chicco2020,Foody2023,Yao2020}) and recommendations from the field of LLM4SE. For the latter, we recorded which metrics (if any) were reported for each of \textcite{chang2023}'s classification of general metrics: the accuracy, calibration, fairness \& robustness. Since the accuracy was already covered by the ECSER pipeline, this resulted only in the addition of calibration, fairness \& robustness to the final list of extracted information. 
 
-In total, this resulted in the following list of evaluation metrics: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, Receiver Operation Characteristic (ROC) plot, Calibration, Fairness} and \textit{Robustness}.
+The calibration of an LLM refers to how well the predicted probabilities of the model align with actual probabilities \cite{nixon2019calibration,guo2017calibration}. Evaluating the fairness of an LLM is done to ensure the alignment of LLM results with human values and prevent a difference in performance across groups of people \cite{liu2024}. The robustness refers to the performance of a model in the face of challenging inputs and can be analysed in several ways, including by making changes in the data distribution, the addition of noise to the data, and adversarial attacks \cite{chang2023}.
+
+In total, the following list of evaluation metrics or evaluation metric types were added: \textit{precision, recall, accuracy, F-score, Area under curve (AUC), Matthews correlation coefficient (MCC), Confusion matrix, Receiver Operation Characteristic (ROC) plot, Calibration, Fairness} and \textit{Robustness}.
 
 Further, we looked at several factors related to the reproducibility and generalisation of results, particularly whether justification was given for why the chosen evaluation metrics were used, whether results were obtained for multiple datasets, whether the results were compared to external baselines and whether the statistical significance was analysed and the choice of significance test justified. 
 
@@ -362,8 +364,8 @@ One of the first things we analysed was whether the papers used a prompt-based a
 		\hspace{3mm} AUC & 3 (16.7\%) \\
 		\hspace{3mm} ROC plots & 0 (0.0\%) \\
 		\hspace{3mm} MCC & 0 (0.0\%) \\
-		Calibration & 0 (0.0\%) \\
-		Fairness &  0 (0.0\%) \\
+		\textbf{Calibration} & 0 (0.0\%) \\
+		\textbf{Fairness} &  0 (0.0\%) \\
 		\textbf{Robustness} &  \\
 		\hspace{3mm} Data distribution \& Adversarial Attacks & 1 (5.5\%)  \\
 		\hspace{3mm} Noisy data & 1 (5.5\%) \\
@@ -396,9 +398,7 @@ Starting with the evaluation metrics that are recommended by the ECSER pipeline 
 % While the precision, recall and F-score are often more informative for the usefulness of a model compared to the accuracy, by not providing the accuracy or the full confusion matrix, relevant information is lost that cannot be obtained from just three metrics, which prevents further comparisons between models that do provide the full matrix.
 % Since the AUC is a summary of the ROC curve, the full curve should also be provided for a more detailed view of the discriminatory performance of the model \cite{Nahm2022roc}.
 
-Apart from metrics related to the correctness of the classification results, \textcite{chang2023} list three other aspects of LLM evaluation that are frequently used: the calibration, fairness and robustness. The calibration of an LLM refers to how well the predicted probabilities of the model align with actual probabilities \cite{nixon2019calibration,guo2017calibration}, but measures of calibration were not reported in any of the papers. Evaluating the fairness of an LLM is done to ensure the alignment of LLM results with human values and prevent a difference in performance across groups of people \cite{liu2024}, but measures of fairness were also not reported in any of the papers. 
-
-The robustness, which refers to the performance of a model in the face of challenging inputs, can be analysed in several ways, including by making changes in the data distribution, the addition of noise to the data, and adversarial attacks \cite{chang2023}. Only two papers tested the robustness of their models in one or more of these ways; one looked at both altering the data distribution as well as adversarial attacks and the other looked at the effect of noisy data. However, some papers tested something similar to robustness by performing ablation studies, which work by removing parts of the model to see the impact on the performance, which allows one to assess whether the model exhibits graceful degradation \cite{meyes2019ablation}. Ablation studies were not initially included in the mapping study but after seeing their successful implementation were added to the \newecser pipeline as an optional step.
+Apart from metrics related to the correctness of the classification results, we extracted three other types of LLM evaluation that are frequently used: the calibration, fairness and robustness \cite{chang2023}. None of the papers reported measures of the calibration or fairness of the LLMs.  Only two papers tested the robustness of their models in one or more of these ways; one looked at both altering the data distribution as well as adversarial attacks and the other looked at the effect of noisy data. However, some papers tested something similar to robustness by performing ablation studies, which work by removing parts of the model to see the impact on the performance, which allows one to assess whether the model exhibits graceful degradation \cite{meyes2019ablation}. Ablation studies were not initially included in the mapping study but after seeing their successful implementation were added to the \newecser pipeline as an optional step.
 
 %The presence or omission of evaluation metrics should be justified in some way, as well as the relative importance for answering the research question. For example, including or omitting the accuracy could be motivated by referring to previous work or an explanation as to why it is or isn't important for the given task. Additionally, the precision or recall can be argued to be more important for the given task than the other.
 
@@ -425,13 +425,13 @@ Despite almost all papers comparing their results to their own baselines or othe
 		\hspace{3mm} Mimic-in-the-background & 1 (12.5\%) \\
 		\hspace{3mm} Not reported & 1 (12.5\%) \\
 		\hspace{3mm} Zero-shot & 3 (37.5\%)  \\
-		\textbf{Prompt pattern} &\\
+		\textbf{Final prompt} &\\
 		\hspace{3mm} Not reported & 2 (25.0\%)\\
 		\hspace{3mm} Own & 6 (75.0\%) \\
 		\textbf{Prompt approach justification} &\\
 		\hspace{3mm} No & 5 (62.5\%)  \\
 		\hspace{3mm} Yes & 3 (37.5\%)  \\
-		\textbf{Prompt design justification} & \\
+		\textbf{Final prompt justification} & \\
 		\hspace{3mm} No & 4 (50.0\%)  \\
 		\hspace{3mm} Previous Work & 1 (12.5\%) \\
 		\hspace{3mm} Yes & 3 (37.5\%)  \\
