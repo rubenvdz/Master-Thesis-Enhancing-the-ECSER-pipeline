@@ -594,25 +594,29 @@ After splitting the data and deciding on the evaluation method, the training set
 
 Since LLMs are often updated after release, the exact LLM version, configuration and experiment dates should be reported to make it easier for other researchers to replicate findings \cite{baltes2025guidelinesempiricalstudiessoftware}. Additionally, when using fine-tuning, the fine-tuning data and weights should be shared whenever possible.
 
-It should be noted that training a traditional classification model on LLM encodings also falls under the scope of the original ECSER pipeline \cite{Dellanna2022}, which deals exclusively with traditional classification models. However, additional information should still be included about the way the LLM is used, its version, experiment dates and configuration; and the additional evaluation of calibration, fairness, robustness \& sustainability should still be considered when using LLM encodings.
+It should be noted that training a traditional classification model on LLM encodings also falls under the scope of the original ECSER pipeline \cite{Dellanna2022}, which deals exclusively with traditional classification models. However, additional information should still be included about the way the LLM is used, its version, experiment dates and configuration (including seed); and the additional evaluation of calibration, fairness, robustness \& sustainability should still be considered when using LLM encodings.
 
 
-\textbf{S3. Design prompts.}\\
-\infobox{Optional}{This step only applies when using prompts to guide LLM outputs, instead of using LLM embeddings with traditional classifiers.}
+\textbf{S3. Design prompts.} \\ 
+\infobox{Optional}{This step only applies when using prompts to guide LLM outputs, instead of using only fine-tuning or using LLM embeddings with traditional classifiers.}
 
-Prompt engineering is an important part of interacting with LLMs, since the prompt design can have a substantial effect on the performance of the LLM. We split the process of designing a prompt into five steps, similar to \textcite{Marvin2024}.
+Prompt engineering is an important part of interacting with LLMs, since the prompt design can have a substantial effect on the performance of the LLM. We split the process of designing a prompt into five steps, based on \textcite{Marvin2024}.
 
-1. Define the goal of the prompt:
+1. Define the goal of the prompt: the first step of prompt engineering is to clearly define the goal of a prompt. Setting a goal for the type of output that you desire the LLM to produce helps inform the content of the prompt \cite{Marvin2024}. For example, having the goal of producing requirement classification results that resemble those of a human expert might inform the choice to add a stipulation to the prompt: "act like an expert in requirements engineering". 
 
-2. Choose the right prompt engineering approach:
+2. Choose the right prompt engineering approach: there are many approaches to prompt engineering, but the most notable are zero-shot prompting, few-shot prompting and chain-of-thought prompting. Of these, the most popular are few-shot and zero-shot in that order. When providing examples in the prompts, these examples should be removed from the validation set before testing and refining the prompt or comparing different prompts (S4b). A relatively novel approach to prompt engineering is automatic prompt engineering (APE), which avoids the problem of manually having to write, test and refine prompts by automatically generating prompts \cite{zhou2023ape,zadenoori2025}. % TODO: comparison of prompt engineering approaches
 
-3. Write the prompt:
+3. Design the prompt: writing a high quality prompt is an often overlooked aspect of prompt engineering, with most researchers writing prompts from scratch without potentially putting much thought into the exact wording, despite small changes in wording sometimes having a large effect on the performance \cite{sclar2024quantifyinglanguagemodelssensitivity}. Some resources exist that make it easier to write high quality prompts, such as \cite{white2023}'s catalogue of prompt patterns, which include reusable examples. Another approach is adapting prompts from related research, to more consistently compare results and provide empirical backing to the prompt design. % TODO: add RONANKI guidelines
 
-4. Provide context:
+4. Provide context: providing context related to the specific domain can be a useful way to improve the performance of a prompt and avoid irrelevant responses (CITE). Context can include examples like in few-shot prompting, but also information such as the desired content of the output, the format of the output or additional information about the topic. % TODO: citation
 
-5. Test and refine:
+5. Test and refine: it is vital to test and refine the designed prompt, with respect to the defined goal. The validation set should be used to fill in any placeholder data, after which the output of the LLM with respect to the prompt can be used to evaluate the performance and whether the LLM adheres to the desired output format. Any changes made to the prompt or insights gained from the evaluation of the prompt, as well as the full interaction logs of the prompts and responses, should be made available, since this information can be useful for reproductions and replications \cite{baltes2025guidelinesempiricalstudiessoftware}.
 
+Lastly, whenever an impactful prompt engineering decision is made, such as choosing to use few-shot prompting instead of another method, the choice should be motivated in the paper. This can be done by explaining the choice based on the specific nature of the task or by referencing previous research which made the same choice. If certain information, such as the prompt or interaction log, cannot be provided for privacy or confidentiality reasons, this should be clearly stated and the researcher should still provide a summary of this information \cite{baltes2025guidelinesempiricalstudiessoftware}.
 
+\textbf{S4a. Hyper-parameter tuning}\\
+
+\textbf{S4b. Prompt comparison}\\
 
 \newpage 
 \printbibliography[heading=bibintoc]
