@@ -509,7 +509,7 @@ In Table \ref{table:additions}, we list each step of the original ECSER pipeline
 		
 		\multirow[c]{2}{*}{\parbox{3cm}{-}}
 		& \multirow[c]{2}{*}{\parbox{3.5cm}{S4b. Prompt comparison.}}
-		& Compare similar prompts \cite{ronanki2023}. \\ 
+		& Compare similar prompts \cite{sclar2024quantifyinglanguagemodelssensitivity,ronanki2023}. \\ 
 		& & Report prompt revisions and LLM interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware} \\ \hline
 		
 		S4. Re-train with optimized parameters. 
@@ -606,15 +606,15 @@ Prompt engineering is an important part of interacting with LLMs, since the prom
 
 2. \textit{Choose the right prompt engineering approach}: there are many approaches to prompt engineering, but the most notable are zero-shot prompting, few-shot prompting and chain-of-thought prompting. Of these, the most popular are few-shot and zero-shot in that order. When providing examples in the prompts, these examples should be removed from the validation set before testing and refining the prompt or comparing different prompts (S4b). A relatively novel approach to prompt engineering is automatic prompt engineering (APE), which avoids the problem of manually having to write, test and refine prompts by automatically generating prompts \cite{zhou2023ape,zadenoori2025}. % TODO: comparison of prompt engineering approaches
 
-3. \textit{Design the prompt}: writing a high quality prompt is an often overlooked aspect of prompt engineering, with most researchers writing prompts from scratch without potentially putting much thought into the exact wording, despite small changes in wording sometimes having a large effect on the performance \cite{sclar2024quantifyinglanguagemodelssensitivity}. Some resources exist that make it easier to write high quality prompts, such as \cite{white2023}'s catalogue of prompt patterns, which include reusable examples. Another approach is adapting prompts from related research, to more consistently compare results and provide empirical backing to the prompt design. % TODO: add RONANKI guidelines
+3. \textit{Design the prompt}: writing a high quality prompt is an often overlooked aspect of prompt engineering, with most researchers writing prompts from scratch without potentially putting much thought into the exact wording, despite small changes in wording sometimes having a large effect on the performance \cite{sclar2024quantifyinglanguagemodelssensitivity}. Some resources exist that make it easier to write high quality prompts, such as \textcite{white2023}'s catalogue of prompt patterns. These patterns represent techniques that have been successfully used to solve common problems, put into reusable formats. For example, the Persona pattern tells the LLM to take up a certain role (e.g., "act as a software engineering researcher"). Some suitable patterns for binary classification are Question Refinement, Cognitive Verifier, Persona, Template and Context Manager \cite{ronanki2023}. Another approach is adapting prompts from related research, to more consistently compare results and provide empirical backing to the prompt design. 
 
-4. \textit{Provide context}: providing context related to the specific domain can be a useful way to improve the performance of a prompt and avoid irrelevant responses (CITE). Context can include examples like in few-shot prompting, but also information such as the desired content of the output, the format of the output or additional information about the topic. % TODO: citation
+4. \textit{Provide context}: providing context related to the specific domain can be a useful way to improve the performance of a prompt and avoid irrelevant responses \cite{Marvin2024}. Context can include examples like in few-shot prompting, but also information such as the desired content of the output, the format of the output or additional information about the topic. % TODO: citation
 
 5. \textit{Test and refine}: it is vital to test and refine the designed prompt, with respect to the defined goal. The validation set should be used to fill in any placeholder data, after which the output of the LLM with respect to the prompt can be used to evaluate the performance and whether the LLM adheres to the desired output format. Any changes made to the prompt or insights gained from the evaluation of the prompt, as well as the full interaction logs of the prompts and responses, should be made available, since this information can be useful for reproductions and replications \cite{baltes2025guidelinesempiricalstudiessoftware}.
 
 Lastly, whenever an impactful prompt engineering decision is made, such as choosing to use few-shot prompting instead of another method, the choice should be motivated in the paper. This can be done by explaining the choice based on the specific nature of the task or by referencing previous research which made the same choice. If certain information, such as the prompt or interaction log, cannot be provided for privacy or confidentiality reasons, this should be clearly stated and the researcher should still provide a summary of this information \cite{baltes2025guidelinesempiricalstudiessoftware}.
 
-\textbf{S4a. Hyper-parameter tuning}\\
+\textbf{S4a. Hyper-parameter tuning.}\\
 \infobox{Optional}{This step only applies when fine-tuning or when using other configurable parameters that influence LLM outputs, like the temperature.}
 Hyper-parameters are parameters that are set before training, as opposed to parameters that are optimized by training, such as the weights of an LLM. Some hyper-parameters are used during fine-tuning, such as the number of epochs, batch size and learning rate; whereas others influence the outputs of a pre-trained model, such as the temperature \cite{halfon2024hyper,peeperkorn2024}. Although hyper-parameters are not learned, they can have a substantial effect on the performance of an LLM \cite{halfon2024hyper}. For this reason, it is important to carefully select the hyper-parameters. 
 
@@ -622,9 +622,21 @@ Several methods exist to choose hyper-parameters. The simplest is manual search,
 
 A more efficient alternative to grid search is \textit{random search}. Random search works by drawing multiple samples of the hyper-parameters from a discrete or continuous distribution of the hyper-parameter space and fine-tuning using these samples \cite{bergstra2012hyperRandomSearch}. Another advantage of random search is that it can be stopped after any amount of trials, instead of only after the full grid has been explored. Lastly, some other less common methods for tuning are genetic algorithms \cite{Loussaief2018} and DODGE \cite{agrawal2022hyper}.
 
-After the optimal hyper-parameters are determined, the model is retrained using the full training data, including any data that was set aside for validation. This can also be done using nested cross-validation, where final model is trained at the same time as tuning the hyper-parameters.
+After the optimal hyper-parameters are determined, the model is retrained using the full training data, including any data that was set aside for validation. This can also be done using nested cross-validation, where the final model is trained at the same time as tuning the hyper-parameters.
 
-\textbf{S4b. Prompt comparison}\\
+\textbf{S4b. Prompt comparison.}\\
+\infobox{Optional}{This step only applies when using prompts to guide LLM outputs, instead of using only fine-tuning or using LLM embeddings with traditional classifiers.}
+The specific wording of a prompt can have a large impact on the performance of an LLM, even when the prompt retains its semantic content and intent \cite{sclar2024quantifyinglanguagemodelssensitivity, he2024doespromptformattingimpact,mizrahi2024stateartmultipromptllm}. This includes seemingly innocuous changes such as capitalisation. Thus, relying on a single human-written prompt could lead to unreliable results. One way to mitigate this problem is by writing multiple prompts that use different prompt patterns (such as Question Refinement, Cognitive Verifier and Persona) and compare the results using the validation set \cite{ronanki2023}. The comparison of different prompts can be done efficiently using PromptEval, a technique for estimating the performance of a large set of prompts, allowing one to pick the best prompt or evaluate the average performance over multiple prompts \cite{polo2024multiprompt}. However, these techniques require manual prompt writing, which still leaves the risk of specific word choices or syntax affecting the performance of the prompts. 
+
+Alternatively, \textcite{sclar2024quantifyinglanguagemodelssensitivity} developed the algorithm FormatSpread, which is able to generate and evaluate a large set of plausible prompt formats, reporting the range of performances over these prompt formats. Some advantages of this technique include that it provides insight into the sensitivity of the original prompt design and that it gives a lower bound on the model's performance. A similar technique is Mixture of Formats (MOF), where the style of each few-shot example is modified by asking the LLM to change the style, leading to a mix of different styles being used, reinforcing model understanding \cite{ngweta2025MOFrobustness}.
+
+The approach to prompt comparison that was used should be reported and justified in the paper, along with prompt revisions and interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware}. The result of prompt comparison could be a single prompt which has shown good performance, which will then be used for the final evaluation; or a set of plausible prompts, in which case the evaluation will be done over this set of prompts. If no prompt comparison is done, the reason should be explained in the paper.
+
+\textbf{S5. Test the models.}\\
+Finally, after fine-tuning and determining the optimal hyper-parameters and/or prompts, the performance of the LLM is evaluated on the test set. It is recommended to include multiple data sets into the test set, to assess the generalisability of the model and to run statistical tests across these multiple data sets (S11) \cite{Dellanna2022}. 
+
+\subsubsection{Results Analysis}
+\textbf{S6. Report confusion matrix}
 
 \newpage 
 \printbibliography[heading=bibintoc]
