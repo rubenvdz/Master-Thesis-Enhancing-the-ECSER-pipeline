@@ -58,6 +58,14 @@
 	\end{tcolorbox}
 }
 
+\newcommand\MyBox[2]{
+	\fbox{\lower0.75cm
+		\vbox to 1.7cm{\vfil
+			\hbox to 1.7cm{\hfil\parbox{1.4cm}{#1\\#2}\hfil}
+			\vfil}%
+	}%
+}
+
 % Start content
 \title{\includegraphics[width=0.2\textwidth]{figures/UUlogo.png} 
 \vspace{0.5cm}
@@ -585,7 +593,7 @@ It is also possible to use projects to partition the data using \textit{leave-on
 
 Which of these methods is most appropriate might depend on the available computational power and time, with methods like LOOCV requiring much more training than the holdout method; and whether the data is obtained from distinct projects. In all cases, 10-30\% of the data should be set aside for testing and not touched until all parameters are tuned and prompts are finalised.
 
-Finally, when using a pre-trained LLM, if the researcher uses open source data, there is a legitimate concern that the validation and testing sets were also used in training the LLM, leading to data leakage. LLMs have been shown to sometimes repeat training data verbatim  \cite{carlini2021extractingtrainingdatalarge}. If possible, this can be avoided by using testing data that was released after the creation of the LLM or proprietary data. 
+Finally, when using a pre-trained LLM, if the researcher uses open source data, there is a legitimate concern that the validation and testing sets were also used in training the LLM, leading to data leakage. LLMs have been shown to sometimes repeat training data verbatim  \cite{carlini2021extractingtrainingdatalarge}. If possible, this can be avoided by using testing data that was released after the creation of the LLM or proprietary data. \\
 
 \textbf{S2. Fine-tune models.} \\ 
 \infobox{Optional}{This step does not apply when using a pre-trained LLM without fine-tuning or additional training, such as research that only uses prompts to guide the output of the LLM.}
@@ -622,7 +630,7 @@ Several methods exist to choose hyper-parameters. The simplest is manual search,
 
 A more efficient alternative to grid search is \textit{random search}. Random search works by drawing multiple samples of the hyper-parameters from a discrete or continuous distribution of the hyper-parameter space and fine-tuning using these samples \cite{bergstra2012hyperRandomSearch}. Another advantage of random search is that it can be stopped after any amount of trials, instead of only after the full grid has been explored. Lastly, some other less common methods for tuning are genetic algorithms \cite{Loussaief2018} and DODGE \cite{agrawal2022hyper}.
 
-After the optimal hyper-parameters are determined, the model is retrained using the full training data, including any data that was set aside for validation. This can also be done using nested cross-validation, where the final model is trained at the same time as tuning the hyper-parameters.
+After the optimal hyper-parameters are determined, the model is retrained using the full training data, including any data that was set aside for validation. This can also be done using nested cross-validation, where the final model is trained at the same time as tuning the hyper-parameters.\\
 
 \textbf{S4b. Prompt comparison.}\\
 \infobox{Optional}{This step only applies when using prompts to guide LLM outputs, instead of using only fine-tuning or using LLM embeddings with traditional classifiers.}
@@ -630,13 +638,33 @@ The specific wording of a prompt can have a large impact on the performance of a
 
 Alternatively, \textcite{sclar2024quantifyinglanguagemodelssensitivity} developed the algorithm FormatSpread, which is able to generate and evaluate a large set of plausible prompt formats, reporting the range of performances over these prompt formats. Some advantages of this technique include that it provides insight into the sensitivity of the original prompt design and that it gives a lower bound on the model's performance. A similar technique is Mixture of Formats (MOF), where the style of each few-shot example is modified by asking the LLM to change the style, leading to a mix of different styles being used, reinforcing model understanding \cite{ngweta2025MOFrobustness}.
 
-The approach to prompt comparison that was used should be reported and justified in the paper, along with prompt revisions and interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware}. The result of prompt comparison could be a single prompt which has shown good performance, which will then be used for the final evaluation; or a set of plausible prompts, in which case the evaluation will be done over this set of prompts. If no prompt comparison is done, the reason should be explained in the paper.
+The approach to prompt comparison that was used should be reported and justified in the paper, along with prompt revisions and interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware}. The result of prompt comparison could be a single prompt which has shown good performance, which will then be used for the final evaluation; or a set of plausible prompts, in which case the evaluation will be done over this set of prompts. If no prompt comparison is done, the reason should be explained in the paper.\\
 
 \textbf{S5. Test the models.}\\
-Finally, after fine-tuning and determining the optimal hyper-parameters and/or prompts, the performance of the LLM is evaluated on the test set. It is recommended to include multiple data sets into the test set, to assess the generalisability of the model and to run statistical tests across these multiple data sets (S11) \cite{Dellanna2022}. 
+Finally, after fine-tuning and determining the optimal hyper-parameters and/or prompts, the performance of the LLM is evaluated on the test set. It is recommended to include multiple data sets into the test set, to assess the generalisability of the model and to run statistical tests across these multiple data sets (S11) \cite{Dellanna2022}. \\
 
 \subsubsection{Results Analysis}
-\textbf{S6. Report confusion matrix}
+ 
+\textbf{S6. Report the Confusion Matrix}
+
+ \begin{figure}[H]
+	\noindent
+	\renewcommand\arraystretch{1.5}
+	\setlength\tabcolsep{0pt}
+	\begin{tabular}{c >{\bfseries}r @{\hspace{0.7em}}c c }
+		\multirow{10}{*}{\parbox{1.1cm}{\bfseries\raggedleft \rotatebox[origin=c]{90}{Actual}}} &
+		& \multicolumn{2}{c}{\bfseries Predicted} \\
+		& & \bfseries Positive & \bfseries Negative \\
+		& Positive& \MyBox{True}{Positive} & \MyBox{False}{Negative} \\
+		& Negative & \MyBox{False}{Positive} & \MyBox{True}{Negative} \\
+	\end{tabular}
+	\caption{Confusion Matrix. All values add up to the number of data points.}
+	\label{fig:confusion}
+\end{figure}
+
+While it is common to select a few metrics appropriate to a given task and report them, we recommend reporting the full confusion matrix so readers can get a more complete picture of the results, and be able to calculate many different metrics, even when they aren't explicitly reported (see S7). The confusion matrix consists of the number of true positive (TP), false positive (FP), true negative (TN), and false negative (FN) classification results and are reported as whole numbers. Often, the sums of the rows or columns are also included, since adding up the numbers in the columns results in the total number of data points that were classified as positive or negative, while the row sums represent the number of data points that were actually positive or negative. Figure \ref{fig:confusion} shows a generic confusion matrix. \\
+
+\textbf{S7. Report Metrics }
 
 \newpage 
 \printbibliography[heading=bibintoc]
