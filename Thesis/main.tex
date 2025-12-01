@@ -406,8 +406,7 @@ Starting with the evaluation metrics that are recommended by the ECSER pipeline 
 % While the precision, recall and F-score are often more informative for the usefulness of a model compared to the accuracy, by not providing the accuracy or the full confusion matrix, relevant information is lost that cannot be obtained from just three metrics, which prevents further comparisons between models that do provide the full matrix.
 % Since the AUC is a summary of the ROC curve, the full curve should also be provided for a more detailed view of the discriminatory performance of the model \cite{Nahm2022roc}.
 
-Apart from metrics related to the correctness of the classification results, we extracted three other types of LLM evaluation that are frequently used: the calibration, fairness and robustness \cite{chang2023}. None of the papers reported measures of the calibration or fairness of the LLMs.  Only two papers tested the robustness of their models in one or more of these ways; one looked at both altering the data distribution as well as adversarial attacks and the other looked at the effect of noisy data. However, some papers tested something similar to robustness by performing ablation studies, which work by removing parts of the model to see the impact on the performance, which allows one to assess whether the model exhibits graceful degradation \cite{meyes2019ablation}. Ablation studies were not initially included in the mapping study but after seeing their successful implementation were added to the \newecser pipeline as an optional step.
-
+Apart from metrics related to the correctness of the classification results, we extracted three other types of LLM evaluation that are frequently used: the calibration, fairness and robustness \cite{chang2023}. None of the papers reported measures of the calibration or fairness of the LLMs.  Only two papers tested the robustness of their models in one or more of these ways; one looked at both altering the data distribution as well as adversarial attacks and the other looked at the effect of noisy data. However, some papers tested something similar to robustness by performing ablation studies, which work by removing parts of the model to see the impact on the performance, which allows one to assess whether the model exhibits graceful degradation \cite{meyes2019ablation}. Ablation studies were not initially included in the mapping study but after seeing their successful implementation were added to the \newecser pipeline as an optional part of evaluating the robustness.
 %The presence or omission of evaluation metrics should be justified in some way, as well as the relative importance for answering the research question. For example, including or omitting the accuracy could be motivated by referring to previous work or an explanation as to why it is or isn't important for the given task. Additionally, the precision or recall can be argued to be more important for the given task than the other.
 
 We also looked at whether justifications were provided in the papers for the selection of metrics they chose to include or exclude from the results and whether these justifications went beyond referring to previous research, which runs the risk of bad habits propagating through the field \cite{Dellanna2022}. Only nine papers included a justification for their choice of metrics, with five of those exclusively referring to previous research as a justification, while four provided a more elaborate explanation.
@@ -486,7 +485,7 @@ The ECSER pipeline was chosen as the basis for the development of a new LLM-spec
 
 To enhance the ECSER pipeline with LLM-specific recommendations, we consulted various existing guidelines and surveys for using and evaluating LLMs, including \textcite{hou2024}'s systematic literature review of LLM4SE, \textcite{chang2023}'s survey on the evaluation of LLMs, \textcite{Marvin2024}'s chapter on prompt engineering and \textcite{baltes2025guidelinesempiricalstudiessoftware}'s guidelines for using LLMs in SE, among many others. These higher level sources lead to more specific sources and recommendations that were included in the pipeline.
 
-Additionally, the results of RQ1 were taken into account to ensure that common issues encountered in the mapping study received additional care in the new pipeline, including issues such as the lack of reporting for common evaluation metrics, the lack of significance testing and the lack of consistent reporting for prompt usage and development. The results of RQ1 also lead to the inclusion of ablation studies as an optional part of the pipeline, which were overlooked during the initial literature review but were shown to be useful in assessing the degradation of the models in the papers that used them \cite{meyes2019ablation}.
+Additionally, the results of RQ1 were taken into account to ensure that common issues encountered in the mapping study received additional care in the new pipeline, including issues such as the lack of reporting for common evaluation metrics, the lack of significance testing and the lack of consistent reporting for prompt usage and development. The results of RQ1 also lead to the inclusion of ablation studies as part of the the pipeline (S8), which were overlooked during the initial literature review but were shown to be useful in assessing the graceful degradation of the models in the papers that used them \cite{meyes2019ablation}.
 
 In Table \ref{table:additions}, we list each step of the original ECSER pipeline along with the new version of the step and the major changes that were made in the new \newecser pipeline, along with the primary source(s) that motivated these changes. Minor changes are not included in the table.
 
@@ -536,13 +535,13 @@ In Table \ref{table:additions}, we list each step of the original ECSER pipeline
 		& S7. Report Metrics.
 		&  Report Matthews Correlation Coefficient (MCC) \cite{Chicco2020,Foody2023,Yao2020} \\ \hline
 
-		- 
-		& S8. Evaluate calibration, fairness, robustness \& sustainability.
-		& New step that includes guidelines on how to evaluate the calibration, fairness, robustness and sustainability of LLMs  \cite{chang2023,liu2024}. \\ \hline
+		\multirow[c]{2}{*}{\parbox{3cm}{-}}
+		& \multirow[c]{2}{*}{\parbox{3.5cm}{S8. Evaluate calibration, fairness, robustness \& sustainability.}}
+		& New step that includes guidelines on how to evaluate the calibration, fairness, robustness and sustainability of LLMs  \cite{chang2023,liu2024}. \\ & & Conduct ablation studies \cite{meyes2019ablation}. \\ \hline
 		
 		S8. Analyse overfitting and degradation.
 		& S9. Analyse overfitting and degradation.
-		& Conduct ablation studies \cite{meyes2019ablation}. \\ \hline
+		& - \\ \hline
 		
 		S9. Visualize ROC.
 		& S10. Visualize ROC.
@@ -719,9 +718,27 @@ The robustness of an LLM refers to how well it deals with difficult or unexpecte
 	\item \textbf{Performance Drop Rate (PDR)}: the PDR evaluates the robustness of prompts by quantifying the drop in performance resulting from a prompt attack \cite{zhu2024}. 
 \end{itemize}
 
+A different aspect of robustness is how well models perform when some parts of it are deliberately removed. Ablation studies work by removing parts of a model, such as layers in a transformer or input features, and seeing whether the performance changes \cite{meyes2019ablation}. These studies show whether the model exhibits a graceful degradation of the performance when parts are removed. In the field of LLM4SE, ablation studies are commonly used to find the performance benefit of each component in models that consist of multiple interacting components, thereby evaluating redundancy \cite{10586831,10402095}. 
+
 
 \textbf{Sustainability}\\
-The use of LLMs can come with a significant cost of time, space and energy compared to traditional ML models. Especially the training phase of LLMs can have a large energy footprint; but the increased integration of LLMs into various tools such as Google search could also have a major impact on energy consumption over time \cite{wu2022sustainableai,deVries2023}. Researchers in LLM4SE can reduce energy expenditure primarily by reducing LLM inferences, which can be done by restricting the number of queries, using smaller data-sets for fine-tuning or using smaller models \cite{baltes2025guidelinesempiricalstudiessoftware}. By using more efficient algorithms, reducing LLM inferences does not necessarily reduce the accuracy of the results, although there can be a trade-off between accuracy and energy expenditure \cite{deVries2023}. In the results analysis, researchers should report what steps (if any) were taken to reduce energy consumption and justify why LLMs were used instead of less costly alternatives.
+The use of LLMs can come with a significant cost of time, space and energy compared to traditional ML models. Especially the training phase of LLMs can have a large energy footprint; but the increased integration of LLMs into various tools such as Google search could also have a major impact on energy consumption over time \cite{wu2022sustainableai,deVries2023}. Researchers in LLM4SE can reduce energy expenditure primarily by reducing LLM inferences, which can be done by restricting the number of queries, using smaller data-sets for fine-tuning or using smaller models \cite{baltes2025guidelinesempiricalstudiessoftware}. By using more efficient algorithms, reducing LLM inferences does not necessarily reduce the accuracy of the results, although there can be a trade-off between accuracy and energy expenditure \cite{deVries2023}. In the results analysis, researchers should report what steps (if any) were taken to reduce energy consumption and justify why LLMs were used instead of less costly alternatives.\\
+
+\textbf{S9. Analyse overfitting \& degradation.}\\
+One of the fundamental problems in machine learning is the possible disconnect between the in-sample performance of a model on its training or validation sets and the out-of-sample performance on the unseen test set \cite{Ying2019overfitting}. A high training accuracy does not guarantee a high test accuracy; in fact, a model with a lower training accuracy can outperform a model with a higher training accuracy when applied to the test set. This problem is known as overfitting and can occur when a model learns from noise in the data, has limited training data or has more parameters than needed. For example, if a limited set of examples is used for fine-tuning an LLM, the performance on the fine-tuned data could be great, but not generalize well to the actual real-life task that it aims to solve. 
+
+Overfitting can be quantified by measuring the difference between the performance on the test set and the train set using the metrics in S7. Let $M$ be any chosen metric, then $overfitting = M_{test} - M_{train}$. If we use multiple data sets for testing, we can instead calculate the average overfitting, where $Test$ is the test set:
+
+\begin{equation}
+	\text{\textit{average overfitting}} = \frac{1}{|Test|} \sum_{t\in Test} (M_{test} - M_{train})
+\label{overfitting}
+\end{equation}
+
+Apart from the metrics discussed in S7, such as accuracy, other metrics can also be used to quantify overfitting. This includes the metrics of zero-one loss for binary classifiers and mean squared error (MSE) for when class outputs contain scores or probabilities \cite{Dellanna2022}. If a pre-trained LLM is used with prompting, it might be difficult or unnecessary to analyse the overfitting. However, the validation set that was used for developing and selecting prompts or hyper-parameters can still lead to degradation, where the performance on the test set is lower than the performance on the validation set.
+
+Degradation compares the performance of the test set with the performance of the validation set, using the metrics of S7. Its calculation is similar to overfitting: given performance metric $M$, we calculate $degradation = M_{test} - M_{validation}$. Equivalently, if multiple test sets are used or multiple validation sets in the case of k-fold cross-validation, we recommend calculating the average degradation, as in (\ref{overfitting}). In the event that both k-fold cross-validation and multiple test sets are used, then the distributions of the performance metrics for the validation and test sets can be statistically compared to see if there is a significance difference. For example, if the data is normally distributed, the independent samples T-Test can be used, whereas the Mann-Whitney's U test can be used as a non-parametric alternative. The original \textit{ECSER} pipeline contains examples of how to apply these tests \cite{Dellanna2022}.\\
+
+\textbf{S10. Visualize ROC}
 
 \newpage 
 \printbibliography[heading=bibintoc]
