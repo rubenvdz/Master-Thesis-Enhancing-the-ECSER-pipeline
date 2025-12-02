@@ -85,7 +85,7 @@
 \begin{center}
 \begin{abstract}
 The various research papers in the field of Software Engineering (SE) that use classification algorithms, LLMs, or other machine learning methods to obtain their results differ in how many and which evaluation metrics are reported, whether or not significance tests are performed, and which steps are taken to aid reproducibility. The ECSER pipeline was designed to mitigate this issue by providing a step-by-step pipeline that researchers can use to report their results when classification algorithms are used, and the pipeline was empirically shown to be effective in replicating the findings of several studies, as well as producing additional findings and occasionally contradicting the findings of the original papers. However, the ECSER pipeline is designed for evaluating simple classifiers and gives no specific recommendations for LLM classifiers, despite LLMs being an increasingly popular choice for classification tasks. 
-The goal of this thesis is to expand the ECSER pipeline for the use of LLMs by adding recommendations from LLM4SE research and related fields. First, an exploratory mapping study will be done of SE studies released in 2024 that use LLM classifiers, summarising which steps are taken and which metrics are (or aren't) reported, in order to get an overview of the current state of LLM4SE research. Subsequently, we design the \newecser pipeline, an enhanced version of the ECSER pipeline for the use of LLMs, including recommendations for prompt engineering, evaluating the fairness and robustness of models, and more. Lastly, in order to evaluate the comprehensiveness and ease-of-use of the new pipeline, two replication studies were conducted using the pipeline to test its ability to strengthen or contradict the findings of the original papers.
+The goal of this thesis is to expand the ECSER pipeline for the use of LLMs by adding recommendations from LLM4SE research and related fields. First, an exploratory mapping study was done of SE studies released in 2024 that use LLM classifiers, summarising which steps were taken and which metrics were (or weren't) reported, in order to get an overview of the current state of LLM4SE research. Subsequently, we designed the \newecser pipeline, an enhanced version of the ECSER pipeline for the use of LLMs, including recommendations for prompt engineering, evaluating the fairness and robustness of models, and more. Lastly, in order to evaluate the comprehensiveness and ease-of-use of the new pipeline, two replication studies were conducted using the pipeline to test its ability to strengthen or contradict the findings of the original papers.
 \end{abstract}
 \vfill 
 \textbf{MSc. Artificial Intelligence}\\
@@ -160,7 +160,7 @@ Another less common approach is automatic prompt engineering, where instructions
 The usage of LLMs in SE research has increased massively over the past few years, but the research of how to best conduct studies and report results in this field remains very limited. In order to approach the problem of LLM4SE reporting standards and design meaningful guidelines, we follow \citeauthor{Wieringa2014}'s design cycle of \textit{problem investigation}, \textit{treatment design} and \textit{treatment validation} \cite{Wieringa2014}. This leads us to the following research questions:
 
 \emphasize{RQ1: What is the current state of reporting in LLM4SE classification research?} \\
-RQ1 follows the step of \textit{problem investigation} and is both descriptive and evaluative: what do researchers report in their studies and does this level of reporting contribute or detract from the accuracy and reproducibility of the results. The aim of this question is to provide insights into the potential shortcomings of existing research by conducting a mapping study of the reporting practices of LLM4SE research, in order to provide a basis for additional guidelines that help researchers avoid these shortcomings. 
+RQ1 fulfils the step of \textit{problem investigation} and is both descriptive and evaluative: what do researchers report in their studies and does this level of reporting contribute or detract from the accuracy and reproducibility of the results. The aim of this question is to provide insights into the potential shortcomings of existing research by conducting a mapping study of the reporting practices of LLM4SE research, in order to provide a basis for additional guidelines that help researchers avoid these shortcomings. 
 
 
 \emphasize{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}\\
@@ -738,7 +738,22 @@ Apart from the metrics discussed in S7, such as accuracy, other metrics can also
 
 Degradation compares the performance of the test set with the performance of the validation set, using the metrics of S7. Its calculation is similar to overfitting: given performance metric $M$, we calculate $degradation = M_{test} - M_{validation}$. Equivalently, if multiple test sets are used or multiple validation sets in the case of k-fold cross-validation, we recommend calculating the average degradation, as in (\ref{overfitting}). In the event that both k-fold cross-validation and multiple test sets are used, then the distributions of the performance metrics for the validation and test sets can be statistically compared to see if there is a significance difference. For example, if the data is normally distributed, the independent samples T-Test can be used, whereas the Mann-Whitney's U test can be used as a non-parametric alternative. The original \textit{ECSER} pipeline contains examples of how to apply these tests \cite{Dellanna2022}.\\
 
-\textbf{S10. Visualize ROC}
+\textbf{S10. Visualize ROC.}\\
+Metrics such as the accuracy and F-score depend heavily on the arbitrary choice of the decision threshold (i.e., the confidence value above which a data point is classified as positive). The receiver operating characteristic curve (ROC) gives a visual description of this effect by showing the trade-off between the true positive rate (recall) and the true negative rate (specificity) across threshold values \cite{metz1978roc}. Figure \ref{fig:RocToyPlot} shows an example of an ROC plot with true positive rate on the y axis and false positive rate on the x axis. The diagonal represents random chance. Visually, the closer a classifier is towards the top-left corner, the better the classification performance. 
+
+For discrete classifiers, the outputs will not be confidence values, but only class labels. In this case, the resulting true positive and false positive rate can be plotted as a single point in the ROC space \cite{fawcett2006roc}. Multiple discrete classifiers can thus be visually compared by plotting each result as a point in the ROC plot, or as a cluster of points when multiple data sets are used for each classifier. 
+
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering}
+	\includegraphics[width=0.5\linewidth]{figures/Roc-ToyPlot.png}
+	\caption{Example of an ROC plot comparing a classifier model (blue) to random chance (orange).}
+	\label{fig:RocToyPlot}
+\end{figure}
+
+The area under the ROC curve (AUC) provides a summary of the ROC curve by taking the average across all threshold values. Since the AUC of a random classifier is 0.5, the realistic range of AUC values is between 0.5 and 1 \cite{fawcett2006roc}. It has been suggested that the AUC provides a better basis for comparing classifiers than the accuracy, since it is independent of the decision threshold \cite{huang2005auc,ling2003auc}.\\
+
+\textbf{S11. Apply statistical significance tests.}
 
 \newpage 
 \printbibliography[heading=bibintoc]
