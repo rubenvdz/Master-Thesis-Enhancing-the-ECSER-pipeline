@@ -158,23 +158,15 @@ Another less common approach is automatic prompt engineering, where instructions
 The usage of LLMs in SE research has increased massively over the past few years, but the research of how to best conduct studies and report results in this field remains very limited. In order to approach the problem of LLM4SE reporting standards and design meaningful guidelines, we follow \citeauthor{Wieringa2014}'s design cycle of \textit{problem investigation}, \textit{treatment design} and \textit{treatment validation} \cite{Wieringa2014}. This leads us to the following research questions:
 
 \emphasize{RQ1: What is the current state of reporting in LLM4SE classification research?} \\
-RQ1 fulfils the step of \textit{problem investigation} and is both descriptive and evaluative: what do researchers report in their studies and does this level of reporting contribute or detract from the accuracy and reproducibility of the results. The aim of this question is to provide insights into the potential shortcomings of existing research by conducting a mapping study of the reporting practices of LLM4SE research, in order to provide a basis for additional guidelines that help researchers avoid these shortcomings. 
-
-
+RQ1 fulfils the step of \textit{problem investigation} and is both descriptive and evaluative: what do researchers report in their studies and does this level of reporting contribute or detract from the accuracy and reproducibility of the results. The aim of this question is to provide insights into the potential shortcomings of existing research by conducting a mapping study of the reporting practices of LLM4SE research, in order to provide a basis for additional guidelines that help researchers avoid these shortcomings. Section \ref{RQ1} presents the research approach of RQ1 and the results of the mapping study.
+	
 \emphasize{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}\\
-Following the problem investigation of RQ1, RQ2 fulfils the step of \textit{treatment design}. The purpose of RQ2 is to design a tangible artefact that is comprehensive and widely applicable to the field of LLM4SE, with the intent of helping researchers avoid any problems identified in RQ1. This research question was designed to guide the modification of the existing ECSER pipeline \cite{Dellanna2022}, taking into consideration recommendations from the fields of LLM4SE, ML4SE and Design Science.
+Following the problem investigation of RQ1, RQ2 fulfils the step of \textit{treatment design}. The purpose of RQ2 is to design a tangible artefact that is comprehensive and widely applicable to the field of LLM4SE, with the intent of helping researchers avoid any problems identified in RQ1. This research question was designed to guide the modification of the existing ECSER pipeline \cite{Dellanna2022}, taking into consideration recommendations from the fields of LLM4SE, ML4SE and Design Science. Section \ref{RQ2} presents the research approach of RQ2 and the resulting \newecser pipeline.
 
 
 \emphasize{RQ3: How applicable is the proposed pipeline in assisting LLM4SE classification research?}\\
-The purpose of RQ3 is \textit{treatment validation}: does the designed pipeline in RQ2 achieve its goals of applicability and comprehensiveness. To answer this question we will conduct two replication studies in different subfields of SE that employ LLM classification using the guidelines by \textcite{carver2010}. The original studies will be chosen based on the following criteria:
-\begin{enumerate}
-    \item The authors provide a ready-to-use replication package.
-    \item The study is recent (past five years) and represents current practices in LLM4SE well.
-    \item The study is peer-reviewed and published in a reputable journal.
-    \item The study does not already follow all the proposed guidelines, so that the added benefit of the pipeline can be evaluated.
-\end{enumerate}
+After designing the \newecser pipeline, RQ3 follow the step of \textit{treatment validation}: does the proposed pipeline achieve its goals of applicability and comprehensiveness. The purpose of RQ3 is to apply the pipeline to existing LLM4SE classification research by way of a replication study, in order to evaluate whether the pipeline is able to replicate the research and whether there can be added benefit to using the pipeline. Section \ref{RQ3} presents the research approach of RQ3 and the results of the replication study.
 
-By conducting these replication studies, we can evaluate the comprehensiveness of the pipeline and identify potential shortcomings. After the first replication study, the findings from RQ3 were taken into account to make changes to the guidelines from RQ2 where needed, creating a feedback-loop between RQ2 and RQ3. The second replication was conducted using the updated pipeline.
 
 \section{Related Work} \label{Related Work}
 The main focus of this thesis is to study the usage and evaluation of LLM Classifiers in Software Engineering, but in doing so we touch on several related research fields, including Empirical Software Engineering, Machine Learning for Software Engineering (ML4SE), Large Language Models for Software Engineering (LLM4SE) and Prompt Engineering. Additionally, each of the three research questions has related work that is relevant to their methodologies. Hence, we have split the related work into several sections based on different areas of study to aid readability. 
@@ -755,7 +747,29 @@ It is not enough to see a difference in performance metrics between two classifi
 Many tests exist to evaluate the statistical significance between two or more classifiers, each with their own underlying assumptions. For example, parametric tests like the paired samples T-Test assume that the data is normally distributed, whereas non-parametric tests like the Wilcoxon’s Signed-Rank test do not have this assumption. In general, LLM4SE researchers should consider non-parametric tests, since classifier results are generally not normally distributed \cite{demsar2006statistical}. Readers should refer to the original ECSER pipeline for a detailed discussion of how to perform statistical testing on single or multiple datasets, noting that the Wilcoxon Signed-Rank and the Friedman plus Nemenyi's post-hoc tests are recommended tests \cite{Dellanna2022}. Another useful resource for choosing the significance test is \textcite{Rainio2024}'s flowchart, which considers the task, evaluation metric, the number of test sets and the number of models that are compared. In all cases, researchers should justify the chosen statistical test based on the assumptions it makes and its limitations. 
 
 \section{RQ3: How applicable is the proposed pipeline in assisting LLM4SE classification research?}
+\label{RQ3}
+In this section, we first discuss the approach to evaluating the applicability of the \newecser pipeline by way of a replication study. Subsequently, we present the results of the replication study and use these results to analyse the applicability and the added benefit of using the pipeline.
+
 \subsection{Research Approach}
+% Useful guidelines: \textcite{carver2010}. 
+In order for the \newecser pipeline to be considered a suitable treatment for the problems investigated in RQ1 (Section \ref{RQ1}), the results obtained by applying the pipeline should avoid the shortcomings of existing LLM4SE research. For this reason, the choice was made to conduct a replication of an existing LLM4SE classification study by following the steps of the \newecser pipeline, in order to evaluate whether applying the pipeline is beneficial for enhancing the original findings. In conducting the replication study, we followed \textcite{carver2010}'s reporting guidelines.
+
+Studies were considered for replication based on the following criteria:
+\begin{enumerate}
+	\item The authors provide a ready-to-use replication package.
+	\item The study is recent (past five years) and represents current practices in LLM4SE well.
+	\item The study is peer-reviewed and published in a reputable journal.
+	\item The study does not already follow all the proposed guidelines, so that the added benefit of the pipeline can be evaluated.
+\end{enumerate}
+
+These criteria were designed to select a study that is high-quality and easy to replicate, but does not follow all of the best practices in the field, since the purpose of the \newecser pipeline is to make it easier for researchers to follow these best practices.
+
+We chose to replicate \textcite{10.1145/3663529.3663794}'s study on predicting Python test results without execution, since the paper included a replication package, was published recently (2024), was published in a reputable journal (FSE) and did not follow all the proposed guidelines. In the next section, we describe the paper in more detail and present and discuss the results of following the pipeline. 
+
+%By conducting these replication studies, we can evaluate the comprehensiveness of the pipeline and identify potential shortcomings. After the replication study, the findings from RQ3 were taken into account to make changes to the guidelines from RQ2 where needed, creating a feedback-loop between RQ2 and RQ3. The second replication was conducted using the updated pipeline.
+
+\subsection{Case Study: Predicting Test Results without Execution}
+
 
 \newpage 
 \printbibliography[heading=bibintoc]
