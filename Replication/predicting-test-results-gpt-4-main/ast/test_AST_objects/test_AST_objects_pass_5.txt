@@ -1,0 +1,66 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(-1)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(-1)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test:
+
+1. Import the `ast` module.
+2. Define a function `test_AST_objects`.
+3. Within the function, an instance `x` of `ast.AST` is created. 
+4. Assert that the `_fields` attribute of the instance is an empty tuple.
+5. Set a new attribute `foobar` on `x` with a value of 42.
+6. Assert that the attribute `foobar` has a value of 42.
+7. Assert that `foobar` is present in the `__dict__` of `x` and has a value of 42.
+8. Check that accessing a non-existing attribute `vararg` raises an `AttributeError`.
+9. Check that trying to initialize an `ast.AST` object with a positional argument raises a `TypeError` with the specific message.
+
+The main point of this test is to ensure that the `ast.AST` class behaves as expected in terms of attribute assignment, attribute access, and instantiation. Let's review the key steps:
+
+- `ast.AST()` should initialize successfully without any arguments.
+- `_fields` is a tuple containing the names of all fields that are defined in a particular AST node type, and it should be empty for a base `ast.AST` instance.
+- Dynamically assigning attributes to an instance of `ast.AST` (like `foobar`) should work.
+- Accessing a non-existing attribute should raise an `AttributeError`.
+- Initializing an `ast.AST` object with positional arguments should raise a `TypeError`.
+
+As of Python 3.10, the behavior described in this test is consistent with the `ast.AST` class behavior. Specifically, the `ast.AST` class is designed to support dynamic attribute assignment (hence the assignment of `foobar` works), and its constructor doesn't take positional arguments (hence the `TypeError` assertion).
+
+Therefore, the provided test should pass for Python Standard Library, version 3.10.

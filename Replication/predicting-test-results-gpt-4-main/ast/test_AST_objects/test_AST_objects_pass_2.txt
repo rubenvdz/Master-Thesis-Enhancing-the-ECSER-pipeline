@@ -1,0 +1,86 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.zzz = 42
+        self.assertEqual(x.zzz, 42)
+        self.assertEqual(x.__dict__["zzz"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.zzz = 42
+        self.assertEqual(x.zzz, 42)
+        self.assertEqual(x.__dict__["zzz"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test `test_AST_objects` piece by piece:
+
+1. An instance of `ast.AST` is created.
+    ```python
+    x = ast.AST()
+    ```
+    This should work fine since we are not passing any arguments.
+
+2. It then checks if `_fields` of the AST object is an empty tuple.
+    ```python
+    self.assertEqual(x._fields, ())
+    ```
+    The `_fields` attribute of an `ast.AST` object contains the names of all child nodes. Since `ast.AST` is a base class for all abstract syntax tree nodes, it does not have any child nodes by default. So this check should pass.
+
+3. It assigns a new attribute `zzz` to the `ast.AST` object and checks its value.
+    ```python
+    x.zzz = 42
+    self.assertEqual(x.zzz, 42)
+    ```
+    This is valid Python behavior, as you can assign new attributes to objects. Thus, this check will pass.
+
+4. It then checks if the attribute `zzz` was correctly set in the object's dictionary.
+    ```python
+    self.assertEqual(x.__dict__["zzz"], 42)
+    ```
+    This should also pass since assigning an attribute to an object (that doesn't already have that attribute as a property or through other methods) generally updates the object's `__dict__`.
+
+5. The test expects an `AttributeError` when trying to access a non-existent attribute `vararg`.
+    ```python
+    with self.assertRaises(AttributeError):
+        x.vararg
+    ```
+    This is correct. Since the attribute `vararg` was not set and is not a default attribute of `ast.AST`, this will raise an `AttributeError`. So this check should pass.
+
+6. Lastly, it expects a `TypeError` when trying to instantiate the `ast.AST` with a positional argument.
+    ```python
+    with self.assertRaises(TypeError):
+        # "ast.AST constructor takes 0 positional arguments"
+        ast.AST(2)
+    ```
+    If the `ast.AST` constructor does not accept positional arguments, then this will raise a `TypeError`. This comment indicates that this is expected behavior: `"ast.AST constructor takes 0 positional arguments"`. So this check should also pass.
+
+Given this breakdown, the test `test_AST_objects` should pass for Python Standard Library version 3.10.

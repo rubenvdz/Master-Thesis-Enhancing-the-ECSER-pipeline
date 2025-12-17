@@ -1,0 +1,92 @@
+    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, "wb").close()
+        with open(self.filename, "r+b") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in "rb", "r+b":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in "wb", "xb":
+            if "x" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, "wb").close()
+        with open(self.filename, "r+b") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in "rb", "r+b":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in "wb", "xb":
+            if "x" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test and see what it's trying to validate:
+
+1. **Create a gzip file and test `fileobj` modes with explicit modes provided:**
+    - `gzip.GzipFile(self.filename, "wb").close()`: A gzipped file is created.
+    - It opens the file in `r+b` mode and tries to instantiate `gzip.GzipFile` objects using different modes (`r`, `w`, `a`, `x`) to see if the internal mode of the GzipFile object (`g.mode`) corresponds correctly to `gzip.READ` or `gzip.WRITE` as expected.
+    - It raises a ValueError when an unrecognized mode is provided (`z`).
+
+2. **Test `fileobj` modes with implicit modes:**
+    - If the mode is `rb` or `r+b`, it expects the mode of the GzipFile object to be `gzip.READ`.
+    - If the mode is `wb` or `xb`, it expects a FutureWarning, and after that, the mode of the GzipFile object to be `gzip.WRITE`.
+
+Based on my understanding of the `gzip.GzipFile` in Python 3.10, here's the rationale for each segment:
+
+1. The explicit modes (`r`, `w`, `a`, `x`) will set the mode of the GzipFile correctly to either `gzip.READ` or `gzip.WRITE`. The ValueError for mode `z` is expected because it's not a valid mode.
+
+2. For the implicit modes, there are a couple of things to consider:
+    - Opening the gzip file in `rb` or `r+b` mode and not providing any mode to `gzip.GzipFile` will default to `gzip.READ` which is correct.
+    - For `wb` or `xb` modes, a FutureWarning is expected. In Python 3.10, opening a `GzipFile` with a writable binary mode file object, without specifying a mode, is deprecated and raises a warning. After the warning, it's expected that the mode is `gzip.WRITE`, which is correct.
+
+From the code and the expected behavior of `gzip.GzipFile` in Python 3.10, it seems like the test should pass. However, the key points here are:
+- Ensure that `gzip.READ` and `gzip.WRITE` constants are correctly defined.
+- Ensure that the file (`self.filename`) can be accessed, created, and deleted without any permission or path-related issues.
+- Ensure that the utility functions and modules like `os_helper.unlink` work as intended.
+
+If there's a failure, it's likely related to one of these points rather than the logic of the test. But based on the provided test code and the expected behavior of `gzip.GzipFile`, the test seems like it should pass.

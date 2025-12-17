@@ -1,0 +1,84 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's go through the code step by step:
+
+1. You import the `ast` module:
+```python
+import ast
+```
+
+No problem here.
+
+2. The test checks if the AST object's `_fields` attribute returns an empty tuple:
+```python
+x = ast.AST()
+self.assertEqual(x._fields, ())
+```
+
+For the base `AST` class, `_fields` is an empty tuple. So this will pass.
+
+3. Assign a new attribute `foobar` to the `AST` object and check if it is set correctly:
+```python
+x.foobar = 42
+self.assertEqual(x.foobar, 42)
+self.assertEqual(x.__dict__["foobar"], 42)
+```
+
+This is valid in Python. You're dynamically adding an attribute to an instance of a class. So both assertions will pass.
+
+4. Try to access a non-existent attribute `vararg`:
+```python
+with self.assertRaises(AttributeError):
+    x.vararg
+```
+
+This is correct. Accessing a non-existent attribute raises an `AttributeError`, so this part will also pass.
+
+5. Create an `AST` object with an argument:
+```python
+ast.AST(2)
+```
+
+This is where a problem arises. The base `AST` class doesn't accept any arguments for its constructor. So, trying to pass `2` to it will raise a `TypeError`.
+
+Thus, the test will fail on the `ast.AST(2)` line.
+
+Rationale for failure: 
+The constructor of the `AST` class in the `ast` module does not accept any positional or keyword arguments.

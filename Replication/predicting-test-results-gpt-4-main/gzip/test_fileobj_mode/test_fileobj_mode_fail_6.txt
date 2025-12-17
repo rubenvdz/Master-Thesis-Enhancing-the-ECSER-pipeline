@@ -1,0 +1,91 @@
+    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, "wb").close()
+        with open(self.filename, "r+b") as f:
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in "rb", "r+b":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in "wb", "ab", "xb":
+            if "x" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, "wb").close()
+        with open(self.filename, "r+b") as f:
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in "rb", "r+b":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in "wb", "ab", "xb":
+            if "x" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+This test code is meant to validate the behavior of the `gzip.GzipFile` class in different modes, especially when a `fileobj` is provided. Let's analyze it step by step:
+
+1. A gzip file is created with mode "wb".
+2. It opens the created gzip file in "r+b" mode and checks several modes with the `gzip.GzipFile`:
+
+    - For mode='w': It checks if the mode is set to `gzip.READ`. This seems contradictory since the mode is explicitly set to 'w'. This assertion will fail.
+    - For the next three modes ('w', 'a', 'x'): It checks if the mode is set to `gzip.WRITE`. These assertions seem correct.
+    - It checks if a `ValueError` is raised when an invalid mode 'z' is used. This assertion seems correct.
+
+3. For modes "rb" and "r+b", it checks if the mode of the gzip file is set to `gzip.READ`. These assertions seem correct.
+4. For modes "wb", "ab", and "xb", it:
+
+    - Removes the file if the mode contains "x" (which means exclusive creation, and it will fail if the file already exists).
+    - Asserts that a `FutureWarning` is raised when `gzip.GzipFile` is created. It seems the test expects a warning for using `gzip.GzipFile` without specifying a mode but providing a `fileobj`. This behavior needs to be verified against the Python 3.10 documentation or source code.
+    - Then, it checks if the mode of the gzip file is set to `gzip.WRITE`. These assertions seem correct.
+
+Based on this analysis, the test will **fail** at the following line:
+
+```python
+with gzip.GzipFile(fileobj=f, mode='w') as g:
+    self.assertEqual(g.mode, gzip.READ)
+```
+
+This assertion expects the mode to be `gzip.READ` even though the mode is explicitly set to 'w'. It seems like a mistake in the test.

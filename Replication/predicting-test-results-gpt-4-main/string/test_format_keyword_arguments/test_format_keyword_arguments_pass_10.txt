@@ -1,0 +1,97 @@
+    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        r = '-test-'
+        self.assertEqual(fmt.format("-{arg}-", arg='test'), r)
+        self.assertRaises(KeyError, fmt.format, "-{arg}-")
+        self.assertEqual(fmt.format("-{self}-", self='test'), r)
+        self.assertRaises(KeyError, fmt.format, "-{self}-")
+        self.assertEqual(fmt.format("-{format_string}-", format_string='test'),
+                         r)
+        self.assertRaises(KeyError, fmt.format, "-{format_string}-")
+        with self.assertRaisesRegex(TypeError, "format_string"):
+            fmt.format(format_string="-{arg}-", arg='test')
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        r = '-test-'
+        self.assertEqual(fmt.format("-{arg}-", arg='test'), r)
+        self.assertRaises(KeyError, fmt.format, "-{arg}-")
+        self.assertEqual(fmt.format("-{self}-", self='test'), r)
+        self.assertRaises(KeyError, fmt.format, "-{self}-")
+        self.assertEqual(fmt.format("-{format_string}-", format_string='test'),
+                         r)
+        self.assertRaises(KeyError, fmt.format, "-{format_string}-")
+        with self.assertRaisesRegex(TypeError, "format_string"):
+            fmt.format(format_string="-{arg}-", arg='test')
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test cases:
+
+1. **Keyword Argument "arg":**
+    ```python
+    r = '-test-'
+    self.assertEqual(fmt.format("-{arg}-", arg='test'), r)
+    ```
+    This is testing that the format string `"-{arg}-"` can have `arg` replaced with the value `'test'` provided as a keyword argument. This should work and return `'-test-'`.
+
+    ```python
+    self.assertRaises(KeyError, fmt.format, "-{arg}-")
+    ```
+    This is testing that omitting the `arg` keyword argument will raise a `KeyError`. This should pass since `arg` isn't provided.
+
+2. **Keyword Argument "self":**
+    ```python
+    self.assertEqual(fmt.format("-{self}-", self='test'), r)
+    ```
+    This is identical to the first case but with the argument name `self`. The string formatter doesn't give any special treatment to the name `self`, so this should also return `'-test-'`.
+
+    ```python
+    self.assertRaises(KeyError, fmt.format, "-{self}-")
+    ```
+    Again, this tests that omitting the `self` keyword argument will raise a `KeyError`. This should pass since `self` isn't provided.
+
+3. **Keyword Argument "format_string":**
+    ```python
+    self.assertEqual(fmt.format("-{format_string}-", format_string='test'), r)
+    ```
+    This case is where things get interesting. In Python's string formatting, there's an implicit order for parameters. This order goes like:
+    1. Value arguments (positional)
+    2. Keyword arguments
+    3. Instance attributes (if the formatter class is subclassed and has such attributes)
+
+    The presence of a parameter named `format_string` can be misleading here. One might think that it gets special treatment due to its name. But, it doesn't. So this format call should work like the earlier examples and return `'-test-'`.
+
+    ```python
+    self.assertRaises(KeyError, fmt.format, "-{format_string}-")
+    ```
+    This tests that omitting the `format_string` keyword argument will raise a `KeyError`. This should pass since `format_string` isn't provided.
+
+4. **Providing `format_string` as an Argument:**
+    ```python
+    with self.assertRaisesRegex(TypeError, "format_string"):
+        fmt.format(format_string="-{arg}-", arg='test')
+    ```
+    This test expects a `TypeError` mentioning "format_string" to be raised. The format string is being passed as a keyword argument `format_string` instead of a positional argument. This is not how the `format()` method is typically called. 
+
+    The signature of `fmt.format()` method is: 
+    ```python
+    format(format_string, *args, **kwargs)
+    ```
+    In the test, the format string is being passed as a keyword argument `format_string` and not as a positional argument as expected. Hence, a `TypeError` will be raised and the assertion should pass.
+
+Conclusion:
+All the test cases are expected to pass.

@@ -1,0 +1,54 @@
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2", "f3"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2,f3\r\n")
+            writer.writerow({"f2": 10})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ",10,\r\n")
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2", "f3"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2,f3\r\n")
+            writer.writerow({"f2": 10})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ",10,\r\n")
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test:
+
+1. A temporary file `fileobj` is created with write and read mode (`w+`) with UTF-8 encoding and newline handling.
+2. A `DictWriter` is created with the fieldnames "f1", "f2", and "f3".
+3. `writer.writeheader()` is called, which writes the headers ("f1,f2,f3") followed by a newline to the temporary file.
+4. The file's seek position is reset to the beginning using `fileobj.seek(0)`.
+5. The first line (header) is read and checked against the string "f1,f2,f3\r\n". This check will pass because that's the expected header.
+6. `writer.writerow({"f2": 10})` writes a dictionary with a value for "f2" but not for "f1" and "f3". The DictWriter will write empty fields for "f1" and "f3", so the output for this row will be ",10," followed by a newline.
+7. The file's seek position is reset to the beginning again using `fileobj.seek(0)`.
+8. The header line is read (but not checked).
+9. The remaining part of the file is read and checked against the string ",10,\r\n". 
+
+Given the described behavior of the `DictWriter`, the test should pass as the expected output matches the actual output written to the temporary file.
+
+Therefore, the test will pass.

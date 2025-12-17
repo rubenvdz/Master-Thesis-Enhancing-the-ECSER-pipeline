@@ -1,0 +1,53 @@
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(RuntimeError, next, r)
+        self.assertEqual(r.line_num, 3)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(RuntimeError, next, r)
+        self.assertEqual(r.line_num, 3)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The test provided aims to test the `line_num` attribute of a `csv.reader` object. This attribute keeps track of the number of lines the reader has read.
+
+Let's break down the test:
+
+1. A `csv.reader` object `r` is initialized with a list of strings.
+2. The initial value of `r.line_num` is checked. It should be 0 because no lines have been read yet.
+3. The `next(r)` function is used to read the next line of the `csv.reader` object. After reading the first line, the value of `r.line_num` is checked to be 1.
+4. The above step is repeated two more times. After reading all three lines, the value of `r.line_num` should be 3.
+5. An attempt to read the next line (which doesn't exist) is made. This should raise a `RuntimeError` since the `csv.reader` object is exhausted.
+6. The value of `r.line_num` is checked again after the exception to ensure it remains at 3.
+
+To answer the question of whether the test will pass or fail:
+
+The test will pass. This is how the `csv.reader` object works with respect to the `line_num` attribute in the Python Standard Library for version 3.10. If you attempt to read past the end of the reader (using `next(r)`), it will raise a `RuntimeError`, and the `line_num` attribute will remain the same, reflecting the number of lines read so far.

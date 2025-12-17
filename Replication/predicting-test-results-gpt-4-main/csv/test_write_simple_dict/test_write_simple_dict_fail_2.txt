@@ -1,0 +1,59 @@
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2", "f3"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2\r\n")
+            writer.writerow({"f1": 10, "f3": "abc"})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "10,,abc\r\n")
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2", "f3"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2\r\n")
+            writer.writerow({"f1": 10, "f3": "abc"})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "10,,abc\r\n")
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The test is expected to fail. Let's break it down:
+
+1. A temporary file `fileobj` is created for writing and reading with UTF-8 encoding and newline handling appropriate for CSV files.
+2. A `DictWriter` object is created with the fieldnames `f1`, `f2`, and `f3`.
+3. The headers are written to the file with the method `writeheader()`.
+4. The file pointer is reset to the start of the file.
+5. The test asserts that the header line is `"f1,f2\r\n"`, but this is incorrect.
+
+The actual header should be `"f1,f2,f3\r\n"`, as all three fieldnames would be written as the header. This means that the first `self.assertEqual` will fail.
+
+6. A dictionary with keys `f1` and `f3` is written to the CSV file.
+7. The file pointer is reset to the start and the header line is read (and ignored).
+8. The test asserts that the next line in the file is `"10,,abc\r\n"`, and this is correct. For the missing `f2` field, the DictWriter will insert an empty value between the commas.
+
+To fix the test, change the first assertion to:
+```python
+self.assertEqual(fileobj.readline(), "f1,f2,f3\r\n")
+```
+
+After making this change, the test should pass.

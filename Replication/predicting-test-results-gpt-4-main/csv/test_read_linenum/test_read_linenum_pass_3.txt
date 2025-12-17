@@ -1,0 +1,58 @@
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line1', 'line2', 'line3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line1', 'line2', 'line3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The provided test is checking the `line_num` attribute of the `csv.reader` object.
+
+Here's a breakdown of the test:
+
+1. A `csv.reader` object `r` is created with a list of 3 strings.
+2. The test asserts that `r.line_num` is initially `0`.
+3. After reading the first line using `next(r)`, the test asserts that `r.line_num` has increased to `1`.
+4. Similarly, the test checks for lines 2 and 3.
+5. Finally, the test asserts that a `StopIteration` exception is raised after trying to read past the end of the input, and checks that `r.line_num` remains at `3`.
+
+The Python Standard Library documentation for `csv.reader` states:
+
+> reader.line_num
+>
+> The number of lines read from the source iterator. This is not the same as the number of records returned, as records can span multiple lines.
+
+Considering this, the behavior of `line_num` as tested in the provided code should work correctly. Every time `next(r)` is called, the `line_num` should increment by 1, and the behavior is consistent with the test.
+
+Thus, the test should **pass** based on the expected behavior of the `csv.reader` object in the Python Standard Library version 3.10.

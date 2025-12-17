@@ -1,0 +1,78 @@
+    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's analyze the code step by step:
+
+The test is checking how the `ast.parse()` function behaves when given Python code that includes the positional-only parameter syntax (i.e., `/` in the function or lambda parameter list) and a specific `feature_version`.
+
+1. **Positional-only parameters**: Python 3.8 introduced the syntax for defining positional-only parameters. This means that before Python 3.8, this syntax would have resulted in a `SyntaxError`. The `feature_version` parameter in `ast.parse()` allows you to emulate how the parser would behave for a given Python version. So, if `feature_version=(3, 7)`, it should behave as if it's parsing the code for Python 3.7.
+
+Now, let's look at each call:
+
+2. 
+   ```python
+   ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+   ```
+   This is trying to parse a function with positional-only parameters with a `feature_version` of 3.8. Since 3.8 supports this syntax, this should not raise a `SyntaxError`. The corresponding `with self.assertRaises(SyntaxError)` will fail.
+
+3. 
+   ```python
+   ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+   ```
+   This is trying to parse a function with default value for positional-only parameter for a `feature_version` of 3.7. As 3.7 doesn't support this syntax, this should raise a `SyntaxError`, which is expected by the test.
+
+4. & 5.
+   ```python
+   ast.parse('lambda x, /: ...', feature_version=(3, 8))
+   ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+   ```
+   Both of these are trying to parse lambda functions with positional-only parameters (with and without default values) with a `feature_version` of 3.8. Since 3.8 supports this syntax, neither of these should raise a `SyntaxError`. The test doesn't expect any error here, so these two are correct.
+
+6. & 7.
+   ```python
+   with self.assertRaises(SyntaxError):
+       ast.parse('lambda x, /: ...', feature_version=(3, 7))
+   with self.assertRaises(SyntaxError):
+       ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+   ```
+   Both of these are trying to parse lambda functions with positional-only parameters (with and without default values) with a `feature_version` of 3.7. As 3.7 doesn't support this syntax, both of these should raise a `SyntaxError`, which is expected by the test.
+
+In conclusion, the test will **fail** because of the 2nd code block. The `ast.parse('def foo(x, /): ...', feature_version=(3, 8))` line won't raise a `SyntaxError` since Python 3.8 supports the positional-only parameter syntax, but the test incorrectly expects it to raise one.

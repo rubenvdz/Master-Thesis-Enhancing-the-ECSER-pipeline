@@ -1,0 +1,77 @@
+    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), "M")
+            self.assertEqual(cal.formatweekday(0, 2), "Mo")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(1, 3), "Mon")
+            self.assertEqual(cal.formatweekday(0, 5), " Mon ")
+            self.assertEqual(cal.formatweekday(0, 8), "  Mon   ")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), "  Monday ")
+            self.assertEqual(cal.formatweekday(0, 10), "  Monday  ")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), "M")
+            self.assertEqual(cal.formatweekday(0, 2), "Mo")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(1, 3), "Mon")
+            self.assertEqual(cal.formatweekday(0, 5), " Mon ")
+            self.assertEqual(cal.formatweekday(0, 8), "  Mon   ")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), "  Monday ")
+            self.assertEqual(cal.formatweekday(0, 10), "  Monday  ")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test:
+
+1. The test uses the `calendar.LocaleTextCalendar` class to create a calendar instance with the 'en_US' locale.
+2. It then tests the `formatweekday` method of this instance.
+
+The `formatweekday` method is used to get the name of the day of the week based on a width provided as the second parameter. The first parameter specifies which day of the week you're referring to, with 0 being Monday and 6 being Sunday.
+
+The test checks for various widths:
+
+- Widths of 1 and 2: The test expects only the first character or the first two characters of the weekday name.
+- Widths of 3, 5, and 8: The test expects the three-character abbreviation of the weekday name, possibly with spaces padding it.
+- Widths of 9 and 10: The test expects the full name of the weekday, with spaces padding it.
+
+Now let's check each assertion:
+
+1. `self.assertEqual(cal.formatweekday(0, 1), "M")`: Expects Monday to be abbreviated to "M" with width 1. This seems correct.
+2. `self.assertEqual(cal.formatweekday(0, 2), "Mo")`: Expects Monday to be abbreviated to "Mo" with width 2. This seems correct.
+3. `self.assertEqual(cal.formatweekday(1, 3), "Mon")`: Expects Tuesday (not Monday, because the first parameter is 1) to be abbreviated to "Mon" with width 3. This is incorrect; Tuesday should be abbreviated to "Tue".
+4. `self.assertEqual(cal.formatweekday(0, 5), " Mon ")`: Expects Monday to be abbreviated to " Mon " with width 5. This seems correct.
+5. `self.assertEqual(cal.formatweekday(0, 8), "  Mon   ")`: Expects Monday to be abbreviated and centered with width 8. This seems correct.
+6. `self.assertEqual(cal.formatweekday(0, 9), "  Monday ")`: Expects Monday to be displayed in full with width 9. This seems correct.
+7. `self.assertEqual(cal.formatweekday(0, 10), "  Monday  ")`: Expects Monday to be displayed in full and centered with width 10. This seems correct.
+
+So, the test will fail at the assertion:
+```python
+self.assertEqual(cal.formatweekday(1, 3), "Mon")
+```
+The rationale for the failure is that this line is testing the abbreviation for Tuesday but expects the abbreviation for Monday.

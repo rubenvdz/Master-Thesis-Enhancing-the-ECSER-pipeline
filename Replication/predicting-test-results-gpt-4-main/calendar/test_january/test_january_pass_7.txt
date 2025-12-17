@@ -1,0 +1,43 @@
+    import calendar
+    ...
+    def test_january(self):
+        self.assertEqual(calendar.monthrange(2004,1), (3,31))
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import calendar
+    ...
+    def test_january(self):
+        self.assertEqual(calendar.monthrange(2004,1), (3,31))
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The function `calendar.monthrange(year, month)` returns two values: 
+1. The code of the weekday of the first day of the month.
+2. The number of days in the month.
+
+The weekdays are indexed as 0 (Monday) through 6 (Sunday).
+
+Given the input `(2004, 1)`, the function will return:
+1. The weekday code for January 1, 2004.
+2. The number of days in January 2004.
+
+Now, let's break down the values:
+
+1. January 1, 2004 was a Thursday, which corresponds to a code of 3.
+2. January always has 31 days.
+
+Thus, the function `calendar.monthrange(2004, 1)` should return `(3, 31)`.
+
+Given this, the test:
+```
+self.assertEqual(calendar.monthrange(2004,1), (3,31))
+```
+will pass.

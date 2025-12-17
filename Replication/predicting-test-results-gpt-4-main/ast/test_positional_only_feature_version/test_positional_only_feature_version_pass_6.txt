@@ -1,0 +1,74 @@
+    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda zzz, /: ...', feature_version=(3, 8))
+        ast.parse('lambda zzz=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda zzz, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda zzz=1, /: ...', feature_version=(3, 7))
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda zzz, /: ...', feature_version=(3, 8))
+        ast.parse('lambda zzz=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda zzz, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda zzz=1, /: ...', feature_version=(3, 7))
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+This test appears to be testing the `ast.parse()` function's ability to recognize positional-only argument syntax, which was introduced in Python 3.8. The syntax is the use of a `/` in function or lambda definitions to indicate that the arguments before the `/` are positional-only, meaning they cannot be passed as keyword arguments.
+
+The positional-only syntax looks like this:
+```python
+def function(positional_arg, /):
+    ...
+```
+
+The test cases are as follows:
+
+1. Parse a function with a positional-only argument with a `feature_version` of `(3, 8)`. This should succeed since Python 3.8 supports positional-only arguments.
+2. Parse a function with a default positional-only argument with a `feature_version` of `(3, 8)`. This should succeed.
+3. Parse the same functions as above with a `feature_version` of `(3, 7)`. These should raise `SyntaxError` because Python 3.7 does not recognize the positional-only syntax.
+4. Repeat the above for lambda functions.
+
+To determine whether the test will pass or fail, let's evaluate the calls:
+
+1. `ast.parse('def foo(x, /): ...', feature_version=(3, 8))` - This should succeed.
+2. `ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))` - This should succeed.
+3. `ast.parse('def foo(x, /): ...', feature_version=(3, 7))` - This should raise `SyntaxError`.
+4. `ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))` - This should raise `SyntaxError`.
+5. `ast.parse('lambda zzz, /: ...', feature_version=(3, 8))` - This should succeed.
+6. `ast.parse('lambda zzz=1, /: ...', feature_version=(3, 8))` - This should succeed.
+7. `ast.parse('lambda zzz, /: ...', feature_version=(3, 7))` - This should raise `SyntaxError`.
+8. `ast.parse('lambda zzz=1, /: ...', feature_version=(3, 7))` - This should raise `SyntaxError`.
+
+If all the assertions and expectations about the behavior of the `ast.parse()` function with respect to the positional-only argument syntax and the `feature_version` parameter are correct, then the test will pass.
+
+Based on the provided information and the expected behavior of Python 3.7 and 3.8, the test should pass. If it fails, there might be external factors or unexpected behavior in the `ast.parse()` function. But given just this information, the test seems correct and should pass.

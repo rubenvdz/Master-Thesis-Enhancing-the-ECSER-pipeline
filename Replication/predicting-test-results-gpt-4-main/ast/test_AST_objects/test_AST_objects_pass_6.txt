@@ -1,0 +1,89 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(-1, -1)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(-1, -1)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(-1, -1)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test:
+
+1. An `AST` object `x` is created.
+2. The `_fields` attribute of the `AST` object is checked to be an empty tuple.
+3. A new attribute `foobar` is assigned to the `AST` object with the value `42`.
+4. The value of the `foobar` attribute is checked.
+5. The presence of the `foobar` attribute in the object's `__dict__` is checked.
+6. An attempt to access a non-existent attribute `vararg` is made and expected to raise `AttributeError`.
+7. An attempt to create an `AST` object with arguments is made and expected to raise `TypeError`.
+
+Based on my knowledge of the `ast.AST` class:
+
+1. Creating an `AST` object should not be problematic.
+2. The `_fields` attribute of a base `AST` object is an empty tuple.
+3. Custom attributes can be added to Python objects, so assigning `foobar` with value `42` should work.
+4. Accessing `x.foobar` after assignment should return `42`.
+5. Since `foobar` is a dynamic attribute added to the object, it should be in its `__dict__`.
+6. Accessing an attribute that doesn't exist will raise an `AttributeError`.
+7. The base `ast.AST` class does not accept positional arguments in its constructor, so it should raise a `TypeError`.
+
+Based on this analysis, the test should pass without any errors.

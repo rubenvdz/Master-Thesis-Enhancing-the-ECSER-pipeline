@@ -1,0 +1,80 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(TypeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(TypeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The code snippet given tests some behaviors of the `ast.AST` class in the Python Standard Library. Let's analyze the test step by step:
+
+1. Create an `AST` object `x` and check that its `_fields` attribute is an empty tuple.
+   ```python
+   x = ast.AST()
+   self.assertEqual(x._fields, ())
+   ```
+   This should pass, as the default `ast.AST` object does not have any fields.
+
+2. Add an arbitrary attribute `foobar` to `x` and check its value:
+   ```python
+   x.foobar = 42
+   self.assertEqual(x.foobar, 42)
+   ```
+   This will pass. You can add new attributes to instances of most Python classes, including instances of `ast.AST`.
+
+3. Check that the `foobar` attribute is stored in the `__dict__` of `x`:
+   ```python
+   self.assertEqual(x.__dict__["foobar"], 42)
+   ```
+   This should pass, as instance attributes are generally stored in the `__dict__` of an object.
+
+4. Ensure a `TypeError` is raised when trying to access a non-existent attribute of `x`:
+   ```python
+   with self.assertRaises(TypeError):
+       x.vararg
+   ```
+   This will pass. Unlike regular Python objects, if you try to access an attribute of an `ast.AST` object that doesn't exist, it will raise a `TypeError` rather than an `AttributeError`.
+
+5. Check that instantiating the `AST` class with positional arguments raises a `TypeError`:
+   ```python
+   with self.assertRaises(TypeError):
+       ast.AST(2)
+   ```
+   This should pass, as the default constructor for `ast.AST` does not accept any positional arguments.
+
+Considering the above analysis, the test should pass without any failures.

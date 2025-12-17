@@ -1,0 +1,81 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertNotEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertNotEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test case by case:
+
+1. Creation of an AST object and checking its fields:
+```python
+x = ast.AST()
+self.assertEqual(x._fields, ())
+```
+This should work as intended. The `ast.AST` class is the base class for all AST nodes, and its `_fields` attribute is an empty tuple.
+
+2. Adding a new attribute `foobar` and checking its value:
+```python
+x.foobar = 42
+self.assertNotEqual(x.foobar, 42)
+```
+This will fail. Once you set the attribute `foobar` to the value `42`, it will hold the value `42`. So, the assertion `self.assertNotEqual(x.foobar, 42)` is incorrect. It should be `self.assertEqual(x.foobar, 42)`.
+
+3. Accessing the `foobar` attribute from the `__dict__`:
+```python
+self.assertEqual(x.__dict__["foobar"], 42)
+```
+This should pass as the attribute `foobar` was set to the value `42` in the previous step.
+
+4. Checking for a non-existent attribute `vararg`:
+```python
+with self.assertRaises(AttributeError):
+    x.vararg
+```
+This should pass since the attribute `vararg` was never set for the object `x`.
+
+5. Trying to create an `ast.AST` object with a positional argument:
+```python
+with self.assertRaises(TypeError):
+    # "ast.AST constructor takes 0 positional arguments"
+    ast.AST(2)
+```
+This should pass. The `ast.AST` constructor doesn't accept positional arguments.
+
+In summary, the test will fail due to the second case where the test incorrectly checks that the newly set attribute `foobar` is not equal to `42`. The correct assertion should be `self.assertEqual(x.foobar, 42)`.

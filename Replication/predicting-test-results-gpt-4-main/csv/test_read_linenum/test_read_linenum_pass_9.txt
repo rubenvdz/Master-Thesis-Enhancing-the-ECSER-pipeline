@@ -1,0 +1,57 @@
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1,2', 'line,2,3', 'line,3,4'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1,2', 'line,2,3', 'line,3,4'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The provided test case is attempting to verify the behavior of the `line_num` attribute of a CSV reader object.
+
+Here's a breakdown of the test:
+
+1. A CSV reader object `r` is created with a list of strings simulating 3 CSV lines.
+2. The initial value of `line_num` is asserted to be `0`.
+3. After reading the first line with `next(r)`, `line_num` is expected to be `1`.
+4. After reading the second line, it is expected to be `2`.
+5. After reading the third line, it is expected to be `3`.
+6. Another `next(r)` would raise a `StopIteration` since there are no more lines to read. This is being checked using the `assertRaises` method.
+7. Finally, it is checked that `line_num` remains `3` after the `StopIteration` exception.
+
+Based on the Python documentation for the `csv.reader` object (as of Python 3.10):
+- The `line_num` attribute of a `csv.reader` object provides the number of lines read from the source iterator.
+
+This suggests that the behavior being tested should be correct. After each call to `next(r)`, the `line_num` should increase by one, and when there are no more lines to read, a `StopIteration` exception should be raised.
+
+Therefore, this test is expected to pass.

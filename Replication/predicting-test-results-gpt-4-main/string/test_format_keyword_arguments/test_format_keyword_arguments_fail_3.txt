@@ -1,0 +1,74 @@
+    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format("-{arg}-", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, "-{arg}-")
+        self.assertEqual(fmt.format("-{self}-", self='test'), '-test-')
+        self.assertRaises(ValueError, fmt.format, "-{self}-")
+        self.assertEqual(fmt.format("-{format_string}-", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, "-{format_string}-")
+        with self.assertRaisesRegex(TypeError, "format_string"):
+            fmt.format(format_string="-{arg}-", arg='test')
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format("-{arg}-", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, "-{arg}-")
+        self.assertEqual(fmt.format("-{self}-", self='test'), '-test-')
+        self.assertRaises(ValueError, fmt.format, "-{self}-")
+        self.assertEqual(fmt.format("-{format_string}-", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, "-{format_string}-")
+        with self.assertRaisesRegex(TypeError, "format_string"):
+            fmt.format(format_string="-{arg}-", arg='test')
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test case by case:
+
+1. `self.assertEqual(fmt.format("-{arg}-", arg='test'), '-test-')`
+    - This will replace the keyword `arg` with its corresponding value 'test'.
+    - Expected result is '-test-', so this test will **pass**.
+
+2. `self.assertRaises(KeyError, fmt.format, "-{arg}-")`
+    - This expects a `KeyError` since there's no keyword argument `arg` provided.
+    - A `KeyError` is raised when the keyword isn't found in the arguments. So, this test will **pass**.
+
+3. `self.assertEqual(fmt.format("-{self}-", self='test'), '-test-')`
+    - This will replace the keyword `self` with 'test'.
+    - Expected result is '-test-', so this test will **pass**.
+
+4. `self.assertRaises(ValueError, fmt.format, "-{self}-")`
+    - The test expects a `ValueError` when using the keyword `self` without providing a value.
+    - However, using 'self' as a keyword without providing its value will raise a `KeyError`, not a `ValueError`. So, this test will **fail**.
+
+5. `self.assertEqual(fmt.format("-{format_string}-", format_string='test'), '-test-')`
+    - This replaces the keyword `format_string` with 'test'.
+    - Expected result is '-test-', so this test will **pass**.
+
+6. `self.assertRaises(KeyError, fmt.format, "-{format_string}-")`
+    - This expects a `KeyError` since there's no keyword argument `format_string` provided.
+    - A `KeyError` is raised when the keyword isn't found in the arguments. So, this test will **pass**.
+
+7. 
+   ```python
+   with self.assertRaisesRegex(TypeError, "format_string"):
+       fmt.format(format_string="-{arg}-", arg='test')
+   ```
+    - The code expects a `TypeError` containing the substring "format_string".
+    - This is because the keyword `format_string` is a special parameter name for the `Formatter.format` method in Python. When you provide it as a keyword argument, it causes ambiguity, and a `TypeError` is raised. So, this test will **pass**.
+
+In summary, the test will **fail** because of the 4th test case which expects a `ValueError` instead of the correct `KeyError` for the missing 'self' keyword argument.

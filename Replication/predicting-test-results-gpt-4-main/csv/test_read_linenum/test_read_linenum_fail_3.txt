@@ -1,0 +1,57 @@
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 4)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 4)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The test seems to be checking the `line_num` attribute of the `csv.reader` object to determine how many lines have been read from the input.
+
+Given the test and based on my knowledge of the `csv.reader` object as of Python 3.10, here's the line-by-line breakdown:
+
+1. `r = csv.reader(['line,1', 'line,2', 'line,3'])` - This creates a new csv reader object that will read from the list of strings. 
+2. `self.assertEqual(r.line_num, 0)` - At this point, no lines have been read yet, so `line_num` should indeed be `0`.
+3. `next(r)` - This reads the first line ('line,1') from the reader.
+4. `self.assertEqual(r.line_num, 1)` - After reading one line, `line_num` should be `1`.
+5. `next(r)` - This reads the second line ('line,2').
+6. `self.assertEqual(r.line_num, 2)` - Now `line_num` should be `2`.
+7. `next(r)` - This reads the third and final line ('line,3').
+8. `self.assertEqual(r.line_num, 3)` - `line_num` should now be `3`.
+9. `self.assertRaises(StopIteration, next, r)` - The next call to `next(r)` should raise a `StopIteration` exception since there are no more lines to read. This check is valid.
+10. `self.assertEqual(r.line_num, 4)` - This asserts that after the `StopIteration` is raised, the `line_num` should be incremented by one, resulting in a value of `4`.
+
+Based on the documentation and behavior of `csv.reader` in Python 3.10, the `line_num` attribute does get incremented each time a line is read, and even when a `StopIteration` is raised (because an attempt was made to read the next line).
+
+Therefore, the test should **pass**.

@@ -1,0 +1,51 @@
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test function step by step:
+
+1. A `csv.reader` object is initialized with a list of strings: `['line,1', 'line,2', 'line,3']`.
+2. The line number (`line_num`) attribute of the `csv.reader` object is checked before any lines are read. It's expected to be `0` at this point.
+3. The `next()` function is called to read the first line from the reader. The `line_num` is then checked again, and it's expected to be `1`.
+4. The above step is repeated twice more, increasing the expected `line_num` by one each time.
+5. After all the lines have been read, the test tries to read one more line, which should raise a `StopIteration` exception since there are no more lines to read.
+6. Finally, the `line_num` is checked one more time after the `StopIteration` exception, and it's still expected to be `3`.
+
+Based on my knowledge of the `csv.reader` object and its `line_num` attribute, this test will pass.
+
+The `line_num` attribute of the `csv.reader` object indicates the number of lines that have been read so far. It starts at `0` and increments by one each time a line is read. When a `StopIteration` exception is raised because there are no more lines to read, the `line_num` attribute does not increment further.

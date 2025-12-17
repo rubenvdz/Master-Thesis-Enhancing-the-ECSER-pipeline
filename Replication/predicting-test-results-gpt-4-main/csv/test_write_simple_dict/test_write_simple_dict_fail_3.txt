@@ -1,0 +1,61 @@
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2", "f3"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2,f3\r\n")
+            writer.writerow({"f1": 10, "f3": "aaa"})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "10,,abc\r\n")
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2", "f3"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2,f3\r\n")
+            writer.writerow({"f1": 10, "f3": "aaa"})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "10,,abc\r\n")
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+This test will fail.
+
+Let's break down the test:
+
+1. A temporary file is created with write and read permissions (`w+` mode) and is set to use UTF-8 encoding. The `newline=''` ensures that the writer writes newlines as `\r\n`.
+
+2. A `csv.DictWriter` object is created with field names `["f1", "f2", "f3"]`.
+
+3. The header is written using `writer.writeheader()`, which will write `f1,f2,f3\r\n` to the file.
+
+4. The file's position is reset to the beginning using `fileobj.seek(0)`, and the test checks if the header is correctly written. This part of the test will pass.
+
+5. Next, a row is written using `writer.writerow({"f1": 10, "f3": "aaa"})`.
+
+6. The file's position is reset to the beginning again using `fileobj.seek(0)` and the header is read using `fileobj.readline()` to skip it.
+
+7. Finally, the test checks if the remaining content of the file is `"10,,abc\r\n"`. This is where the test will fail. The reason is that the row that was written was `{"f1": 10, "f3": "aaa"}`, so the correct content should be `"10,,aaa\r\n"` and not `"10,,abc\r\n"`.
+
+Thus, the test will fail at the last assertion due to the incorrect expected value. The correct line of the test should be:
+```python
+self.assertEqual(fileobj.read(), "10,,aaa\r\n")
+```

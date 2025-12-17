@@ -1,0 +1,62 @@
+    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test to understand what each line does and whether it behaves as expected:
+
+1. `ast.parse('def foo(x, /): ...', feature_version=(3, 7))`
+   This attempts to parse the definition of a function that uses a positional-only argument, but specifies that the code should be interpreted as if it was written for Python 3.7. Positional-only parameters were introduced in Python 3.8, so this should raise a `SyntaxError`. The test checks for this, so this line is correct.
+
+2. `ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))`
+   Here, the code attempts to parse a function that uses a default value for a positional-only argument and is interpreted for Python 3.8. Since Python 3.8 supports positional-only arguments, there should not be any error here. However, the test expects a `SyntaxError`, which is incorrect.
+
+3. `ast.parse('lambda x, /: ...', feature_version=(3, 8))`
+   This line parses a lambda function with a positional-only argument for Python 3.8. This should not raise any error, and the test doesn't expect one, so this line is correct.
+
+4. `ast.parse('lambda x=1, /: ...', feature_version=(3, 8))`
+   This attempts to parse a lambda function with a default value for a positional-only argument for Python 3.8. Again, this should work without any issues, and the test doesn't expect any, so this line is correct.
+
+5. `ast.parse('lambda x, /: ...', feature_version=(3, 7))`
+   Similar to the first line, but with a lambda function. This should raise a `SyntaxError` because positional-only arguments weren't available in Python 3.7. The test checks for this, so this line is correct.
+
+6. `ast.parse('lambda x=1, /: ...', feature_version=(3, 7))`
+   This line is similar to the fifth line, but with a default value for the argument. It should also raise a `SyntaxError` for the same reason, and the test checks for this, so this line is correct.
+
+In conclusion, the test will fail due to the second line (`ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))`). The test incorrectly expects a `SyntaxError` when parsing a function definition with a default value for a positional-only argument for Python 3.8.

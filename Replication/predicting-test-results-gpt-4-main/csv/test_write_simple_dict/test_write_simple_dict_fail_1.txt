@@ -1,0 +1,62 @@
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2,f3\r\n")
+            writer.writerow({"f1": 10, "f3": "abc"})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "10,,abc\r\n")
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile("w+", encoding="utf-8", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = ["f1", "f2"])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), "f1,f2,f3\r\n")
+            writer.writerow({"f1": 10, "f3": "abc"})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "10,,abc\r\n")
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's analyze the test step by step:
+
+1. A temporary file is opened with write and read modes (`w+`) and a specified encoding (`utf-8`).
+2. A `csv.DictWriter` instance is created with field names `f1` and `f2`.
+3. The header is written to the file using `writer.writeheader()`.
+4. The file position is reset to the beginning using `fileobj.seek(0)`.
+5. The first assertion checks if the written header is equal to `"f1,f2,f3\r\n"`.
+
+Here's the first issue: The `DictWriter` instance was created with only `f1` and `f2` as the field names. Therefore, the written header should be `"f1,f2\r\n"`. The assertion will fail.
+
+Continuing the analysis:
+
+6. A row is written to the file using `writer.writerow({"f1": 10, "f3": "abc"})`.
+7. Again, the file position is reset to the beginning using `fileobj.seek(0)`.
+8. The header line is read and skipped using `fileobj.readline()`.
+9. The second assertion checks if the written data row is equal to `"10,,abc\r\n"`.
+
+Here's the second issue: The `DictWriter` was only informed about the fields `f1` and `f2`. Thus, when you try to write a dictionary that has a key `f3`, the `DictWriter` will ignore it because `f3` is not in its field names. The expected output for the row would be `"10,\r\n"`, as it will write the value for `f1` and recognize that `f2` is missing (and `f3` is not considered).
+
+Therefore, the test will fail at both the assertions:
+
+1. The first assertion will fail because the actual header written is `"f1,f2\r\n"`, not `"f1,f2,f3\r\n"`.
+2. The second assertion will fail because the actual data row written is `"10,\r\n"`, not `"10,,abc\r\n"`.

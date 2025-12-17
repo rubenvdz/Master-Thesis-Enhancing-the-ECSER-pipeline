@@ -1,0 +1,92 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.zzz
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.zzz
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.zzz
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test step by step:
+
+1. `x = ast.AST()`: 
+    This creates an instance of the `AST` class, which is the base class for all AST nodes. This should work without any issues.
+
+2. `self.assertEqual(x._fields, ())`:
+    Checks if the `_fields` attribute of the `x` object is an empty tuple. The `_fields` attribute in the `AST` class is an empty tuple, so this should pass.
+
+3. `x.foobar = 42`:
+    This line is setting a new attribute `foobar` to the `x` object with a value of 42. This is allowed in Python, so there shouldn't be any issues here.
+
+4. `self.assertEqual(x.foobar, 42)`:
+    Checks if the `foobar` attribute of the `x` object has a value of 42. Since it was just set to 42 in the previous step, this should pass.
+
+5. `self.assertEqual(x.__dict__["foobar"], 42)`:
+    This checks if the `__dict__` attribute (which holds an object's attributes) of the `x` object contains the `foobar` key with a value of 42. Since `x.foobar` was just set, this should also pass.
+
+6. `with self.assertRaises(AttributeError): x.zzz`:
+    This checks if trying to access the `zzz` attribute of the `x` object raises an `AttributeError`. Since `x.zzz` was never defined, it should indeed raise an `AttributeError`, so this check should pass.
+
+7. `with self.assertRaises(TypeError): ast.AST(2)`:
+    This checks if trying to instantiate the `AST` class with a positional argument raises a `TypeError`. The `AST` class doesn't take any positional arguments for its constructor, so trying to pass `2` should raise a `TypeError`, making this check pass.
+
+Given the above analysis, the test should pass without any failures.

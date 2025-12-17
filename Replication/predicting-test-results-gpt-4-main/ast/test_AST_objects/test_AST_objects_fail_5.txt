@@ -1,0 +1,72 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(AttributeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(AttributeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test step by step:
+
+1. The `ast` module is imported, which is the Abstract Syntax Trees module in Python.
+2. An instance `x` of the base `ast.AST` class is created.
+3. The test asserts that the `_fields` attribute of this instance is an empty tuple. The `_fields` attribute is used internally in the `ast` module to indicate which fields are expected for each specific subclass of `AST`. For the base `AST` class, this should indeed be an empty tuple.
+4. The test assigns a custom attribute `foobar` with the value `42` to the `x` instance.
+5. It then asserts that the value of this attribute can be fetched using attribute access (`x.foobar`) as well as dictionary access via `__dict__`.
+6. It checks that accessing a non-existent attribute (in this case `vararg`) raises an `AttributeError`.
+7. Finally, it checks that attempting to pass arguments to the constructor of `AST` raises an `AttributeError` with the specific message.
+
+Based on the code and the understanding of the `ast.AST` class:
+
+1. Creating an `ast.AST()` instance without any argument is valid.
+2. `x._fields` should be an empty tuple for the base `AST` class.
+3. Custom attributes can be set and accessed as demonstrated in the test.
+4. Accessing a non-existent attribute will raise an `AttributeError`.
+5. The base `AST` constructor doesn't take any positional arguments, so attempting to pass an argument should raise an error.
+
+However, there's one possible discrepancy. The comment within the last `with` block suggests that an `AttributeError` is expected with the message "ast.AST constructor takes 0 positional arguments". However, the type of exception typically raised when providing incorrect arguments to a function or constructor is `TypeError`.
+
+Thus, this line:
+```python
+with self.assertRaises(AttributeError):
+    # "ast.AST constructor takes 0 positional arguments"
+    ast.AST(2)
+```
+might actually fail because it might raise a `TypeError` rather than an `AttributeError`.
+
+To summarize, the test will likely fail at the last `with` block because the exception type might be a `TypeError` instead of an `AttributeError`.

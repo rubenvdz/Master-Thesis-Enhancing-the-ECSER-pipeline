@@ -1,0 +1,94 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], "42")
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], "42")
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's evaluate the given test step by step.
+
+1. **Instantiating an AST object**:
+    ```python
+    x = ast.AST()
+    ```
+    This will successfully create an instance of `ast.AST()`.
+
+2. **Checking fields of AST object**:
+    ```python
+    self.assertEqual(x._fields, ())
+    ```
+    The `_fields` attribute of an AST object is a tuple that contains the names of all fields. For the base `ast.AST` class, this tuple is empty, so this check will pass.
+
+3. **Assigning and Checking Custom Attributes**:
+    ```python
+    x.foobar = 42
+    self.assertEqual(x.foobar, 42)
+    ```
+    You can assign custom attributes to Python objects, so assigning `foobar` to the AST object `x` and checking its value will pass.
+
+4. **Checking Value in `__dict__`**:
+    ```python
+    self.assertEqual(x.__dict__["foobar"], "42")
+    ```
+    This will fail. While `x.foobar` is indeed `42`, `x.__dict__["foobar"]` will also be `42`, but it will be an integer, not a string. So, the correct assertion should be:
+    ```python
+    self.assertEqual(x.__dict__["foobar"], 42)
+    ```
+
+5. **Accessing a Non-existent Attribute**:
+    ```python
+    with self.assertRaises(AttributeError):
+        x.vararg
+    ```
+    Since `vararg` was not assigned to `x`, trying to access it will raise an `AttributeError`. Thus, this check will pass.
+
+6. **Instantiating AST with Positional Argument**:
+    ```python
+    with self.assertRaises(TypeError):
+        # "ast.AST constructor takes 0 positional arguments"
+        ast.AST(2)
+    ```
+    Trying to instantiate `ast.AST` with a positional argument will raise a `TypeError`, so this check will pass.
+
+**Conclusion**:
+The test will fail at the line:
+```python
+self.assertEqual(x.__dict__["foobar"], "42")
+```
+because `x.__dict__["foobar"]` is `42` (an integer), not `"42"` (a string).

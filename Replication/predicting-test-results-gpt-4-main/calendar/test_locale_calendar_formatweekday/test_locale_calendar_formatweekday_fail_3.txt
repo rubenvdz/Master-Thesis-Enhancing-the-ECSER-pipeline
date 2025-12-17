@@ -1,0 +1,65 @@
+    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), "Mo")
+            self.assertEqual(cal.formatweekday(0, 2), "Mo")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), "Mon")
+            self.assertEqual(cal.formatweekday(0, 5), " Mon ")
+            self.assertEqual(cal.formatweekday(0, 8), "  Mon   ")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), "  Monday ")
+            self.assertEqual(cal.formatweekday(0, 10), "  Monday  ")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), "Mo")
+            self.assertEqual(cal.formatweekday(0, 2), "Mo")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), "Mon")
+            self.assertEqual(cal.formatweekday(0, 5), " Mon ")
+            self.assertEqual(cal.formatweekday(0, 8), "  Mon   ")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), "  Monday ")
+            self.assertEqual(cal.formatweekday(0, 10), "  Monday  ")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The code tests the behavior of the `formatweekday` method of the `LocaleTextCalendar` class in the `calendar` module with respect to the `en_US` locale.
+
+Let's break down the behavior being tested:
+
+1. For very short widths (1 and 2), the name of the weekday should be truncated to those widths. The code expects "Mo" for both.
+2. For short widths (3, 5, and 8), the abbreviated name of the weekday should be centered within those widths. The code expects "Mon", " Mon ", and "  Mon   " respectively.
+3. For long widths (9 and 10), the full name of the weekday should be used and centered within those widths. The code expects "  Monday " and "  Monday  " respectively.
+
+Given that the `formatweekday` method of the `LocaleTextCalendar` class is supposed to format day names based on the given width and locale, and assuming that the `en_US` locale is correctly defined in the underlying system to have Monday as "Monday" and its abbreviation as "Mon", this test should pass.
+
+However, there are potential reasons for failures:
+
+1. **Locale Unavailability**: If the system on which this code runs doesn't have the `en_US` locale available or properly configured, the `locale.Error` exception will be raised. In such cases, the test will be skipped (not failed).
+2. **Unexpected Behavior**: If the `formatweekday` method doesn't behave as expected (i.e., doesn't provide the expected output for the given inputs), the test will fail. This would likely be because of changes in the Python Standard Library or misinterpretations of its intended behavior.
+
+Based on the given code and the Python 3.10 documentation, the test should pass if the locale is available. If the locale is unavailable, the test will be skipped. If the test fails, it would likely be due to unexpected changes or bugs in the library.

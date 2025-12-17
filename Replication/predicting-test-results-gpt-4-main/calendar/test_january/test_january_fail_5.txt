@@ -1,0 +1,26 @@
+    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,65), (3,31))
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,65), (3,31))
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+The test will fail. 
+
+The reason is the method `calendar.monthrange(year, month)` expects the `month` argument to be a value between 1 and 12, inclusive. The test is providing the value 

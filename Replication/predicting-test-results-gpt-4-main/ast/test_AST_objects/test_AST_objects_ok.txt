@@ -1,0 +1,76 @@
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+
+===
+
+Consider the following test of the Python Standard Library, version 3.10: 
+
+```
+    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__["foobar"], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # "ast.AST constructor takes 0 positional arguments"
+            ast.AST(2)
+```
+
+Your job is to figure out whether this test will pass or fail.
+If it fails, provide the rationale.
+
+===
+
+Let's break down the test:
+
+1. 
+   ```python
+   x = ast.AST()
+   self.assertEqual(x._fields, ())
+   ```
+   This code is initializing an instance of the `ast.AST` class and asserting that its `_fields` attribute is an empty tuple. This assertion is valid, as the base `ast.AST` class does not have any specific fields and `_fields` is an empty tuple.
+
+2. 
+   ```python
+   x.foobar = 42
+   self.assertEqual(x.foobar, 42)
+   self.assertEqual(x.__dict__["foobar"], 42)
+   ```
+   This part is setting an attribute `foobar` on the `x` object and asserting that its value is `42`. This is valid and will work because `x` is a Python object, and you can set arbitrary attributes on objects. The next line asserts that the attribute is also present in the `__dict__` of the object, which is also correct, because setting an attribute on an object generally updates its `__dict__`.
+
+3. 
+   ```python
+   with self.assertRaises(AttributeError):
+       x.vararg
+   ```
+   Here, the test expects an `AttributeError` when trying to access an attribute `vararg` that hasn't been defined. This is correct, as accessing an undefined attribute raises `AttributeError`.
+
+4. 
+   ```python
+   with self.assertRaises(TypeError):
+       # "ast.AST constructor takes 0 positional arguments"
+       ast.AST(2)
+   ```
+   This part expects a `TypeError` when passing a positional argument to the `ast.AST` constructor. As of Python 3.10, the `ast.AST` constructor indeed does not accept any positional arguments, so this assertion is valid.
+
+Given the above breakdown, the test should pass in Python 3.10.
