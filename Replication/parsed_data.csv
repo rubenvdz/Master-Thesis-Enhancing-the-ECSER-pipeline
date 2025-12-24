@@ -1,0 +1,3286 @@
+suite name label n test
+ast test_AST_objects fail 1 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, [])
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects fail 10 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], ""42"")
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects fail 2 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertNotEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects fail 3 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertNotEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects fail 4 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(TypeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects fail 5 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(AttributeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects fail 6 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects fail 7 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        # ""ast.AST constructor takes 0 positional arguments""
+        ast.AST(2)
+
+"
+ast test_AST_objects fail 8 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        ast.AST(2)
+
+"
+ast test_AST_objects fail 9 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, ""42"")
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects pass 1 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = -1
+        self.assertEqual(x.foobar, -1)
+        self.assertEqual(x.__dict__[""foobar""], -1)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects pass 10 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        r = 42
+        self.assertEqual(x._fields, ())
+        x.foobar = r
+        self.assertEqual(x.foobar, r)
+        self.assertEqual(x.__dict__[""foobar""], r)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects pass 2 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.zzz = 42
+        self.assertEqual(x.zzz, 42)
+        self.assertEqual(x.__dict__[""zzz""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects pass 3 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.zzz
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects pass 4 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            ast.AST(2)
+
+"
+ast test_AST_objects pass 5 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(-1)
+
+"
+ast test_AST_objects pass 6 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(-1, -1)
+
+"
+ast test_AST_objects pass 7 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 1 positional arguments""
+            ast.AST(2)
+
+"
+ast test_AST_objects pass 8 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 2 positional arguments""
+            ast.AST(2, 2)
+
+"
+ast test_AST_objects pass 9 "    import ast
+    ...
+    def test_AST_objects(self):
+        x = ast.AST()
+        self.assertEqual(x._fields, ())
+        x.foobar = 42
+        x.foobar2 = 43
+        self.assertEqual(x.foobar, 42)
+        self.assertEqual(x.foobar2, 43)
+        self.assertEqual(x.__dict__[""foobar""], 42)
+        self.assertEqual(x.__dict__[""foobar2""], 43)
+
+        with self.assertRaises(AttributeError):
+            x.vararg
+
+        with self.assertRaises(TypeError):
+            # ""ast.AST constructor takes 0 positional arguments""
+            ast.AST(2)
+
+"
+ast test_positional_only_feature_version fail 1 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 10 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+
+"
+ast test_positional_only_feature_version fail 2 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(AttributeError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 3 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(AttributeError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 4 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 5 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 6 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 7 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(AttributeError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 8 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(AttributeError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version fail 9 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 1 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 9))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 9))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 10 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 9))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 9))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 6))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 6))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 9))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 9))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 6))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 6))
+
+"
+ast test_positional_only_feature_version pass 2 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 6))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 6))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 3 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 9))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 9))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 4 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 6))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 6))
+
+"
+ast test_positional_only_feature_version pass 5 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(zzz, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(zzz=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(zzz, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(zzz=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 6 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda zzz, /: ...', feature_version=(3, 8))
+        ast.parse('lambda zzz=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda zzz, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda zzz=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 7 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=-1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=-1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 8 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 9))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 9))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 9))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 9))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 7))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
+
+"
+ast test_positional_only_feature_version pass 9 "    import ast
+    ...
+    def test_positional_only_feature_version(self):
+        ast.parse('def foo(x, /): ...', feature_version=(3, 8))
+        ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def foo(x, /): ...', feature_version=(3, 6))
+        with self.assertRaises(SyntaxError):
+            ast.parse('def bar(x=1, /): ...', feature_version=(3, 6))
+
+        ast.parse('lambda x, /: ...', feature_version=(3, 8))
+        ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x, /: ...', feature_version=(3, 6))
+        with self.assertRaises(SyntaxError):
+            ast.parse('lambda x=1, /: ...', feature_version=(3, 6))
+
+"
+calendar test_january fail 1 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,1), (4,31))
+
+"
+calendar test_january fail 10 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,12), (2,30))
+
+"
+calendar test_january fail 2 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,1), (3,30))
+
+"
+calendar test_january fail 3 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,0), (3,31))
+
+"
+calendar test_january fail 4 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,13), (3,31))
+
+"
+calendar test_january fail 5 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,65), (3,31))
+
+"
+calendar test_january fail 6 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        with self.assertRaises(calendar.IllegalMonthError):
+            self.assertEqual(calendar.monthrange(2004,1), (3,31))
+
+"
+calendar test_january fail 7 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        with self.assertRaises(AttributeError):
+            self.assertEqual(calendar.monthrange(2004,0), (3,31))
+
+"
+calendar test_january fail 8 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,2), (6,28))
+
+"
+calendar test_january fail 9 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2010,2), (0,29))
+
+"
+calendar test_january pass 1 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,2), (6,29))
+
+"
+calendar test_january pass 10 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,1), (3,31))
+        self.assertEqual(calendar.monthrange(2004,2), (6,29))
+        self.assertEqual(calendar.monthrange(2010,2), (0,28))
+
+"
+calendar test_january pass 2 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2010,2), (0,28))
+
+"
+calendar test_january pass 3 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,12), (2,31))
+
+"
+calendar test_january pass 4 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        with self.assertRaises(calendar.IllegalMonthError):
+            calendar.monthrange(2004, 0)
+
+"
+calendar test_january pass 5 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        with self.assertRaises(calendar.IllegalMonthError):
+            calendar.monthrange(2004, 13)
+
+"
+calendar test_january pass 6 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        with self.assertRaisesRegex(calendar.IllegalMonthError, '65'):
+            calendar.monthrange(2004, 65)
+
+"
+calendar test_january pass 7 "    import calendar
+    ...
+    def test_january(self):
+        self.assertEqual(calendar.monthrange(2004,1), (3,31))
+
+"
+calendar test_january pass 8 "    import calendar
+    ...
+    def test_january(self):
+        # Tests invalid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,1), (3,31))
+
+"
+calendar test_january pass 9 "    import calendar
+    ...
+    def test_january(self):
+        # Tests valid lower boundary case.
+        self.assertEqual(calendar.monthrange(2004,1), (3,31))
+        self.assertEqual(calendar.monthrange(2004,2), (6,29))
+
+"
+calendar test_locale_calendar_formatweekday fail 1 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M "")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 10 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(1, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 2 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""M"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 3 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""Mo"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 4 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 4), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 5 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 11), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 6 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""Monday"")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 7 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(1, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 8 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(1, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday fail 9 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(1, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 1 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(1, 1), ""T"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 10 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 2 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(1, 2), ""Tu"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 3 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(1, 3), ""Tue"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 4 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(1, 5), "" Tue "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 5 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(1, 8), ""  Tue   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 6 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(1, 9), "" Tuesday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 7 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            # For short widths, a centered, abbreviated name is used.
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(1, 10), "" Tuesday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 8 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+calendar test_locale_calendar_formatweekday pass 9 "    import calendar
+    ...
+    def test_locale_calendar_formatweekday(self):
+        try:
+            # formatweekday uses different day names based on the available width.
+            cal = calendar.LocaleTextCalendar(locale='en_US')
+            
+            # For really short widths, the abbreviated name is truncated.
+            self.assertEqual(cal.formatweekday(0, 1), ""M"")
+            self.assertEqual(cal.formatweekday(0, 2), ""Mo"")
+            self.assertEqual(cal.formatweekday(0, 3), ""Mon"")
+            self.assertEqual(cal.formatweekday(0, 5), "" Mon "")
+            self.assertEqual(cal.formatweekday(0, 8), ""  Mon   "")
+            
+            # For long widths, the full day name is used.
+            self.assertEqual(cal.formatweekday(0, 9), ""  Monday "")
+            self.assertEqual(cal.formatweekday(0, 10), ""  Monday  "")
+        except locale.Error:
+            raise unittest.SkipTest('cannot set the en_US locale')
+
+"
+csv test_read_linenum fail 1 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum fail 10 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line1 line2 line3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum fail 2 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum fail 3 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 4)
+
+"
+csv test_read_linenum fail 4 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        next(r)
+        self.assertEqual(r.line_num, 4)
+
+"
+csv test_read_linenum fail 5 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(RuntimeError, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum fail 6 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum fail 7 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3', 'line,4'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum fail 8 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 2)
+
+"
+csv test_read_linenum fail 9 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1 line,2 line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum pass 1 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,0', 'line,2', 'line,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum pass 10 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,,1', 'line,,2', 'line,,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum pass 2 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,1', 'line,1'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum pass 3 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line1', 'line2', 'line3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum pass 4 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2', 'line,3'])
+        line_num = 0
+        self.assertEqual(r.line_num, line_num)
+        next(r)
+        self.assertEqual(r.line_num, line_num+1)
+        next(r)
+        self.assertEqual(r.line_num, line_num+2)
+        next(r)
+        self.assertEqual(r.line_num, line_num+3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, line_num+3)
+
+"
+csv test_read_linenum pass 5 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1', 'line,2'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 2)
+
+"
+csv test_read_linenum pass 6 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 1)
+
+"
+csv test_read_linenum pass 7 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['zzz,1', 'zzz,2', 'zzz,3'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum pass 8 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,10', 'line,20', 'line,30'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_read_linenum pass 9 "    import csv
+    ...
+    def test_read_linenum(self):
+        r = csv.reader(['line,1,2', 'line,2,3', 'line,3,4'])
+        self.assertEqual(r.line_num, 0)
+        next(r)
+        self.assertEqual(r.line_num, 1)
+        next(r)
+        self.assertEqual(r.line_num, 2)
+        next(r)
+        self.assertEqual(r.line_num, 3)
+        self.assertRaises(StopIteration, next, r)
+        self.assertEqual(r.line_num, 3)
+
+"
+csv test_write_simple_dict fail 1 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict fail 10 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict fail 2 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict fail 3 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""aaa""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict fail 4 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,aaa\r\n"")
+
+"
+csv test_write_simple_dict fail 5 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,abc,\r\n"")
+
+"
+csv test_write_simple_dict fail 6 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "",10,abc\r\n"")
+
+"
+csv test_write_simple_dict fail 7 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r"")
+
+"
+csv test_write_simple_dict fail 8 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc"")
+
+"
+csv test_write_simple_dict fail 9 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict pass 1 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f0"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f0,f2,f3\r\n"")
+            writer.writerow({""f0"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict pass 10 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": ""10"", ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict pass 2 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f2"", ""f1"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f2,f1,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "",10,abc\r\n"")
+
+"
+csv test_write_simple_dict pass 3 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f11"", ""f22"", ""f33""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f11,f22,f33\r\n"")
+            writer.writerow({""f11"": 10, ""f33"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict pass 4 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline()
+            self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
+
+"
+csv test_write_simple_dict pass 5 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2\r\n"")
+            writer.writerow({""f1"": 10})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,\r\n"")
+
+"
+csv test_write_simple_dict pass 6 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f2"": 10})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), "",10,\r\n"")
+
+"
+csv test_write_simple_dict pass 7 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 100, ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""100,,abc\r\n"")
+
+"
+csv test_write_simple_dict pass 8 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f3"": ""abcd""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,,abcd\r\n"")
+
+"
+csv test_write_simple_dict pass 9 "    import csv
+    from tempfile import TemporaryFile
+    ...
+    def test_write_simple_dict(self):
+        with TemporaryFile(""w+"", encoding=""utf-8"", newline='') as fileobj:
+            writer = csv.DictWriter(fileobj, fieldnames = [""f1"", ""f2"", ""f3""])
+            writer.writeheader()
+            fileobj.seek(0)
+            self.assertEqual(fileobj.readline(), ""f1,f2,f3\r\n"")
+            writer.writerow({""f1"": 10, ""f2"": ""zzz"", ""f3"": ""abc""})
+            fileobj.seek(0)
+            fileobj.readline() # header
+            self.assertEqual(fileobj.read(), ""10,zzz,abc\r\n"")
+
+"
+gzip test_bad_params fail 1 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(ValueError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 10 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 2 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(TypeError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 3 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wb"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 4 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 5 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wt"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 6 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wt"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 7 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wt"", newline=""\n"")
+
+"
+gzip test_bad_params fail 8 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params fail 9 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 1 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(456.123)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 10 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 2 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 3 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 4 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""abt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 5 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 6 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"", errors=""ignore"", newline=""\n"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 7 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 8 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", newline=""\n"")
+
+"
+gzip test_bad_params pass 9 "    import gzip
+    ...
+    def test_bad_params(self):
+        # Test invalid parameter combinations.
+        with self.assertRaises(TypeError):
+            gzip.open(123.456)
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""xbt"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", encoding=""utf-8"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""rb"", errors=""ignore"")
+        with self.assertRaises(ValueError):
+            gzip.open(self.filename, ""wb"", newline=""\n"")
+
+"
+gzip test_fileobj_mode fail 1 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 10 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 2 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 3 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(TypeError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 4 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 5 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.READ)
+
+"
+gzip test_fileobj_mode fail 6 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 7 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 8 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode fail 9 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 1 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            m = gzip.READ
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, m)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 10 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='xbt')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 2 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            m = gzip.WRITE
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, m)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, m)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, m)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 3 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='zzz')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 4 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 5 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 6 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 7 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    m = gzip.READ
+                    self.assertEqual(g.mode, m)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+gzip test_fileobj_mode pass 8 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='z')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    m = gzip.WRITE
+                    self.assertEqual(g.mode, m)
+
+"
+gzip test_fileobj_mode pass 9 "    import gzip
+    ...
+    def test_fileobj_mode(self):
+        gzip.GzipFile(self.filename, ""wb"").close()
+        with open(self.filename, ""r+b"") as f:
+            with gzip.GzipFile(fileobj=f, mode='r') as g:
+                self.assertEqual(g.mode, gzip.READ)
+            with gzip.GzipFile(fileobj=f, mode='w') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='a') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with gzip.GzipFile(fileobj=f, mode='x') as g:
+                self.assertEqual(g.mode, gzip.WRITE)
+            with self.assertRaises(ValueError):
+                gzip.GzipFile(fileobj=f, mode='wbt')
+        for mode in ""rb"", ""r+b"":
+            with open(self.filename, mode) as f:
+                with gzip.GzipFile(fileobj=f) as g:
+                    self.assertEqual(g.mode, gzip.READ)
+        for mode in ""wb"", ""ab"", ""xb"":
+            if ""x"" in mode:
+                os_helper.unlink(self.filename)
+            with open(self.filename, mode) as f:
+                with self.assertWarns(FutureWarning):
+                    g = gzip.GzipFile(fileobj=f)
+                with g:
+                    self.assertEqual(g.mode, gzip.WRITE)
+
+"
+string test_basic_formatter fail 1 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), "" foo "")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 10 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}+-{1}"", ""bar"", 6), ""foo6bar-+6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 2 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foo bar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 3 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{1}-{0}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 4 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-bar"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 5 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 6 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(ValueError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 7 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(ValueError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 8 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter fail 9 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}+{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 1 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo2""), ""foo2"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 10 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{0}{0}-{1}"", ""bar"", 6), ""foobarbar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 2 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo-{0}"", ""bar""), ""foo-bar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 3 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar2""), ""foobar2"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 4 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 10), ""foo10bar-10"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 5 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        r = ""foo""
+        self.assertEqual(fmt.format(r), r)
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 6 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, string.Formatter.format)
+        self.assertRaises(TypeError, fmt.format)
+
+"
+string test_basic_formatter pass 7 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""zzz{1}{0}-{1}"", ""bar"", 6), ""zzz6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 8 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""--foo{0}"", ""--""), ""--foo--"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""bar"", 6), ""foo6bar-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_basic_formatter pass 9 "    import string
+    ...
+    def test_basic_formatter(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""foo""), ""foo"")
+        self.assertEqual(fmt.format(""foo{0}"", ""bar""), ""foobar"")
+        self.assertEqual(fmt.format(""foo{1}{0}-{1}"", ""zzz"", 6), ""foo6zzz-6"")
+        self.assertRaises(TypeError, fmt.format)
+        self.assertRaises(TypeError, string.Formatter.format)
+
+"
+string test_format_keyword_arguments fail 1 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), 'test')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 10 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg1}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 2 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(ValueError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 3 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(ValueError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 4 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(ValueError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 5 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(ValueError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 6 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 7 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='-test-'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 8 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""{arg}"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments fail 9 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg1='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 1 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""{arg}"", arg='test'), 'test')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 10 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        r = '-test-'
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), r)
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), r)
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         r)
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 2 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='-test-'), '--test--')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 3 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg2}-"", arg2='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 4 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg2}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 5 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format__string}-"", format__string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 6 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format__string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 7 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string2""):
+            fmt.format(format_string2=""-{arg}-"", arg='test')
+
+"
+string test_format_keyword_arguments pass 8 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg}-"", arg='test')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+
+"
+string test_format_keyword_arguments pass 9 "    import string
+    ...
+    def test_format_keyword_arguments(self):
+        fmt = string.Formatter()
+        self.assertEqual(fmt.format(""-{arg}-"", arg='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{arg}-"")
+        self.assertEqual(fmt.format(""-{self}-"", self='test'), '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{self}-"")
+        self.assertEqual(fmt.format(""-{format_string}-"", format_string='test'),
+                         '-test-')
+        self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
+        with self.assertRaisesRegex(TypeError, ""format_string""):
+            fmt.format(format_string=""-{arg2}-"", arg2='test')
+
+"
