@@ -6,9 +6,6 @@ Created on Wed Dec 17 13:38:31 2025
 """
 
 import pandas as pd
-from collections import Counter
-import numpy as np
-from matplotlib import pyplot as plt
 import os
 from os.path import join, getsize
 from collections import defaultdict
