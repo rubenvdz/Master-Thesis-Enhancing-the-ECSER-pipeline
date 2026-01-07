@@ -1,0 +1,9 @@
+Consider the following test of the Python Standard
+Library, version 3.10:
+<test_case>
+Your job is to figure out whether this test will pass or
+fail. If it fails, provide the rationale.
+
+Answer in the following format:
+Explanation: <free text>
+Label: <PASS | FAIL>

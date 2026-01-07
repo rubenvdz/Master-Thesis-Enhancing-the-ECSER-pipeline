@@ -1,5 +1,5 @@
-suite name label n test
-ast test_AST_objects fail 1 "    import ast
+ suite name label n test
+0 ast test_AST_objects fail 1 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -16,7 +16,7 @@ ast test_AST_objects fail 1 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects fail 10 "    import ast
+1 ast test_AST_objects fail 10 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -33,7 +33,7 @@ ast test_AST_objects fail 10 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects fail 2 "    import ast
+2 ast test_AST_objects fail 2 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -50,7 +50,7 @@ ast test_AST_objects fail 2 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects fail 3 "    import ast
+3 ast test_AST_objects fail 3 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -67,7 +67,7 @@ ast test_AST_objects fail 3 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects fail 4 "    import ast
+4 ast test_AST_objects fail 4 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -84,7 +84,7 @@ ast test_AST_objects fail 4 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects fail 5 "    import ast
+5 ast test_AST_objects fail 5 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -101,7 +101,7 @@ ast test_AST_objects fail 5 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects fail 6 "    import ast
+6 ast test_AST_objects fail 6 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -117,7 +117,7 @@ ast test_AST_objects fail 6 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects fail 7 "    import ast
+7 ast test_AST_objects fail 7 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -133,7 +133,7 @@ ast test_AST_objects fail 7 "    import ast
         ast.AST(2)
 
 "
-ast test_AST_objects fail 8 "    import ast
+8 ast test_AST_objects fail 8 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -148,7 +148,7 @@ ast test_AST_objects fail 8 "    import ast
         ast.AST(2)
 
 "
-ast test_AST_objects fail 9 "    import ast
+9 ast test_AST_objects fail 9 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -165,7 +165,7 @@ ast test_AST_objects fail 9 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects pass 1 "    import ast
+11 ast test_AST_objects pass 1 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -182,7 +182,7 @@ ast test_AST_objects pass 1 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects pass 10 "    import ast
+12 ast test_AST_objects pass 10 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -200,7 +200,7 @@ ast test_AST_objects pass 10 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects pass 2 "    import ast
+13 ast test_AST_objects pass 2 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -217,7 +217,7 @@ ast test_AST_objects pass 2 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects pass 3 "    import ast
+14 ast test_AST_objects pass 3 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -234,7 +234,7 @@ ast test_AST_objects pass 3 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects pass 4 "    import ast
+15 ast test_AST_objects pass 4 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -250,7 +250,7 @@ ast test_AST_objects pass 4 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects pass 5 "    import ast
+16 ast test_AST_objects pass 5 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -267,7 +267,7 @@ ast test_AST_objects pass 5 "    import ast
             ast.AST(-1)
 
 "
-ast test_AST_objects pass 6 "    import ast
+17 ast test_AST_objects pass 6 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -284,7 +284,7 @@ ast test_AST_objects pass 6 "    import ast
             ast.AST(-1, -1)
 
 "
-ast test_AST_objects pass 7 "    import ast
+18 ast test_AST_objects pass 7 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -301,7 +301,7 @@ ast test_AST_objects pass 7 "    import ast
             ast.AST(2)
 
 "
-ast test_AST_objects pass 8 "    import ast
+19 ast test_AST_objects pass 8 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -318,7 +318,7 @@ ast test_AST_objects pass 8 "    import ast
             ast.AST(2, 2)
 
 "
-ast test_AST_objects pass 9 "    import ast
+20 ast test_AST_objects pass 9 "    import ast
     ...
     def test_AST_objects(self):
         x = ast.AST()
@@ -338,7 +338,7 @@ ast test_AST_objects pass 9 "    import ast
             ast.AST(2)
 
 "
-ast test_positional_only_feature_version fail 1 "    import ast
+21 ast test_positional_only_feature_version fail 1 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -354,7 +354,7 @@ ast test_positional_only_feature_version fail 1 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 10 "    import ast
+22 ast test_positional_only_feature_version fail 10 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -370,7 +370,7 @@ ast test_positional_only_feature_version fail 10 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
 
 "
-ast test_positional_only_feature_version fail 2 "    import ast
+23 ast test_positional_only_feature_version fail 2 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -388,7 +388,7 @@ ast test_positional_only_feature_version fail 2 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 3 "    import ast
+24 ast test_positional_only_feature_version fail 3 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -406,7 +406,7 @@ ast test_positional_only_feature_version fail 3 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 4 "    import ast
+25 ast test_positional_only_feature_version fail 4 "    import ast
     ...
     def test_positional_only_feature_version(self):
         with self.assertRaises(SyntaxError):
@@ -422,7 +422,7 @@ ast test_positional_only_feature_version fail 4 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 5 "    import ast
+26 ast test_positional_only_feature_version fail 5 "    import ast
     ...
     def test_positional_only_feature_version(self):
         with self.assertRaises(SyntaxError):
@@ -438,7 +438,7 @@ ast test_positional_only_feature_version fail 5 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 6 "    import ast
+27 ast test_positional_only_feature_version fail 6 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -454,7 +454,7 @@ ast test_positional_only_feature_version fail 6 "    import ast
         ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 7 "    import ast
+28 ast test_positional_only_feature_version fail 7 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -472,7 +472,7 @@ ast test_positional_only_feature_version fail 7 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 8 "    import ast
+29 ast test_positional_only_feature_version fail 8 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -490,7 +490,7 @@ ast test_positional_only_feature_version fail 8 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version fail 9 "    import ast
+30 ast test_positional_only_feature_version fail 9 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -506,7 +506,7 @@ ast test_positional_only_feature_version fail 9 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 1 "    import ast
+32 ast test_positional_only_feature_version pass 1 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 9))
@@ -524,7 +524,7 @@ ast test_positional_only_feature_version pass 1 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 10 "    import ast
+33 ast test_positional_only_feature_version pass 10 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 9))
@@ -542,7 +542,7 @@ ast test_positional_only_feature_version pass 10 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 6))
 
 "
-ast test_positional_only_feature_version pass 2 "    import ast
+34 ast test_positional_only_feature_version pass 2 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -560,7 +560,7 @@ ast test_positional_only_feature_version pass 2 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 3 "    import ast
+35 ast test_positional_only_feature_version pass 3 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -578,7 +578,7 @@ ast test_positional_only_feature_version pass 3 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 4 "    import ast
+36 ast test_positional_only_feature_version pass 4 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -596,7 +596,7 @@ ast test_positional_only_feature_version pass 4 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 6))
 
 "
-ast test_positional_only_feature_version pass 5 "    import ast
+37 ast test_positional_only_feature_version pass 5 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(zzz, /): ...', feature_version=(3, 8))
@@ -614,7 +614,7 @@ ast test_positional_only_feature_version pass 5 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 6 "    import ast
+38 ast test_positional_only_feature_version pass 6 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -632,7 +632,7 @@ ast test_positional_only_feature_version pass 6 "    import ast
             ast.parse('lambda zzz=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 7 "    import ast
+39 ast test_positional_only_feature_version pass 7 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -650,7 +650,7 @@ ast test_positional_only_feature_version pass 7 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 8 "    import ast
+40 ast test_positional_only_feature_version pass 8 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 9))
@@ -668,7 +668,7 @@ ast test_positional_only_feature_version pass 8 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
 
 "
-ast test_positional_only_feature_version pass 9 "    import ast
+41 ast test_positional_only_feature_version pass 9 "    import ast
     ...
     def test_positional_only_feature_version(self):
         ast.parse('def foo(x, /): ...', feature_version=(3, 8))
@@ -686,49 +686,49 @@ ast test_positional_only_feature_version pass 9 "    import ast
             ast.parse('lambda x=1, /: ...', feature_version=(3, 6))
 
 "
-calendar test_january fail 1 "    import calendar
+42 calendar test_january fail 1 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,1), (4,31))
 
 "
-calendar test_january fail 10 "    import calendar
+43 calendar test_january fail 10 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,12), (2,30))
 
 "
-calendar test_january fail 2 "    import calendar
+44 calendar test_january fail 2 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,1), (3,30))
 
 "
-calendar test_january fail 3 "    import calendar
+45 calendar test_january fail 3 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,0), (3,31))
 
 "
-calendar test_january fail 4 "    import calendar
+46 calendar test_january fail 4 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,13), (3,31))
 
 "
-calendar test_january fail 5 "    import calendar
+47 calendar test_january fail 5 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,65), (3,31))
 
 "
-calendar test_january fail 6 "    import calendar
+48 calendar test_january fail 6 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
@@ -736,7 +736,7 @@ calendar test_january fail 6 "    import calendar
             self.assertEqual(calendar.monthrange(2004,1), (3,31))
 
 "
-calendar test_january fail 7 "    import calendar
+49 calendar test_january fail 7 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
@@ -744,28 +744,28 @@ calendar test_january fail 7 "    import calendar
             self.assertEqual(calendar.monthrange(2004,0), (3,31))
 
 "
-calendar test_january fail 8 "    import calendar
+50 calendar test_january fail 8 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,2), (6,28))
 
 "
-calendar test_january fail 9 "    import calendar
+51 calendar test_january fail 9 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2010,2), (0,29))
 
 "
-calendar test_january pass 1 "    import calendar
+53 calendar test_january pass 1 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,2), (6,29))
 
 "
-calendar test_january pass 10 "    import calendar
+54 calendar test_january pass 10 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
@@ -774,21 +774,21 @@ calendar test_january pass 10 "    import calendar
         self.assertEqual(calendar.monthrange(2010,2), (0,28))
 
 "
-calendar test_january pass 2 "    import calendar
+55 calendar test_january pass 2 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2010,2), (0,28))
 
 "
-calendar test_january pass 3 "    import calendar
+56 calendar test_january pass 3 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,12), (2,31))
 
 "
-calendar test_january pass 4 "    import calendar
+57 calendar test_january pass 4 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
@@ -796,7 +796,7 @@ calendar test_january pass 4 "    import calendar
             calendar.monthrange(2004, 0)
 
 "
-calendar test_january pass 5 "    import calendar
+58 calendar test_january pass 5 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
@@ -804,7 +804,7 @@ calendar test_january pass 5 "    import calendar
             calendar.monthrange(2004, 13)
 
 "
-calendar test_january pass 6 "    import calendar
+59 calendar test_january pass 6 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
@@ -812,20 +812,20 @@ calendar test_january pass 6 "    import calendar
             calendar.monthrange(2004, 65)
 
 "
-calendar test_january pass 7 "    import calendar
+60 calendar test_january pass 7 "    import calendar
     ...
     def test_january(self):
         self.assertEqual(calendar.monthrange(2004,1), (3,31))
 
 "
-calendar test_january pass 8 "    import calendar
+61 calendar test_january pass 8 "    import calendar
     ...
     def test_january(self):
         # Tests invalid lower boundary case.
         self.assertEqual(calendar.monthrange(2004,1), (3,31))
 
 "
-calendar test_january pass 9 "    import calendar
+62 calendar test_january pass 9 "    import calendar
     ...
     def test_january(self):
         # Tests valid lower boundary case.
@@ -833,7 +833,7 @@ calendar test_january pass 9 "    import calendar
         self.assertEqual(calendar.monthrange(2004,2), (6,29))
 
 "
-calendar test_locale_calendar_formatweekday fail 1 "    import calendar
+63 calendar test_locale_calendar_formatweekday fail 1 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -853,7 +853,7 @@ calendar test_locale_calendar_formatweekday fail 1 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 10 "    import calendar
+64 calendar test_locale_calendar_formatweekday fail 10 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -873,7 +873,7 @@ calendar test_locale_calendar_formatweekday fail 10 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 2 "    import calendar
+65 calendar test_locale_calendar_formatweekday fail 2 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -893,7 +893,7 @@ calendar test_locale_calendar_formatweekday fail 2 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 3 "    import calendar
+66 calendar test_locale_calendar_formatweekday fail 3 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -913,7 +913,7 @@ calendar test_locale_calendar_formatweekday fail 3 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 4 "    import calendar
+67 calendar test_locale_calendar_formatweekday fail 4 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -933,7 +933,7 @@ calendar test_locale_calendar_formatweekday fail 4 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 5 "    import calendar
+68 calendar test_locale_calendar_formatweekday fail 5 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -953,7 +953,7 @@ calendar test_locale_calendar_formatweekday fail 5 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 6 "    import calendar
+69 calendar test_locale_calendar_formatweekday fail 6 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -973,7 +973,7 @@ calendar test_locale_calendar_formatweekday fail 6 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 7 "    import calendar
+70 calendar test_locale_calendar_formatweekday fail 7 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -993,7 +993,7 @@ calendar test_locale_calendar_formatweekday fail 7 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 8 "    import calendar
+71 calendar test_locale_calendar_formatweekday fail 8 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1013,7 +1013,7 @@ calendar test_locale_calendar_formatweekday fail 8 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday fail 9 "    import calendar
+72 calendar test_locale_calendar_formatweekday fail 9 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1033,7 +1033,7 @@ calendar test_locale_calendar_formatweekday fail 9 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 1 "    import calendar
+74 calendar test_locale_calendar_formatweekday pass 1 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1053,7 +1053,7 @@ calendar test_locale_calendar_formatweekday pass 1 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 10 "    import calendar
+75 calendar test_locale_calendar_formatweekday pass 10 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1071,7 +1071,7 @@ calendar test_locale_calendar_formatweekday pass 10 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 2 "    import calendar
+76 calendar test_locale_calendar_formatweekday pass 2 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1091,7 +1091,7 @@ calendar test_locale_calendar_formatweekday pass 2 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 3 "    import calendar
+77 calendar test_locale_calendar_formatweekday pass 3 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1111,7 +1111,7 @@ calendar test_locale_calendar_formatweekday pass 3 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 4 "    import calendar
+78 calendar test_locale_calendar_formatweekday pass 4 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1131,7 +1131,7 @@ calendar test_locale_calendar_formatweekday pass 4 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 5 "    import calendar
+79 calendar test_locale_calendar_formatweekday pass 5 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1151,7 +1151,7 @@ calendar test_locale_calendar_formatweekday pass 5 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 6 "    import calendar
+80 calendar test_locale_calendar_formatweekday pass 6 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1171,7 +1171,7 @@ calendar test_locale_calendar_formatweekday pass 6 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 7 "    import calendar
+81 calendar test_locale_calendar_formatweekday pass 7 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1191,7 +1191,7 @@ calendar test_locale_calendar_formatweekday pass 7 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 8 "    import calendar
+82 calendar test_locale_calendar_formatweekday pass 8 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1208,7 +1208,7 @@ calendar test_locale_calendar_formatweekday pass 8 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-calendar test_locale_calendar_formatweekday pass 9 "    import calendar
+83 calendar test_locale_calendar_formatweekday pass 9 "    import calendar
     ...
     def test_locale_calendar_formatweekday(self):
         try:
@@ -1229,7 +1229,7 @@ calendar test_locale_calendar_formatweekday pass 9 "    import calendar
             raise unittest.SkipTest('cannot set the en_US locale')
 
 "
-csv test_read_linenum fail 1 "    import csv
+84 csv test_read_linenum fail 1 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3'])
@@ -1244,7 +1244,7 @@ csv test_read_linenum fail 1 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum fail 10 "    import csv
+85 csv test_read_linenum fail 10 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line1 line2 line3'])
@@ -1259,7 +1259,7 @@ csv test_read_linenum fail 10 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum fail 2 "    import csv
+86 csv test_read_linenum fail 2 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2'])
@@ -1274,7 +1274,7 @@ csv test_read_linenum fail 2 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum fail 3 "    import csv
+87 csv test_read_linenum fail 3 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3'])
@@ -1289,7 +1289,7 @@ csv test_read_linenum fail 3 "    import csv
         self.assertEqual(r.line_num, 4)
 
 "
-csv test_read_linenum fail 4 "    import csv
+88 csv test_read_linenum fail 4 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3'])
@@ -1304,7 +1304,7 @@ csv test_read_linenum fail 4 "    import csv
         self.assertEqual(r.line_num, 4)
 
 "
-csv test_read_linenum fail 5 "    import csv
+89 csv test_read_linenum fail 5 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3'])
@@ -1319,7 +1319,7 @@ csv test_read_linenum fail 5 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum fail 6 "    import csv
+90 csv test_read_linenum fail 6 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3'])
@@ -1334,7 +1334,7 @@ csv test_read_linenum fail 6 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum fail 7 "    import csv
+91 csv test_read_linenum fail 7 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3', 'line,4'])
@@ -1349,7 +1349,7 @@ csv test_read_linenum fail 7 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum fail 8 "    import csv
+92 csv test_read_linenum fail 8 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3'])
@@ -1364,7 +1364,7 @@ csv test_read_linenum fail 8 "    import csv
         self.assertEqual(r.line_num, 2)
 
 "
-csv test_read_linenum fail 9 "    import csv
+93 csv test_read_linenum fail 9 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1 line,2 line,3'])
@@ -1379,7 +1379,7 @@ csv test_read_linenum fail 9 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum pass 1 "    import csv
+95 csv test_read_linenum pass 1 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,0', 'line,2', 'line,3'])
@@ -1394,7 +1394,7 @@ csv test_read_linenum pass 1 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum pass 10 "    import csv
+96 csv test_read_linenum pass 10 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,,1', 'line,,2', 'line,,3'])
@@ -1409,7 +1409,7 @@ csv test_read_linenum pass 10 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum pass 2 "    import csv
+97 csv test_read_linenum pass 2 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,1', 'line,1'])
@@ -1424,7 +1424,7 @@ csv test_read_linenum pass 2 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum pass 3 "    import csv
+98 csv test_read_linenum pass 3 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line1', 'line2', 'line3'])
@@ -1439,7 +1439,7 @@ csv test_read_linenum pass 3 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum pass 4 "    import csv
+99 csv test_read_linenum pass 4 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2', 'line,3'])
@@ -1455,7 +1455,7 @@ csv test_read_linenum pass 4 "    import csv
         self.assertEqual(r.line_num, line_num+3)
 
 "
-csv test_read_linenum pass 5 "    import csv
+100 csv test_read_linenum pass 5 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1', 'line,2'])
@@ -1468,7 +1468,7 @@ csv test_read_linenum pass 5 "    import csv
         self.assertEqual(r.line_num, 2)
 
 "
-csv test_read_linenum pass 6 "    import csv
+101 csv test_read_linenum pass 6 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1'])
@@ -1479,7 +1479,7 @@ csv test_read_linenum pass 6 "    import csv
         self.assertEqual(r.line_num, 1)
 
 "
-csv test_read_linenum pass 7 "    import csv
+102 csv test_read_linenum pass 7 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['zzz,1', 'zzz,2', 'zzz,3'])
@@ -1494,7 +1494,7 @@ csv test_read_linenum pass 7 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum pass 8 "    import csv
+103 csv test_read_linenum pass 8 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,10', 'line,20', 'line,30'])
@@ -1509,7 +1509,7 @@ csv test_read_linenum pass 8 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_read_linenum pass 9 "    import csv
+104 csv test_read_linenum pass 9 "    import csv
     ...
     def test_read_linenum(self):
         r = csv.reader(['line,1,2', 'line,2,3', 'line,3,4'])
@@ -1524,7 +1524,7 @@ csv test_read_linenum pass 9 "    import csv
         self.assertEqual(r.line_num, 3)
 
 "
-csv test_write_simple_dict fail 1 "    import csv
+105 csv test_write_simple_dict fail 1 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1539,7 +1539,7 @@ csv test_write_simple_dict fail 1 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict fail 10 "    import csv
+106 csv test_write_simple_dict fail 10 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1554,7 +1554,7 @@ csv test_write_simple_dict fail 10 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict fail 2 "    import csv
+107 csv test_write_simple_dict fail 2 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1569,7 +1569,7 @@ csv test_write_simple_dict fail 2 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict fail 3 "    import csv
+108 csv test_write_simple_dict fail 3 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1584,7 +1584,7 @@ csv test_write_simple_dict fail 3 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict fail 4 "    import csv
+109 csv test_write_simple_dict fail 4 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1599,7 +1599,7 @@ csv test_write_simple_dict fail 4 "    import csv
             self.assertEqual(fileobj.read(), ""10,,aaa\r\n"")
 
 "
-csv test_write_simple_dict fail 5 "    import csv
+110 csv test_write_simple_dict fail 5 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1614,7 +1614,7 @@ csv test_write_simple_dict fail 5 "    import csv
             self.assertEqual(fileobj.read(), ""10,abc,\r\n"")
 
 "
-csv test_write_simple_dict fail 6 "    import csv
+111 csv test_write_simple_dict fail 6 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1629,7 +1629,7 @@ csv test_write_simple_dict fail 6 "    import csv
             self.assertEqual(fileobj.read(), "",10,abc\r\n"")
 
 "
-csv test_write_simple_dict fail 7 "    import csv
+112 csv test_write_simple_dict fail 7 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1644,7 +1644,7 @@ csv test_write_simple_dict fail 7 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r"")
 
 "
-csv test_write_simple_dict fail 8 "    import csv
+113 csv test_write_simple_dict fail 8 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1659,7 +1659,7 @@ csv test_write_simple_dict fail 8 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc"")
 
 "
-csv test_write_simple_dict fail 9 "    import csv
+114 csv test_write_simple_dict fail 9 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1674,7 +1674,7 @@ csv test_write_simple_dict fail 9 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict pass 1 "    import csv
+116 csv test_write_simple_dict pass 1 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1689,7 +1689,7 @@ csv test_write_simple_dict pass 1 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict pass 10 "    import csv
+117 csv test_write_simple_dict pass 10 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1704,7 +1704,7 @@ csv test_write_simple_dict pass 10 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict pass 2 "    import csv
+118 csv test_write_simple_dict pass 2 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1719,7 +1719,7 @@ csv test_write_simple_dict pass 2 "    import csv
             self.assertEqual(fileobj.read(), "",10,abc\r\n"")
 
 "
-csv test_write_simple_dict pass 3 "    import csv
+119 csv test_write_simple_dict pass 3 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1734,7 +1734,7 @@ csv test_write_simple_dict pass 3 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict pass 4 "    import csv
+120 csv test_write_simple_dict pass 4 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1749,7 +1749,7 @@ csv test_write_simple_dict pass 4 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abc\r\n"")
 
 "
-csv test_write_simple_dict pass 5 "    import csv
+121 csv test_write_simple_dict pass 5 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1764,7 +1764,7 @@ csv test_write_simple_dict pass 5 "    import csv
             self.assertEqual(fileobj.read(), ""10,\r\n"")
 
 "
-csv test_write_simple_dict pass 6 "    import csv
+122 csv test_write_simple_dict pass 6 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1779,7 +1779,7 @@ csv test_write_simple_dict pass 6 "    import csv
             self.assertEqual(fileobj.read(), "",10,\r\n"")
 
 "
-csv test_write_simple_dict pass 7 "    import csv
+123 csv test_write_simple_dict pass 7 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1794,7 +1794,7 @@ csv test_write_simple_dict pass 7 "    import csv
             self.assertEqual(fileobj.read(), ""100,,abc\r\n"")
 
 "
-csv test_write_simple_dict pass 8 "    import csv
+124 csv test_write_simple_dict pass 8 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1809,7 +1809,7 @@ csv test_write_simple_dict pass 8 "    import csv
             self.assertEqual(fileobj.read(), ""10,,abcd\r\n"")
 
 "
-csv test_write_simple_dict pass 9 "    import csv
+125 csv test_write_simple_dict pass 9 "    import csv
     from tempfile import TemporaryFile
     ...
     def test_write_simple_dict(self):
@@ -1824,7 +1824,7 @@ csv test_write_simple_dict pass 9 "    import csv
             self.assertEqual(fileobj.read(), ""10,zzz,abc\r\n"")
 
 "
-gzip test_bad_params fail 1 "    import gzip
+126 gzip test_bad_params fail 1 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1842,7 +1842,7 @@ gzip test_bad_params fail 1 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 10 "    import gzip
+127 gzip test_bad_params fail 10 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1859,7 +1859,7 @@ gzip test_bad_params fail 10 "    import gzip
         gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 2 "    import gzip
+128 gzip test_bad_params fail 2 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1877,7 +1877,7 @@ gzip test_bad_params fail 2 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 3 "    import gzip
+129 gzip test_bad_params fail 3 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1895,7 +1895,7 @@ gzip test_bad_params fail 3 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 4 "    import gzip
+130 gzip test_bad_params fail 4 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1912,7 +1912,7 @@ gzip test_bad_params fail 4 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 5 "    import gzip
+131 gzip test_bad_params fail 5 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1930,7 +1930,7 @@ gzip test_bad_params fail 5 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 6 "    import gzip
+132 gzip test_bad_params fail 6 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1948,7 +1948,7 @@ gzip test_bad_params fail 6 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 7 "    import gzip
+133 gzip test_bad_params fail 7 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1966,7 +1966,7 @@ gzip test_bad_params fail 7 "    import gzip
             gzip.open(self.filename, ""wt"", newline=""\n"")
 
 "
-gzip test_bad_params fail 8 "    import gzip
+134 gzip test_bad_params fail 8 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -1983,7 +1983,7 @@ gzip test_bad_params fail 8 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params fail 9 "    import gzip
+135 gzip test_bad_params fail 9 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2000,7 +2000,7 @@ gzip test_bad_params fail 9 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 1 "    import gzip
+137 gzip test_bad_params pass 1 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2018,7 +2018,7 @@ gzip test_bad_params pass 1 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 10 "    import gzip
+138 gzip test_bad_params pass 10 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2036,7 +2036,7 @@ gzip test_bad_params pass 10 "    import gzip
             gzip.open(self.filename, ""wb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 2 "    import gzip
+139 gzip test_bad_params pass 2 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2054,7 +2054,7 @@ gzip test_bad_params pass 2 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 3 "    import gzip
+140 gzip test_bad_params pass 3 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2072,7 +2072,7 @@ gzip test_bad_params pass 3 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 4 "    import gzip
+141 gzip test_bad_params pass 4 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2090,7 +2090,7 @@ gzip test_bad_params pass 4 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 5 "    import gzip
+142 gzip test_bad_params pass 5 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2108,7 +2108,7 @@ gzip test_bad_params pass 5 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 6 "    import gzip
+143 gzip test_bad_params pass 6 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2126,7 +2126,7 @@ gzip test_bad_params pass 6 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 7 "    import gzip
+144 gzip test_bad_params pass 7 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2144,7 +2144,7 @@ gzip test_bad_params pass 7 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 8 "    import gzip
+145 gzip test_bad_params pass 8 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2162,7 +2162,7 @@ gzip test_bad_params pass 8 "    import gzip
             gzip.open(self.filename, ""rb"", newline=""\n"")
 
 "
-gzip test_bad_params pass 9 "    import gzip
+146 gzip test_bad_params pass 9 "    import gzip
     ...
     def test_bad_params(self):
         # Test invalid parameter combinations.
@@ -2180,7 +2180,7 @@ gzip test_bad_params pass 9 "    import gzip
             gzip.open(self.filename, ""wb"", newline=""\n"")
 
 "
-gzip test_fileobj_mode fail 1 "    import gzip
+147 gzip test_fileobj_mode fail 1 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2209,7 +2209,7 @@ gzip test_fileobj_mode fail 1 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 10 "    import gzip
+148 gzip test_fileobj_mode fail 10 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2238,7 +2238,7 @@ gzip test_fileobj_mode fail 10 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 2 "    import gzip
+149 gzip test_fileobj_mode fail 2 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2267,7 +2267,7 @@ gzip test_fileobj_mode fail 2 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 3 "    import gzip
+150 gzip test_fileobj_mode fail 3 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2296,7 +2296,7 @@ gzip test_fileobj_mode fail 3 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 4 "    import gzip
+151 gzip test_fileobj_mode fail 4 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2325,7 +2325,7 @@ gzip test_fileobj_mode fail 4 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 5 "    import gzip
+152 gzip test_fileobj_mode fail 5 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2354,7 +2354,7 @@ gzip test_fileobj_mode fail 5 "    import gzip
                     self.assertEqual(g.mode, gzip.READ)
 
 "
-gzip test_fileobj_mode fail 6 "    import gzip
+153 gzip test_fileobj_mode fail 6 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2383,7 +2383,7 @@ gzip test_fileobj_mode fail 6 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 7 "    import gzip
+154 gzip test_fileobj_mode fail 7 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2412,7 +2412,7 @@ gzip test_fileobj_mode fail 7 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 8 "    import gzip
+155 gzip test_fileobj_mode fail 8 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2440,7 +2440,7 @@ gzip test_fileobj_mode fail 8 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode fail 9 "    import gzip
+156 gzip test_fileobj_mode fail 9 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2469,7 +2469,7 @@ gzip test_fileobj_mode fail 9 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 1 "    import gzip
+158 gzip test_fileobj_mode pass 1 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2499,7 +2499,7 @@ gzip test_fileobj_mode pass 1 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 10 "    import gzip
+159 gzip test_fileobj_mode pass 10 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2528,7 +2528,7 @@ gzip test_fileobj_mode pass 10 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 2 "    import gzip
+160 gzip test_fileobj_mode pass 2 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2558,7 +2558,7 @@ gzip test_fileobj_mode pass 2 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 3 "    import gzip
+161 gzip test_fileobj_mode pass 3 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2587,7 +2587,7 @@ gzip test_fileobj_mode pass 3 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 4 "    import gzip
+162 gzip test_fileobj_mode pass 4 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2616,7 +2616,7 @@ gzip test_fileobj_mode pass 4 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 5 "    import gzip
+163 gzip test_fileobj_mode pass 5 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2645,7 +2645,7 @@ gzip test_fileobj_mode pass 5 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 6 "    import gzip
+164 gzip test_fileobj_mode pass 6 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2674,7 +2674,7 @@ gzip test_fileobj_mode pass 6 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 7 "    import gzip
+165 gzip test_fileobj_mode pass 7 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2704,7 +2704,7 @@ gzip test_fileobj_mode pass 7 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-gzip test_fileobj_mode pass 8 "    import gzip
+166 gzip test_fileobj_mode pass 8 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2734,7 +2734,7 @@ gzip test_fileobj_mode pass 8 "    import gzip
                     self.assertEqual(g.mode, m)
 
 "
-gzip test_fileobj_mode pass 9 "    import gzip
+167 gzip test_fileobj_mode pass 9 "    import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, ""wb"").close()
@@ -2763,7 +2763,7 @@ gzip test_fileobj_mode pass 9 "    import gzip
                     self.assertEqual(g.mode, gzip.WRITE)
 
 "
-string test_basic_formatter fail 1 "    import string
+168 string test_basic_formatter fail 1 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2774,7 +2774,7 @@ string test_basic_formatter fail 1 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 10 "    import string
+169 string test_basic_formatter fail 10 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2785,7 +2785,7 @@ string test_basic_formatter fail 10 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 2 "    import string
+170 string test_basic_formatter fail 2 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2796,7 +2796,7 @@ string test_basic_formatter fail 2 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 3 "    import string
+171 string test_basic_formatter fail 3 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2807,7 +2807,7 @@ string test_basic_formatter fail 3 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 4 "    import string
+172 string test_basic_formatter fail 4 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2818,7 +2818,7 @@ string test_basic_formatter fail 4 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 5 "    import string
+173 string test_basic_formatter fail 5 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2829,7 +2829,7 @@ string test_basic_formatter fail 5 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 6 "    import string
+174 string test_basic_formatter fail 6 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2840,7 +2840,7 @@ string test_basic_formatter fail 6 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 7 "    import string
+175 string test_basic_formatter fail 7 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2851,7 +2851,7 @@ string test_basic_formatter fail 7 "    import string
         self.assertRaises(ValueError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 8 "    import string
+176 string test_basic_formatter fail 8 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2862,7 +2862,7 @@ string test_basic_formatter fail 8 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter fail 9 "    import string
+177 string test_basic_formatter fail 9 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2873,7 +2873,7 @@ string test_basic_formatter fail 9 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 1 "    import string
+179 string test_basic_formatter pass 1 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2884,7 +2884,7 @@ string test_basic_formatter pass 1 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 10 "    import string
+180 string test_basic_formatter pass 10 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2895,7 +2895,7 @@ string test_basic_formatter pass 10 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 2 "    import string
+181 string test_basic_formatter pass 2 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2906,7 +2906,7 @@ string test_basic_formatter pass 2 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 3 "    import string
+182 string test_basic_formatter pass 3 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2917,7 +2917,7 @@ string test_basic_formatter pass 3 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 4 "    import string
+183 string test_basic_formatter pass 4 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2928,7 +2928,7 @@ string test_basic_formatter pass 4 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 5 "    import string
+184 string test_basic_formatter pass 5 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2940,7 +2940,7 @@ string test_basic_formatter pass 5 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 6 "    import string
+185 string test_basic_formatter pass 6 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2951,7 +2951,7 @@ string test_basic_formatter pass 6 "    import string
         self.assertRaises(TypeError, fmt.format)
 
 "
-string test_basic_formatter pass 7 "    import string
+186 string test_basic_formatter pass 7 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2962,7 +2962,7 @@ string test_basic_formatter pass 7 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 8 "    import string
+187 string test_basic_formatter pass 8 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2973,7 +2973,7 @@ string test_basic_formatter pass 8 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_basic_formatter pass 9 "    import string
+188 string test_basic_formatter pass 9 "    import string
     ...
     def test_basic_formatter(self):
         fmt = string.Formatter()
@@ -2984,7 +2984,7 @@ string test_basic_formatter pass 9 "    import string
         self.assertRaises(TypeError, string.Formatter.format)
 
 "
-string test_format_keyword_arguments fail 1 "    import string
+189 string test_format_keyword_arguments fail 1 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -2999,7 +2999,7 @@ string test_format_keyword_arguments fail 1 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 10 "    import string
+190 string test_format_keyword_arguments fail 10 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3014,7 +3014,7 @@ string test_format_keyword_arguments fail 10 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 2 "    import string
+191 string test_format_keyword_arguments fail 2 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3029,7 +3029,7 @@ string test_format_keyword_arguments fail 2 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 3 "    import string
+192 string test_format_keyword_arguments fail 3 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3044,7 +3044,7 @@ string test_format_keyword_arguments fail 3 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 4 "    import string
+193 string test_format_keyword_arguments fail 4 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3059,7 +3059,7 @@ string test_format_keyword_arguments fail 4 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 5 "    import string
+194 string test_format_keyword_arguments fail 5 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3074,7 +3074,7 @@ string test_format_keyword_arguments fail 5 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 6 "    import string
+195 string test_format_keyword_arguments fail 6 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3088,7 +3088,7 @@ string test_format_keyword_arguments fail 6 "    import string
         fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 7 "    import string
+196 string test_format_keyword_arguments fail 7 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3103,7 +3103,7 @@ string test_format_keyword_arguments fail 7 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 8 "    import string
+197 string test_format_keyword_arguments fail 8 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3118,7 +3118,7 @@ string test_format_keyword_arguments fail 8 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments fail 9 "    import string
+198 string test_format_keyword_arguments fail 9 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3133,7 +3133,7 @@ string test_format_keyword_arguments fail 9 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 1 "    import string
+200 string test_format_keyword_arguments pass 1 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3148,7 +3148,7 @@ string test_format_keyword_arguments pass 1 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 10 "    import string
+201 string test_format_keyword_arguments pass 10 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3164,7 +3164,7 @@ string test_format_keyword_arguments pass 10 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 2 "    import string
+202 string test_format_keyword_arguments pass 2 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3179,7 +3179,7 @@ string test_format_keyword_arguments pass 2 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 3 "    import string
+203 string test_format_keyword_arguments pass 3 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3194,7 +3194,7 @@ string test_format_keyword_arguments pass 3 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 4 "    import string
+204 string test_format_keyword_arguments pass 4 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3209,7 +3209,7 @@ string test_format_keyword_arguments pass 4 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 5 "    import string
+205 string test_format_keyword_arguments pass 5 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3224,7 +3224,7 @@ string test_format_keyword_arguments pass 5 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 6 "    import string
+206 string test_format_keyword_arguments pass 6 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3239,7 +3239,7 @@ string test_format_keyword_arguments pass 6 "    import string
             fmt.format(format_string=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 7 "    import string
+207 string test_format_keyword_arguments pass 7 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3254,7 +3254,7 @@ string test_format_keyword_arguments pass 7 "    import string
             fmt.format(format_string2=""-{arg}-"", arg='test')
 
 "
-string test_format_keyword_arguments pass 8 "    import string
+208 string test_format_keyword_arguments pass 8 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()
@@ -3269,7 +3269,7 @@ string test_format_keyword_arguments pass 8 "    import string
         self.assertRaises(KeyError, fmt.format, ""-{format_string}-"")
 
 "
-string test_format_keyword_arguments pass 9 "    import string
+209 string test_format_keyword_arguments pass 9 "    import string
     ...
     def test_format_keyword_arguments(self):
         fmt = string.Formatter()

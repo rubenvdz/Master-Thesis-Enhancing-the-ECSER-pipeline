@@ -33,5 +33,5 @@ for path, dirname, filenames in os.walk(raw_data_dir):
 parsed_data = pd.DataFrame(parsed_data)            
 # Filter irrelevant data
 parsed_data = parsed_data[parsed_data["label"].isin(["pass","fail"])]
-parsed_data.to_csv("parsed_data.csv", sep=" ",index=False, header=True,mode="w")
-#new_parsed_data = pd.read_csv("parsed_data.csv", sep=" ")
+parsed_data.to_csv("parsed_data.csv", sep=" ",index=True, header=True,mode="w")
+#new_parsed_data = pd.read_csv("parsed_data.csv", sep=" ",index_col=0)
