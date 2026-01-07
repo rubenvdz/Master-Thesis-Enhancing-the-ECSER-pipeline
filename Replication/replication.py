@@ -38,11 +38,15 @@ with open("Prompts/Zeroshot.txt") as f:
     zeroshot = f.read()
 
 # Examples: test_positional_only_feature_version_fail_1, test_january_pass_1, test_read_linenum_fail_1, test_fileobj_mode_pass_1
+# Indices: 21,53,84,158
 with open("Prompts/Fewshot.txt") as f:
     fewshot = f.read()
     
 # Remove few-shot examples from val set:
+val_data = val_data.drop(index=[21,53,84,158])
 
+# S4: Prompt comparison.
+# Start by comparing zero shot and few shot prompts
 
 llm = Llama.from_pretrained(
  	repo_id="bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
