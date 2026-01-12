@@ -1,5 +1,6 @@
 Consider the following test of the Python Standard
 Library, version 3.10:
+<test_case>
 Your job is to figure out whether this test will pass or
 fail. If it fails, provide the rationale.
 
@@ -7,6 +8,7 @@ Answer in the following format:
 Explanation: <free text>
 Label: <PASS | FAIL>
 
+EXAMPLES:
 Test case: import ast
 ...
 def test_positional_only_feature_version(self):
@@ -30,18 +32,6 @@ The feature of positional-only parameters was introduced in Python 3.8. This mea
 
 Now, let's analyze the test:
 
-1. 
-```python
-ast.parse('def foo(x, /): ...', feature_version=(3, 8))
-```
-This tests parsing a function with positional-only parameters using Python 3.8 feature version. This should work without any errors.
-
-2.
-```python
-ast.parse('def bar(x=1, /): ...', feature_version=(3, 8))
-```
-This tests parsing a function with a default value for a positional-only parameter using Python 3.8 feature version. This should also work without any errors.
-
 3. 
 ```python
 ast.parse('def foo(x, /): ...', feature_version=(3, 7))
@@ -53,22 +43,6 @@ This tests parsing a function with positional-only parameters but using Python 3
 ast.parse('def bar(x=1, /): ...', feature_version=(3, 7))
 ```
 Similar to the previous test, this will also raise a `SyntaxError` because positional-only parameters were introduced in 3.8. Again, there's no assertion to check for this error. Thus, the test will fail at this point as well.
-
-5-6.
-```python
-ast.parse('lambda x, /: ...', feature_version=(3, 8))
-ast.parse('lambda x=1, /: ...', feature_version=(3, 8))
-```
-Both lines test lambdas with positional-only parameters in Python 3.8. Both should work without errors.
-
-7-8.
-```python
-with self.assertRaises(SyntaxError):
-    ast.parse('lambda x, /: ...', feature_version=(3, 7))
-with self.assertRaises(SyntaxError):
-    ast.parse('lambda x=1, /: ...', feature_version=(3, 7))
-```
-Both tests check lambdas with positional-only parameters using Python 3.7. Both tests correctly assert that a `SyntaxError` will be raised.
 
 In conclusion, the test will fail due to the absence of assertions checking for `SyntaxError` for points 3 and 4.
 Label: FAIL
@@ -137,39 +111,7 @@ self.assertEqual(r.line_num, 0)
 And then, after reading each line, the `line_num` will increment by 1.
 Label: FAIL
 
-Test case: import gzip
-...
-def test_fileobj_mode(self):
-    gzip.GzipFile(self.filename, "wb").close()
-    with open(self.filename, "r+b") as f:
-        m = gzip.READ
-        with gzip.GzipFile(fileobj=f, mode='r') as g:
-            self.assertEqual(g.mode, m)
-        with gzip.GzipFile(fileobj=f, mode='w') as g:
-            self.assertEqual(g.mode, gzip.WRITE)
-        with gzip.GzipFile(fileobj=f, mode='a') as g:
-            self.assertEqual(g.mode, gzip.WRITE)
-        with gzip.GzipFile(fileobj=f, mode='x') as g:
-            self.assertEqual(g.mode, gzip.WRITE)
-        with self.assertRaises(ValueError):
-            gzip.GzipFile(fileobj=f, mode='z')
-    for mode in "rb", "r+b":
-        with open(self.filename, mode) as f:
-            with gzip.GzipFile(fileobj=f) as g:
-                self.assertEqual(g.mode, gzip.READ)
-    for mode in "wb", "ab", "xb":
-        if "x" in mode:
-            os_helper.unlink(self.filename)
-        with open(self.filename, mode) as f:
-            with self.assertWarns(FutureWarning):
-                g = gzip.GzipFile(fileobj=f)
-            with g:
-                self.assertEqual(g.mode, gzip.WRITE)
-
-Explanation: Consider the following test of the Python Standard Library, version 3.10: 
-
-```
-    import gzip
+Test case:  import gzip
     ...
     def test_fileobj_mode(self):
         gzip.GzipFile(self.filename, "wb").close()
@@ -197,14 +139,8 @@ Explanation: Consider the following test of the Python Standard Library, version
                     g = gzip.GzipFile(fileobj=f)
                 with g:
                     self.assertEqual(g.mode, gzip.WRITE)
-```
 
-Your job is to figure out whether this test will pass or fail.
-If it fails, provide the rationale.
-
-===
-
-The provided code is testing the `gzip.GzipFile` class of the Python Standard Library, specifically focusing on the `mode` attribute and how it interacts with the `fileobj` parameter.
+Explanation: The provided code is testing the `gzip.GzipFile` class of the Python Standard Library, specifically focusing on the `mode` attribute and how it interacts with the `fileobj` parameter.
 
 Let's break down the tests step by step:
 
@@ -231,5 +167,3 @@ Based on the provided information and without seeing the full context (e.g., the
 
 However, always remember that the real test is in running the test case. Unexpected behaviors can emerge from even the most straightforward-looking code. If the test fails, the failure message would give a clue as to which particular assertion did not hold true, which can then be investigated in more detail.
 Label: PASS
-
-Test case: <test_case>

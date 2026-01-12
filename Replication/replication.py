@@ -11,13 +11,78 @@ import os
 from llama_cpp import Llama
 import math
 
+
+
 # Get the data set
 data = pd.read_csv("parsed_data.csv", sep=" ",index_col=0)
 suites = data['suite'].unique()
 test_cases = data['name'].unique()
-simples_cases = ['test_positional_only_feature_version','test_january','test_write_simple_dict','test_fileobj_mode','test_basic_formatter']
+simple_cases = ['test_positional_only_feature_version','test_january','test_write_simple_dict','test_fileobj_mode','test_basic_formatter']
 complex_cases = ['test_AST_objects','test_locale_calendar_formatweekday','test_read_linenum','test_bad_params','test_format_keyword_arguments']
 
+# Load the LLM
+llm = Llama.from_pretrained(
+ 	repo_id="bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
+ 	filename="Meta-Llama-3.1-8B-Instruct-IQ2_M.gguf",
+    verbose=False,
+    logits_all=True,
+    n_ctx = 2048
+)
+
+# Helper functions
+def get_response(prompt, test):
+    """
+    Get a response from the LLM
+
+    Parameters
+    ----------
+    prompt : prompt with placeholder "<test_case>".
+    test : single test case that is given to the LLM
+
+    Returns
+    -------
+    response : the generated response
+    """
+    
+    current_prompt = prompt.replace("<test_case>", test) # Fill in the actual test in the placeholder
+    #print(current_prompt)
+    
+    response = llm.create_chat_completion(
+     	messages = [
+    		{
+     			"role": "user",
+     			"content": current_prompt
+    		}
+     	],
+        logprobs=True,
+        top_logprobs=5,
+        temperature=0,
+    )
+    print("Response:")
+    print(response['choices'][0]['message']['content'])
+    print("Label:")
+    print(response['choices'][0]['logprobs']['content'][-1]['token'])
+    print("Estimated confidence (key token probability): ")
+    print(math.exp(response['choices'][0]['logprobs']['content'][-1]['logprob']))
+    return(response)
+    
+    
+    
+def evaluate_response(response):
+    """
+    Take the LLM response and extract the raw response, label and estimated confidence.
+
+    Parameters
+    ----------
+    response : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    None.
+
+    """
+    
 
 # S1: Select an Evaluation Method and Split the Data.
 # We use the holdout method and take 50% of tests for each test case while keeping an even PASS/FAIL split
@@ -38,39 +103,20 @@ with open("Prompts/Zeroshot.txt") as f:
     zeroshot = f.read()
 
 # Examples: test_positional_only_feature_version_fail_1, test_january_pass_1, test_read_linenum_fail_1, test_fileobj_mode_pass_1
-# Indices: 21,53,84,158
+# Indices: 21,53,84 / 158
 with open("Prompts/Fewshot.txt") as f:
     fewshot = f.read()
     
 # Remove few-shot examples from val set:
-val_data = val_data.drop(index=[21,53,84,158])
+val_data = val_data.drop(index=[21,53,84])
+#val_data = val_data.drop(index=[21,53,84,158])
 
 # S4: Prompt comparison.
 # Start by comparing zero shot and few shot prompts
 
-llm = Llama.from_pretrained(
- 	repo_id="bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
- 	filename="Meta-Llama-3.1-8B-Instruct-IQ2_M.gguf",
-    verbose=False,
-    logits_all=True,
-)
+response1 = get_response(fewshot, val_data['test'][0])
+response2 = get_response(fewshot, val_data['test'][2])
 
-response = llm.create_chat_completion(
- 	messages = [
-		{
- 			"role": "user",
- 			"content": zeroshot
-		}
- 	],
-    logprobs=True,
-    top_logprobs=5,
-    temperature=0,
-)
-print("Response:")
-print(response['choices'][0]['message']['content'])
-print("Label:")
-print(response['choices'][0]['logprobs']['content'][-1]['token'])
-print("Estimated confidence (key token probability): ")
-print(math.exp(response['choices'][0]['logprobs']['content'][-1]['logprob']))
+
 
 
