@@ -32,7 +32,11 @@ llm = Llama.from_pretrained(
 # Helper functions
 def get_response(prompt, test):
     """
-    Get a response from the LLM
+    Get a response from the LLM.
+    The response contains the message and logprobs. 
+    The message should have the following format (based on the prompts):
+    Explanation: <free text>
+    Label: <PASS | FAIL>
 
     Parameters
     ----------
@@ -58,31 +62,72 @@ def get_response(prompt, test):
         top_logprobs=5,
         temperature=0,
     )
-    print("Response:")
-    print(response['choices'][0]['message']['content'])
-    print("Label:")
-    print(response['choices'][0]['logprobs']['content'][-1]['token'])
-    print("Estimated confidence (key token probability): ")
-    print(math.exp(response['choices'][0]['logprobs']['content'][-1]['logprob']))
     return(response)
     
-    
-    
-def evaluate_response(response):
+def evaluate_response(response, verbose=0):
     """
-    Take the LLM response and extract the raw response, label and estimated confidence.
+    Take the LLM response and extract the message, label and estimated confidence.
 
     Parameters
     ----------
-    response : TYPE
-        DESCRIPTION.
+    response : llama_cpp response with logprobs.
 
     Returns
     -------
-    None.
-
+    message : the generated message of the LLM
+    label : classification of PASS or FAIL (or None in case of failure)
+    confidence : estimated confidence of classification (between 0 and 1 or None)
     """
+    message = response['choices'][0]['message']['content']
+    label = response['choices'][0]['logprobs']['content'][-1]['token']
+    label = label.replace(" ","") # Remove possible spaces
+    confidence = math.exp(response['choices'][0]['logprobs']['content'][-1]['logprob']) # Use the key token probability
+    # If the specified format is not followed, the label cannot be automatically extracted
+    if (label != "PASS" and label != "FAIL"):
+        label = None
+        confidence = None
     
+    if (verbose):
+        print("Message:")
+        print(message)
+        print("Label:")
+        print(label)
+        print("Estimated confidence (key token probability):")
+        print(confidence)
+    
+    return message, label, confidence
+
+def get_results(data, prompt, verbose=0, path=None):
+    """
+    Collect results for all tests in the data set with the given prompt. 
+
+    Parameters
+    ----------
+    data : Pandas DataFrame with columns suite / name / label / n / test.
+    prompt : prompt with placeholder "<test_case>".
+    verbose : print all results
+    path : optional path to save the results to
+
+    Returns
+    -------
+    results : Pandas DataFrame that is a copy of the data with added columns for the llm message, predicted label (pred) and confidence.
+    """
+    results = data.copy()
+    results['message'] = ""
+    results['pred'] = ""
+    results['confidence'] = ""
+    for i in data.index:
+        test = data['test'][i]
+        response = get_response(prompt, test)
+        message, pred, confidence = evaluate_response(response, verbose=1)
+        results.at[i,'message'] = message
+        results.at[i,'pred'] = pred
+        results.at[i,'confidence'] = confidence
+        
+    if path:    
+        results.to_csv(path, sep=" ",index=True, header=True,mode="w")
+    return results
+        
 
 # S1: Select an Evaluation Method and Split the Data.
 # We use the holdout method and take 50% of tests for each test case while keeping an even PASS/FAIL split
@@ -103,19 +148,21 @@ with open("Prompts/Zeroshot.txt") as f:
     zeroshot = f.read()
 
 # Examples: test_positional_only_feature_version_fail_1, test_january_pass_1, test_read_linenum_fail_1, test_fileobj_mode_pass_1
-# Indices: 21,53,84 / 158
+# Indices: 21,53,84,158
 with open("Prompts/Fewshot.txt") as f:
     fewshot = f.read()
     
 # Remove few-shot examples from val set:
-val_data = val_data.drop(index=[21,53,84])
-#val_data = val_data.drop(index=[21,53,84,158])
+val_data = val_data.drop(index=[21,53,84,158])
 
 # S4: Prompt comparison.
 # Start by comparing zero shot and few shot prompts
+results = get_results(val_data[val_data['name'] == "test_AST_objects"], zeroshot, verbose=1,path="Results/test_results.csv")
 
-response1 = get_response(fewshot, val_data['test'][0])
-response2 = get_response(fewshot, val_data['test'][2])
+# response1 = get_response(fewshot, val_data['test'][0])
+# response2 = get_response(fewshot, val_data['test'][2])
+# evaluate_response(response1, verbose=1)
+# evaluate_response(response2, verbose=1)
 
 
 
