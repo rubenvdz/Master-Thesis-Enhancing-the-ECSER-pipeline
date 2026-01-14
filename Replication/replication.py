@@ -10,7 +10,18 @@ import pandas as pd
 import os
 from llama_cpp import Llama
 import math
-
+from sklearn.metrics import (
+    confusion_matrix,
+    precision_score,
+    recall_score,
+    accuracy_score,
+    f1_score,
+    fbeta_score,
+    matthews_corrcoef,
+    roc_auc_score
+)
+import json
+import numpy as np
 
 
 # Get the data set
@@ -112,21 +123,79 @@ def get_results(data, prompt, verbose=0, path=None):
     -------
     results : Pandas DataFrame that is a copy of the data with added columns for the llm message, predicted label (pred) and confidence.
     """
+    n = len(data.index)
     results = data.copy()
     results['message'] = ""
     results['pred'] = ""
     results['confidence'] = ""
+    progress = 0
     for i in data.index:
         test = data['test'][i]
         response = get_response(prompt, test)
-        message, pred, confidence = evaluate_response(response, verbose=1)
+        message, pred, confidence = evaluate_response(response, verbose=verbose)
         results.at[i,'message'] = message
         results.at[i,'pred'] = pred
         results.at[i,'confidence'] = confidence
-        
+        progress += 1
+        print(f"{progress} / {n}")
     if path:    
         results.to_csv(path, sep=" ",index=True, header=True,mode="w")
     return results
+
+def evaluate_results(results, path=None):
+    """
+    Calculate the following from the results: confusion matrix, precision, recall, specificity, accuracy, F1, F2, MCC, ROC, AUC
+
+    Parameters
+    ----------
+    results : DataFrame that was obtained from get_results with headers suite / name / label / n  / test / message / pred / confidence
+    path : optional path to save the evaluation
+
+    Returns
+    -------
+    evaluation : dictionary with all the calculated metrics
+    """
+    y_true = results['label']
+    y_pred = results['pred']
+    # Probabality of positive class ("FAIL")
+    y_score = np.where(results["pred"] == "FAIL", results["confidence"], 1.0 - results["confidence"])
+    
+    # Confusion matrix
+    tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+    
+    # Metrics
+    precision = precision_score(y_true, y_pred)
+    recall = recall_score(y_true, y_pred)
+    specificity = tn / (tn+fp)
+    accuracy = accuracy_score(y_true, y_pred)
+    F1 = f1_score(y_true, y_pred)
+    F2 = fbeta_score(y_true, y_pred, beta=2)
+    MCC = matthews_corrcoef(y_true, y_pred)
+    AUC = roc_auc_score(y_true, y_score)
+    
+    evaluation = {
+        "confusion_matrix": {
+            "TN": int(tn),
+            "FP": int(fp),
+            "FN": int(fn),
+            "TP": int(tp),
+        },
+        "precision": precision,
+        "recall": recall,
+        "specificity": specificity,
+        "accuracy": accuracy,
+        "F1": F1,
+        "F2": F2,
+        "MCC": MCC,
+        "AUC": AUC,
+    }
+    # Save the evaluation
+    if (path):
+        with open(path, "w") as f:
+                json.dump(evaluation, f, indent=4)
+    return evaluation
+    
+    
         
 
 # S1: Select an Evaluation Method and Split the Data.
@@ -157,7 +226,8 @@ val_data = val_data.drop(index=[21,53,84,158])
 
 # S4: Prompt comparison.
 # Start by comparing zero shot and few shot prompts
-results = get_results(val_data[val_data['name'] == "test_AST_objects"], zeroshot, verbose=1,path="Results/test_results.csv")
+results_dev_zeroshot = get_results(val_data, zeroshot, verbose=0,path="Results/results_dev_zeroshot.csv")
+results_dev_fewshot = get_results(val_data, fewshot, verbose=0,path="Results/results_dev_fewshot.csv")
 
 # response1 = get_response(fewshot, val_data['test'][0])
 # response2 = get_response(fewshot, val_data['test'][2])
