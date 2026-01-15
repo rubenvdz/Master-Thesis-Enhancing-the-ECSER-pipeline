@@ -86,15 +86,16 @@ def evaluate_response(response, verbose=0):
     Returns
     -------
     message : the generated message of the LLM
-    label : classification of PASS or FAIL (or None in case of failure)
+    label : classification of "pass" or "fail" (or pd.NA in case of failure)
     confidence : estimated confidence of classification (between 0 and 1 or None)
     """
     message = response['choices'][0]['message']['content']
     label = response['choices'][0]['logprobs']['content'][-1]['token']
     label = label.replace(" ","") # Remove possible spaces
+    label = label.lower()
     confidence = math.exp(response['choices'][0]['logprobs']['content'][-1]['logprob']) # Use the key token probability
     # If the specified format is not followed, the label cannot be automatically extracted
-    if (label != "PASS" and label != "FAIL"):
+    if (label != "pass" and label != "fail"):
         label = None
         confidence = None
     
@@ -155,10 +156,13 @@ def evaluate_results(results, path=None):
     -------
     evaluation : dictionary with all the calculated metrics
     """
+    results = results[results['pred'].notna()] # Remove failed responses
     y_true = results['label']
-    y_pred = results['pred']
-    # Probabality of positive class ("FAIL")
-    y_score = np.where(results["pred"] == "FAIL", results["confidence"], 1.0 - results["confidence"])
+    y_pred = results['pred'].str.lower()
+    print(y_true.unique())
+    print(y_pred.unique())
+    # Probabality of positive class ("fail")
+    y_score = np.where(results["pred"] == "fail", results["confidence"], 1.0 - results["confidence"])
     
     # Confusion matrix
     tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
@@ -226,8 +230,14 @@ val_data = val_data.drop(index=[21,53,84,158])
 
 # S4: Prompt comparison.
 # Start by comparing zero shot and few shot prompts
-results_dev_zeroshot = get_results(val_data, zeroshot, verbose=0,path="Results/results_dev_zeroshot.csv")
-results_dev_fewshot = get_results(val_data, fewshot, verbose=0,path="Results/results_dev_fewshot.csv")
+# results_dev_zeroshot = get_results(val_data, zeroshot, verbose=0,path="Results/results_dev_zeroshot.csv")
+# results_dev_fewshot = get_results(val_data, fewshot, verbose=0,path="Results/results_dev_fewshot.csv")
+
+results_dev_zeroshot = pd.read_csv("Results/results_dev_zeroshot.csv", sep=" ",index_col=0)
+results_dev_fewshot = pd.read_csv("Results/results_dev_fewshot.csv", sep=" ",index_col=0)
+
+print(evaluate_results(results_dev_zeroshot))
+print(evaluate_results(results_dev_fewshot))
 
 # response1 = get_response(fewshot, val_data['test'][0])
 # response2 = get_response(fewshot, val_data['test'][2])
