@@ -143,7 +143,7 @@ def get_results(data, prompt, verbose=0, path=None):
         results.to_csv(path, sep=" ",index=True, header=True,mode="w")
     return results
 
-def evaluate_results(results, path=None):
+def evaluate_results(results):
     """
     Calculate the following from the results: confusion matrix, precision, recall, specificity, accuracy, F1, F2, MCC, ROC, AUC
 
@@ -156,47 +156,54 @@ def evaluate_results(results, path=None):
     -------
     evaluation : dictionary with all the calculated metrics
     """
+    n = len(results.index)
+    
+    # Accuracy regardless of format satisfaction
+    true_accuracy = (results['pred'].str.lower() == results['label']).fillna(False).mean().item()
+    
     results = results[results['pred'].notna()] # Remove failed responses
+    n_failed = n - len(results.index)
     y_true = results['label']
     y_pred = results['pred'].str.lower()
-    print(y_true.unique())
-    print(y_pred.unique())
+
     # Probabality of positive class ("fail")
     y_score = np.where(results["pred"] == "fail", results["confidence"], 1.0 - results["confidence"])
     
     # Confusion matrix
-    tn, fp, fn, tp = confusion_matrix(y_true, y_pred).ravel()
+    confusion =  confusion_matrix(y_true, y_pred,labels=["fail","pass"])
+    tn, fp, fn, tp = confusion.ravel()
     
     # Metrics
-    precision = precision_score(y_true, y_pred)
-    recall = recall_score(y_true, y_pred)
+    precision = precision_score(y_true, y_pred, pos_label="fail")
+    recall = recall_score(y_true, y_pred, pos_label="fail")
     specificity = tn / (tn+fp)
     accuracy = accuracy_score(y_true, y_pred)
-    F1 = f1_score(y_true, y_pred)
-    F2 = fbeta_score(y_true, y_pred, beta=2)
+    F1 = f1_score(y_true, y_pred, pos_label="fail")
+    F2 = fbeta_score(y_true, y_pred, beta=2, pos_label="fail")
     MCC = matthews_corrcoef(y_true, y_pred)
     AUC = roc_auc_score(y_true, y_score)
     
+    # Misc
+    adherence = (n - n_failed) / n # Percentage of succesful format adherence
+    
     evaluation = {
-        "confusion_matrix": {
-            "TN": int(tn),
-            "FP": int(fp),
-            "FN": int(fn),
-            "TP": int(tp),
-        },
+        "confusion_matrix": confusion,
         "precision": precision,
         "recall": recall,
         "specificity": specificity,
+        "true_accuracy": true_accuracy,
         "accuracy": accuracy,
         "F1": F1,
         "F2": F2,
         "MCC": MCC,
         "AUC": AUC,
+        "n_failed": n_failed,
+        "adherence": adherence,
     }
     # Save the evaluation
-    if (path):
-        with open(path, "w") as f:
-                json.dump(evaluation, f, indent=4)
+    # if (path):
+    #     with open(path, "w") as f:
+    #             json.dump(evaluation, f, indent=4)
     return evaluation
     
     
@@ -224,20 +231,60 @@ with open("Prompts/Zeroshot.txt") as f:
 # Indices: 21,53,84,158
 with open("Prompts/Fewshot.txt") as f:
     fewshot = f.read()
-    
 # Remove few-shot examples from val set:
-val_data = val_data.drop(index=[21,53,84,158])
+val_data_fewshot = val_data.drop(index=[21,53,84,158])
+
+with open("Prompts/CVerifier.txt") as f:
+    cVerifier = f.read()
+    
+with open("Prompts/Persona.txt") as f:
+    persona = f.read()
+    
+with open("Prompts/QRefinement.txt") as f:
+    qRefinement = f.read()
+    
+with open("Prompts/QRefinementGPT.txt") as f:
+    qRefinementGPT = f.read()
+
 
 # S4: Prompt comparison.
-# Start by comparing zero shot and few shot prompts
-# results_dev_zeroshot = get_results(val_data, zeroshot, verbose=0,path="Results/results_dev_zeroshot.csv")
-# results_dev_fewshot = get_results(val_data, fewshot, verbose=0,path="Results/results_dev_fewshot.csv")
 
-results_dev_zeroshot = pd.read_csv("Results/results_dev_zeroshot.csv", sep=" ",index_col=0)
-results_dev_fewshot = pd.read_csv("Results/results_dev_fewshot.csv", sep=" ",index_col=0)
+# small_data = val_data[val_data['n'] == 1].iloc[:8] # Smaller dataset for testing code and prompts
+# results_zeroshot = get_results(small_data, zeroshot, verbose=1)
+# results_fewshot = get_results(small_data, fewshot, verbose=1)
+# results_cVerifier = get_results(small_data, cVerifier, verbose=1)
+# results_persona = get_results(small_data, persona, verbose=1)
+# results_qRefinement = get_results(small_data, qRefinement, verbose=1)
+# results_qRefinementGPT = get_results(small_data, qRefinementGPT, verbose=1)
 
-print(evaluate_results(results_dev_zeroshot))
-print(evaluate_results(results_dev_fewshot))
+#results_val_zeroshot = get_results(val_data, zeroshot, path="Results/results_val_zeroshot.csv")
+#results_val_fewshot = get_results(val_data_fewshot, fewshot, path="Results/results_val_fewshot.csv")
+results_val_cVerifier = get_results(val_data, cVerifier, path="Results/results_val_cVerifier.csv")
+results_val_persona = get_results(val_data, persona, path="Results/results_val_persona.csv")
+results_val_qRefinement = get_results(val_data, qRefinement, path="Results/results_val_qRefinement.csv")
+results_val_qRefinementGPT = get_results(val_data, qRefinementGPT, path="Results/results_val_qRefinementGPT.csv")
+
+
+
+
+# results_dev_zeroshot = pd.read_csv("Results/results_dev_zeroshot.csv", sep=" ",index_col=0)
+# results_dev_fewshot = pd.read_csv("Results/results_dev_fewshot.csv", sep=" ",index_col=0)
+
+# print(evaluate_results(results_dev_zeroshot))
+# print(evaluate_results(results_dev_fewshot))
+
+# print("Zeroshot")
+# print(evaluate_results(results_zeroshot))
+# print("Fewshot")
+# print(evaluate_results(results_fewshot))
+# print("Persona")
+# print(evaluate_results(results_persona))
+# print("Cognitive Verifier")
+# print(evaluate_results(results_cVerifier))
+# print("Question Refinement")
+# print(evaluate_results(results_qRefinement))
+# print("Question Refinement (GPT)")
+# print(evaluate_results(results_qRefinementGPT))
 
 # response1 = get_response(fewshot, val_data['test'][0])
 # response2 = get_response(fewshot, val_data['test'][2])

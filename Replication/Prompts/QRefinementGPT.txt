@@ -1,0 +1,16 @@
+Consider the following test case written for Python Standard Library 3.10:
+
+<test_case>
+
+Your task is to determine whether the test will PASS or FAIL when executed. 
+Definitions:
+
+- PASS: All assertions in the test will succeed and no unexpected exceptions will occur.
+- FAIL: At least one assertion fails or an unexpected exception is raised during execution.
+
+Provide a clear rationale for your decision **before giving the answer**.
+
+Output format (must follow exactly):
+
+Explanation: <your reasoning here>
+Label: <PASS or FAIL>

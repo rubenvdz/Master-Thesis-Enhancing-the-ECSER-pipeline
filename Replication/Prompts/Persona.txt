@@ -1,0 +1,10 @@
+Act as a Python expert and consider the following test of the Python Standard
+Library, version 3.10:
+<test_case>
+Your job is to figure out whether this test will PASS or
+FAIL. Provide the rationale before giving an answer. 
+Provide outputs that a Python expert would create.
+
+Answer in this exact format:
+Explanation: <free text>
+Label: <PASS | FAIL>
