@@ -249,6 +249,7 @@ with open("Prompts/QRefinementGPT.txt") as f:
 
 # S4: Prompt comparison.
 
+# Use subset of data for testing code
 # small_data = val_data[val_data['n'] == 1].iloc[:8] # Smaller dataset for testing code and prompts
 # results_zeroshot = get_results(small_data, zeroshot, verbose=1)
 # results_fewshot = get_results(small_data, fewshot, verbose=1)
@@ -257,39 +258,39 @@ with open("Prompts/QRefinementGPT.txt") as f:
 # results_qRefinement = get_results(small_data, qRefinement, verbose=1)
 # results_qRefinementGPT = get_results(small_data, qRefinementGPT, verbose=1)
 
+# Use full validation set
 #results_val_zeroshot = get_results(val_data, zeroshot, path="Results/results_val_zeroshot.csv")
 #results_val_fewshot = get_results(val_data_fewshot, fewshot, path="Results/results_val_fewshot.csv")
-results_val_cVerifier = get_results(val_data, cVerifier, path="Results/results_val_cVerifier.csv")
-results_val_persona = get_results(val_data, persona, path="Results/results_val_persona.csv")
-results_val_qRefinement = get_results(val_data, qRefinement, path="Results/results_val_qRefinement.csv")
-results_val_qRefinementGPT = get_results(val_data, qRefinementGPT, path="Results/results_val_qRefinementGPT.csv")
+#results_val_cVerifier = get_results(val_data, cVerifier, path="Results/results_val_cVerifier.csv")
+# results_val_persona = get_results(val_data, persona, path="Results/results_val_persona.csv")
+# results_val_qRefinement = get_results(val_data, qRefinement, path="Results/results_val_qRefinement.csv")
+# results_val_qRefinementGPT = get_results(val_data, qRefinementGPT, path="Results/results_val_qRefinementGPT.csv")
+
+# Read saved results
+results_val_zeroshot = pd.read_csv("Results/results_val_zeroshot.csv", sep=" ",index_col=0)
+results_val_fewshot = pd.read_csv("Results/results_val_fewshot.csv", sep=" ",index_col=0)
+results_val_cVerifier = pd.read_csv("Results/results_val_cVerifier.csv", sep=" ",index_col=0)
+results_val_persona = pd.read_csv("Results/results_val_persona.csv", sep=" ",index_col=0)
+results_val_qRefinement = pd.read_csv("Results/results_val_qRefinement.csv", sep=" ",index_col=0)
+results_val_qRefinementGPT = pd.read_csv("Results/results_val_qRefinementGPT.csv", sep=" ",index_col=0)
+
+# Compare results for different prompts on validation set
+print("Zeroshot")
+print(evaluate_results(results_val_zeroshot))
+print("Fewshot")
+print(evaluate_results(results_val_fewshot))
+print("Persona")
+print(evaluate_results(results_val_cVerifier))
+print("Cognitive Verifier")
+print(evaluate_results(results_val_persona))
+print("Question Refinement")
+print(evaluate_results(results_val_qRefinement))
+print("Question Refinement (GPT)")
+print(evaluate_results(results_val_qRefinementGPT))
+
+# S5. Test the models.
 
 
-
-
-# results_dev_zeroshot = pd.read_csv("Results/results_dev_zeroshot.csv", sep=" ",index_col=0)
-# results_dev_fewshot = pd.read_csv("Results/results_dev_fewshot.csv", sep=" ",index_col=0)
-
-# print(evaluate_results(results_dev_zeroshot))
-# print(evaluate_results(results_dev_fewshot))
-
-# print("Zeroshot")
-# print(evaluate_results(results_zeroshot))
-# print("Fewshot")
-# print(evaluate_results(results_fewshot))
-# print("Persona")
-# print(evaluate_results(results_persona))
-# print("Cognitive Verifier")
-# print(evaluate_results(results_cVerifier))
-# print("Question Refinement")
-# print(evaluate_results(results_qRefinement))
-# print("Question Refinement (GPT)")
-# print(evaluate_results(results_qRefinementGPT))
-
-# response1 = get_response(fewshot, val_data['test'][0])
-# response2 = get_response(fewshot, val_data['test'][2])
-# evaluate_response(response1, verbose=1)
-# evaluate_response(response2, verbose=1)
 
 
 
