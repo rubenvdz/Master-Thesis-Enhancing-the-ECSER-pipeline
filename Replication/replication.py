@@ -18,10 +18,12 @@ from sklearn.metrics import (
     f1_score,
     fbeta_score,
     matthews_corrcoef,
+    roc_curve,
     roc_auc_score
 )
 import json
 import numpy as np
+from torchmetrics.classification import BinaryCalibrationError
 
 
 # Get the data set
@@ -145,7 +147,7 @@ def get_results(data, prompt, verbose=0, path=None):
 
 def evaluate_results(results):
     """
-    Calculate the following from the results: confusion matrix, precision, recall, specificity, accuracy, F1, F2, MCC, ROC, AUC
+    Calculate the following from the results: confusion matrix, precision, recall, specificity, true_accuracy, accuracy, F1, F2, MCC, ROC, AUC. adherence, ECE
 
     Parameters
     ----------
@@ -163,8 +165,11 @@ def evaluate_results(results):
     
     results = results[results['pred'].notna()] # Remove failed responses
     n_failed = n - len(results.index)
-    y_true = results['label']
+    y_true = results['label'].values
     y_pred = results['pred'].str.lower()
+    
+    # Numeric labels (0 and 1), required for some functions
+    y_true_binary = (y_true == "fail").astype(int)
 
     # Probabality of positive class ("fail")
     y_score = np.where(results["pred"] == "fail", results["confidence"], 1.0 - results["confidence"])
@@ -181,10 +186,13 @@ def evaluate_results(results):
     F1 = f1_score(y_true, y_pred, pos_label="fail")
     F2 = fbeta_score(y_true, y_pred, beta=2, pos_label="fail")
     MCC = matthews_corrcoef(y_true, y_pred)
-    AUC = roc_auc_score(y_true, y_score)
-    
-    # Misc
+    AUC = roc_auc_score(y_true_binary, y_score)
+    roc = roc_curve(y_true, y_score, pos_label="fail")
     adherence = (n - n_failed) / n # Percentage of succesful format adherence
+
+    # Calibration
+    ece_function = BinaryCalibrationError(n_bins=10, norm="l1")
+    ECE = ece_function(torch.tensor(y_score), torch.tensor(y_true_binary)).item()
     
     evaluation = {
         "confusion_matrix": confusion,
@@ -197,8 +205,10 @@ def evaluate_results(results):
         "F2": F2,
         "MCC": MCC,
         "AUC": AUC,
+        "roc": roc,
         "n_failed": n_failed,
         "adherence": adherence,
+        "ECE": ECE,
     }
     # Save the evaluation
     # if (path):
@@ -289,6 +299,40 @@ print("Question Refinement (GPT)")
 print(evaluate_results(results_val_qRefinementGPT))
 
 # S5. Test the models.
+# The best results are for zero-shot, so we use this for the final results
+results_test_zeroshot = get_results(test_data, zeroshot, path="Results/results_test_zeroshot.csv")
+evaluation = evaluate_results(results_test_zeroshot)
+
+# S6. Report the confusion matrix.
+print("Confusion Matrix:")
+print(evaluation['confusion_matrix'])
+
+# S7. Report Metrics
+print(f"""
+      Precision: {evaluation['precision']})
+      Recall: {evaluation['recall']}
+      Specificity:   {evaluation['specificity']}
+      True Accuracy: {evaluation['true_accuracy']}
+      Accuracy:      {evaluation['accuracy']}
+      F1 Score:      {evaluation['F1']}
+      F2 Score:      {evaluation['F2']}
+      MCC:           {evaluation['MCC']}
+      Failed (n):    {evaluation['n_failed']}
+      Adherence:     {evaluation['adherence']}
+      """)
+      
+# S8. Evaluate calibration, fairness, robustness & sustainability.
+print(f"ECE: {evaluation['ECE']}")
+# TODO: robustness
+
+# S9. Analyse overfitting and degradation.
+# TODO: calculate degradation.
+
+# S10: Visualise ROC.
+# TODO: visualise ROC
+
+# S11: Statistical tests.
+# TODO: statistical tests of simple/complex cases and between the five suites
 
 
 
