@@ -300,8 +300,10 @@ print(evaluate_results(results_val_qRefinementGPT))
 
 # S5. Test the models.
 # The best results are for zero-shot, so we use this for the final results
-results_test_zeroshot = get_results(test_data, zeroshot, path="Results/results_test_zeroshot.csv")
+# results_test_zeroshot = get_results(test_data, zeroshot, path="Results/results_test_zeroshot.csv")
+results_test_zeroshot = pd.read_csv("Results/results_test_zeroshot.csv", sep=" ",index_col=0)
 evaluation = evaluate_results(results_test_zeroshot)
+
 
 # S6. Report the confusion matrix.
 print("Confusion Matrix:")
@@ -309,16 +311,16 @@ print(evaluation['confusion_matrix'])
 
 # S7. Report Metrics
 print(f"""
-      Precision: {evaluation['precision']})
-      Recall: {evaluation['recall']}
-      Specificity:   {evaluation['specificity']}
-      True Accuracy: {evaluation['true_accuracy']}
-      Accuracy:      {evaluation['accuracy']}
-      F1 Score:      {evaluation['F1']}
-      F2 Score:      {evaluation['F2']}
-      MCC:           {evaluation['MCC']}
-      Failed (n):    {evaluation['n_failed']}
-      Adherence:     {evaluation['adherence']}
+    Precision: {evaluation['precision']})
+    Recall: {evaluation['recall']}
+    Specificity:   {evaluation['specificity']}
+    True Accuracy: {evaluation['true_accuracy']}
+    Accuracy:      {evaluation['accuracy']}
+    F1 Score:      {evaluation['F1']}
+    F2 Score:      {evaluation['F2']}
+    MCC:           {evaluation['MCC']}
+    Failed (n):    {evaluation['n_failed']}
+    Adherence:     {evaluation['adherence']}
       """)
       
 # S8. Evaluate calibration, fairness, robustness & sustainability.
