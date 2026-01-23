@@ -1,0 +1,6 @@
+root ::= explanation label
+
+explanation ::= "Explanation: " text "\n"
+label ::= "Label: " ("PASS" | "FAIL")
+
+text ::= .{0,2000}

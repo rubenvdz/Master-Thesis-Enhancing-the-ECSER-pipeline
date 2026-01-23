@@ -8,7 +8,7 @@ Created on Mon Dec 29 00:53:23 2025
 import torch
 import pandas as pd
 import os
-from llama_cpp import Llama
+from llama_cpp import Llama, LlamaGrammar
 import math
 from sklearn.metrics import (
     confusion_matrix,
@@ -19,7 +19,8 @@ from sklearn.metrics import (
     fbeta_score,
     matthews_corrcoef,
     roc_curve,
-    roc_auc_score
+    roc_auc_score,
+    RocCurveDisplay,
 )
 import json
 import numpy as np
@@ -37,10 +38,13 @@ complex_cases = ['test_AST_objects','test_locale_calendar_formatweekday','test_r
 llm = Llama.from_pretrained(
  	repo_id="bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
  	filename="Meta-Llama-3.1-8B-Instruct-IQ2_M.gguf",
-    verbose=False,
+    verbose=True,
     logits_all=True,
-    n_ctx = 2048
+    n_ctx = 2048,
+    n_gpu_layers=100
 )
+
+grammar = LlamaGrammar.from_file("Prompts/format.gbnf")
 
 # Helper functions
 def get_response(prompt, test):
@@ -74,6 +78,7 @@ def get_response(prompt, test):
         logprobs=True,
         top_logprobs=5,
         temperature=0,
+        grammar=grammar,
     )
     return(response)
     
@@ -145,9 +150,9 @@ def get_results(data, prompt, verbose=0, path=None):
         results.to_csv(path, sep=" ",index=True, header=True,mode="w")
     return results
 
-def evaluate_results(results):
+def evaluate_results(results,print_eval=False,name=""):
     """
-    Calculate the following from the results: confusion matrix, precision, recall, specificity, true_accuracy, accuracy, F1, F2, MCC, ROC, AUC. adherence, ECE
+    Calculate the following from the results: confusion matrix, precision, recall, specificity, true_accuracy, accuracy, F1, F2, MCC, ROC, AUC, adherence, ECE
 
     Parameters
     ----------
@@ -210,13 +215,23 @@ def evaluate_results(results):
         "adherence": adherence,
         "ECE": ECE,
     }
-    # Save the evaluation
-    # if (path):
-    #     with open(path, "w") as f:
-    #             json.dump(evaluation, f, indent=4)
+    if print_eval:
+        print_metrics(evaluation,name)
     return evaluation
     
-    
+def print_metrics(evaluation, name):
+    print(f"""{name}
+    Precision: {evaluation['precision']}
+    Recall: {evaluation['recall']}
+    Specificity:   {evaluation['specificity']}
+    True Accuracy: {evaluation['true_accuracy']}
+    Accuracy:      {evaluation['accuracy']}
+    F1 Score:      {evaluation['F1']}
+    F2 Score:      {evaluation['F2']}
+    MCC:           {evaluation['MCC']}
+    Failed (n):    {evaluation['n_failed']}
+    Adherence:     {evaluation['adherence']}
+          """)
         
 
 # S1: Select an Evaluation Method and Split the Data.
@@ -260,7 +275,7 @@ with open("Prompts/QRefinementGPT.txt") as f:
 # S4: Prompt comparison.
 
 # Use subset of data for testing code
-# small_data = val_data[val_data['n'] == 1].iloc[:8] # Smaller dataset for testing code and prompts
+# small_data = val_data[val_data['n'] == 1].iloc[:4] # Smaller dataset for testing code and prompts
 # results_zeroshot = get_results(small_data, zeroshot, verbose=1)
 # results_fewshot = get_results(small_data, fewshot, verbose=1)
 # results_cVerifier = get_results(small_data, cVerifier, verbose=1)
@@ -269,9 +284,9 @@ with open("Prompts/QRefinementGPT.txt") as f:
 # results_qRefinementGPT = get_results(small_data, qRefinementGPT, verbose=1)
 
 # Use full validation set
-#results_val_zeroshot = get_results(val_data, zeroshot, path="Results/results_val_zeroshot.csv")
-#results_val_fewshot = get_results(val_data_fewshot, fewshot, path="Results/results_val_fewshot.csv")
-#results_val_cVerifier = get_results(val_data, cVerifier, path="Results/results_val_cVerifier.csv")
+# results_val_zeroshot = get_results(val_data, zeroshot, path="Results/results_val_zeroshot.csv")
+# results_val_fewshot = get_results(val_data_fewshot, fewshot, path="Results/results_val_fewshot.csv")
+# results_val_cVerifier = get_results(val_data, cVerifier, path="Results/results_val_cVerifier.csv")
 # results_val_persona = get_results(val_data, persona, path="Results/results_val_persona.csv")
 # results_val_qRefinement = get_results(val_data, qRefinement, path="Results/results_val_qRefinement.csv")
 # results_val_qRefinementGPT = get_results(val_data, qRefinementGPT, path="Results/results_val_qRefinementGPT.csv")
@@ -285,24 +300,18 @@ results_val_qRefinement = pd.read_csv("Results/results_val_qRefinement.csv", sep
 results_val_qRefinementGPT = pd.read_csv("Results/results_val_qRefinementGPT.csv", sep=" ",index_col=0)
 
 # Compare results for different prompts on validation set
-print("Zeroshot")
-print(evaluate_results(results_val_zeroshot))
-print("Fewshot")
-print(evaluate_results(results_val_fewshot))
-print("Persona")
-print(evaluate_results(results_val_cVerifier))
-print("Cognitive Verifier")
-print(evaluate_results(results_val_persona))
-print("Question Refinement")
-print(evaluate_results(results_val_qRefinement))
-print("Question Refinement (GPT)")
-print(evaluate_results(results_val_qRefinementGPT))
+evaluate_results(results_val_zeroshot,print_eval=True,name="Zeroshot")
+evaluate_results(results_val_fewshot,print_eval=True,name="Fewshot")
+evaluate_results(results_val_cVerifier,print_eval=True,name="Persona")
+evaluate_results(results_val_persona,print_eval=True,name="Cognitive Verifier")
+evaluate_results(results_val_qRefinement,print_eval=True,name="Question Refinement")
+evaluate_results(results_val_qRefinementGPT,print_eval=True,name="Question Refinement (GPT)")
 
 # S5. Test the models.
-# The best results are for zero-shot, so we use this for the final results
-# results_test_zeroshot = get_results(test_data, zeroshot, path="Results/results_test_zeroshot.csv")
-results_test_zeroshot = pd.read_csv("Results/results_test_zeroshot.csv", sep=" ",index_col=0)
-evaluation = evaluate_results(results_test_zeroshot)
+# The best results are for cognitive verifier, so we use this for the final results
+# results_test_cVerifier = get_results(test_data, cVerifier, path="Results/results_test_cVerifier.csv")
+results_test_cVerifier = pd.read_csv("Results/results_test_cVerifier.csv", sep=" ",index_col=0)
+evaluation = evaluate_results(results_test_cVerifier)
 
 
 # S6. Report the confusion matrix.
@@ -310,28 +319,34 @@ print("Confusion Matrix:")
 print(evaluation['confusion_matrix'])
 
 # S7. Report Metrics
-print(f"""
-    Precision: {evaluation['precision']})
-    Recall: {evaluation['recall']}
-    Specificity:   {evaluation['specificity']}
-    True Accuracy: {evaluation['true_accuracy']}
-    Accuracy:      {evaluation['accuracy']}
-    F1 Score:      {evaluation['F1']}
-    F2 Score:      {evaluation['F2']}
-    MCC:           {evaluation['MCC']}
-    Failed (n):    {evaluation['n_failed']}
-    Adherence:     {evaluation['adherence']}
-      """)
-      
+print_metrics(evaluation,"TEST SET METRICS")      
+
 # S8. Evaluate calibration, fairness, robustness & sustainability.
+# Calibration
+print("Calibration:")
 print(f"ECE: {evaluation['ECE']}")
 # TODO: robustness
 
 # S9. Analyse overfitting and degradation.
-# TODO: calculate degradation.
+# We calculate degradation:
+val_evaluation = evaluate_results(results_val_cVerifier)
+print(f"""
+    DEGRADATION
+    Precision:     {evaluation['precision'] - val_evaluation['precision']}
+    Recall:        {evaluation['recall'] - val_evaluation['recall']}
+    Specificity:   {evaluation['specificity'] - val_evaluation['specificity']}
+    True Accuracy: {evaluation['true_accuracy'] - val_evaluation['true_accuracy']}
+    Accuracy:      {evaluation['accuracy'] - val_evaluation['accuracy']}
+    F1 Score:      {evaluation['F1'] - val_evaluation['F1']}
+    F2 Score:      {evaluation['F2'] - val_evaluation['F2']}
+    MCC:           {evaluation['MCC'] - val_evaluation['MCC']}
+    Adherence:     {evaluation['adherence'] - val_evaluation['adherence']}
+      """)
 
 # S10: Visualise ROC.
-# TODO: visualise ROC
+fpr, tpr, thresholds = evaluation['roc']
+roc_display = RocCurveDisplay(fpr=fpr, tpr=tpr).plot()
+print(f"AUC: {evaluation['AUC']}")
 
 # S11: Statistical tests.
 # TODO: statistical tests of simple/complex cases and between the five suites
