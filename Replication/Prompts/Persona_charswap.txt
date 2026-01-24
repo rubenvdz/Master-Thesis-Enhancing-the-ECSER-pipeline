@@ -1,0 +1,10 @@
+Act as a Python expert and consider the following etst of the Python Standard
+Library, version 3.10:
+<test_case>
+YOour job is to figure out whether this test will PASB or
+FAIL. Provide the rationale before givin an answer. 
+Provide outputs that a PythLon expert would create.
+
+Answer in this exact format:
+Explanation: <free text>
+Label: <PASS | FAIL>

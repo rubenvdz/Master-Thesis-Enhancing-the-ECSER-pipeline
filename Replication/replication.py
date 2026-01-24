@@ -25,7 +25,7 @@ from sklearn.metrics import (
 import json
 import numpy as np
 from torchmetrics.classification import BinaryCalibrationError
-from textattack.augmentation import WordNetAugmenter, CharSwapAugmenter
+from textattack.augmentation import EmbeddingAugmenter, CharSwapAugmenter
 
 
 # Get the data set
@@ -303,17 +303,16 @@ results_val_qRefinementGPT = pd.read_csv("Results/results_val_qRefinementGPT.csv
 # Compare results for different prompts on validation set
 evaluate_results(results_val_zeroshot,print_eval=True,name="Zeroshot")
 evaluate_results(results_val_fewshot,print_eval=True,name="Fewshot")
-evaluate_results(results_val_cVerifier,print_eval=True,name="Persona")
-evaluate_results(results_val_persona,print_eval=True,name="Cognitive Verifier")
+evaluate_results(results_val_cVerifier,print_eval=True,name="Cognitive Verifier")
+evaluate_results(results_val_persona,print_eval=True,name="Persona")
 evaluate_results(results_val_qRefinement,print_eval=True,name="Question Refinement")
 evaluate_results(results_val_qRefinementGPT,print_eval=True,name="Question Refinement (GPT)")
 
 # S5. Test the models.
-# The best results are for cognitive verifier, so we use this for the final results
-# results_test_cVerifier = get_results(test_data, cVerifier, path="Results/results_test_cVerifier.csv")
-results_test_cVerifier = pd.read_csv("Results/results_test_cVerifier.csv", sep=" ",index_col=0)
-evaluation = evaluate_results(results_test_cVerifier)
-
+# The best results are for persona, so we use this for the final results
+results_test_persona = get_results(test_data, persona, path="Results/results_test_persona.csv")
+results_test_persona = pd.read_csv("Results/results_test_persona.csv", sep=" ",index_col=0)
+evaluation = evaluate_results(results_test_persona)
 
 # S6. Report the confusion matrix.
 print("Confusion Matrix:")
@@ -327,30 +326,30 @@ print_metrics(evaluation,"TEST SET METRICS")
 print("Calibration:")
 print(f"ECE: {evaluation['ECE']}")
 # Robustness
-# We create two prompts with different prompt attacks: WordNetAugmenter and CharSwapAugmenter
-# wordnet_augmenter = WordNetAugmenter(pct_words_to_swap=0.1)
+# We create two prompts with different prompt attacks: EmbeddingAugmenter and CharSwapAugmenter
+# embedding_augmenter = EmbeddingAugmenter(pct_words_to_swap=0.2)
 # charswap_augmenter = CharSwapAugmenter(pct_words_to_swap=0.1)
-# with open("Prompts/CVerifier_wordnet.txt", "w") as f:
-#   f.write(wordnet_augmenter.augment(cVerifier)[0])
-# with open("Prompts/CVerifier_charswap.txt", "w") as f:
-#   f.write(charswap_augmenter.augment(cVerifier)[0])
+# with open("Prompts/Persona_embedding.txt", "w") as f:
+#   f.write(embedding_augmenter.augment(persona)[0])
+# with open("Prompts/Persona_charswap.txt", "w") as f:
+#   f.write(charswap_augmenter.augment(persona)[0])
 # Evaluate the prompts
-with open("Prompts/CVerifier_wordnet.txt") as f:
-    cVerifier_wordnet = f.read()
-with open("Prompts/CVerifier_charswap.txt") as f:
-    cVerifier_charswap = f.read()
-# results_test_cVerifier_wordnet = get_results(test_data, cVerifier_wordnet, path="Results/results_test_cVerifier_wordnet.csv")
-# results_test_cVerifier_charswap = get_results(test_data, cVerifier_charswap, path="Results/results_test_cVerifier_charswap.csv")
-results_test_cVerifier_wordnet = pd.read_csv("Results/results_test_cVerifier_wordnet.csv", sep=" ",index_col=0)
-results_test_cVerifier_charswap = pd.read_csv("Results/results_test_cVerifier_charswap.csv", sep=" ",index_col=0)
-evaluation_wordnet = evaluate_results(results_test_cVerifier_wordnet)
-evaluation_charswap = evaluate_results(results_test_cVerifier_charswap)
-print_metrics(evaluation_wordnet,"WORDNET ATTACK METRICS")      
+with open("Prompts/Persona_embedding.txt") as f:
+    persona_embedding = f.read()
+with open("Prompts/Persona_charswap.txt") as f:
+    persona_charswap = f.read()
+results_test_persona_embedding = get_results(test_data, persona_embedding, path="Results/results_test_persona_embedding.csv")
+results_test_persona_charswap = get_results(test_data, persona_charswap, path="Results/results_test_persona_charswap.csv")
+results_test_persona_embedding = pd.read_csv("Results/results_test_persona_embedding.csv", sep=" ",index_col=0)
+results_test_persona_charswap = pd.read_csv("Results/results_test_persona_charswap.csv", sep=" ",index_col=0)
+evaluation_embedding = evaluate_results(results_test_persona_embedding)
+evaluation_charswap = evaluate_results(results_test_persona_charswap)
+print_metrics(evaluation_embedding,"EMBEDDING ATTACK METRICS")      
 print_metrics(evaluation_charswap,"CHARSWAP ATTACK METRICS")      
 
 # S9. Analyse overfitting and degradation.
 # We calculate degradation:
-val_evaluation = evaluate_results(results_val_cVerifier)
+val_evaluation = evaluate_results(results_val_persona)
 print(f"""
     DEGRADATION
     Precision:     {evaluation['precision'] - val_evaluation['precision']}
