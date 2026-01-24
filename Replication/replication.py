@@ -339,8 +339,14 @@ with open("Prompts/CVerifier_wordnet.txt") as f:
     cVerifier_wordnet = f.read()
 with open("Prompts/CVerifier_charswap.txt") as f:
     cVerifier_charswap = f.read()
-results_test_cVerifier_wordnet = get_results(test_data, cVerifier_wordnet, path="Results/results_test_cVerifier_wordnet.csv")
-results_test_cVerifier_charswap = get_results(test_data, cVerifier_charswap, path="Results/results_test_cVerifier_charswap.csv")
+# results_test_cVerifier_wordnet = get_results(test_data, cVerifier_wordnet, path="Results/results_test_cVerifier_wordnet.csv")
+# results_test_cVerifier_charswap = get_results(test_data, cVerifier_charswap, path="Results/results_test_cVerifier_charswap.csv")
+results_test_cVerifier_wordnet = pd.read_csv("Results/results_test_cVerifier_wordnet.csv", sep=" ",index_col=0)
+results_test_cVerifier_charswap = pd.read_csv("Results/results_test_cVerifier_charswap.csv", sep=" ",index_col=0)
+evaluation_wordnet = evaluate_results(results_test_cVerifier_wordnet)
+evaluation_charswap = evaluate_results(results_test_cVerifier_charswap)
+print_metrics(evaluation_wordnet,"WORDNET ATTACK METRICS")      
+print_metrics(evaluation_charswap,"CHARSWAP ATTACK METRICS")      
 
 # S9. Analyse overfitting and degradation.
 # We calculate degradation:
