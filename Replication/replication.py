@@ -25,6 +25,7 @@ from sklearn.metrics import (
 import json
 import numpy as np
 from torchmetrics.classification import BinaryCalibrationError
+from textattack.augmentation import WordNetAugmenter, CharSwapAugmenter
 
 
 # Get the data set
@@ -38,7 +39,7 @@ complex_cases = ['test_AST_objects','test_locale_calendar_formatweekday','test_r
 llm = Llama.from_pretrained(
  	repo_id="bartowski/Meta-Llama-3.1-8B-Instruct-GGUF",
  	filename="Meta-Llama-3.1-8B-Instruct-IQ2_M.gguf",
-    verbose=True,
+    verbose=False,
     logits_all=True,
     n_ctx = 2048,
     n_gpu_layers=100
@@ -325,7 +326,21 @@ print_metrics(evaluation,"TEST SET METRICS")
 # Calibration
 print("Calibration:")
 print(f"ECE: {evaluation['ECE']}")
-# TODO: robustness
+# Robustness
+# We create two prompts with different prompt attacks: WordNetAugmenter and CharSwapAugmenter
+# wordnet_augmenter = WordNetAugmenter(pct_words_to_swap=0.1)
+# charswap_augmenter = CharSwapAugmenter(pct_words_to_swap=0.1)
+# with open("Prompts/CVerifier_wordnet.txt", "w") as f:
+#   f.write(wordnet_augmenter.augment(cVerifier)[0])
+# with open("Prompts/CVerifier_charswap.txt", "w") as f:
+#   f.write(charswap_augmenter.augment(cVerifier)[0])
+# Evaluate the prompts
+with open("Prompts/CVerifier_wordnet.txt") as f:
+    cVerifier_wordnet = f.read()
+with open("Prompts/CVerifier_charswap.txt") as f:
+    cVerifier_charswap = f.read()
+results_test_cVerifier_wordnet = get_results(test_data, cVerifier_wordnet, path="Results/results_test_cVerifier_wordnet.csv")
+results_test_cVerifier_charswap = get_results(test_data, cVerifier_charswap, path="Results/results_test_cVerifier_charswap.csv")
 
 # S9. Analyse overfitting and degradation.
 # We calculate degradation:
