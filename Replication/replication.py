@@ -26,7 +26,8 @@ import json
 import numpy as np
 from torchmetrics.classification import BinaryCalibrationError
 from textattack.augmentation import EmbeddingAugmenter, CharSwapAugmenter
-from scipy.stats import wilcoxon, friedmanchisquare, permutation_test
+from scipy.stats import wilcoxon, friedmanchisquare, permutation_test, binomtest
+from statsmodels.stats.contingency_tables import mcnemar
 
 
 # Get the data set
@@ -387,7 +388,17 @@ suite_preds = [(result['pred'] == "fail").astype(int).values for result in suite
 
 def statistic(x, y):
     return np.mean(x) - np.mean(y)
+
+# Compared to random guessing
+preds = (results_test_persona['pred'] == "fail").astype(int).values
+n_fail = preds.sum()
+n_total = len(preds)
+print(binomtest(n_fail, n_total, p=0.5, alternative='two-sided'))
+
+# Between simple and complex
 print(permutation_test((simple_pred,complex_pred),statistic))
+
+# Between the suites
 print(friedmanchisquare(*suite_preds))
 
 
