@@ -26,6 +26,7 @@ import json
 import numpy as np
 from torchmetrics.classification import BinaryCalibrationError
 from textattack.augmentation import EmbeddingAugmenter, CharSwapAugmenter
+from scipy.stats import wilcoxon, friedmanchisquare, permutation_test
 
 
 # Get the data set
@@ -310,7 +311,7 @@ evaluate_results(results_val_qRefinementGPT,print_eval=True,name="Question Refin
 
 # S5. Test the models.
 # The best results are for persona, so we use this for the final results
-results_test_persona = get_results(test_data, persona, path="Results/results_test_persona.csv")
+# results_test_persona = get_results(test_data, persona, path="Results/results_test_persona.csv")
 results_test_persona = pd.read_csv("Results/results_test_persona.csv", sep=" ",index_col=0)
 evaluation = evaluate_results(results_test_persona)
 
@@ -338,14 +339,21 @@ with open("Prompts/Persona_embedding.txt") as f:
     persona_embedding = f.read()
 with open("Prompts/Persona_charswap.txt") as f:
     persona_charswap = f.read()
-results_test_persona_embedding = get_results(test_data, persona_embedding, path="Results/results_test_persona_embedding.csv")
-results_test_persona_charswap = get_results(test_data, persona_charswap, path="Results/results_test_persona_charswap.csv")
+# results_test_persona_embedding = get_results(test_data, persona_embedding, path="Results/results_test_persona_embedding.csv")
+# results_test_persona_charswap = get_results(test_data, persona_charswap, path="Results/results_test_persona_charswap.csv")
 results_test_persona_embedding = pd.read_csv("Results/results_test_persona_embedding.csv", sep=" ",index_col=0)
 results_test_persona_charswap = pd.read_csv("Results/results_test_persona_charswap.csv", sep=" ",index_col=0)
 evaluation_embedding = evaluate_results(results_test_persona_embedding)
 evaluation_charswap = evaluate_results(results_test_persona_charswap)
 print_metrics(evaluation_embedding,"EMBEDDING ATTACK METRICS")      
 print_metrics(evaluation_charswap,"CHARSWAP ATTACK METRICS")      
+# Calculate Performance Drop Rate (PDR)
+pdr_embedding = 1 - (evaluation_embedding["accuracy"] / evaluation["accuracy"])
+pdr_charswap = 1 - (evaluation_charswap["accuracy"] / evaluation["accuracy"])
+print(f"PDR Embedding Attack: {pdr_embedding}")
+print(f"PDR CharSwap Attack: {pdr_charswap}")
+
+
 
 # S9. Analyse overfitting and degradation.
 # We calculate degradation:
@@ -370,6 +378,19 @@ print(f"AUC: {evaluation['AUC']}")
 
 # S11: Statistical tests.
 # TODO: statistical tests of simple/complex cases and between the five suites
+simple_results = results_test_persona[results_test_persona['name'].isin(simple_cases)]
+simple_pred = (simple_results['pred'] == "fail").astype(int).values
+complex_results = results_test_persona[results_test_persona['name'].isin(complex_cases)]
+complex_pred = (complex_results['pred'] == "fail").astype(int).values
+suite_results = [results_test_persona[results_test_persona['suite'] == suite] for suite in suites]
+suite_preds = [(result['pred'] == "fail").astype(int).values for result in suite_results]
+
+def statistic(x, y):
+    return np.mean(x) - np.mean(y)
+print(permutation_test((simple_pred,complex_pred),statistic))
+print(friedmanchisquare(*suite_preds))
+
+
 
 
 
