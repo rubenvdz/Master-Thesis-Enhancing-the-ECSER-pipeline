@@ -7,7 +7,6 @@ Created on Mon Dec 29 00:53:23 2025
 
 import torch
 import pandas as pd
-import os
 from llama_cpp import Llama, LlamaGrammar
 import math
 from sklearn.metrics import (
@@ -22,12 +21,10 @@ from sklearn.metrics import (
     roc_auc_score,
     RocCurveDisplay,
 )
-import json
 import numpy as np
 from torchmetrics.classification import BinaryCalibrationError
 from textattack.augmentation import EmbeddingAugmenter, CharSwapAugmenter
-from scipy.stats import wilcoxon, friedmanchisquare, permutation_test, binomtest
-from statsmodels.stats.contingency_tables import mcnemar
+from scipy.stats import friedmanchisquare, permutation_test, binomtest
 
 
 # Get the data set
@@ -378,7 +375,6 @@ roc_display = RocCurveDisplay(fpr=fpr, tpr=tpr).plot()
 print(f"AUC: {evaluation['AUC']}")
 
 # S11: Statistical tests.
-# TODO: statistical tests of simple/complex cases and between the five suites
 simple_results = results_test_persona[results_test_persona['name'].isin(simple_cases)]
 simple_pred = (simple_results['pred'] == "fail").astype(int).values
 complex_results = results_test_persona[results_test_persona['name'].isin(complex_cases)]

@@ -7,7 +7,7 @@ Created on Wed Dec 17 13:38:31 2025
 
 import pandas as pd
 import os
-from os.path import join, getsize
+from os.path import join
 from collections import defaultdict
 
 # This dict will store the test suite, name of the test, true label (fail or pass), number (index) and the actual python test code.
