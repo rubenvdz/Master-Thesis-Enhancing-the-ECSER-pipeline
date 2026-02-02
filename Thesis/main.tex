@@ -764,12 +764,32 @@ Studies were considered for replication based on the following criteria:
 
 These criteria were designed to select a study that is high-quality and easy to replicate, but does not follow all of the best practices in the field, since the purpose of the \newecser pipeline is to make it easier for researchers to follow these best practices.
 
-We chose to replicate \textcite{10.1145/3663529.3663794}'s study on predicting Python test results without execution, since the paper included a replication package, was published recently (2024), was published in a reputable journal (FSE) and did not follow all the proposed guidelines. Additionally, the paper uses prompts to guide predictions, making it well suited to test the prompt engineering recommendations in the pipeline, which represents one of the major contributions of the pipeline compared to the original ECSER pipeline. In the next section, we describe the paper in more detail and present and discuss the results of following the pipeline. 
+We chose to replicate \textcite{10.1145/3663529.3663794}'s study on predicting Python test results without execution, since the paper included a repository with the data and LLM outputs, was published recently (2024), was published in a reputable journal (FSE) and did not follow all the proposed guidelines. Additionally, the paper uses prompts to guide predictions, making it well suited to test the prompt engineering recommendations in the pipeline, which represents one of the major contributions of the \newecser pipeline compared to the original ECSER pipeline. In the next section, we describe the paper in more detail and present and discuss the results of each step of the pipeline.
 
 %By conducting these replication studies, we can evaluate the comprehensiveness of the pipeline and identify potential shortcomings. After the replication study, the findings from RQ3 were taken into account to make changes to the guidelines from RQ2 where needed, creating a feedback-loop between RQ2 and RQ3. The second replication was conducted using the updated pipeline.
 
 \subsection{Case Study: Predicting Test Results without Execution}
+For our case study we consider the topic of predicting test results without execution, a novel area of research proposed by \textcite{10.1145/3663529.3663794}, which aims to evaluate whether LLMs can understand code execution sufficiently to predict the results of running tests without the challenges associated with executing the code. The original study presents this problem as a binary classification task where the model predicts that executing the test either causes an exception ('fail') or runs without exceptions ('pass').
 
+%TODO Table of test cases
+The original study investigated this problem by evaluating the performance of GPT-4 in predicting Python test results in Python version 3.10. The authors constructed a data set of Python test cases by selecting test cases from five different libraries of the Python Standard Library: ast, calender, csv, gzip and string. From each of these five libraries, one test was selected that was considered to be relatively simple and one that was considered more complex, for a total of 10 unique test cases. Then, each test case was manually modified to create 10 passing tests and 10 failing tests, resulting in a data set of 200 test cases (100 passing and 100 failing), with 100 simple and 100 complex cases and 40 cases for each test suite (ast, calender, csv, gzip and string).
+
+%This data set was used to answer the following research question: what is the performance of GPT-4 to predict test results? This question was further divided into RQ1: all test cases, RQ2: test case complexity and RQ3: test suite. 
+
+%TODO Describe what we do differently (LLama, apply the pipeline, provide link to code) & mention type of replication from related work
+%TODO: Citations
+For our replication, we decided against using GPT-4 for predicting the results, since the usage of a closed-source model such as GPT-4 comes with several downsides, including cost, restricted access to model parameters and no guarantee of long-time availability. These downsides could potentially hinder the replicability of the results (CITE). Instead, we use the open-source LLama 3.1 with eight billion parameters, since it has shown competitive performance on related problems (CITE).
+
+%TODO Describe next sections
+
+\subsubsection{Training, Validation, Testing}
+%TODO Step 1-5
+
+\subsubsection{Results Analysis}
+%TODO Step 6-11
+
+\subsubsection{Summary of Findings}
+%TODO: Summarize results of all steps
 
 \newpage 
 \printbibliography[heading=bibintoc]
