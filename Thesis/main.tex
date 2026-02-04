@@ -125,7 +125,7 @@ The goal of this thesis is to address the lack of LLM-specific guidelines in the
     \item We conducted two replication studies of existing LLM classifier papers using the \newecser pipeline, in order to evaluate the pipeline's applicability and comprehensiveness.
 \end{itemize}
 
-Supplemental materials, including all code that was used, the full intermediary and final results and the source for this document can be found at:\\ \url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}.
+Supplemental materials, including all code that was used, the full intermediary and final results and the source for this document can be found on our GitHub page\footnote{\url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}}.\\
 
 % Structure of the thesis
 The remainder of this thesis is structured as follows. In Section \ref{Background}, we provide background information about LLMs. Section \ref{Research approach} describes the research approach and research questions. Lastly, Section \ref{Related Work} discusses related work.
@@ -776,11 +776,15 @@ The original study investigated this problem by evaluating the performance of GP
 
 %This data set was used to answer the following research question: what is the performance of GPT-4 to predict test results? This question was further divided into RQ1: all test cases, RQ2: test case complexity and RQ3: test suite. 
 
-%TODO Describe what we do differently (LLama, apply the pipeline, provide link to code) & mention type of replication from related work
-%TODO: Citations
-For our replication, we decided against using GPT-4 for predicting the results, since the usage of a closed-source model such as GPT-4 comes with several downsides, including cost, restricted access to model parameters and no guarantee of long-time availability. These downsides could potentially hinder the replicability of the results (CITE). Instead, we use the open-source LLama 3.1 with eight billion parameters, since it has shown competitive performance on related problems (CITE).
+For our replication, we decided against using GPT-4 for predicting the results, since the usage of a closed-source model such as GPT-4 comes with several downsides, including cost, restricted access to model parameters and no guarantee of long-time availability. These downsides could hinder the replicability of the results \cite{baltes2025guidelinesempiricalstudiessoftware}. Instead, we use the open-source LLama 3.1 with eight billion parameters, since Llama 3 has shown competitive performance with GPT-4 on text classification \cite{kostina2025llama}. However, we do not use the largest available model of 70 billion parameters, because of the available computational resources. Since we intentionally alter the procedure of the original study by applying the \newecser pipeline, our replication can be considered a non-exact or conceptual replication \cite{Shull2008}.
 
-%TODO Describe next sections
+By applying the \newecser pipeline, we make several contributions to the literature: 
+\begin{enumerate}
+\item We increase the replicability of the research by using an open-source LLM as well as providing all our code and the processed data set on our GitHub page\footnote{\url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}}.
+\item We perform a more systematic approach to prompt engineering, including a comparison of different prompts patterns.
+\item We provide more insight into the results by providing additional performance metrics and analysing the calibration, robustness and sustainability.
+\item We conduct statistical tests that show that we cannot corroborate some of the original findings of the paper.
+\end{enumerate}
 
 \subsubsection{Training, Validation, Testing}
 %TODO Step 1-5
