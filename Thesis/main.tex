@@ -788,14 +788,14 @@ By applying the \newecser pipeline, we make several contributions to the literat
 
 \subsubsection{Training, Validation, Testing}
 \textbf{S1. Select an Evaluation Method and Split the Data.}\\
-In order to get an unbiased estimate of the generalisability of the results, we have to avoid testing the model on the same data that was used for prompt engineering and prompt comparison. Since we do not perform hyper-parameter tuning or fine-tuning, we choose to use the holdout method to split the data evenly into a validation and test set, consisting of 100 samples each. These samples are chosen to provide an even split in terms of test suite, simple and complex test cases and label (pass or fail). This means that the validation and test set both consist of 50 passing and 50 failing tests, 50 simple and complex cases and 20 test cases per suite. The validation set is used for S3-S4, while the test set is exclusively used for S5-S11. The original study did not split the data into validation and test sets, which leaves open the possibility of the test data having influenced the design of their prompt.
+In order to get an unbiased estimate of the generalisability of the results, we have to avoid testing the model on the same data that was used for prompt engineering and prompt comparison. Since we do not perform hyper-parameter tuning or fine-tuning, we choose to use the holdout method to split the data evenly into a validation and test set, consisting of 100 samples each. These samples are chosen to provide an even split in terms of test suite, simple and complex test cases and label (pass or fail). This means that the validation and test set both consist of 50 passing and 50 failing tests, 50 simple and complex cases and 20 test cases per suite. The validation set is used for S3-S4, while the test set is exclusively used for S5-S11. The original study did not split the data into validation and test sets, which leaves open the possibility of the test data having influenced the design of their prompt.\\
 
 \textbf{S2. Fine-tune models.}\\
-Since the aim is to evaluate the performance of a pre-trained LLM on test result prediction, we do not perform S2 of the pipeline.
+Since the aim is to evaluate the performance of a pre-trained LLM on test result prediction, we do not perform S2 of the pipeline.\\
 
 %TODO S3. Design prompts
 \textbf{S3. Design prompts.}\\
-The prompt of the original study, although inspired by related research \cite{tufano2023predictingcodecoverageexecution}, was not accompanied by an explanation of how the prompt was designed, nor whether alternative approaches or prompts were considered. Instead, using the prompt of the original study as a blueprint, we follow the five steps of prompt design as follows:\\
+The prompt of the original study, although inspired by related research \cite{tufano2023predictingcodecoverageexecution}, was not accompanied by an explanation of how the prompt was designed, nor whether alternative approaches or prompts were considered. Instead, using the prompt of the original study as a blueprint, we follow the five steps of prompt design as follows:
 
 1. \textit{Define the goal of the prompt}: 
 
