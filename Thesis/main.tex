@@ -108,7 +108,7 @@ To treat the observed poor standard of empirical SE, some researchers have calle
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\linewidth]{figures/ECSER.png}
-    \caption{The ECSER pipeline. Reproduced from \textcite{Dellanna2022}. Steps with a dashed border are optional. The $\leftrightarrow$ arrows indicate feedback loops between phases}
+    \caption{The ECSER pipeline. Reproduced from \textcite{Dellanna2022}. Steps with a dashed border are optional. The $\leftrightarrow$ arrows indicate feedback loops between phases.}
     \label{fig:ECSER}
 \end{figure}
 
@@ -797,13 +797,46 @@ Since the aim is to evaluate the performance of a pre-trained LLM on test result
 \textbf{S3. Design prompts.}\\
 The prompt of the original study, although inspired by related research \cite{tufano2023predictingcodecoverageexecution}, was not accompanied by an explanation of how the prompt was designed, nor whether alternative approaches or prompts were considered. Instead, using the prompt of the original study as a blueprint, we follow the five steps of prompt design as follows:
 
-1. \textit{Define the goal of the prompt}: 
+1. \textit{Define the goal of the prompt}: the goal of the prompt is to make the model understand that it is asked to provide a binary judgement of whether a given test will pass or fail if it were run in Python version 3.10. 
 
-2. \textit{Choose the right prompt engineering approach}: 
+2. \textit{Choose the right prompt engineering approach}: for our approach, we selected the two most widely used prompt engineering approaches, zero-shot and few-shot, which we compare in S4b. Since the original study used a zero-shot approach, we based our zero-shot prompt on theirs, with the added output context mentioned in step 4 (see Figure \ref{fig:prompts_compared}). For the few-shot prompt, we selected four test cases from different suites, of which two were failing and two passing tests, and providing these tests and the desired outputs as part of the prompt. The desired outputs took the form of an explanation and a label as defined in step 4. The explanations were taken from the outputs of GPT-4 provided in the original study, making sure that these explanations were taken from correctly classified test cases, which were then shortened to prevent the context length from exceeding the allowed limit of 2048 tokens. The few-shot examples were removed from the validation set before testing.
 
 3. \textit{Design the prompt}: 
 
 4. \textit{Provide context}: 
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\vskip 0pt
+		\infobox{Original Prompt}{Consider the following test of the Python Standard
+			Library, version 3.10:\\
+			\textlangle test\_case\textrangle\\
+			Your job is to figure out whether this test will pass or
+			fail. If it fails, provide the rationale.
+			\vspace{1.79cm}}
+		\caption[b]{Prompt from the original study \cite{10.1145/3663529.3663794}.}
+		\label{fig:original_prompt}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\vskip 0pt
+		\infobox{Our Prompt (Zero-shot)}{Consider the following test of the Python Standard
+			Library, version 3.10:\\
+			\textlangle test\_case\textrangle\\
+			Your job is to figure out whether this test will PASS or
+			FAIL. Provide the rationale before giving an answer.\\
+			
+			Answer in this exact format:\\
+			Explanation: \textlangle free text\textrangle\\
+			Label: \textlangle PASS $\vert$ FAIL\textrangle}
+		\caption[b]{Our zero-shot prompt.}
+		\label{fig:zero-shot}
+	\end{subfigure}
+	\caption{The original prompt next to our zero-shot prompt with added context.}
+	\label{fig:prompts_compared}
+\end{figure}
 
 5. \textit{Test and refine}: 
 
