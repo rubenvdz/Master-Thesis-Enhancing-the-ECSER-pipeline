@@ -605,7 +605,7 @@ Prompt engineering is an important part of interacting with LLMs, since the prom
 
 4. \textit{Provide context}: providing context related to the specific domain can be a useful way to improve the performance of a prompt and avoid irrelevant responses \cite{Marvin2024}. Context can include examples like in few-shot prompting, but also information such as the desired content of the output, the format of the output or additional information about the topic. 
 
-5. \textit{Test and refine}: it is vital to test and refine the designed prompt, with respect to the defined goal. The validation set should be used to fill in any placeholder data, after which the output of the LLM with respect to the prompt can be used to evaluate the performance and whether the LLM adheres to the desired output format. Any changes made to the prompt or insights gained from the evaluation of the prompt, as well as the full interaction logs of the prompts and responses, should be made available, since this information can be useful for reproductions and replications \cite{baltes2025guidelinesempiricalstudiessoftware}.
+5. \textit{Test and refine}: it is vital to test and refine the designed prompt, with respect to the defined goal. The validation set should be used to fill in any placeholder data, after which the output of the LLM with respect to the prompt can be used to evaluate the performance and whether the LLM adheres to the desired output format. Any changes made to the prompt or insights gained from the evaluation of the prompt, as well as the full interaction logs of the prompts, should be made available, since this information can be useful for reproductions and replications \cite{baltes2025guidelinesempiricalstudiessoftware}.
 
 Lastly, whenever an impactful prompt engineering decision is made, such as choosing to use few-shot prompting instead of another method, the choice should be motivated in the paper. This can be done by explaining the choice based on the specific nature of the task or by referencing previous research which made the same choice. If certain information, such as the prompt or interaction log, cannot be provided for privacy or confidentiality reasons, this should be clearly stated and the researcher should still provide a summary of this information \cite{baltes2025guidelinesempiricalstudiessoftware}.\\
 
@@ -780,7 +780,7 @@ For our replication, we decided against using GPT-4 for predicting the results, 
 
 By applying the \newecser pipeline, we make several contributions to the literature: 
 \begin{enumerate}
-\item We increase the replicability of the research by using an open-source LLM as well as providing all our code and the processed data set on our GitHub page\footnote{\url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}}.
+\item We increase the replicability of the research by using an open-source LLM as well as providing all our code, prompts and the processed data set on our GitHub page\footnote{\url{https://github.com/rubenvdz/Master-Thesis-Enhancing-the-ECSER-pipeline}}.
 \item We perform a more systematic approach to prompt engineering, including a comparison of different prompts patterns.
 \item We provide more insight into the results by providing additional performance metrics and analysing the calibration, robustness and sustainability.
 \item We conduct statistical tests that show that we cannot corroborate some of the original findings of the paper.
@@ -801,9 +801,10 @@ The prompt of the original study, although inspired by related research \cite{tu
 
 2. \textit{Choose the right prompt engineering approach}: for our approach, we selected the two most widely used prompt engineering approaches, zero-shot and few-shot, which we compare in S4b. Since the original study used a zero-shot approach, we based our zero-shot prompt on theirs, with the added output context mentioned in step 4 (see Figure \ref{fig:prompts_compared}). For the few-shot prompt, we selected four test cases from different suites, of which two were failing and two passing tests, and providing these tests and the desired outputs as part of the prompt. The desired outputs took the form of an explanation and a label as defined in step 4. The explanations were taken from the outputs of GPT-4 provided in the original study, making sure that these explanations were taken from correctly classified test cases, which were then shortened to prevent the context length from exceeding the allowed limit of 2048 tokens. The few-shot examples were removed from the validation set before testing.
 
-3. \textit{Design the prompt}: 
+3. \textit{Design the prompt}: the prompt of the original study was not written using any established patterns with empirical backing. To enhance the text of the prompt, we selected three prompt patterns from \textcite{white2023}'s catalogue: the Persona, Cognitive Verifier and Question Refinement patterns. These patterns were chosen since they were the three highest performing prompt patterns in \textcite{ronanki2023}'s comparison of patterns for requirements classification. Each prompt pattern provides contextual statements that should be included in the prompt. For example, the Persona pattern has the contextual statements "Act as persona X" and "Provide outputs that persona X would create". The resulting prompts were compared in S4b along with the original zero-shot and few-shot prompts.
 
 4. \textit{Provide context}: 
+
 
 \begin{figure}[H]
 	\centering
