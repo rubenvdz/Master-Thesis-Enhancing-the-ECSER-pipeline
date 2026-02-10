@@ -181,7 +181,7 @@ def evaluate_results(results,print_eval=False,name=""):
     
     # Confusion matrix
     confusion =  confusion_matrix(y_true, y_pred,labels=["fail","pass"])
-    tn, fp, fn, tp = confusion.ravel()
+    tp, fn, fp, tn = confusion.ravel()
     
     # Metrics
     precision = precision_score(y_true, y_pred, pos_label="fail")
@@ -204,7 +204,6 @@ def evaluate_results(results,print_eval=False,name=""):
         "precision": precision,
         "recall": recall,
         "specificity": specificity,
-        "true_accuracy": true_accuracy,
         "accuracy": accuracy,
         "F1": F1,
         "F2": F2,
@@ -224,13 +223,11 @@ def print_metrics(evaluation, name):
     Precision: {evaluation['precision']}
     Recall: {evaluation['recall']}
     Specificity:   {evaluation['specificity']}
-    True Accuracy: {evaluation['true_accuracy']}
     Accuracy:      {evaluation['accuracy']}
     F1 Score:      {evaluation['F1']}
     F2 Score:      {evaluation['F2']}
     MCC:           {evaluation['MCC']}
-    Failed (n):    {evaluation['n_failed']}
-    Adherence:     {evaluation['adherence']}
+    AUC:           {evaluation['AUC']}
           """)
         
 
@@ -361,12 +358,10 @@ print(f"""
     Precision:     {evaluation['precision'] - val_evaluation['precision']}
     Recall:        {evaluation['recall'] - val_evaluation['recall']}
     Specificity:   {evaluation['specificity'] - val_evaluation['specificity']}
-    True Accuracy: {evaluation['true_accuracy'] - val_evaluation['true_accuracy']}
     Accuracy:      {evaluation['accuracy'] - val_evaluation['accuracy']}
     F1 Score:      {evaluation['F1'] - val_evaluation['F1']}
     F2 Score:      {evaluation['F2'] - val_evaluation['F2']}
     MCC:           {evaluation['MCC'] - val_evaluation['MCC']}
-    Adherence:     {evaluation['adherence'] - val_evaluation['adherence']}
       """)
 
 # S10: Visualise ROC.
