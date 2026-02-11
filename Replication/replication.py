@@ -219,7 +219,12 @@ def evaluate_results(results,print_eval=False,name=""):
     return evaluation
     
 def print_metrics(evaluation, name):
+    tp, fn, fp, tn = evaluation['confusion_matrix'].ravel()
     print(f"""{name}
+    TP: {tp}
+    FP: {fp}
+    FN: {fn}
+    TN: {tn}
     Precision: {evaluation['precision']}
     Recall: {evaluation['recall']}
     Specificity:   {evaluation['specificity']}
@@ -229,7 +234,7 @@ def print_metrics(evaluation, name):
     MCC:           {evaluation['MCC']}
     AUC:           {evaluation['AUC']}
           """)
-        
+          
 
 # S1: Select an Evaluation Method and Split the Data.
 # We use the holdout method and take 50% of tests for each test case while keeping an even PASS/FAIL split

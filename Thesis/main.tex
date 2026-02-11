@@ -646,10 +646,10 @@ Finally, after fine-tuning and determining the optimal hyper-parameters and/or p
 		& Positive& \MyBox{True}{Positive} & \MyBox{False}{Negative} \\
 		& Negative & \MyBox{False}{Positive} & \MyBox{True}{Negative} \\
 	\end{tabular}
-	\caption{Confusion Matrix. All values add up to the number of data points.}
-	\label{fig:confusion}
+	\caption{Generic confusion Matrix. All values add up to the number of data points.}
+	\label{fig:confusion_generic}
 \end{figure}
-While it is common to select a few metrics appropriate to a given task and report them, we recommend reporting the full confusion matrix so readers can get a more complete picture of the results, and be able to calculate many different metrics, even when they aren't explicitly reported (see S7). The confusion matrix consists of the number of true positive (TP), false positive (FP), true negative (TN), and false negative (FN) classification results and are reported as whole numbers. Often, the sums of the rows or columns are also included, since adding up the numbers in the columns results in the total number of data points that were classified as positive or negative, while the row sums represent the number of data points that were actually positive or negative. Figure \ref{fig:confusion} shows a generic confusion matrix. \\
+While it is common to select a few metrics appropriate to a given task and report them, we recommend reporting the full confusion matrix so readers can get a more complete picture of the results, and be able to calculate many different metrics, even when they aren't explicitly reported (see S7). The confusion matrix consists of the number of true positive (TP), false positive (FP), true negative (TN), and false negative (FN) classification results and are reported as whole numbers. Often, the sums of the rows or columns are also included, since adding up the numbers in the columns results in the total number of data points that were classified as positive or negative, while the row sums represent the number of data points that were actually positive or negative. Figure \ref{fig:confusion_generic} shows a generic confusion matrix. \\
 
 \textbf{S7. Report Metrics.}\\
 \begin{table}[bh]
@@ -843,7 +843,6 @@ The prompt of the original study, although inspired by related research \cite{tu
 \textbf{S4a. Hyper-parameter tuning.}\\
 Since we used a pre-trained model, there are few parameters that could be tuned. The temperature could be tuned to find the value with the best performance, but we chose to set it to 0 in order to remove any randomness in favour of replicability, since we are more concerned with replicability than performance.\\
 
-%TODO S4b. Prompt comparison.
 %TODO Confusion matrices?
 \textbf{S4b. Prompt comparison.}\\
 Instead of designing a single prompt, we designed a total of six prompts. The first two, which we refer to as the zero-shot and few-shot prompts were made to be very similar to the prompt of the original paper, only with added context for both and few-shot examples for the latter prompt. The other four are modified versions of our zero-shot prompt that make use of established prompt patterns. This includes the Persona, Cognitive Verifier and two versions of the Question Refinement pattern. Each of these prompts were evaluated on the validation set in order to select a single prompt for the final evaluation (S5). 
@@ -885,14 +884,34 @@ Based on these results, we selected the Persona prompt for the final evaluation 
 	\label{fig:persona_prompt}
 \end{figure}
 
-%TODO S5. Test the models.
 \textbf{S5. Test the models.}\\
+After developing multiple prompts and comparing the results on the validation set, we determined that the Persona prompt has the best performance. Next, we use this prompt with the test set to obtain the final results for S6-S11. 
 
 \subsubsection{Results Analysis}
 %TODO S6. Report the Confusion Matrix.
 \textbf{S6. Report the Confusion Matrix.}\\
+\begin{table}[H]
+ 	\caption{Confusion matrices for validation and test sets.}
+ 	\label{table:confusion_matrix}
+	\begin{tabular}{|l|l|c|c|c|c|}
+		\hline
+		\textbf{Data set} & \textbf{Prompt} & \textbf{TP} & \textbf{FP} & \textbf{FN} & \textbf{TN} \\
+		\hline
+		\multirow{6}{*}{Validation}
+		& Zeroshot & 34 & 30 & 16 & 20 \\
+		& Fewshot & 12 & 13 & 35 & 35 \\
+		& Cognitive Verifier & 30 & 25 & 20 & 25 \\
+		& \textbf{Persona} & 37 & 35 & 13 & 15 \\
+		& Question Refinement (Llama) & 31 & 30 & 19 & 20 \\
+		& Question Refinement (GPT) & 27 & 31 & 23 & 19 \\
+		\hline
+		Test &\textbf{Persona} & 40 & 35 & 10 & 15 \\
+		\hline
+	\end{tabular}
+\end{table}
 
 %TODO S7. Report Metrics.
+%TODO Include metrics for simple/complex and different suites
 \textbf{S7. Report Metrics.}\\
 
 %TODO S8. Evaluate calibration, fairness, robustness & sustainability.
