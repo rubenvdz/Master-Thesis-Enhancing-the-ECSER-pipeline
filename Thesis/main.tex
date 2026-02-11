@@ -12,6 +12,7 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{hhline}
+\usepackage{xcolor}
 \graphicspath{ {figures/} }
 
 % Fonts
@@ -843,9 +844,11 @@ The prompt of the original study, although inspired by related research \cite{tu
 Since we used a pre-trained model, there are few parameters that could be tuned. The temperature could be tuned to find the value with the best performance, but we chose to set it to 0 in order to remove any randomness in favour of replicability, since we are more concerned with replicability than performance.\\
 
 %TODO S4b. Prompt comparison.
+%TODO Confusion matrices?
 \textbf{S4b. Prompt comparison.}\\
-Instead of designing a single prompt, we designed a total of six prompts. The first two, which we refer to as the zero-shot and few-shot prompts were made to be very similar to the prompt of the original paper, only with added context for both and few-shot examples for the latter prompt. The other four are modified versions of our zero-shot prompt that make use of established prompt patterns. This includes the Persona, Cognitive Verifier and two versions of the Question Refinement pattern. Each of these prompts were evaluated on the validation set in order to select a single prompt for the final evaluation (S5). Table \ref{table:prompt_metrics} shows the performance metrics for each prompt. 
+Instead of designing a single prompt, we designed a total of six prompts. The first two, which we refer to as the zero-shot and few-shot prompts were made to be very similar to the prompt of the original paper, only with added context for both and few-shot examples for the latter prompt. The other four are modified versions of our zero-shot prompt that make use of established prompt patterns. This includes the Persona, Cognitive Verifier and two versions of the Question Refinement pattern. Each of these prompts were evaluated on the validation set in order to select a single prompt for the final evaluation (S5). 
 
+Table \ref{table:prompt_metrics} shows the performance metrics for each prompt. Note that for these results, we consider "fail" to be the positive class, as in the original paper, since we want test cases to fail in case there is a problem. Hence, a true positive (TP) represents a test case that is correctly classified as failing, whereas a true negative (TN) is a test that is correctly classified as passing. These results show that our Cognitive Verifier and Persona prompts perform the best on the validation set, with the Cognitive Verifier prompt having the highest precision (0.545), accuracy (0.550) and MCC (0.101); whereas the Persona prompt has the highest recall (0.740), $F_1$-score (0.607), $F_2$-score (0.680) and AUC (0.577). The few-shot prompt has the highest specificity (0.729), but this comes at the cost of a very low recall (0.255). 
 \begin{table}[H]
 	\centering
 	\caption{Performance metrics for each prompt on the validation set. Highest values are in bold.}
@@ -863,6 +866,24 @@ Instead of designing a single prompt, we designed a total of six prompts. The fi
 		\hline
 	\end{tabular}
 \end{table}
+
+Based on these results, we selected the Persona prompt for the final evaluation for two reasons. Firstly, it has the highest $F_1$-score, which signifies a good balance between precision and recall. Secondly, it has the highest recall and $F_2$-score, which we weigh more heavily than the precision, since the primary purpose of running test cases is to find code that fails, so that issues can be resolved, instead of finding code that runs as expected. Figure \ref{fig:persona_prompt} shows the full Persona prompt as it is used in the rest of the pipeline. It should be noted that these results are specific to our implementations of the prompt patterns, the general wording of the prompt and the data set, which means we cannot make claims about which prompt pattern is better in the general case. For this reason, we recommend all researchers to conduct their own comparisons to find the best prompt for their case. 
+
+\begin{figure}[H]
+	\centering
+	\infobox{Persona Prompt}{\textcolor{red}{Act as a Python expert} and consider the following test of the Python Standard
+		Library, version 3.10:\\
+		\textlangle test\_case\textrangle\\
+		Your job is to figure out whether this test will PASS or
+		FAIL. Provide the rationale before giving an answer.\\
+		\textcolor{red}{Provide outputs that a Python expert would create.}
+		
+		Answer in this exact format:\\
+		Explanation: \textlangle free text\textrangle\\
+		Label: \textlangle PASS $\vert$ FAIL\textrangle}
+	\caption{The Persona prompt, which was selected from the prompt comparison and will be used in the rest of the pipeline. Contextual statements unique to the Persona prompt pattern are coloured red for emphasis.}
+	\label{fig:persona_prompt}
+\end{figure}
 
 %TODO S5. Test the models.
 \textbf{S5. Test the models.}\\
