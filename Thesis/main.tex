@@ -676,7 +676,7 @@ Many metrics can be calculated from the confusion matrix, including the \textit{
 
 The specificity or true negative rate (TNR) is the ratio of actual negatives that are correctly classified as negative. The accuracy is the overall ratio of correct classifications and can be a useful metric when the classes are balanced, i.e. there is a similar amount of data points for positive and negative classes. If the classes are not balanced, the accuracy can be misleading \cite{Lones2024pitfalls, Haixiang2017imbalance}.
 
-The F$_1$-score is commonly used in the field of LLM4SE, but it has several drawbacks: (1) the F$_1$-score varies when the classes are swapped (i.e., positive is renamed to negative and vice-versa) and (2) the F$_1$-score is independent of the number of data points correctly classified as negative (TN) \cite{powers2015f,Chicco2020}. The Matthews correlation coefficient (MCC) is recommended by many researchers as a more balanced alternative to the F$_1$-score, since it balances all four categories of the confusion matrix and does so proportionally to the number of positive and negative data points \cite{Chicco2020,Foody2023,Yao2020}.
+The F$_1$-score is commonly used in the field of LLM4SE, but it has several drawbacks: (1) the F$_1$-score varies when the classes are swapped (i.e., positive is renamed to negative and vice-versa) and (2) the F$_1$-score is independent of the number of data points correctly classified as negative (TN) \cite{powers2015f,Chicco2020}. The Matthews correlation coefficient (MCC) is recommended by many researchers as a more balanced alternative to the F$_1$-score, since it balances all four categories of the confusion matrix and does so proportionally to the number of positive and negative data points \cite{Chicco2020,Foody2023,Yao2020}. The MCC ranges between $-1$ and $1$, with $-1$ representing a total disagreement between the predicted and actual results, $0$ representing no correlation and $+1$ representing a perfect agreement.
 
 Why specific metrics were included or omitted from the results should be justified in the text \cite{Kapoor2024}. Ideally, this can be done by explaining why the chosen metrics are mathematically or empirically appropriate for the given task. Otherwise, the researcher should refer to similar previous research that used these metrics. If certain metrics were omitted, the results should report enough information to allow the reader to calculate these metrics themselves, for example by reporting the full confusion matrix and providing the raw results as supplementary material.
 
@@ -917,8 +917,35 @@ Table \ref{table:confusion_matrix} shows the confusion matrices obtained on the 
 \end{table}
 
 %TODO S7. Report Metrics.
-%TODO Include metrics for simple/complex and different suites
+%TODO Include metrics for simple/complex and different suites.
+%TODO Compare metrics with original paper.
+%TODO Explain the results.
 \textbf{S7. Report Metrics.}\\
+Using the confusion matrix on the test set (S6), we calculated the performance metrics presented in Table \ref{table:test_metrics}. Overall, the results show that the model has a much higher recall (0.800) than precision (0.533), suggesting that while it finds most failing test cases, in the process it also misclassifies many passing test cases as failing test cases. This result is unsurprising, since we specifically favoured recall over precision when selecting the prompt in S4b, as the primary goal of running tests is to find incorrect code. As a result of the high difference in recall and precision, the model has a high $F_2$-score (0.727) and decent $F_1$-score (0.640), but a relatively low accuracy (0.550) and specificity (0.300). The MCC (0.115) shows that there is some level of agreement between the predicted and actual labels, but far from a perfect prediction (which would be 1).
+
+Apart from the results across all test cases, we have included the results for simple and complex test cases and the results for each test suite (ast, calendar, csv, gzip and string), as in the original paper.
+
+\begin{table}[H]
+	\centering
+	\caption{Performance metrics across different parts of the test set.}
+	\label{table:test_metrics}
+	\begin{tabularx}{\textwidth}{|X|c|c|c|c|c|c|c|c|}
+		\hline
+		\textbf{Tests} & \textbf{Precision} & \textbf{Recall} & \textbf{Specificity} & \textbf{Accuracy} & \textbf{F1} & \textbf{F2} & \textbf{MCC} & \textbf{AUC} \\
+		\hline
+		All & 0.533 & 0.800 & 0.300 & 0.550 & 0.640 & 0.727 & 0.115 & 0.573 \\
+		\hline
+		Simple & 0.556 & 0.800 & 0.360 & 0.580 & 0.656 & 0.735 & 0.178 & 0.630 \\
+		Complex & 0.513 & 0.800 & 0.240 & 0.520 & 0.625 & 0.719 & 0.048 & 0.507 \\
+		\hline
+		ast & 0.643 & 0.900 & 0.500 & 0.700 & 0.750 & 0.833 & 0.436 & 0.640 \\
+		calendar & 0.563 & 0.900 & 0.300 & 0.600 & 0.692 & 0.804 & 0.250 & 0.580 \\
+		csv & 0.471 & 0.800 & 0.100 & 0.450 & 0.593 & 0.702 & -0.140 & 0.360 \\
+		gzip & 0.500 & 0.800 & 0.200 & 0.500 & 0.615 & 0.714 & 0.000 & 0.650 \\
+		string & 0.500 & 0.600 & 0.400 & 0.500 & 0.545 & 0.577 & 0.000 & 0.650 \\
+		\hline
+	\end{tabularx}
+\end{table}
 
 %TODO S8. Evaluate calibration, fairness, robustness & sustainability.
 \textbf{S8. Evaluate calibration, fairness, robustness \& sustainability.}\\
