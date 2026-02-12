@@ -12,7 +12,7 @@
 \usepackage{tabularx}
 \usepackage{multirow}
 \usepackage{hhline}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 \graphicspath{ {figures/} }
 
 % Fonts
@@ -42,13 +42,15 @@
   \parfillskip \z@skip}
 \makeatother
 
+\definecolor{darkishgray}{gray}{0.55}
+\definecolor{lightergray}{gray}{0.85}
 \newcommand{\infobox}[2]{
 	\begin{tcolorbox}[
 		skin=widget,
 		boxrule=1mm,
 		coltitle=black,
-		colframe=gray,
-		colback=lightgray,
+		colframe=darkishgray,
+		colback=lightergray,
 		width=(\linewidth),
 		before=\hfill,
 		after=\hfill,
@@ -838,12 +840,13 @@ The prompt of the original study, although inspired by related research \cite{tu
 	\label{fig:prompts_compared}
 \end{figure}
 
-5. \textit{Test and refine}: we tested all of our prompts on smaller partitions of the validation set to ensure that the responses resembled our expectations with regards to the content and structure, before using the full validation set for comparison. These smaller tests revealed that for some prompts, without a specified grammar, up to 25\% of responses would not follow the specified format, which lead to our implementing a strict grammar for the responses in step 4, solving the issue of low format adherence. Further, our original few-shot prompt contained examples with explanations that exceeded LLama's context limits, which lead us to shorten the explanations to fit within the limits. Other common issues with the few-shot prompt were that the responses would sometimes repeat the few-shot examples instead of classifying the actual test case, which was solved by specifying explicitly that the LLM should not repeat the examples and only answer the actual test case. Lastly, for transparency and reproducibility, we included all interaction logs (i.e., prompts and responses) in our results.\\
+5. \textit{Test and refine}: we tested all of our prompts on smaller partitions of the validation set to ensure that the responses resembled our expectations with regards to the content and structure, before using the full validation set for comparison. These smaller tests revealed that for some prompts, without a specified grammar, up to 25\% of responses would not follow the specified format, which lead to our implementing a strict grammar for the responses in step 4, solving the issue of low format adherence. Further, our original few-shot prompt contained examples with explanations that exceeded LLama's context limits, which lead us to shorten the explanations to fit within the limits. Other common issues with the few-shot prompt were that the responses would sometimes repeat the few-shot examples instead of classifying the actual test case, which was solved by specifying explicitly that the LLM should not repeat the examples and only answer the actual test case. Lastly, for transparency and reproducibility, we included all interaction logs (i.e., prompts and responses) in our results.
+
+Compared to the prompt design approach of the original paper, which was not explained apart from a reference to related research, we have followed a systematic approach to prompt design based on the available recommendations and empirical evidence. Further, our prompts have additional contextual information to guide the output into specific formats, using prompt patterns and grammars. The most important change is the development of multiple prompts, which allows us to compare the relative performance of these prompts, avoiding the unpredictability of using a single prompt \cite{mizrahi2024stateartmultipromptllm}.\\
 
 \textbf{S4a. Hyper-parameter tuning.}\\
-Since we used a pre-trained model, there are few parameters that could be tuned. The temperature could be tuned to find the value with the best performance, but we chose to set it to 0 in order to remove any randomness in favour of replicability, since we are more concerned with replicability than performance.\\
+Since we used a pre-trained model, we do not have control over training-related parameters. For parameters that guide the generation process, we selected specific values to ensure consistent results, since we are more concerned with replicability than performance. The temperature could be tuned to find the value with the best performance, but we chose to set it to 0 in order to remove any randomness in favour of replicability. We set the context size of the model to 2048 tokens to ensure our few-shot prompt did not exceed the context size. All other parameters were kept at their default values\footnote{See \url{https://llama-cpp-python.readthedocs.io/en/latest/api-reference/#llama_cpp.Llama.create_chat_completion}}. The original study did not report the temperature or the value of any other parameter, which means we do not know how the temperature affected the randomness of their result or which parameter values to use if we wish to conduct an exact replication.\\
 
-%TODO Confusion matrices?
 \textbf{S4b. Prompt comparison.}\\
 Instead of designing a single prompt, we designed a total of six prompts. The first two, which we refer to as the zero-shot and few-shot prompts were made to be very similar to the prompt of the original paper, only with added context for both and few-shot examples for the latter prompt. The other four are modified versions of our zero-shot prompt that make use of established prompt patterns. This includes the Persona, Cognitive Verifier and two versions of the Question Refinement pattern. Each of these prompts were evaluated on the validation set in order to select a single prompt for the final evaluation (S5). 
 
@@ -852,7 +855,7 @@ Table \ref{table:prompt_metrics} shows the performance metrics for each prompt. 
 	\centering
 	\caption{Performance metrics for each prompt on the validation set. Highest values are in bold.}
 	\label{table:prompt_metrics}
-	\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+	\begin{tabularx}{\textwidth}{|>{\small}X|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c>{\small}c|>{\small}c|}
 		\hline
 		\textbf{Prompt} & \textbf{Precision} & \textbf{Recall} & \textbf{Specificity} & \textbf{Accuracy} & \textbf{F1} & \textbf{F2} & \textbf{MCC} & \textbf{AUC} \\
 		\hline
@@ -860,13 +863,15 @@ Table \ref{table:prompt_metrics} shows the performance metrics for each prompt. 
 		Fewshot & 0.480 & 0.255 & \textbf{0.729} & 0.495 & 0.333 & 0.282 & -0.018 & 0.472 \\
 		Cognitive Verifier & \textbf{0.545} & 0.600 & 0.500 & \textbf{0.550} & 0.571 & 0.588 & \textbf{0.101} & 0.541 \\
 		Persona & 0.514 & \textbf{0.740} & 0.300 & 0.520 & \textbf{0.607} & \textbf{0.680} & 0.045 & \textbf{0.577} \\
-		Question Refinement (Llama) & 0.508 & 0.620 & 0.400 & 0.510 & 0.559 & 0.594 & 0.021 & 0.458 \\
-		Question Refinement (GPT) & 0.466 & 0.540 & 0.380 & 0.460 & 0.500 & 0.523 & -0.081 & 0.511 \\
+		Q. Refinement (Llama) & 0.508 & 0.620 & 0.400 & 0.510 & 0.559 & 0.594 & 0.021 & 0.458 \\
+		Q. Refinement (GPT) & 0.466 & 0.540 & 0.380 & 0.460 & 0.500 & 0.523 & -0.081 & 0.511 \\
 		\hline
-	\end{tabular}
+	\end{tabularx}
 \end{table}
 
 Based on these results, we selected the Persona prompt for the final evaluation for two reasons. Firstly, it has the highest $F_1$-score, which signifies a good balance between precision and recall. Secondly, it has the highest recall and $F_2$-score, which we weigh more heavily than the precision, since the primary purpose of running test cases is to find code that fails, so that issues can be resolved, instead of finding code that runs as expected. Figure \ref{fig:persona_prompt} shows the full Persona prompt as it is used in the rest of the pipeline. It should be noted that these results are specific to our implementations of the prompt patterns, the general wording of the prompt and the data set, which means we cannot make claims about which prompt pattern is better in the general case. For this reason, we recommend all researchers to conduct their own comparisons to find the best prompt for their case. 
+
+Since the original study used a single prompt, without comparing it to alternative prompt designs, and also did not use established prompt patterns, we have no way of knowing whether their results would have been different if they used other prompting approaches or if the Persona pattern would have also had the highest performance in their case. 
 
 \begin{figure}[H]
 	\centering

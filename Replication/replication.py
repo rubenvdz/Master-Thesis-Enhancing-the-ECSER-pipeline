@@ -41,7 +41,6 @@ llm = Llama.from_pretrained(
     verbose=False,
     logits_all=True,
     n_ctx = 2048,
-    n_gpu_layers=100
 )
 
 grammar = LlamaGrammar.from_file("Prompts/format.gbnf")
