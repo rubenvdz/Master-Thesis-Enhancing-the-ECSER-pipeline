@@ -850,12 +850,12 @@ Since we used a pre-trained model, we do not have control over training-related 
 \textbf{S4b. Prompt comparison.}\\
 Instead of designing a single prompt, we designed a total of six prompts. The first two, which we refer to as the zero-shot and few-shot prompts were made to be very similar to the prompt of the original paper, only with added context for both and few-shot examples for the latter prompt. The other four are modified versions of our zero-shot prompt that make use of established prompt patterns. This includes the Persona, Cognitive Verifier and two versions of the Question Refinement pattern. Each of these prompts were evaluated on the validation set in order to select a single prompt for the final evaluation (S5). 
 
-Table \ref{table:prompt_metrics} shows the performance metrics for each prompt. Note that for these results, we consider "fail" to be the positive class, as in the original paper, since we want test cases to fail in case there is a problem. Hence, a true positive (TP) represents a test case that is correctly classified as failing, whereas a true negative (TN) is a test that is correctly classified as passing. These results show that our Cognitive Verifier and Persona prompts perform the best on the validation set, with the Cognitive Verifier prompt having the highest precision (0.545), accuracy (0.550) and MCC (0.101); whereas the Persona prompt has the highest recall (0.740), $F_1$-score (0.607), $F_2$-score (0.680) and AUC (0.577). The few-shot prompt has the highest specificity (0.729), but this comes at the cost of a very low recall (0.255). 
+Table \ref{table:prompt_metrics} shows the performance metrics for each prompt (calculated from the confusion matrices in Table \ref{table:confusion_matrix}). Note that for these results, we consider "fail" to be the positive class, as in the original paper, since we want test cases to fail in case there is a problem. Hence, a true positive (TP) represents a test case that is correctly classified as failing, whereas a true negative (TN) is a test that is correctly classified as passing. These results show that our Cognitive Verifier and Persona prompts perform the best on the validation set, with the Cognitive Verifier prompt having the highest precision (0.545), accuracy (0.550) and MCC (0.101); whereas the Persona prompt has the highest recall (0.740), $F_1$-score (0.607), $F_2$-score (0.680) and AUC (0.577). The few-shot prompt has the highest specificity (0.729), but this comes at the cost of a very low recall (0.255). 
 \begin{table}[H]
 	\centering
 	\caption{Performance metrics for each prompt on the validation set. Highest values are in bold.}
 	\label{table:prompt_metrics}
-	\begin{tabularx}{\textwidth}{|>{\small}X|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c>{\small}c|>{\small}c|}
+	\begin{tabularx}{\textwidth}{|>{\small}X|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c|>{\small}c|}
 		\hline
 		\textbf{Prompt} & \textbf{Precision} & \textbf{Recall} & \textbf{Specificity} & \textbf{Accuracy} & \textbf{F1} & \textbf{F2} & \textbf{MCC} & \textbf{AUC} \\
 		\hline
@@ -893,10 +893,11 @@ Since the original study used a single prompt, without comparing it to alternati
 After developing multiple prompts and comparing the results on the validation set, we determined that the Persona prompt has the best performance. Next, we use this prompt with the test set to obtain the final results for S6-S11. 
 
 \subsubsection{Results Analysis}
-%TODO S6. Report the Confusion Matrix.
+
 \textbf{S6. Report the Confusion Matrix.}\\
+Table \ref{table:confusion_matrix} shows the confusion matrices obtained on the validation and test sets. These confusion matrices were used to calculate the metrics for each prompt on the validation set in S4b, and are used to calculate the metrics on the test set for the Persona prompt in S7. The benefit of providing the confusion matrix along with the calculated metrics is that if the reader is interested in any metrics that we did not consider, they have the ability to calculate these metrics themselves using the confusion matrix. 
 \begin{table}[H]
- 	\caption{Confusion matrices for validation and test sets.}
+ 	\caption{Confusion matrices for validation and test sets. Persona prompt is bold for easier comparison between the validation and test set.}
  	\label{table:confusion_matrix}
 	\begin{tabular}{|l|l|c|c|c|c|}
 		\hline
@@ -906,11 +907,11 @@ After developing multiple prompts and comparing the results on the validation se
 		& Zeroshot & 34 & 30 & 16 & 20 \\
 		& Fewshot & 12 & 13 & 35 & 35 \\
 		& Cognitive Verifier & 30 & 25 & 20 & 25 \\
-		& \textbf{Persona} & 37 & 35 & 13 & 15 \\
+		& \textbf{Persona} & \textbf{37} & \textbf{35} & \textbf{13} & \textbf{15} \\
 		& Question Refinement (Llama) & 31 & 30 & 19 & 20 \\
 		& Question Refinement (GPT) & 27 & 31 & 23 & 19 \\
 		\hline
-		Test &\textbf{Persona} & 40 & 35 & 10 & 15 \\
+		Test &\textbf{Persona} & \textbf{40} & \textbf{35} & \textbf{10} & \textbf{15} \\
 		\hline
 	\end{tabular}
 \end{table}
