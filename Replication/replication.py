@@ -318,19 +318,23 @@ evaluation = evaluate_results(results_test_persona)
 print("Confusion Matrix:")
 print(evaluation['confusion_matrix'])
 
-# S7. Report Metrics
+# S7. Report Metrics.
 simple_results = results_test_persona[results_test_persona['name'].isin(simple_cases)]
 complex_results = results_test_persona[results_test_persona['name'].isin(complex_cases)]
 suite_results = [results_test_persona[results_test_persona['suite'] == suite] for suite in suites]
-# Calculate metrics
+# Calculate metrics.
 evaluation_simple = evaluate_results(simple_results)
 evaluation_complex = evaluate_results(complex_results)
 evaluations_suite = [evaluate_results(suite_result) for suite_result in suite_results]
 
-# Metrics for ALL CASES
+# Print metrics for ALL CASES.
 print_metrics(evaluation,"TEST SET ALL")
+
+# Print metrics for simple/complex cases.
 print_metrics(evaluation_simple, "TEST SET SIMPLE")
 print_metrics(evaluation_complex, "TEST SET COMPLEX")
+
+# Print metrics for each suite.
 for i,suite in enumerate(suites):
     print_metrics(evaluations_suite[i],f"TEST SET SUITE {suite}")
 

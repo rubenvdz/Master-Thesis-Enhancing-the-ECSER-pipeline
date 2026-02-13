@@ -917,13 +917,12 @@ Table \ref{table:confusion_matrix} shows the confusion matrices obtained on the 
 \end{table}
 
 %TODO S7. Report Metrics.
-%TODO Include metrics for simple/complex and different suites.
 %TODO Compare metrics with original paper.
 %TODO Explain the results.
 \textbf{S7. Report Metrics.}\\
 Using the confusion matrix on the test set (S6), we calculated the performance metrics presented in Table \ref{table:test_metrics}. Overall, the results show that the model has a much higher recall (0.800) than precision (0.533), suggesting that while it finds most failing test cases, in the process it also misclassifies many passing test cases as failing test cases. This result is unsurprising, since we specifically favoured recall over precision when selecting the prompt in S4b, as the primary goal of running tests is to find incorrect code. As a result of the high difference in recall and precision, the model has a high $F_2$-score (0.727) and decent $F_1$-score (0.640), but a relatively low accuracy (0.550) and specificity (0.300). The MCC (0.115) shows that there is some level of agreement between the predicted and actual labels, but far from a perfect prediction (which would be 1).
 
-Apart from the results across all test cases, we have included the results for simple and complex test cases and the results for each test suite (ast, calendar, csv, gzip and string), as in the original paper.
+Apart from the results across all test cases, we have included the results for simple and complex test cases and the results for each test suite (ast, calendar, csv, gzip and string), as in the original paper. These results show that the simple test cases have a higher or equal performance than the complex test cases on every metric. Further, there are considerably differences in the performance metrics depending on the test suite. However, these observations are not enough to claim that the model is more capable of classifying simple test cases than complex test cases or actually performs better on some test suites \textit{in general}. We have to consider the possibility that these differences are coincidental, especially given the limited number of observations (50 each for simple and complex test cases, and 20 per test suite). Hence, we analyse the statistical significance of these results in S11 before drawing conclusions, a step that was not performed in the original study. 
 
 \begin{table}[H]
 	\centering
@@ -946,6 +945,8 @@ Apart from the results across all test cases, we have included the results for s
 		\hline
 	\end{tabularx}
 \end{table}
+
+Compared to the original paper, we have reported many common metrics that were not provided by the original authors, including the specificity, $F_1$-score, $F_2$-score, MCC and AUC. However, since they included the confusion matrix for the full test set, we were able to calculate that their model (GPT-4) had an $F_1$-score of 0.789, an $F_2$-score of 0.740 and an MCC of 0.633. These metrics are higher than ours, which is unsurprising given that GPT-4 is a much larger model than our Llama model of 8 billion parameters. However, their results are much harder to replicate, since they used a closed-source model, did not explain how they designed their prompt and did not provide all the code they used to run the experiments and analyse the results. It is possible that with a more systematic approach to prompt design and prompt comparison, their model would have performed even better, given that our zero-shot prompt, which is very similar to their prompt, was not our highest performing prompt.\\
 
 %TODO S8. Evaluate calibration, fairness, robustness & sustainability.
 \textbf{S8. Evaluate calibration, fairness, robustness \& sustainability.}\\
