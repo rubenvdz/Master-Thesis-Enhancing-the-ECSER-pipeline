@@ -779,7 +779,7 @@ The original study investigated this problem by evaluating the performance of GP
 
 %This data set was used to answer the following research question: what is the performance of GPT-4 to predict test results? This question was further divided into RQ1: all test cases, RQ2: test case complexity and RQ3: test suite. 
 
-For our replication, we decided against using GPT-4 for predicting the results, since the usage of a closed-source model such as GPT-4 comes with several downsides, including cost, restricted access to model parameters and no guarantee of long-time availability. These downsides could hinder the replicability of the results \cite{baltes2025guidelinesempiricalstudiessoftware}. Instead, we use the open-source LLama 3.1 with eight billion parameters, since Llama 3 has shown competitive performance with GPT-4 on text classification \cite{kostina2025llama}. However, we do not use the largest available model of 70 billion parameters, because of the available computational resources. Since we intentionally alter the procedure of the original study by applying the \newecser pipeline, our replication can be considered a non-exact or conceptual replication \cite{Shull2008}.
+For our replication, we decided against using GPT-4 for predicting the results, since the usage of a closed-source model such as GPT-4 comes with several downsides, including cost, restricted access to model parameters and no guarantee of long-time availability. These downsides could hinder the replicability of the results \cite{baltes2025guidelinesempiricalstudiessoftware}. Instead, we use the open-source LLama 3.1 with eight billion parameters and instruction tuning, since Llama 3 has shown competitive performance with GPT-4 on text classification \cite{kostina2025llama}. However, we do not use the largest available model of 70 billion parameters, because of the available computational resources. Since we intentionally alter the procedure of the original study by applying the \newecser pipeline, our replication can be considered a non-exact or conceptual replication \cite{Shull2008}.
 
 By applying the \newecser pipeline, we make several contributions to the literature: 
 \begin{enumerate}
@@ -916,9 +916,6 @@ Table \ref{table:confusion_matrix} shows the confusion matrices obtained on the 
 	\end{tabular}
 \end{table}
 
-%TODO S7. Report Metrics.
-%TODO Compare metrics with original paper.
-%TODO Explain the results.
 \textbf{S7. Report Metrics.}\\
 Using the confusion matrix on the test set (S6), we calculated the performance metrics presented in Table \ref{table:test_metrics}. Overall, the results show that the model has a much higher recall (0.800) than precision (0.533), suggesting that while it finds most failing test cases, in the process it also misclassifies many passing test cases as failing test cases. This result is unsurprising, since we specifically favoured recall over precision when selecting the prompt in S4b, as the primary goal of running tests is to find incorrect code. As a result of the high difference in recall and precision, the model has a high $F_2$-score (0.727) and decent $F_1$-score (0.640), but a relatively low accuracy (0.550) and specificity (0.300). The MCC (0.115) shows that there is some level of agreement between the predicted and actual labels, but far from a perfect prediction (which would be 1).
 
@@ -950,10 +947,24 @@ Compared to the original paper, we have reported many common metrics that were n
 
 %TODO S8. Evaluate calibration, fairness, robustness & sustainability.
 \textbf{S8. Evaluate calibration, fairness, robustness \& sustainability.}\\
+The evaluation of the correctness of the results does not give a complete picture of the trustworthiness of said results. In this step, we consider the calibration, fairness, robustness \& sustainability of the results. These aspects of the evaluation provide additional insights into the real-world usefulness of the model. 
+
 %TODO S8. Calibration
-%TODO S8. Fairness
+\textbf{Calibration}\\
+In order to calculate the calibration of the model, the confidence of each prediction has to be estimated. We used the key token probability to estimate the confidence, since it is considered one of the best methods for confidence elicitation \cite{xiong2024confidence}. This method works by focusing on the probability of result-specific tokens, which in our case means taking the conditional probability of the final label ("PASS" or "FAIL"), which was generated after the explanation. By not calculating the probability of the entire sequence, we remove the influence of the length of the explanation and any irrelevant tokens. We were able to easily obtain these probabilities, since we have used an open-source model. If we had used a closed-source model as in the original study, we would have had to use less reliable methods for estimating the confidence. 
+
+We calculated the expected calibration error (ECE) with 10 bins to measure the difference between the estimated confidences and the actual accuracy of the predictions, resulting in an ECE of 0.249. This means that we can expect a 25\% difference between the average confidence and the actual accuracy, showing that the model is poorly calibrated. This result is unsurprising, since LLMs have been shown to be overconfident in their predictions, and it has been demonstrated that instruction tuning worsens the calibration \cite{zhu2023calibration}. However, the fact that the model is poorly calibrated means that we cannot rely on the model's confidence to determine whether we should trust its predictions. I.e., if the model is very confident that a given test case will pass, there could still be a high probability of it failing.
+
+Since the original study did not evaluate the calibration of the model, we don't know how much we can trust the explanations provided by their model, even when the explanations express a high level of certainty of a particular test case passing or failing.
+
+\textbf{Fairness}\\
+In the pipeline, we consider four types of unfairness: injustice, stereotype bias, preference bias and disparate performance \cite{liu2024}. Since we do not use human participants, sensitive data, or subjective data; we do not perform this step of the pipeline.
+
 %TODO S8. Robustness
+\textbf{Robustness}\\
+
 %TODO S8. Sustainability
+\textbf{Sustainability}\\
 
 %TODO S9. Analyse overfitting & degradation.
 \textbf{S9. Analyse overfitting \& degradation.}\\
