@@ -949,7 +949,6 @@ Compared to the original paper, we have reported many common metrics that were n
 \textbf{S8. Evaluate calibration, fairness, robustness \& sustainability.}\\
 The evaluation of the correctness of the results does not give a complete picture of the trustworthiness of said results. In this step, we consider the calibration, fairness, robustness \& sustainability of the results. These aspects of the evaluation provide additional insights into the real-world usefulness of the model. 
 
-%TODO S8. Calibration
 \textbf{Calibration}\\
 In order to calculate the calibration of the model, the confidence of each prediction has to be estimated. We used the key token probability to estimate the confidence, since it is considered one of the best methods for confidence elicitation \cite{xiong2024confidence}. This method works by focusing on the probability of result-specific tokens, which in our case means taking the conditional probability of the final label ("PASS" or "FAIL"), which was generated after the explanation. By not calculating the probability of the entire sequence, we remove the influence of the length of the explanation and any irrelevant tokens. We were able to easily obtain these probabilities, since we have used an open-source model. If we had used a closed-source model as in the original study, we would have had to use less reliable methods for estimating the confidence. 
 
@@ -962,6 +961,9 @@ In the pipeline, we consider four types of unfairness: injustice, stereotype bia
 
 %TODO S8. Robustness
 \textbf{Robustness}\\
+There are several ways to evaluate the robustness of an LLM when faced with challenging inputs, such as the presence of noise in the training data or changes in the data distribution \cite{chang2023}. Since we do not perform any training, we focus on another type of robustness: the robustness of the LLM to adversarial prompts. We can evaluate the robustness to adversarial prompts by testing whether the results would have been different if the prompt had been altered in some way, whether maliciously or due to user error, known as a prompt attack. 
+
+To exemplify how to evaluate the prompt robustness, we used the TextAttack framework to generate two adversarial prompts, one by making character-level changes to our original prompt and one by making word-level changes \cite{morris2020textattack}. The character-level changes for the first prompt attack were made using the "charswap" augmenter, which changes the text of the prompt by substituting, deleting, inserting and swapping adjacent characters. The word-level changes for the second prompt attack were made using the "embedding" augmenter, which changes the text of the prompt by replacing words with semantically similar words based on the word embeddings. For both prompt attacks, we made sure that certain parts of the prompt stayed intact, such as the labels ("PASS" and "FAIL") and other information related to the syntax of the output. For the word-level changes, we manually modified the resulting prompt to make sure that the changes kept the semantic content of the prompt intact, reverting word substitutions that were based on the wrong word sense (e.g., the word "following" was originally incorrectly replaced with "pursuit"). Figure X shows the resulting prompt attacks. 
 
 %TODO S8. Sustainability
 \textbf{Sustainability}\\
