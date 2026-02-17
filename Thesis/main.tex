@@ -880,7 +880,7 @@ Since the original study used a single prompt, without comparing it to alternati
 		\textlangle test\_case\textrangle\\
 		Your job is to figure out whether this test will PASS or
 		FAIL. Provide the rationale before giving an answer.\\
-		\textcolor{red}{Provide outputs that a Python expert would create.}
+		\textcolor{red}{Provide outputs that a Python expert would create.}\\
 		
 		Answer in this exact format:\\
 		Explanation: \textlangle free text\textrangle\\
@@ -945,7 +945,6 @@ Apart from the results across all test cases, we have included the results for s
 
 Compared to the original paper, we have reported many common metrics that were not provided by the original authors, including the specificity, $F_1$-score, $F_2$-score, MCC and AUC. However, since they included the confusion matrix for the full test set, we were able to calculate that their model (GPT-4) had an $F_1$-score of 0.789, an $F_2$-score of 0.740 and an MCC of 0.633. These metrics are higher than ours, which is unsurprising given that GPT-4 is a much larger model than our Llama model of 8 billion parameters. However, their results are much harder to replicate, since they used a closed-source model, did not explain how they designed their prompt and did not provide all the code they used to run the experiments and analyse the results. It is possible that with a more systematic approach to prompt design and prompt comparison, their model would have performed even better, given that our zero-shot prompt, which is very similar to their prompt, was not our highest performing prompt.\\
 
-%TODO S8. Evaluate calibration, fairness, robustness & sustainability.
 \textbf{S8. Evaluate calibration, fairness, robustness \& sustainability.}\\
 The evaluation of the correctness of the results does not give a complete picture of the trustworthiness of said results. In this step, we consider the calibration, fairness, robustness \& sustainability of the results. These aspects of the evaluation provide additional insights into the real-world usefulness of the model. 
 
@@ -959,14 +958,53 @@ Since the original study did not evaluate the calibration of the model, we don't
 \textbf{Fairness}\\
 In the pipeline, we consider four types of unfairness: injustice, stereotype bias, preference bias and disparate performance \cite{liu2024}. Since we do not use human participants, sensitive data, or subjective data; we do not perform this step of the pipeline.
 
-%TODO S8. Robustness
 \textbf{Robustness}\\
-There are several ways to evaluate the robustness of an LLM when faced with challenging inputs, such as the presence of noise in the training data or changes in the data distribution \cite{chang2023}. Since we do not perform any training, we focus on another type of robustness: the robustness of the LLM to adversarial prompts. We can evaluate the robustness to adversarial prompts by testing whether the results would have been different if the prompt had been altered in some way, whether maliciously or due to user error, known as a prompt attack. 
+There are several ways to evaluate the robustness of an LLM when faced with challenging inputs, such as the presence of noise in the training data or changes in the data distribution \cite{chang2023}. Since we do not perform any training, we focus on another type of robustness: the robustness of the LLM to adversarial prompts. We can evaluate the robustness to adversarial prompts by testing whether the results would have been different if the prompt had been altered in some way, whether maliciously or due to user error, by using a prompt attack. 
 
-To exemplify how to evaluate the prompt robustness, we used the TextAttack framework to generate two adversarial prompts, one by making character-level changes to our original prompt and one by making word-level changes \cite{morris2020textattack}. The character-level changes for the first prompt attack were made using the "charswap" augmenter, which changes the text of the prompt by substituting, deleting, inserting and swapping adjacent characters. The word-level changes for the second prompt attack were made using the "embedding" augmenter, which changes the text of the prompt by replacing words with semantically similar words based on the word embeddings. For both prompt attacks, we made sure that certain parts of the prompt stayed intact, such as the labels ("PASS" and "FAIL") and other information related to the syntax of the output. For the word-level changes, we manually modified the resulting prompt to make sure that the changes kept the semantic content of the prompt intact, reverting word substitutions that were based on the wrong word sense (e.g., the word "following" was originally incorrectly replaced with "pursuit"). Figure X shows the resulting prompt attacks. 
+To exemplify how to evaluate the prompt robustness, we used the TextAttack framework to generate two adversarial prompts, one by making character-level changes to our original prompt and one by making word-level changes \cite{morris2020textattack}. The character-level changes for the first prompt attack were made using the "charswap" augmenter, which changes the text of the prompt by substituting, deleting, inserting and swapping adjacent characters. The word-level changes for the second prompt attack were made using the "embedding" augmenter, which changes the text of the prompt by replacing words with semantically similar words based on the word embeddings. For both prompt attacks, we made sure that certain parts of the prompt stayed intact, such as the placeholder "\textlangle test\_case\textrangle" and other information related to the syntax of the output. For the word-level changes, we manually modified the resulting prompt to make sure that the changes kept the semantic content of the prompt intact, reverting word substitutions that were based on the wrong word sense (e.g., the word "following" was originally incorrectly replaced with "pursuit"). Figure \ref{fig:prompt_attacks} shows the generated adversarial prompts. 
 
-%TODO S8. Sustainability
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\vskip 0pt
+		\infobox{Charswap attack prompt}{Act as a Python expert and consider the following \textcolor{red}{etst} of the Python Standard
+			Library, version 3.10:\\
+			\textlangle test\_case\textrangle\\
+			\textcolor{red}{YOour} job is to figure out whether this test will \textcolor{red}{PASB} or
+			FAIL. Provide the rationale before \textcolor{red}{givin} an answer. 
+			Provide outputs that a \textcolor{red}{PythLon} expert would create.\\
+
+			Answer in this exact format:\\
+			Explanation: \textlangle free text\textrangle\\
+			Label: \textlangle PASS $\vert$ FAIL\textrangle}
+		\caption[b]{Character-level prompt attack using the charswap augmenter.}
+		\label{fig:charswap}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.48\textwidth}
+		\centering
+		\vskip 0pt
+		\infobox{Embedding attack prompt}{Act as a Python \textcolor{red}{specialist} and \textcolor{red}{contemplate} the following test of the Python Standard
+			Library, version 3.10:\\
+			\textlangle test\_case\textrangle\\
+			Your job is to figure out whether this test will PASS or
+			FAIL. \textcolor{red}{Offer} the rationale before giving a \textcolor{red}{response}. 
+			\textcolor{red}{Deliver} outputs that a Python expert would create.\\
+			
+			\textcolor{red}{Respond} in this exact format:\\
+			Explanation: \textlangle free text\textrangle\\
+			Label: \textlangle PASS $\vert$ FAIL\textrangle}
+		\caption[b]{Word-level prompt attack using the embedding augmenter}
+		\label{fig:embedding}
+	\end{subfigure}
+	\caption{The generated adversarial prompts using the original Persona prompt (Figure \ref{fig:persona_prompt}). Changes made to the original prompt are highlighted in red.}
+	\label{fig:prompt_attacks}
+\end{figure}
+
+The generated adversarial prompts were evaluated on the test set and used to calculate the performance drop rate (PDR) resulting from these prompt attacks by comparing the predictions with the predictions of the original prompt. The PDR's for the charswap and embedding attacks were 0.145 and 0.074 respectively. This means that the introduction of character-level changes (i.e., typos) into the prompt resulted in a 14.5\% decrease in performance. Clearly, prompts should be carefully checked for typos before using them. However, introducing word-level changes into the prompt also decreased the accuracy of the predictions by 7.4\%, even though these changes kept the original meaning of the prompt intact. This finding reinforces that seemingly innocuous changes to the prompt, such as the choice of words, can have a substantial effect on the performance of the prompt, again  supporting our recommendation of using multiple prompts and comparing the results of these prompts (S4). 
+
 \textbf{Sustainability}\\
+Using an LLM inherently comes with a significant energy footprint. However, several of the choices we made in our study have reduced the potential energy expenditure. In particular, our using a pre-trained model avoids the large footprint that results from the training phase of LLMs \cite{wu2022sustainableai}. Further, we have used a relatively small model, run locally, since it was not necessary to use a larger model given our focus on replicability over raw performance. Lastly, in order to keep inferences low, we used a small subset of the data for the initial testing of our prompts and used a method of confidence elicitation that does not require repeated inference. As a result of using a smaller model, we have likely used less energy than the original study, since Llama-3.1-8b has been estimated to use 0.017 Wh per query \cite{EnergyScore2026}, whereas GPT 4 has been estimated to use between 0.3 and 3 Wh per query \cite{deVries2023,epoch2025energygpt}.\\
 
 %TODO S9. Analyse overfitting & degradation.
 \textbf{S9. Analyse overfitting \& degradation.}\\
