@@ -1027,8 +1027,17 @@ The results show a positive degradation on all metrics, meaning that the perform
 	\end{tabularx}
 \end{table}
 
-%TODO S10. Visualize ROC.
+%TODO S10. Visualize ROC
 \textbf{S10. Visualize ROC.}\\
+\begin{figure}[H]
+	\centering
+	\captionsetup{justification=centering}
+	\includegraphics[width=0.9\linewidth]{figures/ROC.png}
+	\caption{The ROC curve (blue) of the predictions on the test set. The diagonal line (orange) represents random guessing.}
+	\label{fig:ROC}
+\end{figure}
+
+The ROC curve gives a visual representation of how well the model is able to differentiate the positive and negative classes across different thresholds. Figure \ref{fig:ROC} shows the ROC curve of the results of our test set. To calculate which predictions were above or below the thresholds, we used the estimated confidence values. However, we have seen that the model is poorly calibrated (S8), which means that these confidences are not very accurate. That said, we can still see that the ROC curve is consistently further to the top-left than the middle line, which represent random guessing. (TODO CONTINUE EXPLANATION)
 
 %TODO S11. Apply statistical significance tests.
 \textbf{S11. Apply statistical significance tests.}\\

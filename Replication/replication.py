@@ -9,6 +9,7 @@ import torch
 import pandas as pd
 from llama_cpp import Llama, LlamaGrammar
 import math
+import matplotlib.pyplot as plt
 from sklearn.metrics import (
     confusion_matrix,
     precision_score,
@@ -389,7 +390,11 @@ print(f"""
 
 # S10: Visualise ROC.
 fpr, tpr, thresholds = evaluation['roc']
-roc_display = RocCurveDisplay(fpr=fpr, tpr=tpr).plot()
+plt.figure(dpi=1200)
+roc_display = RocCurveDisplay(fpr=fpr, tpr=tpr).plot(label="ROC curve")
+plt.plot([0, 1], [0, 1], linestyle="--", color="orange", label="Random chance")
+plt.legend()
+plt.savefig('Results/ROC.png', dpi=300)
 print(f"AUC: {evaluation['AUC']}")
 
 # S11: Statistical tests.
