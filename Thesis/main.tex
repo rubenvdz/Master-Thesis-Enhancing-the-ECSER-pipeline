@@ -1027,7 +1027,6 @@ The results show a positive degradation on all metrics, meaning that the perform
 	\end{tabularx}
 \end{table}
 
-%TODO S10. Visualize ROC
 \textbf{S10. Visualize ROC.}\\
 \begin{figure}[H]
 	\centering
@@ -1037,7 +1036,9 @@ The results show a positive degradation on all metrics, meaning that the perform
 	\label{fig:ROC}
 \end{figure}
 
-The ROC curve gives a visual representation of how well the model is able to differentiate the positive and negative classes across different thresholds. Figure \ref{fig:ROC} shows the ROC curve of the results of our test set. To calculate which predictions were above or below the thresholds, we used the estimated confidence values. However, we have seen that the model is poorly calibrated (S8), which means that these confidences are not very accurate. That said, we can still see that the ROC curve is consistently further to the top-left than the middle line, which represent random guessing. (TODO CONTINUE EXPLANATION)
+The ROC curve gives a visual representation of how well the model is able to differentiate the positive and negative classes across different thresholds. Figure \ref{fig:ROC} shows the ROC curve of the results of our test set. To calculate which predictions were above or below the thresholds, we used the estimated confidence values. However, we have seen that the model is poorly calibrated (S8), which means that these confidences are not very accurate. That said, we can still see that the ROC curve is consistently to the top-left of the dashed diagonal line that represents random guessing, which suggest that the model is able to differentiate the positive and negative classes on each threshold. However, visually it is clear that the model does not provide a good fit on the test data. If we calculate the area under the curve (AUC), we get a value of 0.573. If we recall that any positive fit is between 0.5 and 1, the AUC is clearly better than random chance, but still on the lower end. 
+
+Unfortunately, the original study did not provide an ROC curve or the AUC metric, nor did they provide the necessary information to compute this information (i.e., the confidence values). Therefore, we cannot compare the fit of our model to theirs. It is likely that, given their higher accuracy and $F_1$-score, the ROC curve dominates our curve, but we cannot be certain because of the missing information.\\
 
 %TODO S11. Apply statistical significance tests.
 \textbf{S11. Apply statistical significance tests.}\\
