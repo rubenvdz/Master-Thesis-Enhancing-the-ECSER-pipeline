@@ -1057,6 +1057,17 @@ Since we are comparing five sets of results, and prefer a non-parametric test, w
 
 \subsubsection{Summary of Findings}
 %TODO: Summarize results of all steps
+The purpose of the case study was to answer RQ3: how applicable is the proposed pipeline in assisting LLM4SE classification research? In this section, we summarise how applying the \newecser pipeline has assisted the prediction of test cases without execution.
+\begin{enumerate}
+	\item Splitting the data set into validation and test sets allowed us to analyse the generalisability of the results.
+	\item The performance of the model varies a lot depending on the chosen prompt approach and prompt pattern, as well as the specific choice of words or the presence of typos, supporting the development and comparison of multiple prompts.
+	\item Providing the $F_1$-score and $F_2$-score gave additional insight into the balance between the precision and recall of the results, whereas the MCC provided additional insight into the balance of all parts of the confusion matrix.
+	\item Analysing the calibration shows that the model is poorly calibrated, meaning that we should not blindly trust the provided explanations.
+	\item Using a smaller, open-source model allowed us to keep the carbon footprint low and made it easier to estimate the confidence of the model.
+	\item The ROC curve gives a visual indication of the level of fit, showing that the model does not provide a great fit on the test data.
+	\item Applying statistical testing to the original research questions supports the original conclusion that the model is able to predict the outcome of test cases without execution, but was not able to find a significant difference between simple and complex test cases or between the five test suites. 
+\end{enumerate}
+
 
 \newpage 
 \printbibliography[heading=bibintoc]
