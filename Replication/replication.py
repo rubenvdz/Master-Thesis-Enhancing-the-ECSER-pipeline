@@ -25,7 +25,7 @@ from sklearn.metrics import (
 import numpy as np
 from torchmetrics.classification import BinaryCalibrationError
 from textattack.augmentation import EmbeddingAugmenter, CharSwapAugmenter
-from scipy.stats import friedmanchisquare, permutation_test, binomtest
+from scipy.stats import friedmanchisquare, binomtest, wilcoxon
 
 
 # Get the data set
@@ -164,9 +164,6 @@ def evaluate_results(results,print_eval=False,name=""):
     evaluation : dictionary with all the calculated metrics
     """
     n = len(results.index)
-    
-    # Accuracy regardless of format satisfaction
-    true_accuracy = (results['pred'].str.lower() == results['label']).fillna(False).mean().item()
     
     results = results[results['pred'].notna()] # Remove failed responses
     n_failed = n - len(results.index)
@@ -402,9 +399,6 @@ simple_pred = (simple_results['pred'] == "fail").astype(int).values
 complex_pred = (complex_results['pred'] == "fail").astype(int).values
 suite_preds = [(result['pred'] == "fail").astype(int).values for result in suite_results]
 
-def statistic(x, y):
-    return np.mean(x) - np.mean(y)
-
 # Compared to random guessing
 preds = (results_test_persona['pred'] == "fail").astype(int).values
 n_fail = preds.sum()
@@ -412,10 +406,10 @@ n_total = len(preds)
 print(binomtest(n_fail, n_total, p=0.5, alternative='two-sided'))
 
 # Between simple and complex
-print(permutation_test((simple_pred,complex_pred),statistic))
+print(wilcoxon(simple_pred,complex_pred))
 
 # Between the suites
-print(friedmanchisquare(*suite_preds))
+print(friedmanchisquare(*suite_preds,))
 
 
 
