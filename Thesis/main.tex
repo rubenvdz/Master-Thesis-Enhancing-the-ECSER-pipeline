@@ -1068,6 +1068,24 @@ The purpose of the case study was to answer RQ3: how applicable is the proposed 
 	\item Applying statistical testing to the original research questions supports the original conclusion that the model is able to predict the outcome of test cases without execution, but was not able to find a significant difference between simple and complex test cases or between the five test suites. 
 \end{enumerate}
 
+\section{Threats to Validity}
+\label{threats-to-validity}
+In this section, we identify the threats to the validity of our research using the list of possible threats by \textcite{Wohlin2024validity}, which is based on \textcite{Cook1979validity}. 
+
+\textbf{Conclusion Validity} \\
+Threats to the conclusion validity refer to the relation between the treatment (the \newecser pipeline) and the outcome (RQ3). We identify the following threats:
+
+\textit{Reliability of Measures}: the applicability of using the \newecser pipeline is hard to measure, since our focus is on improving replicability by increasing transparency, but replicability is not a measurable quantity. There could be subjective disagreement by other researchers whether the replication has demonstrated the applicability of the pipeline. We minimized this threat by only including widely-supported recommendations into the pipeline, which means most researchers should support the carried out steps in the replication.
+
+\textit{Reliability of Treatment Implementation}: it is possible that other researchers would have applied the \newecser pipeline differently to the replication study, since the pipeline leaves room for interpretation (e.g., the prompt approach). However, we believe our conclusions are general enough to apply to all different choices in the execution of the pipeline.
+
+\textit{Random Irrelevancies in Experimental Setting}: using an LLM comes with the problem of non-determinism, which could risk changing the results. We have mitigated this issue by setting the temperature to 0.
+
+\textbf{Internal Validity}
+
+
+\section{Conclusion}
+\label{conclusion}
 
 \newpage 
 \printbibliography[heading=bibintoc]
