@@ -1081,8 +1081,24 @@ Threats to the conclusion validity refer to the relation between the treatment (
 
 \textit{Random Irrelevancies in Experimental Setting}: using an LLM comes with the problem of non-determinism, which could risk changing the results. We have mitigated this issue by setting the temperature to 0.
 
-\textbf{Internal Validity}
+\textbf{Internal Validity}\\
+Threats to internal validity are unknown influences that affect the dependent variable. In our case, the following threat could have influenced the observed results in the replication study:
 
+\textit{Selection}: we used the same data set as the original study in our replication. It is possible that the selected Python tests from the Python Standard Library are not representative of all Python tests, which could mean the results differ for Python test cases from other sources. Future research is needed to see if LLMs are able to predict the outcome of other Python test cases, or those written in other languages.
+
+\textbf{Construct Validity}\\
+Threats to the construct validity concern the generalisation of the results to the concept or theory behind the experiment. In other words, can the results in RQ3 be used to draw general conclusion about the \newecser pipeline. We identify the following threats:
+
+\textit{Inadequate Pre-operational Explication of Constructs}: the theory included in the pipeline may be correct, but if the concepts are not clearly defined, the resulting application of the pipeline becomes muddled. We have mitigated this issue by accompanying many of our recommendations with references to more in-depth sources in case additional explanation is needed.
+
+\textit{Mono-Operation Bias}: we conducted a single replication study, which does not apply all the steps of the pipeline. There is a risk that using a single replication study does not provide a full picture of the applicability of the pipeline. To mitigate this issue, we picked the replication study specifically to demonstrate the application of the new LLM-specific steps of prompt design and prompt comparison, since the other steps were already evaluated as part of the ECSER pipeline \cite{Dellanna2022}. 
+
+\textit{Experimenter Expectancy}: knowing the conclusions of the original study could have inadvertently biased the results of the replication study. However, the conclusions obtained by following the \newecser pipeline actually differed from the original, since statistical significance testing was conducted that did not find significant differences for some experiments. 
+
+\textbf{External Validity}\\
+Threats to external validity limit the generalisability of the results of the experiment to the outside world. We note the following threat:
+
+\textit{Interaction of Selection and Treatment}: the study that was selected for our replication must be representative of the field of LLM4SE for our observations to be generalisable to the field as a whole. We mitigated this threat by picking a recent study (2024) from the field of LLM4SE that was published in a reputable journal (FSE). Further, the study did not follow all the steps of the pipeline, which is the general case in the field (see RQ1).
 
 \section{Conclusion}
 \label{conclusion}
