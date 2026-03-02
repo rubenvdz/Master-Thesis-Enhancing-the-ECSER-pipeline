@@ -1068,6 +1068,8 @@ The purpose of the case study was to answer RQ3: how applicable is the proposed 
 	\item Applying statistical testing to the original research questions supports the original conclusion that the model is able to predict the outcome of test cases without execution, but was not able to find a significant difference between simple and complex test cases or between the five test suites. 
 \end{enumerate}
 
+In conclusion, we have shown how the \newecser pipeline was able to assist the reporting of LLM4SE classification research by producing findings that were absent in the original study, increasing the replicability of the results and providing a more critical perspective on some of the original conclusions.
+
 \section{Threats to Validity}
 \label{threats-to-validity}
 In this section, we identify the threats to the validity of our research using the list of possible threats by \textcite{Wohlin2024validity}, which is based on \textcite{Cook1979validity}. 
@@ -1102,6 +1104,25 @@ Threats to external validity limit the generalisability of the results of the ex
 
 \section{Conclusion}
 \label{conclusion}
+In this thesis, we enhanced the ECSER (Evaluating Classifiers in Software Engineering Research) pipeline with recommendations for the use of LLMs, resulting in the \newecser pipeline. In order to develop a pipeline that takes into account the existing state of the field of LLM4SE, we followed \textcite{Wieringa2014}'s design cycle of \textit{problem investigation} (RQ1), \textit{treatment design} (RQ2) and \textit{treatment validation} (RQ3). In the following, we briefly summarise the approach and the conclusions from each research question:
+
+\textbf{RQ1: What is the current state of reporting in LLM4SE classification research?}
+To answer RQ1 and investigate the state of reporting in the field LLM4SE, we conducted a mapping study of all the LLM4SE papers published in 2024 in three of the top SE conferences (ICSE, FSE \& TSE), extracting information about the reporting practices of these papers. The results of the mapping study showed a pattern of incomplete reporting and unsubstantiated claims, supporting the need for more comprehensive reporting guidelines that could be easily followed by researchers to increase the transparency and the replicability of the results. 
+
+\textbf{RQ2: What resource can be developed to assist researchers in conducting and reporting on LLM4SE classification research?}
+To answer RQ2 and provide a resource for LLM4SE researchers to assist the conducting and reporting of classification research, we developed the \newecser pipeline, which enhances the recommendations of the original ECSER pipeline with recommendations from the fields of LLM4SE, ML4SE and Design Science, with the intent of helping researchers avoid the problems identified in RQ1. Some steps of the pipeline were modified from the original ECSER to tailor the recommendation more towards the use of LLMs, while some new steps were developed that are specific to the use of LLMs, such as the steps of prompt design, prompt comparison and the evaluation of the calibration, fairness, robustness \& sustainability. 
+
+\textbf{RQ3: How applicable is the proposed pipeline in assisting LLM4SE classification research?}
+To answer RQ3 and evaluate the applicability of the \newecser pipeline, we conducted a replication study on the prediction of Python test results without execution \cite{10.1145/3663529.3663794}, using the proposed pipeline. This study was chosen since it was recent (2024), published in a reputable journal (FSE) and represented current practices in the field of LLM4SE. The results of the replication study show that applying the \newecser pipeline improved the generalisability of the results by analysing the degradation and ROC plot, improved the replicability by providing a more systematic approach to prompt development and comparison; and provided additional insights into the results by analysing the calibration, robustness, sustainability and reporting additional performance metrics ($F_1$, $F_2$, MCC). Further, conducting statistical testing showed that we were only able to corroborate the finding that LLMs perform better than chance on the task of predicting test results, but did not find a significant result for the difference between simple and complex test cases and the difference between the test suites, leaving the original conclusions unsubstantiated. 
+
+\subsection{Limitations and Future Work}
+The goal of the \newecser pipeline is to be a tool for LLM4SE researchers that makes it easier to follow best-practices in the field. However, so far it has only been applied by us. It is possible that there are parts of the pipeline that are difficult to apply for some researchers, especially given the fact that LLMs are still a relatively new tool that have only recently become good enough for many tasks in SE. Further, we have only conducted a single case study using the pipeline. Future work should therefore focus on applying the \newecser pipeline on a larger variety of tasks and ideally be conducted by researchers with various levels of experience with the use of LLMs, to give a more complete picture of the usefulness of the pipeline for LLM4SE researchers, which could possibly inform changes to the pipeline to make steps easier to follow or increase the comprehensiveness. 
+
+Another limitation of the pipeline is that, as of the writing of this thesis, there are very few existing guidelines for the use of LLMs in SE, especially for classification tasks. Evidently, researchers are still figuring out the best way to use and report on LLMs for various SE tasks. Due to the high speed and volume of LLM research, it is possible that some of the recommendations of the pipeline will become outdated or incomplete as more consensus is being reached for the best way to conduct research using LLMs, or better methods are discovered. This is especially likely for the prompt engineering recommendations, since new ways to design prompts are constantly being developed, including approaches that automate the process \cite{zadenoori2025}. 
+
+The \newecser pipeline should be seen as a first attempt at collecting recommendations for conducting and reporting on LLM4SE classification research, but it is by no means a definitive set of guidelines and does not replace the sources that were used to create it, or those that will be written in the future.
+
+
 
 \newpage 
 \printbibliography[heading=bibintoc]
