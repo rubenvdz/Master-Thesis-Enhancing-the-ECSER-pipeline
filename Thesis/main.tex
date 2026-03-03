@@ -185,7 +185,7 @@ Methodological problems in SE research can result in problems with the reproduci
 
 Despite being a known issue, the problems of improper analysis and reporting have persisted over the years. In a mapping study of the proceedings of the International Conference of Software Engineering (ICSE) from 2019 to 2021, \textcite{Dellanna2022} analysed 60 SE papers related to classification and found that most papers (36) reported on the precision and recall of their experiment, fewer reported the F-score (27) and accuracy (24), but only 14 papers explicitly justified why they chose the reported metrics. The full confusion matrix was only included in six papers. Other metrics like the receiver operator characteristic (ROC) curve and the area under the curve (AUC) were mostly absent with 3 and 9 respective mentions. Of course, as we know from statistics, it is not enough to report a metric and claim it's better than that of other models, since it could be coincidental, so statistical significance testing is required to make such claims. However, only six papers analysed the statistical significance of their results. Evidently, the situation is dire, which is why \citeauthor{Dellanna2022} developed the ECSER pipeline to give SE researchers a systematic approach to conducting classification experiments and reporting and analysing the results. 
 
-\subsection{Replications in SE}
+\subsection{Guidelines for Replication Studies in SE}
 Replication studies are a vital part of empirical software engineering, allowing researchers to investigate the effects of alternative values for important attributes, vary the strategy with which hypotheses are investigated and make up for certain threats to validity \cite{Basili1999}. The importance of replication is not unique to software engineering, after all the so-called "replication crisis" was a massive topic of debate in psychology research in recent years, since it was found that many previous results in the field could not be replicated, even if the original findings were statistically significant \cite{Shrout2018,Maxwell2015,Amrhein2018}. \textcite{Cruz2020} conducted a systematic literature review of replication studies in SE between 2013 and 2018 and found that the number of published replication studies has been steadily increasing, though there are research gaps in certain fields, suggesting that the SE community is taking an increased interest in replicating previous studies.
 
 \textcite{Shull2008} identify two types of replication studies: \textit{exact replications}, in which the procedures of the original study are strictly followed; and \textit{conceptual replications}, in which the research problem of the original study is evaluated using a different procedure. Additionally, exact replications are subdivided into \textit{dependent} and \textit{independent} replications. Dependent replications keep most of the conditions of the experiment (close to) the same, which allows one to test the effect of specific variables on the results; whereas independent replications vary the original conditions of the experiment significantly, which allows one to test the robustness of the original results under different conditions. \textcite{Juristo2010} underline the value of non-exact replications, which they define similarly to how \citeauthor*{Shull2008} define independent exact replications, by conducting a multiple-case replication study using a newly proposed four-phase process, to show that non-identical replications can be used to learn new information about the original results.
@@ -622,6 +622,7 @@ Alternatively, \textcite{sclar2024quantifyinglanguagemodelssensitivity} develope
 
 The approach to prompt comparison that was used should be reported and justified in the paper, along with prompt revisions and interaction logs \cite{baltes2025guidelinesempiricalstudiessoftware}. The result of prompt comparison could be a single prompt which has shown good performance, which will then be used for the final evaluation; or a set of plausible prompts, in which case the evaluation will be done over this set of prompts. If no prompt comparison is done, the reason should be explained in the paper.\\
 
+\vspace{1cm}
 \textbf{S5. Test the models.}\\
 Finally, after fine-tuning and determining the optimal hyper-parameters and/or prompts, the performance of the LLM is evaluated on the test set. It is recommended to include multiple data sets into the test set, to assess the generalisability of the model and to run statistical tests across these multiple data sets (S11) \cite{Dellanna2022}. \\
 
@@ -1016,6 +1017,7 @@ The results show a positive degradation on all metrics, meaning that the perform
 	\end{tabularx}
 \end{table}
 
+\newpage
 \textbf{S10. Visualize ROC.}\\
 \begin{figure}[H]
 	\centering
